@@ -17,7 +17,7 @@ package Del is
         Hash            => Ada.Strings.Hash,
         Equivalent_Keys => "=");
 
-   type Func_T is tagged record
+   type Layer_T is abstract tagged record
       D : Data_Maps.Map;
    end record;
 
