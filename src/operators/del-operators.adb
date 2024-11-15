@@ -1,35 +1,41 @@
-with Del.Operators;
+with Ada.Text_IO; use Ada.Text_IO;
+
+with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 
 package body Del.Operators is
 
-    --Linear
-    overriding function Forward (Self : Linear_T; X : Tensor_T) return Tensor_T is
-        --This should be an initialized Tensor of shape ((X -> Row Size) x (Self.Element("Weights") -> Columns Size))
-        --IE: X = (3x1) and Self.Weights = (1x3) => Output = (3x3)
-        Output : Tensor_T := Zeros((2, 2));
-    begin
-        --Output := (X * Self.Element("Weights")) + Self.Element("Bias");
-        --Self.Element("Input")
-        return Output;
-    end;
+   overriding function Forward (L : Linear_T; X : Tensor_T) return Tensor_T is
+      (X ** L.Map ("Weights") + L.Map ("Bias"));
+   
+   overriding function Backward (L : Linear_T; Dy : Tensor_T) return Tensor_T is
+   begin
+      return Dy;
+   end Backward;
 
-    overriding function Backward (Self : Linear_T; X : Tensor_T) return Tensor_T is
+   overriding function Get_Params (L : Linear_T) return Params_T is
+      T1 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
+      T2 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
+   begin
+      return (T1, T2);
+   end Get_Params;
 
-    begin
-        return Data : Tensor_T := Zeros((2, 2));
-    end;
 
-    --ReLU
-    overriding function Forward (Self : ReLU_T; X : Tensor_T) return Tensor_T is
+   overriding function Forward (L : ReLU_T; X : Tensor_T) return Tensor_T is
+   begin
+      Put_Line (L.Map'Image & " Forward from ReLu_T");
+      return X;
+   end Forward;
 
-    begin
-        return Data : Tensor_T := Zeros((2, 2));
-    end;
+   overriding function Backward (L : ReLU_T; Dy : Tensor_T) return Tensor_T is
+   begin
+      return dY;
+   end Backward;
 
-    overriding function Backward (Self : ReLU_T; X : Tensor_T) return Tensor_T is
-
-    begin
-        return Data : Tensor_T := Zeros((2, 2));
-    end;
+   overriding function Get_Params (L : ReLU_T) return Params_T is
+      T1 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
+      T2 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
+   begin
+      return (T1, T2);
+   end Get_Params;
 
 end Del.Operators;
