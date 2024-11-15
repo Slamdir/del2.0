@@ -9,7 +9,8 @@ licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
 website = ""
 tags = []
 
-executables = ["del"]
+executables = ["main", "test_dl_linear"]
+
 
 [[depends-on]]
 orka_tensors_cpu = "*"
