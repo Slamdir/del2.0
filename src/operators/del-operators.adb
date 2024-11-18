@@ -5,7 +5,11 @@ with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 package body Del.Operators is
 
    overriding function Forward (L : Linear_T; X : Tensor_T) return Tensor_T is
-      (X ** L.Map ("Weights") + L.Map ("Bias"));
+   begin
+      Put_Line("Forward from Linear_T");
+      return X;
+      --(X ** L.Map ("Weights") + L.Map ("Bias"));
+   end Forward;
    
    overriding function Backward (L : Linear_T; Dy : Tensor_T) return Tensor_T is
    begin
@@ -22,7 +26,7 @@ package body Del.Operators is
 
    overriding function Forward (L : ReLU_T; X : Tensor_T) return Tensor_T is
    begin
-      Put_Line (L.Map'Image & " Forward from ReLu_T");
+      Put_Line ("Forward from ReLu_T");
       return X;
    end Forward;
 
