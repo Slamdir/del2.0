@@ -28,7 +28,7 @@ package Del is
 
    function Forward (L : Func_T; X : Tensor_T) return Tensor_T is abstract;
    function Backward (L : Func_T; Dy : Tensor_T) return Tensor_T is abstract;
-   function Get_Params (E : Func_T) return Params_T is abstract;
+   function Get_Params (L : Func_T) return Params_T is abstract;
 
 private
    type Func_T is abstract tagged record
