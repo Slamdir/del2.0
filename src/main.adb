@@ -52,8 +52,6 @@ begin
    Put_Line("After Backward (should be zeros):");
    Put_Line(Image(Test_Result));
 
-   
-   
    begin
       DMod.Add_Layer(Network, new DOp.Linear_T);
       DMod.Add_Layer(Network, new DOp.ReLU_T);
