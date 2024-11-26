@@ -18,4 +18,9 @@ package body Del.Model is
         end loop;
     end Run_Layers;
 
+   procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T) is 
+   begin 
+      Self.Loss_Func := Loss_Func;
+   end Add_Loss;
+
 end Del.Model;

@@ -19,19 +19,24 @@ package Del is
         Hash            => Ada.Strings.Hash,
         Equivalent_Keys => "=");
 
-   type Index_T is range 0 .. 1;
-   type Params_T is array (Index_T) of Tensor_Access_T;
-
    type Func_T is abstract tagged private;
    type Func_Access_T is access all Func_T'Class;
-   type Funcs_T is array (1 .. 2) of Func_Access_T;
 
    function Forward (L : Func_T; X : Tensor_T) return Tensor_T is abstract;
    function Backward (L : Func_T; Dy : Tensor_T) return Tensor_T is abstract;
-   function Get_Params (L : Func_T) return Params_T is abstract;
+
+   type Loss_T is abstract tagged private;
+   type Loss_Access_T is access all Loss_T'Class;
+
+   function Forward (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Element_T is abstract;
+   function Backward (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Tensor_T is abstract;
 
 private
    type Func_T is abstract tagged record
+      Map : Data_Maps.Map;
+   end record;
+
+   type Loss_T is abstract tagged record
       Map : Data_Maps.Map;
    end record;
 end Del;
