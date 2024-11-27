@@ -6,9 +6,7 @@ package Del.Operators is
    overriding function Backward (L : in Linear_T; Dy : Tensor_T) return Tensor_T;
    overriding function Get_Params (L : Linear_T) return Params_T;
 
-   type ReLU_T is new Func_T with record
-      Inplace : Boolean := True;
-   end record;
+   type ReLU_T is new Func_T with null record;
 
    overriding function Forward (L : in out ReLU_T; X : Tensor_T) return Tensor_T;  
    overriding function Backward (L : in ReLU_T; Dy : Tensor_T) return Tensor_T;    
