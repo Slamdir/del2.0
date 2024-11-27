@@ -12,4 +12,13 @@ package Del.Operators is
    overriding function Backward (L : in ReLU_T; Dy : Tensor_T) return Tensor_T;    
    overriding function Get_Params (L : ReLU_T) return Params_T;
 
+   type SoftMax_T is new Func_T with null record;
+   type SoftMax_Access_T is access all SoftMax_T'Class;
+   
+   overriding function Forward (L : in out SoftMax_T; X : Tensor_T) return Tensor_T;
+   overriding function Backward (L : SoftMax_T; Dy : Tensor_T) return Tensor_T;
+   overriding function Get_Params (L : SoftMax_T) return Params_T;
+
+   function SoftMax(X : Tensor_T) return Tensor_T;
+
 end Del.Operators;

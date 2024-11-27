@@ -30,8 +30,18 @@ package Del is
    function Backward (L : Func_T; Dy : Tensor_T) return Tensor_T is abstract;
    function Get_Params (L : Func_T) return Params_T is abstract;
 
+   type Loss_T is abstract tagged private;
+   type Loss_Access_T is access all Loss_T'Class;
+
+   function Forward  (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Element_T is abstract;
+   function Backward (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Tensor_T is abstract;
+
 private
    type Func_T is abstract tagged record
+      Map : Data_Maps.Map;
+   end record;
+
+   type Loss_T is abstract tagged record
       Map : Data_Maps.Map;
    end record;
 end Del;
