@@ -19,6 +19,7 @@ procedure Main is
    Test_Result : D.Tensor_T := Zeros((2, 2));
    
    -- Create layers and network
+   --L : DOp.Linear_T;
    R : DOp.ReLU_T;
    Network : DMod.Model;
 begin
@@ -52,8 +53,18 @@ begin
    Put_Line("After Backward (should be zeros):");
    Put_Line(Image(Test_Result));
 
+   --L.D.Insert ("Data", Data_1);
+   --Put_Line (Image (L.D.Element ("Data")));
+
+   --Put_Line(Image(Data));
+   --Data := DOp.Forward(L, X);
+   --Put_Line (Image(Data));
+
+   --  Result := X * Data;
+   --  Put_Line(Image(Result));
+
    begin
-      DMod.Add_Layer(Network, new DOp.Linear_T);
+      --DMod.Add_Layer(Network, new DOp.Linear_T);
       DMod.Add_Layer(Network, new DOp.ReLU_T);
    exception
       when Constraint_Error =>
