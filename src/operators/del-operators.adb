@@ -28,7 +28,7 @@ package body Del.Operators is
          Map.Include("input", X);
          L.Map := Map;
          
-         -- Rest of the implementation stays the same
+         
          for i in 1 .. Batch_Size loop
             for j in 1 .. Out_Size loop
                declare
