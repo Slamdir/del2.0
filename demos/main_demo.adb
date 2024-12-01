@@ -25,7 +25,8 @@ procedure Main_Demo is
 begin
 
    Linear_Layer := new DOp.Linear_T;
-   --  Network.Add_Layer(D.Func_Access_T(Linear_Layer));
+   Linear_Layer.Initialize(3, 3);
+   Network.Add_Layer(D.Func_Access_T(Linear_Layer));
 
    ReLU_Layer := new DOp.ReLU_T;
    Network.Add_Layer(D.Func_Access_T(ReLU_Layer));
