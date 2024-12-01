@@ -26,7 +26,6 @@ package body Del.Operators is
          Map.Include("input", X);
          L.Map := Map;
          
-         
          for i in 1 .. Batch_Size loop
             for j in 1 .. Out_Size loop
                declare
@@ -148,7 +147,6 @@ package body Del.Operators is
       --  Put_Line(Image(Output));
       return Output;
    end Row_Sum;
-
 
    -- Allows for Cross_Entropy to call SoftMax with the Actual Values
    function SoftMax(X : Tensor_T) return Tensor_T is
