@@ -1,6 +1,4 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka; use Orka;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Ada.Numerics;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 

@@ -24,7 +24,6 @@ package Del is
 
    type Func_T is abstract tagged private;
    type Func_Access_T is access all Func_T'Class;
-   type Funcs_T is array (1 .. 2) of Func_Access_T;
 
    function Forward (L : in out Func_T; X : Tensor_T) return Tensor_T is abstract;
    function Backward (L : in out Func_T; Dy : Tensor_T) return Tensor_T is abstract;

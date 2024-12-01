@@ -15,7 +15,7 @@ procedure Softmax_Test is
    package DLoss renames Del.Loss;
 
    --Data_1 : D.Tensor_T := Zeros((2, 2));
-   X : D.Tensor_T := To_Tensor ([1.0, 2.0, 3.0, 2.0, 5.0, 6.0, 3.0, 15.0, 9.0], [3,3]);
+   X : D.Tensor_T := To_Tensor ([5.0, 2.0, 3.0, D.Element_T(-5.0), 5.0, 6.0, 3.0, 15.0, 9.0], [3,3]);
    Data : D.Tensor_T := Ones((2, 3));
 
    Result : D.Tensor_T := Zeros((3, 3));
@@ -50,10 +50,10 @@ begin
 
    --  DMod.Run_Layers(Network);
 
-   Put_Line(Image(Output2));
+   --  Put_Line(Image(Output2));
    --  Put_Line(Image(Output3));
 
-   --  Put_Line(Loss.Forward(Expected, Actual)'Image);
-   Put_Line(Loss.Backward(Expected, Actual).Image);
+   Put_Line(Loss.Forward(Expected, Actual)'Image);
+   --  Put_Line(Loss.Backward(Expected, Actual).Image);
 
 end Softmax_Test;

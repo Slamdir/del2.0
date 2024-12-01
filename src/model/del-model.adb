@@ -14,6 +14,17 @@ package body Del.Model is
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
 
+   procedure Train_Model(Self : in Model; Num_Epochs : Positive; Data : Tensor_T) is
+
+   begin
+      for I in 0 .. Num_Epochs loop
+
+         begin
+            Put_Line("Num Epcohs: " & I'Image);
+         end;
+      end loop;
+   end Train_Model;
+
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T is
    begin
       Put_Line("Run_Layers called with input shape: " & 
