@@ -6,7 +6,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Orka; use Orka;
 
-procedure Main is
+procedure relu_test is
    package D renames Del;
    package DI renames Del.Initializers;
    package DOp renames Del.Operators;
@@ -72,4 +72,4 @@ begin
       when others =>
          Put_Line("Error: Unexpected error in network execution.");
    end;
-end Main;
+end relu_test;
