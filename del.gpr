@@ -1,12 +1,14 @@
 with "config/del_config.gpr";
+with "C:\Users\rajes\Downloads\VsAda\del2.0\aunit\lib\gnat\aunit.gpr";
+
 project Del is
 
-   for Source_Dirs use ("src/**", "demos", "config/");
+   for Source_Dirs use ("src/**", "demos", "config/", "tests/");
    for Object_Dir use "obj/" & Del_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
 
-   for Main use ("relu_test", "softmax_test", "linear_test", "main_demo");
+   for Main use ("relu_test", "softmax_test", "linear_test", "main_demo", "loss_suite", "integration_suite", "relu_suite", "softmax_suite", "linear_suite" );
 
    package Compiler is
       for Default_Switches ("Ada") use Del_Config.Ada_Compiler_Switches & ("-gnat2022");

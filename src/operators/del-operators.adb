@@ -4,13 +4,24 @@ with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 
 package body Del.Operators is
    procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive) is
-      -- Initialize with uniform random values between -0.1 and 0.1 for stable training
       Weights : Tensor_T := Random_Uniform((In_Nodes, Out_Nodes)) * 0.2 - 0.1;
       Bias    : Tensor_T := Zeros((1, Out_Nodes));
       Map : Data_Maps.Map := L.Map;
    begin
-      Map.Insert("weights", Weights);
-      Map.Insert("bias", Bias);
+      -- Replace or insert weights
+      if Map.Contains("weights") then
+         Map.Replace("weights", Weights);
+      else
+         Map.Insert("weights", Weights);
+      end if;
+
+      -- Replace or insert bias
+      if Map.Contains("bias") then
+         Map.Replace("bias", Bias);
+      else
+         Map.Insert("bias", Bias);
+      end if;
+
       L.Map := Map;
    end Initialize;
 
