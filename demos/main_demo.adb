@@ -13,14 +13,13 @@ procedure Main_Demo is
    package DOp renames Del.Operators;
    package DMod renames Del.Model;
 
-   X : D.Tensor_T := To_Tensor ([5.0, 2.0, 3.0, D.Element_T(-5.0), 5.0, 6.0, 3.0, 15.0, 9.0], [3,3]);
+   X : D.Tensor_T := To_Tensor ([9.0, 2.0, D.Element_T(-4.0), D.Element_T(-5.0), 5.0, 0.0, 3.0, 15.0, 9.0], [3,3]);
 
    Network : DMod.Model;
 
    Linear_Layer : DOp.Linear_Access_T;
    ReLU_Layer : DOp.ReLU_Access_T;
    Soft_Layer : DOp.SoftMax_Access_T;
-   Holder : D.Tensor_T := Zeros((3, 3));
 
 begin
 
@@ -34,7 +33,10 @@ begin
    Soft_Layer := new DOp.SoftMax_T;
    Network.Add_Layer(D.Func_Access_T(Soft_Layer));
    
-   Holder := DMod.Run_Layers(Network, X);
-   Put_Line(Holder.Image);
+   declare 
+      Result : D.Tensor_T := DMod.Run_Layers(Network, X);
+   begin
+      Put_Line(Result.Image);
+   end;
 
 end Main_Demo;
