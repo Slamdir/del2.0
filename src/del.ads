@@ -3,6 +3,7 @@ with Ada.Strings.Hash;
 
 with Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka; use Orka;
 
 package Del is
 
