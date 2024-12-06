@@ -103,14 +103,35 @@ package body Del.Operators is
       New_Bias_Grad : Tensor_T := Zeros((1, Shape(Dy)(2)));
       Sum_Row : Tensor_T := Dy(1);  -- Initialize with first row
    begin
-      return Dy;
+      -- Update gradients
+      -- weights_grad = input.T * dy
+      Weights_Grad := Add(Weights_Grad, Multiply(Transpose(Input), Dy));
+      
+      -- bias_grad = sum(dy, axis=0)
+      -- Sum all rows
+      for I in 2 .. Batch_Size loop
+         Sum_Row := Add(Sum_Row, Dy(I));
+      end loop;
+      -- Set as first (and only) row of New_Bias_Grad
+      New_Bias_Grad.Set(1, Sum_Row);
+      
+      Bias_Grad := Add(Bias_Grad, New_Bias_Grad);
+      
+      -- Store updated gradients
+      Map.Insert("weights_grad", Weights_Grad);
+      Map.Insert("bias_grad", Bias_Grad);
+      L.Map := Map;
+      
+      -- Return gradient with respect to input
+      -- grad_input = dy * weights.T
+      return Multiply(Dy, Transpose(Weights));
    end Backward;
 
    overriding function Get_Params (L : Linear_T) return Params_T is
-      T1 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
-      T2 : Tensor_Access_T := new Tensor_T'(Zeros((2, 2)));
+      Weights : Tensor_Access_T := new Tensor_T'(L.Map("weights"));
+      Bias    : Tensor_Access_T := new Tensor_T'(L.Map("bias"));
    begin
-      return (T1, T2);
+      return (0 => Weights, 1 => Bias);
    end Get_Params;
 
    overriding function Forward (L : in out ReLU_T; X : Tensor_T) return Tensor_T is
@@ -123,12 +144,13 @@ package body Del.Operators is
       return Result;
    end Forward;
 
-   overriding function Backward (L : in ReLU_T; Dy : Tensor_T) return Tensor_T is
+   overriding function Backward (L : in out ReLU_T; Dy : Tensor_T) return Tensor_T is
       Zero : Tensor_T := Zeros(Dy.Shape);
+      Map : Data_Maps.Map := L.Map;
    begin
-      if L.Map.Contains("forward_output") then
+      if Map.Contains("forward_output") then
          declare
-            Forward_Output : Tensor_T := L.Map("forward_output");
+            Forward_Output : Tensor_T := Map("forward_output");
             Mask : Tensor_T := Forward_Output / (Forward_Output + Ones(Dy.Shape));
          begin
             return Dy * Mask;
@@ -194,16 +216,13 @@ package body Del.Operators is
       return Output;
    end Forward;
 
-   -- This should only be called after Cross-Entropy
-   overriding function Backward (L : SoftMax_T; Dy : Tensor_T) return Tensor_T is
-      --  I : Tensor_T := Identity (Shape(Dy)(1));
-      --  Output : Tensor_T := Forward(L, Dy) * (I - Forward(L, Dy));
+   overriding function Backward (L : in out SoftMax_T; Dy : Tensor_T) return Tensor_T is
    begin
-      return dY;
+      return Dy;  -- Your existing implementation
    end Backward;
 
    overriding function Get_Params (L : SoftMax_T) return Params_T is
-      Dummy : Tensor_Access_T := null;
+   Dummy : Tensor_Access_T := null;
    begin
       return (Dummy, Dummy);
    end Get_Params;
