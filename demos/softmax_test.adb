@@ -1,59 +1,72 @@
 with Del;
 with Del.Operators;
-with Del.Initializers;
 with Del.Model;
-with Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka; use Orka;
 
-procedure Softmax_Test is
-
+procedure SoftMax_Test is
    package D renames Del;
-   package DI renames Del.Initializers;
    package DOp renames Del.Operators;
    package DMod renames Del.Model;
-   package DLoss renames Del.Loss;
 
-   --Data_1 : D.Tensor_T := Zeros((2, 2));
-   X : D.Tensor_T := To_Tensor ([5.0, 2.0, 3.0, D.Element_T(-5.0), 5.0, 6.0, 3.0, 15.0, 9.0], [3,3]);
-   Data : D.Tensor_T := Ones((2, 3));
+   -- Test dimensions
+   Batch_Size : constant := 1;
+   Output_Size : constant := 3;
 
-   Result : D.Tensor_T := Zeros((3, 3));
+   -- SoftMax layer test tensors
+   Positive_Input : constant D.Tensor_T := To_Tensor([1.0, 2.0, 3.0], [Batch_Size, Output_Size]);
+   Negative_Input : constant D.Tensor_T := To_Tensor([-1.0, -2.0, -3.0], [Batch_Size, Output_Size]);
 
-   L : DOp.Linear_T;
-   R : DOp.ReLU_T;
+   -- Expected outputs
+   Expected_Positive_Output : constant D.Tensor_T := To_Tensor([0.09003057, 0.24472847, 0.66524096], [Batch_Size, Output_Size]);
+   Expected_Negative_Output : constant D.Tensor_T := To_Tensor([0.66524096, 0.24472847, 0.09003057], [Batch_Size, Output_Size]);
+
+   Test_Result : D.Tensor_T := Zeros([Batch_Size, Output_Size]); -- Initialize with zeros
+
+   -- Create layer and network
    M : DOp.SoftMax_T;
-
    Network : DMod.Model;
-   
-   --  Output : constant D.Tensor_T := Sum(X, 1);
-   Output2 : constant D.Tensor_T := DOp.Forward(M, X);
-   --  Output3 : D.Tensor_T := Log10(X);
 
-   Expected : D.Tensor_T := To_Tensor ([1.0, 0.0], [1, 2]);
-   Actual   : D.Tensor_T := To_Tensor ([2.0, 1.0], [1, 2]);
-   Loss     : DLoss.Cross_Entropy_T;
+   -- Helper procedure to assert test outcomes
+   procedure Assert_Test(Expected, Actual : D.Tensor_T; Test_Name : String) is
+      Tolerance : constant Float_32 := Float_32(0.00001);
+      Diff      : D.Tensor_T := Abs(Expected - Actual);
+   begin
+      if Max(Diff) > Tolerance then
+         Put_Line(Test_Name & " Failed");
+         Put_Line("Expected: " & Expected.Image);
+         Put_Line("Actual  : " & Actual.Image);
+      else
+         Put_Line(Test_Name & " Passed");
+      end if;
+   end Assert_Test;
 
 begin
-   --L.D.Insert ("Data", Data_1);
-   --Put_Line (Image (L.D.Element ("Data")));
+   Put_Line("=== SoftMax Layer Tests ===");
 
-   --Put_Line(Image(Data));
-   --Data := DOp.Forward(L, X);
-   --Put_Line (Image(Data));
+   -- Test Forward Pass with Positive Input
+   Put_Line("1. Testing Forward Pass with Positive Input");
+   Test_Result := M.Forward(Positive_Input);
+   Assert_Test(Expected_Positive_Output, Test_Result, "SoftMax Forward Positive Input");
 
-   --  Result := X * Data;
-   --  Put_Line(Image(Result));
+   -- Test Forward Pass with Negative Input
+   Put_Line("2. Testing Forward Pass with Negative Input");
+   Test_Result := M.Forward(Negative_Input);
+   Assert_Test(Expected_Negative_Output, Test_Result, "SoftMax Forward Negative Input");
 
-   --  DMod.Add_Layer(Network, new DOp.Linear_T);
-   --  DMod.Add_Layer(Network, new DOp.ReLU_T);
+   -- Add SoftMax Layer to Network
+   Put_Line("3. Adding SoftMax Layer to Network");
+   declare
+      SoftMax_Layer : DOp.SoftMax_Access_T := new DOp.SoftMax_T;
+      Network_Result : D.Tensor_T := Zeros([Batch_Size, Output_Size]);
+   begin
+      DMod.Add_Layer(Network, D.Func_Access_T(SoftMax_Layer));
 
-   --  DMod.Run_Layers(Network);
+      -- Run the network forward
+      Network_Result := Network.Run_Layers(Positive_Input);
+      Assert_Test(Expected_Positive_Output, Network_Result, "Network SoftMax Layer Test");
+   end;
 
-   --  Put_Line(Image(Output2));
-   --  Put_Line(Image(Output3));
-
-   Put_Line(Loss.Forward(Expected, Actual)'Image);
-   --  Put_Line(Loss.Backward(Expected, Actual).Image);
-
-end Softmax_Test;
+   Put_Line("=== All SoftMax Layer Tests Completed ===");
+end SoftMax_Test;

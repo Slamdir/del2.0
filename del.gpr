@@ -8,7 +8,7 @@ project Del is
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
 
-   for Main use ("relu_test", "softmax_test", "linear_test", "main_demo", "loss_suite", "integration_suite", "relu_suite", "softmax_suite", "linear_suite" );
+   for Main use ("relu_test", "softmax_test", "linear_test", "loss_test", "main_demo", "loss_suite", "integration_suite", "relu_suite", "softmax_suite", "linear_suite" );
 
    package Compiler is
       for Default_Switches ("Ada") use Del_Config.Ada_Compiler_Switches & ("-gnat2022");
