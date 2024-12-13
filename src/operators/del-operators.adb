@@ -2,40 +2,9 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Numerics;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 
-with Interfaces.C;
-with System;
-with Ada.Characters.Latin_1;
+with Ada.Real_Time; use Ada.Real_Time;
 
 package body Del.Operators is
-
-   pragma Linker_Options ("-lwinpthread");
-
-   type Clock_Kind is (Realtime, Monotonic);
-
-   for Clock_Kind use
-     (Realtime  => 0,
-      Monotonic => 1);
-   for Clock_Kind'Size use Interfaces.C.int'Size;
-
-   type Timespec is record
-      Seconds     : aliased Interfaces.C.long;
-      Nanoseconds : aliased Interfaces.C.long;
-   end record
-     with Convention => C;
-
-   function C_Clock_Gettime
-     (Kind : Clock_Kind;
-      Time : access Timespec) return Interfaces.C.int
-   with Import, Convention => C, External_Name => "clock_gettime";
-
-   function Monotonic_Clock return Duration is
-      Value  : aliased Timespec;
-      Unused_Result : Interfaces.C.int;
-   begin
-      Unused_Result := C_Clock_Gettime (Monotonic, Value'Access);
-
-      return Duration (Value.Seconds) + Duration (Value.Nanoseconds) / 1e9;
-   end Monotonic_Clock;
 
    procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive) is
       -- Initialize with uniform random values between -0.1 and 0.1 for stable training
@@ -43,6 +12,7 @@ package body Del.Operators is
       Bias    : Tensor_T := Zeros((1, Out_Nodes));
       Map     : Data_Maps.Map := L.Map;
    begin
+      Put_Line(Weights.Image);
       Map.Insert("weights", Weights);
       Map.Insert("bias", Bias);
       L.Map := Map;
@@ -226,6 +196,15 @@ package body Del.Operators is
       return (Dummy, Dummy);
    end Get_Params;
 
+   --  TZ   : Time_Offset := UTC_Time_Offset;
+   --  Zero : Ada.Calendar.Time        :=
+   --    Ada.Calendar.Formatting.Value
+   --      ("2018-05-01 15:00:00.00", TZ);
+
+   SC : Seconds_Count;
+   TS : Time_Span;
+
 begin
-   Reset_Random (Monotonic_Clock);
+   Ada.Real_Time.Split(Clock, SC, TS);
+   Reset_Random (To_Duration(TS) * 100000);
 end Del.Operators;
