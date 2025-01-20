@@ -157,14 +157,14 @@ function Load_Dataset
             Dataset(1).Data := new Tensor_T'(From_JSON_Array(First_Data, Data_Shape));
          end;
 
-         -- Convert the first label to a one-hot encoded tensor
+         
          declare
             Label_Value : constant JSON_Value := Get(Label_Array, 1);
             Label : constant Integer := Integer'(Label_Value.Get);
             Target : Tensor_T := Zeros(Target_Shape);
          begin
             Put_Line("Label value:" & Label'Image);
-            -- One-hot encode: set the corresponding index to 1.0
+            
             Target.Set((1, Label), 1.0);
             Dataset(1).Target := new Tensor_T'(Target);
          end;

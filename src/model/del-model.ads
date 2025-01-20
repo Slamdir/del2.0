@@ -19,7 +19,7 @@ procedure Train_Model_From_JSON
       Num_Epochs : Positive;
       JSON_File : String;
       Data_Shape : Tensor_Shape_T;
-      Target_Shape : Tensor_Shape_T);  -- This parameter is in the spec but missing in body
+      Target_Shape : Tensor_Shape_T);  
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T;
 
