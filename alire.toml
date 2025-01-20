@@ -9,7 +9,13 @@ licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
 website = ""
 tags = []
 
-executables = ["del"]
+executables = ["json_test"]
 
 [[depends-on]]
 orka_tensors_cpu = "*"
+
+[build-switches]
+"*".style_checks="No"
+
+[[depends-on]]
+gnatcoll = "^25.0.0"

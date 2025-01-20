@@ -6,7 +6,7 @@ project Del is
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
 
-   for Main use ("relu_test", "softmax_test", "linear_test", "main_demo");
+   for Main use ("relu_test", "softmax_test", "linear_test", "main_demo", "json_test.adb");
 
    package Compiler is
       for Default_Switches ("Ada") use Del_Config.Ada_Compiler_Switches & ("-gnat2022");
