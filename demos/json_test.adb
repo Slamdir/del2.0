@@ -6,6 +6,7 @@ with Del.JSON; use Del.JSON;
 with Del.Operators; use Del.Operators;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Ada.Directories; use Ada.Directories;
+with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 
 procedure Json_Test is
 begin
@@ -16,7 +17,9 @@ begin
       My_Model : Del.Model.Model;
       Data_Shape : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Single sample, 2 features
       Target_Shape : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- Single sample, 4 classes
-      Json_Filename : constant String := "initial_testing.json";
+      Json_Filename : constant String := "bin/initial_testing.json";
+      Minimal_Shape : constant Tensor_Shape_T := (1 => 1, 2 => 1);
+      Empty_Tensor : constant Tensor_T := Empty(Minimal_Shape);
    begin
       Put_Line("Variables declared");
       
@@ -42,13 +45,15 @@ begin
          Del.Model.Add_Layer(My_Model, Layer1);
          
          Put_Line("Attempting to load and process JSON data...");
-         -- Test loading data
-         Del.Model.Train_Model_From_JSON(
+         -- Use unified Train_Model with all parameters
+         Del.Model.Train_Model(
             Self => My_Model,
             Num_Epochs => 1,
+            Data => Empty_Tensor,
+            Labels => Empty_Tensor,
             JSON_File => Json_Filename,
-            Data_Shape => Data_Shape,
-            Target_Shape => Target_Shape);
+            JSON_Data_Shape => Data_Shape,
+            JSON_Target_Shape => Target_Shape);
             
          Put_Line("JSON loading test completed successfully!");
       end;

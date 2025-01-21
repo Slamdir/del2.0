@@ -1,25 +1,21 @@
 with Ada.Containers.Vectors;
 with Orka.Numerics.Singles.Tensors;
-with Del.JSON; use Del.JSON;  -- Add this line
+with Del.JSON; use Del.JSON;
 
 package Del.Model is
    type Model is tagged private;
 
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T);
 
-   -- Updated Train_Model to support both direct tensor and JSON input
+   -- Unified training procedure that handles both tensor and JSON input
    procedure Train_Model
-     (Self : in Model;
+     (Self       : in Model;
       Num_Epochs : Positive;
-      Data : Tensor_T);
-      
-   -- New procedure for training from JSON file
-procedure Train_Model_From_JSON
-     (Self : in Model;
-      Num_Epochs : Positive;
-      JSON_File : String;
-      Data_Shape : Tensor_Shape_T;
-      Target_Shape : Tensor_Shape_T);  
+      Data       : Tensor_T;
+      Labels     : Tensor_T;
+      JSON_File  : String := "";           -- Optional JSON file
+      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);  -- Shape for JSON data
+      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1)); -- Shape for JSON targets
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T;
 

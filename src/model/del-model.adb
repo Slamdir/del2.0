@@ -14,22 +14,51 @@ package body Del.Model is
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
 
-   procedure Train_Model(Self : in Model; Num_Epochs : Positive; Data : Tensor_T) is
+ procedure Train_Model
+     (Self       : in Model;
+      Num_Epochs : Positive;
+      Data       : Tensor_T;
+      Labels     : Tensor_T;
+      JSON_File  : String := "";
+      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
+      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
+   is
+      Training_Data   : Tensor_T := Data;
+      Training_Labels : Tensor_T := Labels;
       Loss_Value : Element_T;
    begin
+      -- If JSON file is provided, load data from it
+      if JSON_File /= "" then
+         Put_Line("Loading data from JSON file: " & JSON_File);
+         declare
+            Dataset : constant Dataset_Array := Load_Dataset(
+               Filename => JSON_File,
+               Data_Shape => JSON_Data_Shape,
+               Target_Shape => JSON_Target_Shape);
+         begin
+            Training_Data := Dataset(1).Data.all;
+            Training_Labels := Dataset(1).Target.all;
+            Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+         end;
+      end if;
+
+      Put_Line("Starting training with" & Num_Epochs'Image & " epochs");
+      Put_Line("Data shape: " & Shape(Training_Data)(1)'Image & "," & Shape(Training_Data)(2)'Image);
+      Put_Line("Labels shape: " & Shape(Training_Labels)(1)'Image & "," & Shape(Training_Labels)(2)'Image);
+      
       for I in 1 .. Num_Epochs loop
          Put_Line("Epoch:" & I'Image);
          
          declare
             -- Forward pass
-            Output : Tensor_T := Run_Layers(Self, Data);
+            Output : Tensor_T := Run_Layers(Self, Training_Data);
          begin
             if Self.Loss_Func /= null then
                -- Compute loss and gradient
-               Loss_Value := Self.Loss_Func.Forward(Data, Output);
-               -- Initialize Loss_Grad with same shape as Output
+               Loss_Value := Self.Loss_Func.Forward(Training_Labels, Output);
+               
                declare
-                  Loss_Grad : Tensor_T := Self.Loss_Func.Backward(Data, Output);
+                  Loss_Grad : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Output);
                   Grad : Tensor_T := Loss_Grad;
                   C : Layer_Vectors.Cursor := Self.Layers.Last;
                begin
@@ -48,35 +77,6 @@ package body Del.Model is
             end if;
          end;
       end loop;
-   end Train_Model;
-
-   procedure Train_Model_From_JSON
-     (Self : in Model;
-      Num_Epochs : Positive;
-      JSON_File : String;
-      Data_Shape : Tensor_Shape_T;
-      Target_Shape : Tensor_Shape_T) is
-   begin
-      Put_Line("Loading data from JSON file: " & JSON_File);
-      
-      declare
-         Dataset : constant Dataset_Array := Load_Dataset(
-            Filename => JSON_File,
-            Data_Shape => Data_Shape,
-            Target_Shape => Target_Shape);
-            
-         Training_Data : constant Tensor_T := Dataset(1).Data.all;
-         Training_Target : constant Tensor_T := Dataset(1).Target.all;
-      begin
-         Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-         Put_Line("Data shape: " & Shape(Training_Data)(1)'Image & "," & 
-                 Shape(Training_Data)(2)'Image);
-         Put_Line("Target shape: " & Shape(Training_Target)(1)'Image & "," & 
-                 Shape(Training_Target)(2)'Image);
-         
-         -- Call the regular Train_Model with the loaded data
-         Train_Model(Self, Num_Epochs, Training_Data);
-      end;
    exception
       when E : JSON_Parse_Error =>
          Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
@@ -84,7 +84,7 @@ package body Del.Model is
       when E : others =>
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
-   end Train_Model_From_JSON;
+   end Train_Model;
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T is
    begin
