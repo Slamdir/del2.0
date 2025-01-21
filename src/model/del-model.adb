@@ -14,15 +14,76 @@ package body Del.Model is
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
 
-   procedure Train_Model(Self : in Model; Num_Epochs : Positive; Data : Tensor_T) is
-
+ procedure Train_Model
+     (Self       : in Model;
+      Num_Epochs : Positive;
+      Data       : Tensor_T;
+      Labels     : Tensor_T;
+      JSON_File  : String := "";
+      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
+      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
+   is
+      Training_Data   : Tensor_T := Data;
+      Training_Labels : Tensor_T := Labels;
+      Loss_Value : Element_T;
    begin
-      for I in 0 .. Num_Epochs loop
-
+      -- If JSON file is provided, load data from it
+      if JSON_File /= "" then
+         Put_Line("Loading data from JSON file: " & JSON_File);
+         declare
+            Dataset : constant Dataset_Array := Load_Dataset(
+               Filename => JSON_File,
+               Data_Shape => JSON_Data_Shape,
+               Target_Shape => JSON_Target_Shape);
          begin
-            Put_Line("Num Epcohs: " & I'Image);
+            Training_Data := Dataset(1).Data.all;
+            Training_Labels := Dataset(1).Target.all;
+            Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+         end;
+      end if;
+
+      Put_Line("Starting training with" & Num_Epochs'Image & " epochs");
+      Put_Line("Data shape: " & Shape(Training_Data)(1)'Image & "," & Shape(Training_Data)(2)'Image);
+      Put_Line("Labels shape: " & Shape(Training_Labels)(1)'Image & "," & Shape(Training_Labels)(2)'Image);
+      
+      for I in 1 .. Num_Epochs loop
+         Put_Line("Epoch:" & I'Image);
+         
+         declare
+            -- Forward pass
+            Output : Tensor_T := Run_Layers(Self, Training_Data);
+         begin
+            if Self.Loss_Func /= null then
+               -- Compute loss and gradient
+               Loss_Value := Self.Loss_Func.Forward(Training_Labels, Output);
+               
+               declare
+                  Loss_Grad : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Output);
+                  Grad : Tensor_T := Loss_Grad;
+                  C : Layer_Vectors.Cursor := Self.Layers.Last;
+               begin
+                  -- Backward pass through all layers
+                  while Layer_Vectors.Has_Element(C) loop
+                     declare
+                        Current_Layer : constant Func_Access_T := Layer_Vectors.Element(C);
+                     begin
+                        Grad := Current_Layer.all.Backward(Grad);
+                     end;
+                     Layer_Vectors.Previous(C);
+                  end loop;
+               end;
+               
+               Put_Line("Loss:" & Loss_Value'Image);
+            end if;
          end;
       end loop;
+   exception
+      when E : JSON_Parse_Error =>
+         Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
+         raise;
+      when E : others =>
+         Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
+         raise;
    end Train_Model;
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T is
