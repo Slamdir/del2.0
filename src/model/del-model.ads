@@ -1,6 +1,13 @@
 with Ada.Containers.Vectors;
 with Orka.Numerics.Singles.Tensors;
 
+--File Saving/Loading Imports
+with Ada.Strings.Fixed;
+with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+with Ada.Text_IO;
+with Ada.Directories;
+--
+
 package Del.Model is
    type Model is tagged private;
 
@@ -17,6 +24,14 @@ package Del.Model is
 
    procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T);
    --  procedure Add_Optim(Self : in out Model; Loss_Func : Loss_Access_T);
+
+   procedure Save_Network(Self : Model; File_Name : String);
+
+   procedure Load_Network(Self : in out Model; File_Name : String);
+
+   procedure Insert_Layer(Self : in out Model; Layer : Func_Access_T; index : Positive);
+
+   procedure Remove_Layer(Self : in out Model; index : Positive);
 
 private
    -- Vector to store layers

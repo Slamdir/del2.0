@@ -69,4 +69,73 @@ package body Del.Model is
          Put_Line(Ada.Exceptions.Exception_Information(E));
          raise;
    end Run_Layers;
+
+   --Checks if directory exists and creates it if not
+   function Check_Dir return Boolean is
+      Dir : constant String := "../Networks";
+   begin
+      if not Ada.Directories.Exists(Dir) then
+         Ada.Directories.Create_Path(Dir);
+         --Should be an Exception catch here
+         return TRUE;
+      end if;
+      return TRUE;
+   end Check_Dir;
+
+   procedure Save_Network(Self : Model; File_Name : String) is
+      File     : Ada.Streams.Stream_IO.File_Type;
+      Streamer : Stream_Access;
+      Dir      : constant String := "../Networks/";
+   begin
+      if not Check_Dir then
+         Put_Line("Error: Save directory could not be created");
+      else
+         Create(File, Out_file, Dir & File_Name);
+         Streamer := Stream(File);
+
+         --For Each Layer do a `Write
+         for Layer of Self.Layers loop
+            Func_Access_T'Write(Streamer, Layer);
+         end loop;
+
+         Close(File);
+      end if;
+   end Save_Network;
+
+   procedure Load_Network(Self : in out Model; File_Name : String) is
+      File     : Ada.Streams.Stream_IO.File_Type;
+      Streamer : Stream_Access;
+      Dir      : constant String := "../Networks/";
+   begin
+      if not Check_Dir then
+         Put_Line("Error: Save directory could not be created");
+      else
+         Open(File, In_File, Dir & File_Name);
+         Streamer := Stream(File);
+
+         --Create Network object
+         while not End_of_File(File) loop
+            declare
+               Layer : Func_Access_T;
+            begin
+               Func_Access_T'Read(Streamer, Layer);
+               Self.Add_Layer (Layer);
+            end;
+         end loop;
+
+         Close(File);
+      end if;
+   end Load_Network;
+
+   
+   procedure Insert_Layer(Self : in out Model; Layer : Func_Access_T; index : Positive) is
+   begin
+      Self.Layers.Insert(index, Layer);
+   end Insert_Layer;
+
+   procedure Remove_Layer(Self : in out Model; index : Positive) is
+   begin
+      Self.Layers.Delete(index);
+   end Remove_Layer;
+
 end Del.Model;
