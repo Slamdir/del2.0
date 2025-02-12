@@ -116,7 +116,7 @@ class JSONDataPlotter(tk.Tk):
                 cmap="rainbow",  
                 alpha=0.9,
                 edgecolor="k"
-            )
+            )  
             
             # color bar on right
             cbar = self.fig.colorbar(scatter, ax=self.ax)
