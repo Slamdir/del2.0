@@ -1,0 +1,72 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.sse2.longs.logical%s  orka-simd-sse2-longs-logical.ads  4bf79728 NE OO PU PK
+W orka.simd.sse2.longs%s  orka-simd-sse2-longs.ads  orka-simd-sse2-longs.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse2-longs-logical.ads  20241106002736 89ef2958 orka.simd.sse2.longs.logical%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [and_not orka__simd__sse2__longs__logical 20 13 none]
+G c Z s s [Oand orka__simd__sse2__longs__logical 23 13 none]
+G c Z s s [Oor orka__simd__sse2__longs__logical 26 13 none]
+G c Z s s [Oxor orka__simd__sse2__longs__logical 29 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 5|17r9 32r5
+36I9*Integer_64<long_long_integer>
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 5|17r14 32r10
+X 3 orka-simd-sse2.ads
+17K19*SSE2 2|17k14 3|19e19 5|17r19 32r15
+X 4 orka-simd-sse2-longs.ads
+17K24*Longs 3|17k19 4|24e25 5|17r24 32r20
+20A9*m128l(1|36I9)<1|20E9> 5|20r36 20r50 23r34 23r48 26r33 26r47 29r34 29r48
+X 5 orka-simd-sse2-longs-logical.ads
+17K30*Logical 4|17k24 5|32l26 32e33
+20V13*And_Not{4|20A9} 20>22 20>28
+20a22 Left{4|20A9}
+20a28 Right{4|20A9}
+23V14*"and"{4|20A9} 23>20 23>26
+23a20 Left{4|20A9}
+23a26 Right{4|20A9}
+26V14*"or"{4|20A9} 26>19 26>25
+26a19 Left{4|20A9}
+26a25 Right{4|20A9}
+29V14*"xor"{4|20A9} 29>20 29>26
+29a20 Left{4|20A9}
+29a26 Right{4|20A9}
+

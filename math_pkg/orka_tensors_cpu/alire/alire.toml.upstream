@@ -1,0 +1,53 @@
+authors = [
+"onox",
+]
+description = "Tensors using SIMD instructions on the CPU"
+licenses = "Apache-2.0"
+maintainers = [
+"onox <denkpadje@gmail.com>",
+]
+maintainers-logins = [
+"onox",
+]
+name = "orka_tensors_cpu"
+tags = [
+"orka",
+"math",
+"vector",
+"matrix",
+"ndarray",
+"tensor",
+"numpy",
+"random",
+"statistics",
+"leastsquares",
+"linearalgebra",
+"linalg",
+"simd",
+]
+version = "1.0.0"
+website = "https://github.com/onox/orka"
+[build-switches]
+[build-switches."*"]
+style_checks = [
+"-gnatygAOM99-Is",
+]
+[build-switches.validation]
+compile_checks = "warnings"
+[gpr-externals]
+ORKA_TENSORS_CPU_SIMD_TYPE = [
+"SSE4.1",
+"AVX",
+"AVX2",
+]
+[gpr-set-externals]
+ORKA_TENSORS_CPU_SIMD_TYPE = "SSE4.1"
+[origin]
+commit = "b455160b0b24a89af4ae6423b186dc826915d487"
+subdir = "orka_tensors_cpu"
+url = "git+https://github.com/onox/orka.git"
+[[depends-on]]
+orka_numerics = "~1.0.0"
+orka_simd = "~1.0.0"
+orka_types = "~1.0.0"
+

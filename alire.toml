@@ -13,9 +13,24 @@ executables = ["json_test"]
 
 [[depends-on]]
 orka_tensors_cpu = "*"
+gnatcoll = "^25.0.0"
 
 [build-switches]
 "*".style_checks="No"
 
-[[depends-on]]
-gnatcoll = "^25.0.0"
+[[pins]]
+orka_tensors_cpu = { path = "./math_pkg/orka_tensors_cpu"}
+orka_numerics = { path = "./math_pkg/orka_numerics"}
+orka_simd = {path = "./math_pkg/orka_simd"}
+orka_types = {path = "./math_pkg/orka_types"}
+
+[gpr-externals]
+ORKA_SIMD_SIMD_TYPE = ["AVX", "AVX2"]
+ORKA_TENSORS_CPU_SIMD_TYPE = ["AVX", "AVX2"]
+
+[gpr-set-externals]
+ORKA_SIMD_SIMD_TYPE = "AVX2"
+ORKA_TENSORS_CPU_SIMD_TYPE = "AVX2"
+
+[environment.'case(os)'.windows]
+ADAFLAGS.append = "-mavx2 -mf16c"

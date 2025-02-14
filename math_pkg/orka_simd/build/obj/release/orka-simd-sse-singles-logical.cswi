@@ -1,0 +1,15 @@
+20250214002940
+-c
+-x
+ada
+-gnatA
+-mavx2
+-mf16c
+-O3
+-gnatn
+-ffunction-sections
+-fdata-sections
+-gnatygAOM99-Is
+-gnatW8
+-mavx2
+-mf16c

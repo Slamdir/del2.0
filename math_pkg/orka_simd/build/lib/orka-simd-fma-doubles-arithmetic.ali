@@ -1,0 +1,155 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.fma.doubles.arithmetic%b  orka-simd-fma-doubles-arithmetic.adb  57fd724d NE OO PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+W orka.simd.avx.doubles.arithmetic%s  orka-simd-avx-doubles-arithmetic.adb  orka-simd-avx-doubles-arithmetic.ali
+W orka.simd.avx2%s	orka-simd-avx2.ads	orka-simd-avx2.ali
+W orka.simd.avx2.doubles%s  orka-simd-avx2-doubles.ads  orka-simd-avx2-doubles.ali
+W orka.simd.avx2.doubles.swizzle%s  orka-simd-avx2-doubles-swizzle.ads  orka-simd-avx2-doubles-swizzle.ali
+W orka.simd.fma.doubles%s  orka-simd-fma-doubles.ads  orka-simd-fma-doubles.ali
+
+U orka.simd.fma.doubles.arithmetic%s  orka-simd-fma-doubles-arithmetic.ads  023f34f3 BN NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+W orka.simd.fma.doubles%s  orka-simd-fma-doubles.ads  orka-simd-fma-doubles.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.doubles%s  orka-simd-sse2-doubles.ads  orka-simd-sse2-doubles.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
+D orka-simd-avx2-doubles.ads  20241106002736 f7763c66 orka.simd.avx2.doubles%s
+D orka-simd-avx2-doubles-swizzle.ads  20241106002738 c5d57c32 orka.simd.avx2.doubles.swizzle%s
+D orka-simd-fma.ads	20241106002736 79816a32 orka.simd.fma%s
+D orka-simd-fma-doubles.ads  20241106002736 2a90709f orka.simd.fma.doubles%s
+D orka-simd-fma-doubles-arithmetic.ads  20241106002736 156a3b4a orka.simd.fma.doubles.arithmetic%s
+D orka-simd-fma-doubles-arithmetic.adb  20241106002736 04c45164 orka.simd.fma.doubles.arithmetic%b
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20241106002736 e1bbae56 orka.simd.sse2.doubles%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [multiply_add orka__simd__fma__doubles__arithmetic 26 13 none]
+G c Z s s [multiply_add_sub orka__simd__fma__doubles__arithmetic 29 13 none]
+G c Z s s [multiply_add orka__simd__fma__doubles__arithmetic 32 13 none]
+G c Z s s [multiply_add_sub orka__simd__fma__doubles__arithmetic 35 13 none]
+G c Z s b [Omultiply orka__simd__fma__doubles__arithmetic 38 13 none]
+G c Z s b [Omultiply orka__simd__fma__doubles__arithmetic 43 13 none]
+G r c none [Omultiply orka__simd__fma__doubles__arithmetic 38 13 none] [permute orka__simd__avx2__doubles__swizzle 24 13 none]
+G r c none [Omultiply orka__simd__fma__doubles__arithmetic 38 13 none] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
+G r c none [Omultiply orka__simd__fma__doubles__arithmetic 43 13 none] [permute orka__simd__avx2__doubles__swizzle 24 13 none]
+G r c none [Omultiply orka__simd__fma__doubles__arithmetic 43 13 none] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 11|17r6 18r6 20r9 48r5 12|17r6 18r6 20r14 55r5
+20E9*Index_4D 20e33 12|25r16
+20n22*X{20E9} 12|47r30
+20n25*Y{20E9} 12|48r43
+20n28*Z{20E9} 12|49r43
+20n31*W{20E9} 12|50r43
+63F9*Float_64<long_float>
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 11|17r11 18r11 20r14 48r10 12|17r11 18r11 20r19
+. 32r11 33r11 55r10
+X 3 orka-simd-avx.ads
+17K19*AVX 28e18 11|18r16 24r8 12|17r16 32r16
+X 4 orka-simd-avx-doubles.ads
+17K23*Doubles 27e26 11|18w20 24r12 12|17r20 32r20
+20A9*m256d(1|63F9)<1|20E9> 11|32r37 32r51 35r41 35r55 43r46 43r60 12|31r46
+. 31r60 40r40
+24A9*m256d_Array(20A9)<1|20E9> 11|38r32 38r52 43r25 12|22r32 22r52 23r16
+. 31r25
+X 5 orka-simd-avx-doubles-arithmetic.ads
+17K31*Arithmetic 73e37 12|17w28 32r28
+20V14*"*"{4|20A9} 12|47s22
+X 6 orka-simd-avx2.ads
+17K19*AVX2 19e19 12|18r16 33r16
+X 7 orka-simd-avx2-doubles.ads
+17K24*Doubles 19e27 12|18r21 33r21
+X 8 orka-simd-avx2-doubles-swizzle.ads
+19K32*Swizzle 35e35 12|18w29 33r29
+24V13*Permute{4|20A9} 12|42s15 43s15 44s15 45s15
+X 9 orka-simd-fma.ads
+17K19*FMA 2|17k14 9|19e18 11|20r19 48r15 12|20r24 55r15
+X 10 orka-simd-fma-doubles.ads
+17K23*Doubles 9|17k19 10|19e26 11|20r23 48r19 12|20r28 55r19
+X 11 orka-simd-fma-doubles-arithmetic.ads
+20K31*Arithmetic 10|17k23 11|48l27 48e37 12|20b36 55l27 55t37
+26V13*Multiply_Add{14|20A9} 26>27 26>30 26>33
+26a27 A{14|20A9}
+26a30 B{14|20A9}
+26a33 C{14|20A9}
+29V13*Multiply_Add_Sub{14|20A9} 29>31 29>34 29>37
+29a31 A{14|20A9}
+29a34 B{14|20A9}
+29a37 C{14|20A9}
+32V13*Multiply_Add{4|20A9} 32>27 32>30 32>33 12|48s17 49s17 50s17
+32a27 A{4|20A9}
+32a30 B{4|20A9}
+32a33 C{4|20A9}
+35V13*Multiply_Add_Sub{4|20A9} 35>31 35>34 35>37
+35a31 A{4|20A9}
+35a34 B{4|20A9}
+35a37 C{4|20A9}
+38V14*"*"{4|24A9} 38>18 38>24 12|22b14 29l9 29t11
+38a18 Left{4|24A9} 12|22b18 26r24
+38a24 Right{4|24A9} 12|22b24 26r31
+43V14*"*"{4|20A9} 43>18 43>38 12|26s29 31b14 53l9 53t11
+43a18 Left{4|24A9} 12|31b18 47r24 48r37 49r37 50r37
+43a38 Right{4|20A9} 12|31b38 42r24 43r24 44r24 45r24
+X 12 orka-simd-fma-doubles-arithmetic.adb
+23a7 Result{4|24A9} 26m10 28r14
+25e11 I{1|20E9} 26r18 26r38
+35N7 Mask_0_0_0_0 42r31
+36N7 Mask_1_1_1_1 43r31
+37N7 Mask_2_2_2_2 44r31
+38N7 Mask_3_3_3_3 45r31
+40a7 XXXX{4|20A9} 42m7 47r17
+40a13 YYYY{4|20A9} 43m7 48r31
+40a19 ZZZZ{4|20A9} 44m7 49r31
+40a25 WWWW{4|20A9} 45m7 50r31
+40a31 Result{4|20A9} 47m7 48m7 48r47 49m7 49r47 50m7 50r47 52r14
+X 13 orka-simd-sse2.ads
+17K19*SSE2 11|17r16 23r8 13|19e19
+X 14 orka-simd-sse2-doubles.ads
+17K24*Doubles 11|17w21 23r13 14|24e27
+20A9*m128d(1|63F9)<1|20E9> 11|26r37 26r51 29r41 29r55
+

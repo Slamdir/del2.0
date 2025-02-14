@@ -1,0 +1,213 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -mavx2
+A -mf16c
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_ACCESS_SUBPROGRAMS
+RV NO_FIXED_POINT
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_NESTED_FINALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RR NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RR NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.numerics.kalman.spkf%b  orka-numerics-kalman-spkf.adb  33299625 NE OO PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W orka.numerics.kalman%s  orka-numerics-kalman.adb  orka-numerics-kalman.ali
+
+U orka.numerics.kalman.spkf%s  orka-numerics-kalman-spkf.ads  0d40cbbb BN NE OO PR PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.kalman%s  orka-numerics-kalman.adb  orka-numerics-kalman.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-assert.ads		20240801081714 ba465f5c ada.assertions%s
+D a-contai.ads		20240801081714 61e5e089 ada.containers%s
+D a-coinho.ads		20240801081714 f2039f43 ada.containers.indefinite_holders%s
+D a-except.ads		20240801081714 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081714 bf4f806b ada.finalization%s
+D a-numeri.ads		20240801081714 84bea7a3 ada.numerics%s
+D a-ngelfu.ads		20240801081714 5506716e ada.numerics.generic_elementary_functions%s
+D a-stream.ads		20240801081714 119b8fb3 ada.streams%s
+D a-string.ads		20240801081714 90ac6797 ada.strings%s
+D a-sttebu.ads		20240801081714 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240801081714 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240801081714 9111f9c1 interfaces%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
+D orka-numerics-kalman.ads  20241106002738 8dc28e7f orka.numerics.kalman%s
+D orka-numerics-kalman-spkf.ads  20241106002736 808245c4 orka.numerics.kalman.spkf%s
+D orka-numerics-kalman-spkf.adb  20241106002738 b3abd3e1 orka.numerics.kalman.spkf%b
+D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
+D system.ads		20240801081714 e4f8b086 system%s
+D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
+D s-finroo.ads		20240801081714 4ff27390 system.finalization_root%s
+D s-parame.ads		20240801081714 3597fc11 system.parameters%s
+D s-putima.ads		20240801081714 17291fe4 system.put_images%s
+D s-secsta.ads		20240801081714 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081714 df77073e system.soft_links%s
+D s-stache.ads		20240801081714 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081714 ccded4e8 system.storage_elements%s
+D s-traent.ads		20240801081714 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081714 fa2a7f59 system.unsigned_types%s
+D d:\ada_capstone\del2.0\math_pkg\orka_numerics\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [spkf orka__numerics__kalman 39 30 none]
+X 4 a-coinho.ads
+50R9 Holder<6|43R9>
+65U14 Replace_Element 20|116s29[18|52] 117s34[18|52]
+77R9 Constant_Reference_Type
+87V13 Constant_Reference{77R9[18|52]} 20|23s41[18|52] 24s46[18|52] 80s47[18|52]
+. 81s51[18|52] 112s54[18|52] 113s55[18|52]
+X 16 orka.ads
+17K9*Orka 98e9 19|39r9 50r68 55r5 20|17r14 50r63 52r16 75r68 121r5
+63F9*Float_64<long_float> 19|50r73 20|50r68 52r21 75r73 85r83
+X 17 orka-numerics.ads
+17K14*Numerics 16|17k9 17|23e18 19|39r14 55r10 20|17r19 121r10
+X 18 orka-numerics-kalman.ads
+23R9 Tensor<21|85R9[22]>
+24k23*Kalman 17|17k14 18|85e25 19|39r23 55r19 20|17r28 51r16 52r38 64r16
+. 64r38 66r23 121r19
+29R12*Vector{23R9} 19|50r55 50r90 51r55 51r70 53r21 20|23r11 38r26 50r50
+. 50r85 63r50 63r65 75r55 75r90 76r55 76r70 78r21 112r16 113r16 116r55
+30R12*Matrix{23R9} 19|19r50 19r65 23r23 27r26 29r47 33r26 33r41 37r26 37r41
+. 20|21r39 24r11 28r16 30r21 51r23 52r45 54r23 64r23 64r45 66r30 80r11 81r11
+. 84r20 95r20 104r22 109r20
+32E9*Update_Phase 32e58 19|22r23
+32n26*Time_Update{32E9} 20|90r20
+32n39*Measurement_Update{32E9} 20|101r20
+36R9*State_Covariance 73e14 19|24r44 28r26 32r26 36r26 20|20r18 89r35 100r36
+38R9*Weights_Type 68e14 19|24r23 29r26 20|21r18
+40R9*Filter 81e14 19|49r28 20|74r28
+40i37 Dimension_X{positive} 20|85r25 86r66 106r42
+40i50 Dimension_Z{positive} 20|96r25 97r66 106r62
+50F12 Element_Type{21|24F9[22]}
+55R12 Vector_Holder{4|50R9[52]}
+56R12 Matrix_Holder{4|50R9[52]}
+60*7 Scaling_Factor{50F12} 20|30r58
+71r7 State{55R12} 20|23r35 112r48 113r49 116m23
+72r7 Covariance{56R12} 20|24r35 117m23
+76r7 Process_Noise{56R12} 20|80r33
+77r7 Measurement_Noise{56R12} 20|81r33
+79r7 Weights{38R9} 20|85r73 86r44 90r46 96r74 97r44 101r53 105r77
+80r7 Estimate{36R9} 20|85r56 116r14 117r14
+X 19 orka-numerics-kalman-spkf.ads
+19V18 Points_Covariance{18|30R12} 19>37 20|30s31
+19*37 Covariance{18|30R12}
+21V18 Transform{18|36R9} 22>7 23>7 23>15 24>7 20|90s9 101s9
+22e7 Phase{18|32E9}
+23*7 Points{18|30R12}
+23*15 Noise{18|30R12}
+24r7 Weights{18|38R9}
+26V18 Cross_Covariance{18|30R12} 27>7 27>10 28>7 28>16 29>7 20|105s9
+27*7 X{18|30R12}
+27*10 Y{18|30R12}
+28r7 State_X{18|36R9}
+28r16 State_Y{18|36R9}
+29r7 Weights{18|38R9}
+31V18 Kalman_Gain{18|30R12} 32>7 33>7 20|109s30
+32r7 State_Y{18|36R9}
+33*7 Cross_Covariance{18|30R12}
+35V18 Posterior_Covariance{18|30R12} 36>7 36>16 37>7 20|118s10
+36r7 State_X{18|36R9}
+36r16 State_Y{18|36R9}
+37*7 Kalman_Gain{18|30R12}
+39k30 SPKF 18|24k23 19|19z18 21z18 26z18 31z18 35z18 55l26 55e30 20|17b35
+. 121l26 121t30
+48U14*Predict_Update 49=7 50^7 51^7 52>7 53>7 20|73b14 119l8 119t22
+49r7 Object{18|40R9} 20|74b7 80r26 81r26 85r18 85r49 85r66 86r37 86r59 90r39
+. 96r18 96r67 97r37 97r59 101r46 105r70 106r35 106r55 116m7 116r7 117m7 117r7
+50p7 F(18|23R9) 20|75b7 85r38
+50*47 Point{18|29R12}
+50f63 DT{16|63F9}
+51p7 H(18|23R9) 20|76b7 96r38
+51*47 Point{18|29R12}
+52o7 DT{duration} 20|77b7 85r93
+53*7 Measurement{18|29R12} 20|78b7 116r68
+X 20 orka-numerics-kalman-spkf.adb
+19V13 Points{18|30R12} 19b13 20>7 21>7 46l8 46t14 85s41 96s41
+20r7 Estimate{18|36R9} 23r26 24r26
+21r7 Weights{18|38R9} 30r50
+23*7 X{18|23R9} 26r31 34r22 40r36 41r36
+24*7 P{18|23R9} 30r75
+26i7 N{natural} 28r38 28r45 36r21 41r33
+28*7 Sigmas{18|30R12} 34m7 34r7 40m13 40r13 41m13 41r13 45r14
+30*7 LT{18|30R12} 38r36
+36i11 I{integer} 38r44 40r25 41r25
+38*13 V{18|29R12} 40r40 41r40
+48V13 Apply_F{18|30R12} 48b13 49>7 50^7 51>7 52>7 59l8 59t15 85s9
+49i7 N{positive} 54r54
+50p7 F(18|23R9) 56r32
+50*42 Point{18|29R12}
+50f58 DT{16|63F9}
+51*7 Points{18|30R12} 54r41 55r28 56r35
+52f7 DT{16|63F9} 56r55
+54*14 Result{18|30R12} 56m13 56r13
+55i14 Index{integer} 56r25 56r47
+61V13 Apply_H{18|30R12} 61b13 62>7 63^7 64>7 71l8 71t15 96s9
+62i7 N{positive} 66r61
+63p7 H(18|23R9) 68r32
+63*42 Point{18|29R12}
+64*7 Points{18|30R12} 66r48 67r28 68r35
+66*14 Result{18|30R12} 68m13 68r13
+67i14 Index{integer} 68r25 68r47
+75*47 Point{18|29R12}
+75f63 DT{16|63F9}
+76*47 Point{18|29R12}
+80*7 Q{18|23R9} 90r36
+81*7 R{18|23R9} 101r43
+84*7 Y{18|30R12} 86r22 90r33 105r27
+89r7 Prediction_State{18|36R9} 96r49 105r33 112r31 118r32
+95*7 Z{18|30R12} 97r22 101r40 105r30
+100r7 Measurement_State{18|36R9} 105r51 109r43 113r31 118r50
+104*7 Pxz{18|30R12} 106r22 109r62
+109*7 K{18|30R12} 116r63 118r69
+112*7 Mean_X{18|23R9} 116r46
+113*7 Mean_Y{18|23R9} 116r82
+X 21 orka-numerics-tensors.ads
+24F9 Element_Type
+41A9 Tensor_Shape(natural)<38I9[18|22]>
+85h9 Tensor
+103y13 Get{85R9[18|22]} 20|38s39[18|22] 56s42[18|22] 68s42[18|22]
+141x14 Set 20|34s14[18|22] 40s20[18|22] 41s20[18|22] 56s20[18|22] 68s20[18|22]
+169y13 Shape{41A9[18|22]} 20|86s24[18|22] 97s24[18|22] 106s26[18|22]
+173V13 Rows{natural} 20|54s48[18|22] 55s35[18|22] 66s55[18|22] 67s35[18|22]
+182y13 Elements{natural} 20|26s33[18|22]
+201y13 Empty{85R9[18|22]} 20|28s26[18|22] 54s33[18|22] 66s40[18|22]
+395y14 "*"{85R9[18|22]} 20|116s65[18|22]
+434y13 Transpose{85R9[18|22]} 20|30s78[18|22]
+609y14 "+"{85R9[18|22]} 20|40s38[18|22] 116s53[18|22]
+612y14 "-"{85R9[18|22]} 20|41s38[18|22] 116s80[18|22]
+644y14 "*"{85R9[18|22]} 20|30s73[18|22]
+747h9*Expression
+968y14 "="{boolean} 4|43i19[18|22]
+

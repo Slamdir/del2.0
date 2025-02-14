@@ -1,0 +1,159 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.avx2.integers.shift%b  orka-simd-avx2-integers-shift.adb  1b35be20 NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.longs%s	orka-simd-avx-longs.ads	orka-simd-avx-longs.ali
+W orka.simd.avx2.integers%s  orka-simd-avx2-integers.ads  orka-simd-avx2-integers.ali
+
+U orka.simd.avx2.integers.shift%s  orka-simd-avx2-integers-shift.ads  1c844ca3 BN NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx2.integers%s  orka-simd-avx2-integers.ads  orka-simd-avx2-integers.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-integers.ads  20241106002738 d9312ec8 orka.simd.avx.integers%s
+D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
+D orka-simd-avx2-integers.ads  20241106002736 f8477638 orka.simd.avx2.integers%s
+D orka-simd-avx2-integers-shift.ads  20241106002736 60ff7d13 orka.simd.avx2.integers.shift%s
+D orka-simd-avx2-integers-shift.adb  20241106002736 94570e88 orka.simd.avx2.integers.shift%b
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [shift_bits_left_zeros orka__simd__avx2__integers__shift 24 13 none]
+G c Z s s [shift_bits_right_zeros orka__simd__avx2__integers__shift 29 13 none]
+G c Z s s [shift_bits_right_signs orka__simd__avx2__integers__shift 34 13 none]
+G c Z s s [shift_bits_left_zeros orka__simd__avx2__integers__shift 43 13 none]
+G c Z s s [shift_bits_right_zeros orka__simd__avx2__integers__shift 50 13 none]
+G c Z s s [shift_bits_right_signs orka__simd__avx2__integers__shift 57 13 none]
+G c Z s s [shift_bits_left_zeros orka__simd__avx2__integers__shift 68 13 none]
+G c Z s s [shift_bits_right_zeros orka__simd__avx2__integers__shift 72 13 none]
+G c Z s s [shift_bits_right_signs orka__simd__avx2__integers__shift 76 13 none]
+G c Z s b [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G c Z s b [shift_elements_right_zeros orka__simd__avx2__integers__shift 89 13 none]
+G c Z b b [shift_all_bits_left_zeros orka__simd__avx2__integers__shift 27 13 none]
+G c Z b b [shift_all_bits_right_zeros orka__simd__avx2__integers__shift 32 13 none]
+G c Z b b [convert orka__simd__avx2__integers__shift 39 13 none]
+G c Z b b [convert orka__simd__avx2__integers__shift 40 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 11|17r6 39r28 40r28
+X 2 a-unccon.ads
+20v14*Unchecked_Conversion 11|17w10 39r32 40r32
+X 3 orka.ads
+17K9*Orka 98e9 10|17r6 19r9 93r5 11|19r6 21r14 64r5
+35I9*Integer_32<integer> 11|44r42 47r65 55r42 58r66
+36I9*Integer_64<long_long_integer>
+X 4 orka-simd.ads
+17K14*SIMD 3|17k9 4|19e14 10|17r11 19r14 22r8 93r10 11|19r11 21r19 23r8 64r10
+X 5 orka-simd-avx.ads
+17K19*AVX 28e18 11|19r16 23r13
+X 6 orka-simd-avx-integers.ads
+20A9*m256i(3|35I9)<5|20I9>
+X 7 orka-simd-avx-longs.ads
+17K23*Longs 24e24 11|19w20 23r17
+20A9*m256l(3|36I9)<3|20E9> 11|28r18 28r55 33r18 33r55 39r61 40r54
+X 8 orka-simd-avx2.ads
+17K19*AVX2 4|17k14 8|19e19 10|19r19 93r15 11|21r24 64r15
+X 9 orka-simd-avx2-integers.ads
+19K24*Integers 8|17k19 9|24e28 10|19r24 93r20 11|21r29 64r20
+22A12*m256i{6|20A9}<5|20I9> 10|24r47 24r75 29r48 29r76 34r48 34r76 43r53
+. 43r67 50r54 50r68 57r54 57r68 68r47 68r80 72r48 72r81 76r48 76r81 85r51
+. 85r65 89r52 89r66 11|39r54 40r61 42r51 42r65 46r23 53r52 53r66 57r23
+X 10 orka-simd-avx2-integers-shift.ads
+19K33*Shift 9|19k24 10|93l29 93e34 11|21b38 64l29 64t34
+24V13*Shift_Bits_Left_Zeros{9|22A12} 24>36 24>54
+24a36 Elements{9|22A12}
+24a54 Bits{13|20A9}
+29V13*Shift_Bits_Right_Zeros{9|22A12} 29>37 29>55
+29a37 Elements{9|22A12}
+29a55 Bits{13|20A9}
+34V13*Shift_Bits_Right_Signs{9|22A12} 34>37 34>55
+34a37 Elements{9|22A12}
+34a55 Bits{13|20A9}
+43V13*Shift_Bits_Left_Zeros{9|22A12} 43>36 43>46
+43a36 Elements{9|22A12}
+43a46 Bits{9|22A12}
+50V13*Shift_Bits_Right_Zeros{9|22A12} 50>37 50>47
+50a37 Elements{9|22A12}
+50a47 Bits{9|22A12}
+57V13*Shift_Bits_Right_Signs{9|22A12} 57>37 57>47
+57a37 Elements{9|22A12}
+57a47 Bits{9|22A12}
+66I9*Bits_Count<integer> 68r61 72r62 76r62
+68V13*Shift_Bits_Left_Zeros{9|22A12} 68>36 68>54
+68a36 Elements{9|22A12}
+68i54 Bits{66I9}
+72V13*Shift_Bits_Right_Zeros{9|22A12} 72>37 72>55
+72a37 Elements{9|22A12}
+72i55 Bits{66I9}
+76V13*Shift_Bits_Right_Signs{9|22A12} 76>37 76>55
+76a37 Elements{9|22A12}
+76i55 Bits{66I9}
+85V13*Shift_Elements_Left_Zeros{9|22A12} 85>40 11|42b13 51l8 51t33
+85a40 Elements{9|22A12} 11|42b40 44r56 47r54
+89V13*Shift_Elements_Right_Zeros{9|22A12} 89>41 11|53b13 62l8 62t34
+89a41 Elements{9|22A12} 11|53b41 55r56 58r55
+X 11 orka-simd-avx2-integers-shift.adb
+25I9 All_Bits_Count<integer> 28r32 33r32
+27V13 Shift_All_Bits_Left_Zeros{7|20A9} 28>7 28>25 47s18
+28a7 Elements{7|20A9}
+28i25 Bits{25I9}
+32V13 Shift_All_Bits_Right_Zeros{7|20A9} 33>7 33>25 58s18
+33a7 Elements{7|20A9}
+33i25 Bits{25I9}
+39V13 Convert[2|20]{7|20A9} 47s45 58s46
+40V13 Convert[2|20]{6|20A9} 47s9 58s9
+44i7 Last_Element_First_Lane{3|35I9} 49r24
+46a14 Result{9|22A12} 49m10
+55i7 First_Element_Last_Lane{3|35I9} 60r24
+57a14 Result{9|22A12} 60m10
+X 12 orka-simd-sse2.ads
+17K19*SSE2 10|17r16 22r13 12|19e19
+X 13 orka-simd-sse2-integers.ads
+17K24*Integers 10|17w21 22r18 13|24e28
+20A9*m128i(3|35I9)<3|20E9> 10|24r61 29r62 34r62
+

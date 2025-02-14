@@ -1,0 +1,93 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.sse2.longs.convert%s  orka-simd-sse2-longs-convert.ads  e31c3644 NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.doubles%s  orka-simd-sse2-doubles.ads  orka-simd-sse2-doubles.ali
+W orka.simd.sse2.doubles.arithmetic%s  orka-simd-sse2-doubles-arithmetic.adb  orka-simd-sse2-doubles-arithmetic.ali
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+W orka.simd.sse2.integers.shift%s  orka-simd-sse2-integers-shift.adb  orka-simd-sse2-integers-shift.ali
+W orka.simd.sse2.longs%s  orka-simd-sse2-longs.ads  orka-simd-sse2-longs.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20241106002736 e1bbae56 orka.simd.sse2.doubles%s
+D orka-simd-sse2-doubles-arithmetic.ads  20241106002738 308afe0b orka.simd.sse2.doubles.arithmetic%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-integers-shift.ads  20241106002736 b21cdf8f orka.simd.sse2.integers.shift%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse2-longs-convert.ads  20241106002738 a392a9b0 orka.simd.sse2.longs.convert%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [convert orka__simd__sse2__longs__convert 28 13 none]
+G c Z s s [convert orka__simd__sse2__longs__convert 31 13 none]
+G c Z s s [to_unit_floats orka__simd__sse2__longs__convert 36 13 none]
+G r c none [to_unit_floats orka__simd__sse2__longs__convert 36 13 none] [shift_bits_right_zeros orka__simd__sse2__integers__shift 45 13 none]
+G r c none [to_unit_floats orka__simd__sse2__longs__convert 36 13 none] [Omultiply orka__simd__sse2__doubles__arithmetic 20 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 9|17r6 18r6 20r9 42r5
+35I9*Integer_32<integer>
+62F9*Float_32<short_float> 9|34r64 37r50 37r66
+63F9*Float_64<long_float>
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 9|17r11 18r11 20r14 23r8 24r8 25r8 26r8 42r10
+X 3 orka-simd-sse2.ads
+17K19*SSE2 2|17k14 3|19e19 9|17r16 18r16 20r19 23r13 24r13 25r13 26r13 42r15
+X 4 orka-simd-sse2-doubles.ads
+17K24*Doubles 24e27 9|17r21 23r18 24r18
+20A9*m128d(1|63F9)<1|20E9> 9|28r33 31r47 34r37 36r54
+X 5 orka-simd-sse2-doubles-arithmetic.ads
+17K32*Arithmetic 45e38 9|17w29 24r26
+20V14*"*"{4|20A9} 9|38s9
+X 6 orka-simd-sse2-integers.ads
+17K24*Integers 24e28 9|18r21 25r18 26r18
+20A9*m128i(1|35I9)<1|20E9> 9|28r47 31r33 36r40
+X 7 orka-simd-sse2-integers-shift.ads
+17K33*Shift 66e34 9|18w30 26r27
+45V13*Shift_Bits_Right_Zeros{6|20A9} 9|37s16
+X 8 orka-simd-sse2-longs.ads
+17K24*Longs 3|17k19 8|24e25 9|20r24 42r20
+X 9 orka-simd-sse2-longs-convert.ads
+20K30*Convert 8|17k24 9|42l26 42e33
+28V13*Convert{6|20A9} 28>22
+28a22 Elements{4|20A9}
+31V13*Convert{4|20A9} 31>22 37s7
+31a22 Elements{6|20A9}
+34a4*Smallest_Elements_F32{4|20A9} 38r11
+36V13*To_Unit_Floats{4|20A9} 36>29
+36a29 Elements{6|20A9} 37r40
+

@@ -1,0 +1,139 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.sse4_1.singles.compare%b  orka-simd-sse4_1-singles-compare.adb  b47e746e NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.sse%s	orka-simd-sse.ads	orka-simd-sse.ali
+W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
+W orka.simd.sse.singles.arithmetic%s  orka-simd-sse-singles-arithmetic.adb  orka-simd-sse-singles-arithmetic.ali
+W orka.simd.sse.singles.compare%s  orka-simd-sse-singles-compare.adb  orka-simd-sse-singles-compare.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+W orka.simd.sse4_1%s	orka-simd-sse4_1.ads	orka-simd-sse4_1.ali
+W orka.simd.sse4_1.integers%s  orka-simd-sse4_1-integers.ads  orka-simd-sse4_1-integers.ali
+W orka.simd.sse4_1.integers.logical%s  orka-simd-sse4_1-integers-logical.adb  orka-simd-sse4_1-integers-logical.ali
+W orka.simd.sse4_1.singles%s  orka-simd-sse4_1-singles.ads  orka-simd-sse4_1-singles.ali
+
+U orka.simd.sse4_1.singles.compare%s  orka-simd-sse4_1-singles-compare.ads  f71726cf BN NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.sse%s	orka-simd-sse.ads	orka-simd-sse.ali
+W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
+W orka.simd.sse4_1.singles%s  orka-simd-sse4_1-singles.ads  orka-simd-sse4_1-singles.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse-singles-arithmetic.ads  20241106002738 cf74ffdd orka.simd.sse.singles.arithmetic%s
+D orka-simd-sse-singles-arithmetic.adb  20241106002738 a5b91d57 orka.simd.sse.singles.arithmetic%b
+D orka-simd-sse-singles-compare.ads  20241106002736 74de47c1 orka.simd.sse.singles.compare%s
+D orka-simd-sse-singles-logical.ads  20241106002736 0511c507 orka.simd.sse.singles.logical%s
+D orka-simd-sse-singles-swizzle.ads  20241106002738 d17f6df8 orka.simd.sse.singles.swizzle%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse4_1.ads	20241106002736 7c2bd306 orka.simd.sse4_1%s
+D orka-simd-sse4_1-integers.ads  20241106002736 6aecf3c7 orka.simd.sse4_1.integers%s
+D orka-simd-sse4_1-integers-logical.ads  20241106002736 d404b203 orka.simd.sse4_1.integers.logical%s
+D orka-simd-sse4_1-integers-logical.adb  20241106002736 a94784f3 orka.simd.sse4_1.integers.logical%b
+D orka-simd-sse4_1-longs.ads  20241106002736 3a154937 orka.simd.sse4_1.longs%s
+D orka-simd-sse4_1-longs-logical.ads  20241106002736 eef8951b orka.simd.sse4_1.longs.logical%s
+D orka-simd-sse4_1-longs-logical.adb  20241106002736 d339a858 orka.simd.sse4_1.longs.logical%b
+D orka-simd-sse4_1-singles.ads  20241106002736 83022de4 orka.simd.sse4_1.singles%s
+D orka-simd-sse4_1-singles-compare.ads  20241106002736 bac1f826 orka.simd.sse4_1.singles.compare%s
+D orka-simd-sse4_1-singles-compare.adb  20241106002738 ebb6e6b0 orka.simd.sse4_1.singles.compare%b
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [is_equal orka__simd__sse4_1__singles__compare 24 13 none]
+G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [Osubtract orka__simd__sse__singles__arithmetic 42 13 none]
+G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [Oabs orka__simd__sse__singles__arithmetic 49 13 none]
+G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [Ole orka__simd__sse__singles__compare 29 13 none]
+G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [Oeq orka__simd__sse__singles__compare 20 13 none]
+G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [test_all_ones orka__simd__sse4_1__integers__logical 27 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 24|17r6 34r31
+X 2 a-unccon.ads
+20v14*Unchecked_Conversion 24|17w10 34r35
+X 3 orka.ads
+17K9*Orka 98e9 23|17r6 19r9 27r5 24|19r6 20r6 21r6 22r6 24r14 42r5
+35I9*Integer_32<integer>
+62F9*Float_32<short_float> 24|32r30
+X 4 orka-simd.ads
+17K14*SIMD 3|17k9 4|19e14 23|17r11 19r14 22r8 27r10 24|19r11 20r11 21r11
+. 22r11 24r19 26r8 27r8 28r8 29r8 42r10
+X 5 orka-simd-sse.ads
+17K19*SSE 19e18 23|17r16 22r13 24|19r16 20r16 26r13 27r13
+X 6 orka-simd-sse-singles.ads
+17K23*Singles 27e26 23|17w20 22r17 24|19r20 20r20 26r17 27r17
+20A9*m128(3|62F9)<3|20E9> 23|24r37 24|31r37 34r57 36r25
+X 7 orka-simd-sse-singles-arithmetic.ads
+17K31*Arithmetic 55e37 24|19w28 26r25
+42V14*"-"{6|20A9} 24|37s19
+49V14*"abs"{6|20A9} 24|37s9
+X 9 orka-simd-sse-singles-compare.ads
+17K31*Compare 67e34 24|20w28 27r25
+20V14*"="{6|20A9} 24|39s63
+29V14*"<="{6|20A9} 24|37s28
+X 12 orka-simd-sse2.ads
+17K19*SSE2 19e19 24|21r16 28r13
+X 13 orka-simd-sse2-integers.ads
+17K24*Integers 24e28 24|21w21 28r18
+20A9*m128i(3|35I9)<3|20E9> 24|34r63
+X 15 orka-simd-sse4_1.ads
+17K19*SSE4_1 4|17k14 15|19e21 23|19r19 27r15 24|22r16 24r24 29r13 42r15
+X 16 orka-simd-sse4_1-integers.ads
+17K26*Integers 19e30 24|22r23 29r20
+X 17 orka-simd-sse4_1-integers-logical.ads
+19K35*Logical 33e38 24|22w32 29r29
+27V13*Test_All_Ones{boolean} 24|39s14
+X 22 orka-simd-sse4_1-singles.ads
+17K26*Singles 15|17k19 22|19e29 23|19r26 27r22 24|24r31 42r22
+X 23 orka-simd-sse4_1-singles-compare.ads
+19K34*Compare 22|17k26 23|27l30 27e37 24|24b39 42l30 42t37
+24V13*Is_Equal{boolean} 24>23 24>29 24|31b13 40l8 40t16
+24a23 Left{6|20A9} 24|31b23 37r14
+24a29 Right{6|20A9} 24|31b29 37r21
+X 24 orka-simd-sse4_1-singles-compare.adb
+32N7 Epsilon 37r32 37r41 37r50 37r59
+34V16 Convert[2|20]{13|20A9} 39s29 39s47
+36a7 Result{6|20A9} 39r38 39r56 39r65
+

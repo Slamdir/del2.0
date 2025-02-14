@@ -1,0 +1,149 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_UNCHECKED_CONVERSION
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.avx.longs.arithmetic.emulation%b  orka-simd-avx-longs-arithmetic-emulation.adb  455ee38d NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.integers%s  orka-simd-avx-integers.ads  orka-simd-avx-integers.ali
+W orka.simd.avx.integers.swizzle%s  orka-simd-avx-integers-swizzle.ads  orka-simd-avx-integers-swizzle.ali
+W orka.simd.avx.longs.arithmetic%s  orka-simd-avx-longs-arithmetic.ads  orka-simd-avx-longs-arithmetic.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+W orka.simd.sse2.longs%s  orka-simd-sse2-longs.ads  orka-simd-sse2-longs.ali
+W orka.simd.sse2.longs.arithmetic%s  orka-simd-sse2-longs-arithmetic.ads  orka-simd-sse2-longs-arithmetic.ali
+
+U orka.simd.avx.longs.arithmetic.emulation%s  orka-simd-avx-longs-arithmetic-emulation.ads  c72ef2de BN NE OO PU PK
+W orka.simd.avx.longs.arithmetic%s  orka-simd-avx-longs-arithmetic.ads  orka-simd-avx-longs-arithmetic.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-integers.ads  20241106002738 d9312ec8 orka.simd.avx.integers%s
+D orka-simd-avx-integers-swizzle.ads  20241106002738 52d7f84b orka.simd.avx.integers.swizzle%s
+D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-arithmetic.ads  20241106002736 957d6189 orka.simd.avx.longs.arithmetic%s
+D orka-simd-avx-longs-arithmetic-emulation.ads  20241106002738 52539357 orka.simd.avx.longs.arithmetic.emulation%s
+D orka-simd-avx-longs-arithmetic-emulation.adb  20241106002736 af18d543 orka.simd.avx.longs.arithmetic.emulation%b
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse2-longs-arithmetic.ads  20241106002738 60653d35 orka.simd.sse2.longs.arithmetic%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [Oadd orka__simd__avx__longs__arithmetic__emulation 20 13 none]
+G c Z s b [Osubtract orka__simd__avx__longs__arithmetic__emulation 22 13 none]
+G c Z s s [Osubtract orka__simd__avx__longs__arithmetic__emulation 24 13 none]
+G c Z b b [convert orka__simd__avx__longs__arithmetic__emulation 31 13 none]
+G c Z b b [convert orka__simd__avx__longs__arithmetic__emulation 32 13 none]
+G c Z b b [convert orka__simd__avx__longs__arithmetic__emulation 34 13 none]
+G c Z b b [convert orka__simd__avx__longs__arithmetic__emulation 35 13 none]
+G r c none [Oadd orka__simd__avx__longs__arithmetic__emulation 20 13 none] [extract orka__simd__avx__integers__swizzle 30 13 none]
+G r c none [Oadd orka__simd__avx__longs__arithmetic__emulation 20 13 none] [Oadd orka__simd__sse2__longs__arithmetic 20 13 none]
+G r c none [Oadd orka__simd__avx__longs__arithmetic__emulation 20 13 none] [pack orka__simd__avx__integers__swizzle 39 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 22 13 none] [extract orka__simd__avx__integers__swizzle 30 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 22 13 none] [Osubtract orka__simd__sse2__longs__arithmetic 23 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 22 13 none] [pack orka__simd__avx__integers__swizzle 39 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 24 13 none] [extract orka__simd__avx__integers__swizzle 30 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 24 13 none] [Osubtract orka__simd__sse2__longs__arithmetic 23 13 none]
+G r c none [Osubtract orka__simd__avx__longs__arithmetic__emulation 24 13 none] [pack orka__simd__avx__integers__swizzle 39 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 11|17r6 31r28 32r28 34r28 35r28
+X 2 a-unccon.ads
+20v14*Unchecked_Conversion 11|17w10 31r32 32r32 34r32 35r32
+X 3 orka.ads
+17K9*Orka 98e9 10|17r9 28r5 11|19r6 20r6 21r6 23r14 61r5
+35I9*Integer_32<integer>
+36I9*Integer_64<long_long_integer>
+X 4 orka-simd.ads
+17K14*SIMD 3|17k9 4|19e14 10|17r14 28r10 11|19r11 20r11 21r11 23r19 25r8
+. 26r8 27r8 28r8 29r8 61r10
+X 5 orka-simd-avx.ads
+17K19*AVX 4|17k14 5|28e18 10|17r19 28r15 11|19r16 23r24 25r13 26r13 61r15
+X 6 orka-simd-avx-integers.ads
+17K23*Integers 24e27 11|19r20 25r17 26r17
+20A9*m256i(3|35I9)<5|20I9> 11|31r54 32r61
+X 7 orka-simd-avx-integers-swizzle.ads
+19K32*Swizzle 65e35 11|19w29 26r26
+30V13*Extract{13|20A9} 11|38s46 39s46 41s47 42s47 50s46 51s46 53s47 54s47
+39V13*Pack{6|20A9} 11|44s23 56s23
+39a19 High{13|20A9} 11|45r10 57r10
+39a25 Low{13|20A9} 11|46r10 58r10
+X 8 orka-simd-avx-longs.ads
+17K23*Longs 5|17k19 8|24e24 10|17r23 28r19 11|23r28 61r19
+20A9*m256l(3|36I9)<3|20E9> 10|20r32 20r46 22r32 22r46 24r29 24r43 11|31r61
+. 32r54 37r32 37r46 49r32 49r46
+X 9 orka-simd-avx-longs-arithmetic.ads
+17K29*Arithmetic 8|17k23 9|19e35 10|17r29 28r25 11|23r34 61r25
+X 10 orka-simd-avx-longs-arithmetic-emulation.ads
+17K40*Emulation 9|17k29 10|28l36 28e45 11|23b45 61l36 61t45
+20V14*"+"{8|20A9} 20>18 20>24 11|37b14 47l9 47t11
+20a18 Left{8|20A9} 11|37b18 38r64 39r64
+20a24 Right{8|20A9} 11|37b24 41r65 42r65
+22V14*"-"{8|20A9} 22>18 22>24 25s21 11|49b14 59l9 59t11
+22a18 Left{8|20A9} 11|49b18 50r64 51r64
+22a24 Right{8|20A9} 11|49b24 53r65 54r65
+24V14*"-"{8|20A9} 24>18
+24a18 Elements{8|20A9} 25r23
+X 11 orka-simd-avx-longs-arithmetic-emulation.adb
+31V13 Convert[2|20]{8|20A9} 44s14 56s14
+32V13 Convert[2|20]{6|20A9} 38s55 39s55 41s56 42s56 50s55 51s55 53s56 54s56
+34V13 Convert[2|20]{14|20A9} 38s37 39s37 41s38 42s38 50s37 51s37 53s38 54s38
+35V13 Convert[2|20]{13|20A9} 45s18 46s18 57s18 58s18
+38a7 Left_Low{14|20A9} 46r27
+39a7 Left_High{14|20A9} 45r27
+41a7 Right_Low{14|20A9} 46r38
+42a7 Right_High{14|20A9} 45r39
+50a7 Left_Low{14|20A9} 58r27
+51a7 Left_High{14|20A9} 57r27
+53a7 Right_Low{14|20A9} 58r38
+54a7 Right_High{14|20A9} 57r39
+X 12 orka-simd-sse2.ads
+17K19*SSE2 11|20r16 21r16 27r13 28r13 29r13 12|19e19
+X 13 orka-simd-sse2-integers.ads
+17K24*Integers 11|20w21 27r18 13|24e28
+20A9*m128i(3|35I9)<3|20E9> 11|34r54 35r61
+X 14 orka-simd-sse2-longs.ads
+17K24*Longs 11|21r21 28r18 29r18 14|24e25
+20A9*m128l(3|36I9)<3|20E9> 11|34r61 35r54 38r28 39r28 41r29 42r29 50r28 51r28
+. 53r29 54r29
+X 15 orka-simd-sse2-longs-arithmetic.ads
+17K30*Arithmetic 11|21w27 29r24 15|30e36
+20V14*"+"{14|20A9} 11|45s37 46s36
+23V14*"-"{14|20A9} 11|57s37 58s36
+

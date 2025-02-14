@@ -1,0 +1,344 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -mavx2
+A -mf16c
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RR NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.numerics.kalman%b  orka-numerics-kalman.adb  d3d9bea0 NE OO PK GE
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+
+U orka.numerics.kalman%s  orka-numerics-kalman.ads  31c1a478 BN NE OO PR PK GE
+W ada%s			ada.ads			ada.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+W ada.containers.indefinite_holders%s
+Z ada.finalization%s	a-finali.ads		a-finali.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux_float%s  a-nuaufl.ads	a-nuaufl.ali
+Z ada.numerics.aux_generic_float%s
+Z ada.numerics.aux_long_float%s  a-nalofl.ads	a-nalofl.ali
+Z ada.numerics.aux_long_long_float%s  a-nallfl.ads  a-nallfl.ali
+Z ada.numerics.aux_short_float%s  a-nashfl.ads	a-nashfl.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.unchecked_deallocation%s
+W orka%s		orka.ads		orka.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.tensors%s  orka-numerics-tensors.adb  orka-numerics-tensors.ali
+W system%s		system.ads		system.ali
+Z system.atomic_counters%s  s-atocou.adb	s-atocou.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-assert.ads		20240801081714 ba465f5c ada.assertions%s
+D a-contai.ads		20240801081714 61e5e089 ada.containers%s
+D a-coinho.ads		20240801081714 f2039f43 ada.containers.indefinite_holders%s
+D a-coinho.adb		20240801081714 bc004e30 ada.containers.indefinite_holders%b
+D a-except.ads		20240801081714 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081714 bf4f806b ada.finalization%s
+D a-numeri.ads		20240801081714 84bea7a3 ada.numerics%s
+D a-nuaufl.ads		20240801081714 020cac40 ada.numerics.aux_float%s
+D a-nagefl.ads		20240801081714 53f456a7 ada.numerics.aux_generic_float%s
+D a-naliop.ads		20240801081714 6b421e5f ada.numerics.aux_linker_options%s
+D a-nalofl.ads		20240801081714 6d8e51a4 ada.numerics.aux_long_float%s
+D a-nallfl.ads		20240801081714 6ccf65a3 ada.numerics.aux_long_long_float%s
+D a-nashfl.ads		20240801081714 b54ed4fb ada.numerics.aux_short_float%s
+D a-ngelfu.ads		20240801081714 5506716e ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20240801081714 2940142d ada.numerics.generic_elementary_functions%b
+D a-stream.ads		20240801081714 119b8fb3 ada.streams%s
+D a-string.ads		20240801081714 90ac6797 ada.strings%s
+D a-sttebu.ads		20240801081714 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240801081714 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20240801081714 c3a8ac65 ada.unchecked_deallocation%s
+D interfac.ads		20240801081714 9111f9c1 interfaces%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
+D orka-numerics-kalman.ads  20241106002738 8dc28e7f orka.numerics.kalman%s
+D orka-numerics-kalman.adb  20241106002736 5e1b30df orka.numerics.kalman%b
+D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
+D system.ads		20240801081714 e4f8b086 system%s
+D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
+D s-finroo.ads		20240801081714 4ff27390 system.finalization_root%s
+D s-parame.ads		20240801081714 3597fc11 system.parameters%s
+D s-putima.ads		20240801081714 17291fe4 system.put_images%s
+D s-secsta.ads		20240801081714 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081714 df77073e system.soft_links%s
+D s-stache.ads		20240801081714 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081714 ccded4e8 system.storage_elements%s
+D s-traent.ads		20240801081714 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081714 fa2a7f59 system.unsigned_types%s
+D d:\ada_capstone\del2.0\math_pkg\orka_numerics\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [kalman orka__numerics 24 23 none]
+X 1 ada.ads
+16K9*Ada 20e8 27|17r14 52r34
+X 3 a-contai.ads
+16K13*Containers 28e19 27|17r18 52r38
+X 4 a-coinho.ads
+45k24*Indefinite_Holders 201e38 27|17w29 52r49
+50R9 Holder<7|43R9> 27|55r44[52] 56r44[52]
+63V13 Element{27|23R9} 27|83s77[52]
+65U14 Replace_Element 28|21s29[27|52]
+X 25 orka.ads
+17K9*Orka 98e9 27|19r6 22r32 24r9 85r5 28|17r14 24r5
+X 26 orka-numerics.ads
+17K14*Numerics 25|17k9 26|23e18 27|19r11 22r37 24r14 85r10 28|17r19 24r10
+X 27 orka-numerics-kalman.ads
+22K17 Tensors[29|25] 23r28 27r13 50r28
+23R9 Tensor<29|85R9[22]> 29r22 30r22 52r69
+24k23*Kalman 26|17k14 27|22z17 23z9 50E12 85l19 85e25 28|17b28 24l19 24t25
+29R12*Vector{23R9} 42r44 45r57 83r44 28|19r57
+30R12*Matrix{23R9}
+32E9*Update_Phase 32e58
+32n26*Time_Update{32E9}
+32n39*Measurement_Update{32E9}
+34E9*Filter_Kind 34e49 38r44 40r24 58r44 75r24
+34n25*Filter_UKF{34E9} 62r15
+34n37*Filter_CDKF{34E9} 64r15
+36R9*State_Covariance 70c9 73e14 80r18
+38R9*Weights_Type 38d23 38d37 58c9 68e14 79r18
+38i23 N{positive} 58r23
+38e37 Kind{34E9} 58r37 61r12
+40R9*Filter 40d17 40d37 40d50 42p13 42r29 45p14 45r41 75c9 81e14 83r29 28|19r41
+40e17 Kind{34E9} 75r17 79r45
+40i37 Dimension_X{positive} 43r53 46r45 75r37 79r32
+40i50 Dimension_Z{positive} 75r50
+42V13*State{29R12} 42>20 43r19 83b13
+42r20 Object{40R9} 43r46 83r55
+45U14*Set_State 45=25 45>49 28|19b14 22l8 22t17
+45r25 Object{40R9} 46r38 28|19b25 21m7 21r7
+45*49 State{29R12} 46r18 28|19b49 21r46
+50F12 Element_Type{29|24F9[22]} 60r24 65r28 66r28
+52K12 Tensor_Holders[4|45] 55r29 56r29
+55R12 Vector_Holder{4|50R9[52]} 59r24 63r26 71r20
+56R12 Matrix_Holder{4|50R9[52]} 72r20 76r27 77r27
+59r7 Mean{55R12}
+60*7 Scaling_Factor{50F12}
+63r13 Covariance{55R12}
+65*13 Covariance_1{50F12}
+66*13 Covariance_2{50F12}
+71r7 State{55R12} 83r71 28|21m23
+72r7 Covariance{56R12}
+76r7 Process_Noise{56R12}
+77r7 Measurement_Noise{56R12}
+79r7 Weights{38R9}
+80r7 Estimate{36R9} 83r62 28|21r14
+X 29 orka-numerics-tensors.ads
+24F9 Element_Type 27|50r36[22]
+25k23*Tensors 27|19w20 22r46 29|1306e26
+28F12 Element{24F9[27|22]}
+36E9 Data_Type
+38I9 Tensor_Axis<short_short_integer>
+41A9 Tensor_Shape(natural)<38I9[27|22]> 27|27r21[22]
+85h9 Tensor 27|23r36[22]
+88y13 Is_Materialized{boolean}
+90x14 Materialize
+93y13 Kind{36E9[27|22]}
+95y13 Get{28F12[27|22]}
+99y13 Get{boolean}
+103y13 Get{85R9[27|22]}
+108y13 Get{28F12[27|22]}
+112y13 Get{boolean}
+116y13 Get{85R9[27|22]}
+119y13 Get{85R9[27|22]}
+123y13 Get{85R9[27|22]}
+129x14 Set
+132x14 Set
+135x14 Set
+138x14 Set
+141x14 Set
+152x14 Set
+158x14 Set
+167y13 Image{string}
+169y13 Shape{41A9[27|22]} 27|43s32[22] 46s24[22]
+171y13 Axes{38I9[27|22]}
+182y13 Elements{natural}
+201y13 Empty{85R9[27|22]}
+204y13 Fill{85R9[27|22]}
+208y13 Zeros{85R9[27|22]}
+214y13 Zeros{85R9[27|22]}
+219y13 Ones{85R9[27|22]}
+225y13 Ones{85R9[27|22]}
+230y13 To_Tensor{85R9[27|22]}
+236y13 To_Tensor{85R9[27|22]}
+241y13 To_Boolean_Tensor{85R9[27|22]}
+248y13 To_Boolean_Tensor{85R9[27|22]}
+253y13 Array_Range{85R9[27|22]}
+257y13 Array_Range{85R9[27|22]}
+264y13 Linear_Space{85R9[27|22]}
+274y13 Log_Space{85R9[27|22]}
+286y13 Geometric_Space{85R9[27|22]}
+300y13 Identity{85R9[27|22]}
+308y13 Identity{85R9[27|22]}
+316y13 Upper_Triangular{85R9[27|22]}
+330y13 Main_Diagonal{85R9[27|22]}
+337y13 Diagonal{85R9[27|22]}
+344y13 Diagonal{85R9[27|22]}
+352y13 Trace{28F12[27|22]}
+365y13 Reshape{85R9[27|22]}
+369y13 Reshape{85R9[27|22]}
+373y13 Flatten{85R9[27|22]}
+376y13 Concatenate{85R9[27|22]}
+388y14 "&"{85R9[27|22]}
+395y14 "*"{85R9[27|22]}
+410y14 "*"{28F12[27|22]}
+419y14 "**"{85R9[27|22]}
+422y13 Outer{85R9[27|22]}
+427y13 Inverse{85R9[27|22]}
+434y13 Transpose{85R9[27|22]}
+442y13 Solve{85R9[27|22]}
+452y13 Solve{85R9[27|22]}
+463y13 Divide_By{85R9[27|22]}
+469y13 Divide_By{85R9[27|22]}
+476C9 QR_Factorization<476R9[27|22]>
+476h9 QR_Factorization
+485y13 QR{85R9[27|22]}
+489y13 QR{476C9[27|22]}
+498y13 QR_For_Least_Squares{476C9[27|22]}
+504y13 Least_Squares{85R9[27|22]}
+512y13 Least_Squares{85R9[27|22]}
+520y13 Constrained_Least_Squares{85R9[27|22]}
+534y13 Cholesky{85R9[27|22]}
+547y13 Cholesky_Update{85R9[27|22]}
+571y13 Norm{28F12[27|22]}
+576y13 Normalize{85R9[27|22]}
+583y13 Standardize{85R9[27|22]}
+592F12 Correlation_Element{28F12[27|22]}
+594y13 Correlation_Coefficient{592F12[27|22]}
+609y14 "+"{85R9[27|22]}
+612y14 "-"{85R9[27|22]}
+615y14 "/"{85R9[27|22]}
+618y13 Divide_Or_Zero{85R9[27|22]}
+621y14 "**"{85R9[27|22]}
+625y14 "**"{85R9[27|22]}
+635y14 "**"{85R9[27|22]}
+644y14 "*"{85R9[27|22]}
+645y14 "*"{85R9[27|22]}
+647y14 "/"{85R9[27|22]}
+648y14 "/"{85R9[27|22]}
+650y14 "+"{85R9[27|22]}
+651y14 "+"{85R9[27|22]}
+653y14 "-"{85R9[27|22]}
+654y14 "-"{85R9[27|22]}
+656y14 "-"{85R9[27|22]}
+658y14 "mod"{85R9[27|22]}
+662y14 "rem"{85R9[27|22]}
+666y14 "mod"{85R9[27|22]}
+669y14 "rem"{85R9[27|22]}
+672y14 "abs"{85R9[27|22]}
+676y13 Add=676:62{85R9[27|22]}
+678y13 Subtract=678:67{85R9[27|22]}
+680y13 Multiply{85R9[27|22]}
+684y13 Power{85R9[27|22]}
+687y13 Divide=687:65{85R9[27|22]}
+691y13 Min{85R9[27|22]}
+694y13 Max{85R9[27|22]}
+697y13 Min{85R9[27|22]}
+698y13 Min{85R9[27|22]}
+700y13 Max{85R9[27|22]}
+701y13 Max{85R9[27|22]}
+703y13 Sqrt{85R9[27|22]}
+708y13 Ceil{85R9[27|22]}
+709y13 Floor{85R9[27|22]}
+710y13 Round{85R9[27|22]}
+711y13 Truncate{85R9[27|22]}
+713y13 Exp{85R9[27|22]}
+715y13 Log{85R9[27|22]}
+716y13 Log10{85R9[27|22]}
+717y13 Log2{85R9[27|22]}
+724y13 Sin{85R9[27|22]}
+725y13 Cos{85R9[27|22]}
+726y13 Tan{85R9[27|22]}
+728y13 Arcsin{85R9[27|22]}
+731y13 Arccos{85R9[27|22]}
+734y13 Arctan{85R9[27|22]}
+737y13 Degrees{85R9[27|22]}
+740y13 Radians{85R9[27|22]}
+747h9*Expression
+788y13 Reduce_Associative{28F12[27|22]}
+794y13 Reduce_Associative{85R9[27|22]}
+802y13 Reduce{28F12[27|22]}
+808y13 Reduce{85R9[27|22]}
+816y13 Sum{28F12[27|22]}
+818y13 Sum{85R9[27|22]}
+820y13 Product{28F12[27|22]}
+822y13 Product{85R9[27|22]}
+830y13 Min{28F12[27|22]}
+831y13 Max{28F12[27|22]}
+833y13 Quantile{28F12[27|22]}
+834y13 Median{28F12[27|22]}
+836y13 Mean{28F12[27|22]}
+838y13 Variance{28F12[27|22]}
+843y13 Standard_Deviation{28F12[27|22]}
+848y13 Min{85R9[27|22]}
+852y13 Max{85R9[27|22]}
+856y13 Quantile{85R9[27|22]}
+863y13 Median{85R9[27|22]}
+867y13 Mean{85R9[27|22]}
+871y13 Variance{85R9[27|22]}
+878y13 Standard_Deviation{85R9[27|22]}
+889y13 And_Not{85R9[27|22]}
+895y14 "and"{85R9[27|22]}
+900y14 "and"{85R9[27|22]}
+907y14 "or"{85R9[27|22]}
+912y14 "xor"{85R9[27|22]}
+917y14 "not"{85R9[27|22]}
+926y14 "="{85R9[27|22]}
+928y14 "/="{85R9[27|22]}
+931y14 ">"{85R9[27|22]}
+934y14 "<"{85R9[27|22]}
+937y14 ">="{85R9[27|22]}
+940y14 "<="{85R9[27|22]}
+946y14 "="{85R9[27|22]}
+948y14 "/="{85R9[27|22]}
+951y14 ">"{85R9[27|22]}
+954y14 "<"{85R9[27|22]}
+958y14 ">="{85R9[27|22]}
+961y14 "<="{85R9[27|22]}
+968y14 "="{boolean} 4|43i19[27|22]
+971y14 "="{85R9[27|22]}
+975y14 "/="{85R9[27|22]}
+979y14 ">"{85R9[27|22]}
+982y14 "<"{85R9[27|22]}
+986y14 ">="{85R9[27|22]}
+989y14 "<="{85R9[27|22]}
+995y13 All_Close{boolean}
+1001y13 Any_True{85R9[27|22]}
+1007y13 Any_True{boolean}
+1010y13 All_True{85R9[27|22]}
+1016y13 All_True{boolean}
+1021y13 Random_Uniform{85R9[27|22]}
+
