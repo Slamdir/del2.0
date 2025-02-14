@@ -1,0 +1,146 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.fma.singles.arithmetic%b  orka-simd-fma-singles-arithmetic.adb  c39aab36 NE OO PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.fma.singles%s  orka-simd-fma-singles.ads  orka-simd-fma-singles.ali
+W orka.simd.sse%s	orka-simd-sse.ads	orka-simd-sse.ali
+W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
+W orka.simd.sse.singles.arithmetic%s  orka-simd-sse-singles-arithmetic.adb  orka-simd-sse-singles-arithmetic.ali
+W orka.simd.sse.singles.swizzle%s  orka-simd-sse-singles-swizzle.adb  orka-simd-sse-singles-swizzle.ali
+
+U orka.simd.fma.singles.arithmetic%s  orka-simd-fma-singles-arithmetic.ads  405384bf BN NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.singles%s  orka-simd-avx-singles.ads  orka-simd-avx-singles.ali
+W orka.simd.fma.singles%s  orka-simd-fma-singles.ads  orka-simd-fma-singles.ali
+W orka.simd.sse%s	orka-simd-sse.ads	orka-simd-sse.ali
+W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-singles.ads  20241106002736 e2e0e917 orka.simd.avx.singles%s
+D orka-simd-fma.ads	20241106002736 79816a32 orka.simd.fma%s
+D orka-simd-fma-singles.ads  20241106002736 ee4769b7 orka.simd.fma.singles%s
+D orka-simd-fma-singles-arithmetic.ads  20241106002736 8220f712 orka.simd.fma.singles.arithmetic%s
+D orka-simd-fma-singles-arithmetic.adb  20241106002736 5fb1ce01 orka.simd.fma.singles.arithmetic%b
+D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse-singles-arithmetic.ads  20241106002738 cf74ffdd orka.simd.sse.singles.arithmetic%s
+D orka-simd-sse-singles-swizzle.ads  20241106002738 d17f6df8 orka.simd.sse.singles.swizzle%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [multiply_add orka__simd__fma__singles__arithmetic 26 13 none]
+G c Z s s [multiply_add_sub orka__simd__fma__singles__arithmetic 29 13 none]
+G c Z s s [multiply_add orka__simd__fma__singles__arithmetic 32 13 none]
+G c Z s s [multiply_add_sub orka__simd__fma__singles__arithmetic 35 13 none]
+G c Z s b [Omultiply orka__simd__fma__singles__arithmetic 38 13 none]
+G c Z s b [Omultiply orka__simd__fma__singles__arithmetic 43 13 none]
+G r c none [Omultiply orka__simd__fma__singles__arithmetic 38 13 none] [shuffle orka__simd__sse__singles__swizzle 20 13 none]
+G r c none [Omultiply orka__simd__fma__singles__arithmetic 38 13 none] [Omultiply orka__simd__sse__singles__arithmetic 20 13 none]
+G r c none [Omultiply orka__simd__fma__singles__arithmetic 43 13 none] [shuffle orka__simd__sse__singles__swizzle 20 13 none]
+G r c none [Omultiply orka__simd__fma__singles__arithmetic 43 13 none] [Omultiply orka__simd__sse__singles__arithmetic 20 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 7|17r6 18r6 20r9 48r5 8|17r6 18r6 20r14 55r5
+20E9*Index_4D 20e33 8|25r16
+20n22*X{20E9} 8|47r30
+20n25*Y{20E9} 8|48r43
+20n28*Z{20E9} 8|49r43
+20n31*W{20E9} 8|50r43
+62F9*Float_32<short_float>
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 7|17r11 18r11 20r14 48r10 8|17r11 18r11 20r19 32r11
+. 33r11 55r10
+X 3 orka-simd-avx.ads
+17K19*AVX 28e18 7|18r16 24r8
+X 4 orka-simd-avx-singles.ads
+17K23*Singles 24e26 7|18w20 24r12
+20A9*m256(1|62F9)<3|20I9> 7|32r37 32r50 35r41 35r54
+X 5 orka-simd-fma.ads
+17K19*FMA 2|17k14 5|19e18 7|20r19 48r15 8|20r24 55r15
+X 6 orka-simd-fma-singles.ads
+17K23*Singles 5|17k19 6|19e26 7|20r23 48r19 8|20r28 55r19
+X 7 orka-simd-fma-singles-arithmetic.ads
+20K31*Arithmetic 6|17k23 7|48l27 48e37 8|20b36 55l27 55t37
+26V13*Multiply_Add{10|20A9} 26>27 26>30 26>33 8|48s17 49s17 50s17
+26a27 A{10|20A9}
+26a30 B{10|20A9}
+26a33 C{10|20A9}
+29V13*Multiply_Add_Sub{10|20A9} 29>31 29>34 29>37
+29a31 A{10|20A9}
+29a34 B{10|20A9}
+29a37 C{10|20A9}
+32V13*Multiply_Add{4|20A9} 32>27 32>30 32>33
+32a27 A{4|20A9}
+32a30 B{4|20A9}
+32a33 C{4|20A9}
+35V13*Multiply_Add_Sub{4|20A9} 35>31 35>34 35>37
+35a31 A{4|20A9}
+35a34 B{4|20A9}
+35a37 C{4|20A9}
+38V14*"*"{10|24A9} 38>18 38>24 8|22b14 29l9 29t11
+38a18 Left{10|24A9} 8|22b18 26r24
+38a24 Right{10|24A9} 8|22b24 26r31
+43V14*"*"{10|20A9} 43>18 43>37 8|26s29 31b14 53l9 53t11
+43a18 Left{10|24A9} 8|31b18 47r24 48r37 49r37 50r37
+43a37 Right{10|20A9} 8|31b37 42r24 42r31 43r24 43r31 44r24 44r31 45r24 45r31
+X 8 orka-simd-fma-singles-arithmetic.adb
+23a7 Result{10|24A9} 26m10 28r14
+25e11 I{1|20E9} 26r18 26r38
+35N7 Mask_0_0_0_0 42r38
+36N7 Mask_1_1_1_1 43r38
+37N7 Mask_2_2_2_2 44r38
+38N7 Mask_3_3_3_3 45r38
+40a7 XXXX{10|20A9} 42m7 47r17
+40a13 YYYY{10|20A9} 43m7 48r31
+40a19 ZZZZ{10|20A9} 44m7 49r31
+40a25 WWWW{10|20A9} 45m7 50r31
+40a31 Result{10|20A9} 47m7 48m7 48r47 49m7 49r47 50m7 50r47 52r14
+X 9 orka-simd-sse.ads
+17K19*SSE 7|17r16 23r8 8|17r16 18r16 32r16 33r16 9|19e18
+X 10 orka-simd-sse-singles.ads
+17K23*Singles 7|17w20 23r12 8|17r20 18r20 32r20 33r20 10|27e26
+20A9*m128(1|62F9)<1|20E9> 7|26r37 26r50 29r41 29r54 43r45 43r58 8|31r45 31r58
+. 40r40
+24A9*m128_Array(20A9)<1|20E9> 7|38r32 38r51 43r25 8|22r32 22r51 23r16 31r25
+X 11 orka-simd-sse-singles-arithmetic.ads
+17K31*Arithmetic 8|17w28 32r28 11|55e37
+20V14*"*"{10|20A9} 8|47s22
+X 12 orka-simd-sse-singles-swizzle.ads
+17K31*Swizzle 8|18w28 33r28 12|67e34
+20V13*Shuffle{10|20A9} 8|42s15 43s15 44s15 45s15
+

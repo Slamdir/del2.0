@@ -1,0 +1,161 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FIXED_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.avx2.longs.random%b  orka-simd-avx2-longs-random.adb  42df8efd NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx2%s	orka-simd-avx2.ads	orka-simd-avx2.ali
+W orka.simd.avx2.longs%s  orka-simd-avx2-longs.ads  orka-simd-avx2-longs.ali
+W orka.simd.avx2.longs.arithmetic%s  orka-simd-avx2-longs-arithmetic.ads  orka-simd-avx2-longs-arithmetic.ali
+W orka.simd.avx2.longs.convert%s  orka-simd-avx2-longs-convert.ads  orka-simd-avx2-longs-convert.ali
+W orka.simd.avx2.longs.logical%s  orka-simd-avx2-longs-logical.ads  orka-simd-avx2-longs-logical.ali
+W orka.simd.avx2.longs.shift%s  orka-simd-avx2-longs-shift.adb  orka-simd-avx2-longs-shift.ali
+
+U orka.simd.avx2.longs.random%s  orka-simd-avx2-longs-random.ads  0d744748 BN NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+W orka.simd.avx2.longs%s  orka-simd-avx2-longs.ads  orka-simd-avx2-longs.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-convert.ads  20241106002738 9a8d2f34 orka.simd.avx.longs.convert%s
+D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
+D orka-simd-avx2-longs.ads  20241106002736 af0ea8c1 orka.simd.avx2.longs%s
+D orka-simd-avx2-longs-arithmetic.ads  20241106002738 7f28d4ba orka.simd.avx2.longs.arithmetic%s
+D orka-simd-avx2-longs-convert.ads  20241106002736 cb53c59a orka.simd.avx2.longs.convert%s
+D orka-simd-avx2-longs-logical.ads  20241106002736 e891eba3 orka.simd.avx2.longs.logical%s
+D orka-simd-avx2-longs-random.ads  20241106002736 7e043ef9 orka.simd.avx2.longs.random%s
+D orka-simd-avx2-longs-random.adb  20241106002736 a06826b9 orka.simd.avx2.longs.random%b
+D orka-simd-avx2-longs-shift.ads  20241106002736 cec24b51 orka.simd.avx2.longs.shift%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [next orka__simd__avx2__longs__random 29 14 none]
+G c Z s b [next orka__simd__avx2__longs__random 36 14 none]
+G c Z s b [reset orka__simd__avx2__longs__random 43 14 none]
+G c Z s s [TstateBIP orka__simd__avx2__longs__random 50 4 none]
+G r c none [next orka__simd__avx2__longs__random 29 14 none] [Oadd orka__simd__avx2__longs__arithmetic 20 13 none]
+G r c none [next orka__simd__avx2__longs__random 29 14 none] [shift_bits_left_zeros orka__simd__avx2__longs__shift 50 13 none]
+G r c none [next orka__simd__avx2__longs__random 29 14 none] [shift_bits_right_zeros orka__simd__avx2__longs__shift 54 13 none]
+G r c none [next orka__simd__avx2__longs__random 29 14 none] [Oor orka__simd__avx2__longs__logical 26 13 none]
+G r c none [next orka__simd__avx2__longs__random 29 14 none] [Oxor orka__simd__avx2__longs__logical 29 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [Oadd orka__simd__avx2__longs__arithmetic 20 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [shift_bits_left_zeros orka__simd__avx2__longs__shift 50 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [shift_bits_right_zeros orka__simd__avx2__longs__shift 54 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [Oor orka__simd__avx2__longs__logical 26 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [Oxor orka__simd__avx2__longs__logical 29 13 none]
+G r c none [next orka__simd__avx2__longs__random 36 14 none] [to_unit_floats orka__simd__avx2__longs__convert 32 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 16|17r6 90r31
+X 2 a-unccon.ads
+20v14*Unchecked_Conversion 16|17w10 90r35
+X 3 orka.ads
+17K9*Orka 98e9 15|17r6 19r9 24r8 52r5 16|19r6 20r6 21r6 22r6 24r14 56r11
+. 57r11 58r11 104r5
+36I9*Integer_64<long_long_integer> 15|50r25 16|90r70
+51M9*Unsigned_64 16|61r69 88r24 88r39 90r57 92r33 92r66 93r33
+63F9*Float_64<long_float>
+X 4 orka-simd.ads
+17K14*SIMD 3|17k9 4|19e14 15|17r11 19r14 24r13 52r10 16|19r11 20r11 21r11
+. 22r11 24r19 56r16 57r16 58r16 84r16 104r10
+X 5 orka-simd-avx.ads
+17K19*AVX 28e18 15|17r16 24r18
+X 6 orka-simd-avx-doubles.ads
+17K23*Doubles 27e26 15|17w20 24r22
+20A9*m256d(3|63F9)<3|20E9> 15|36r50 16|80r50
+X 8 orka-simd-avx-longs.ads
+20A9*m256l(3|36I9)<3|20E9>
+X 10 orka-simd-avx2.ads
+17K19*AVX2 4|17k14 10|19e19 15|19r19 52r15 16|19r16 20r16 21r16 22r16 24r24
+. 56r21 57r21 58r21 84r21 104r15
+X 11 orka-simd-avx2-longs.ads
+20K24*Longs 10|17k19 11|26e25 15|19r24 52r20 16|19r21 20r21 21r21 22r21 24r29
+. 56r26 57r26 58r26 84r26 104r20
+24A12*m256l{8|20A9}<3|20E9> 15|29r50 50r53 16|55r50 60r33 60r63 64r25 66r20
+. 81r16
+X 12 orka-simd-avx2-longs-arithmetic.ads
+17K30*Arithmetic 30e36 16|19w27 56r32
+20V14*"+"{11|24A12} 16|64s53 64s66
+X 13 orka-simd-avx2-longs-convert.ads
+21K30*Convert 38e33 16|20w27 84r32
+32V13*To_Unit_Floats{6|20A9} 16|84s40
+X 14 orka-simd-avx2-longs-logical.ads
+17K30*Logical 32e33 16|21w27 57r32
+26V14*"or"{11|24A12} 16|61s39
+29V14*"xor"{11|24A12} 16|68s22 69s22 70s22 71s22 73s22
+X 15 orka-simd-avx2-longs-random.ads
+19K30*Random 11|20k24 15|50E9 52l26 52e32 16|24b35 104l26 104t32
+26A9*State(11|24A12) 27r41 29r31 36r31 43r29 50c9 16|55r31 80r31 87r29
+29U14*Next 29=20 29<38 16|55b14 78l8 78t12 83s7
+29a20 S{26A9} 32r24 32r37 16|55b20 64r47 64r55 64r68 66r52 68m7 68r16 68r26
+. 69m7 69r16 69r26 70m7 70r16 70r26 71m7 71r16 71r26 73m7 73r16 75m7 75r29
+29a38 Value{11|24A12} 32r27 16|55b38 77m7
+36U14*Next 36=20 36<38 16|80b14 85l8 85t12
+36a20 S{26A9} 39r24 39r37 16|80b20 83m13
+36a38 Value{6|20A9} 39r27 16|80b38 84m7
+43U14*Reset 43<21 43>36 16|87b14 102l8 102t13
+43a21 S{26A9} 45r23 16|87b21 95r16 96m10
+43o36 Seed{duration} 45r28 46r22 16|87b36 88r52
+X 16 orka-simd-avx2-longs-random.adb
+60V16 Rotate_Left{11|24A12} 60>29 60>40 64s34 75s16
+60a29 X{11|24A12} 61r33 61r66
+60i40 K{17|48I9} 61r36 61r88
+64a7 Result{11|24A12} 77r16
+66a7 T{11|24A12} 73r26
+81a7 Result{11|24A12} 83m16 84r56
+88m7 Value{3|51M9} 97r35 98r35 99r35 100r35
+90V16 Convert[2|20]{3|36I9} 97s13 98s13 99s13 100s13
+92V16 Rotate_Left{3|51M9} 92>29 92>46 97s22 98s22 99s22 100s22
+92m29 X{3|51M9} 93r11 93r25
+92i46 K{natural} 93r18 93r52
+95i11 I<long_long_integer> 96r13
+X 17 orka-simd-avx2-longs-shift.ads
+17K30*Shift 16|22w27 58r32 17|68e31
+48I9*Bits_Count<integer> 16|60r44
+50V13*Shift_Bits_Left_Zeros{11|24A12} 16|61s10 66s29
+54V13*Shift_Bits_Right_Zeros{11|24A12} 16|61s42
+

@@ -1,0 +1,113 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.sse2.integers.logical%b  orka-simd-sse2-integers-logical.adb  b255dcbf NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+W orka.simd.sse2.longs%s  orka-simd-sse2-longs.ads  orka-simd-sse2-longs.ali
+W orka.simd.sse2.longs.logical%s  orka-simd-sse2-longs-logical.ads  orka-simd-sse2-longs-logical.ali
+
+U orka.simd.sse2.integers.logical%s  orka-simd-sse2-integers-logical.ads  c40e120e BN NE OO PU PK
+W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integers.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-integers-logical.ads  20241106002736 40325586 orka.simd.sse2.integers.logical%s
+D orka-simd-sse2-integers-logical.adb  20241106002736 7513870e orka.simd.sse2.integers.logical%b
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse2-longs-logical.ads  20241106002736 89ef2958 orka.simd.sse2.longs.logical%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s b [and_not orka__simd__sse2__integers__logical 20 13 none]
+G c Z s b [Oand orka__simd__sse2__integers__logical 24 13 none]
+G c Z s b [Oor orka__simd__sse2__integers__logical 27 13 none]
+G c Z s b [Oxor orka__simd__sse2__integers__logical 30 13 none]
+G c Z b b [convert orka__simd__sse2__integers__logical 26 13 none]
+G c Z b b [convert orka__simd__sse2__integers__logical 27 13 none]
+G r c none [and_not orka__simd__sse2__integers__logical 20 13 none] [and_not orka__simd__sse2__longs__logical 20 13 none]
+G r c none [Oand orka__simd__sse2__integers__logical 24 13 none] [Oand orka__simd__sse2__longs__logical 23 13 none]
+G r c none [Oor orka__simd__sse2__integers__logical 27 13 none] [Oor orka__simd__sse2__longs__logical 26 13 none]
+G r c none [Oxor orka__simd__sse2__integers__logical 30 13 none] [Oxor orka__simd__sse2__longs__logical 29 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 8|17r6 26r28 27r28
+X 2 a-unccon.ads
+20v14*Unchecked_Conversion 8|17w10 26r32 27r32
+X 3 orka.ads
+17K9*Orka 98e9 7|17r9 33r5 8|19r6 21r14 41r5
+35I9*Integer_32<integer>
+36I9*Integer_64<long_long_integer>
+X 4 orka-simd.ads
+17K14*SIMD 3|17k9 4|19e14 7|17r14 33r10 8|19r11 21r19 23r8 24r8 41r10
+X 5 orka-simd-sse2.ads
+17K19*SSE2 4|17k14 5|19e19 7|17r19 33r15 8|19r16 21r24 23r13 24r13 41r15
+X 6 orka-simd-sse2-integers.ads
+17K24*Integers 5|17k19 6|24e28 7|17r24 33r20 8|21r29 41r20
+20A9*m128i(3|35I9)<3|20E9> 7|20r36 20r50 24r34 24r48 27r33 27r47 30r34 30r48
+. 8|26r54 27r61 29r36 29r50 32r34 32r48 35r33 35r47 38r34 38r48
+X 7 orka-simd-sse2-integers-logical.ads
+17K33*Logical 6|17k24 7|33l29 33e36 8|21b38 41l29 41t36
+20V13*And_Not{6|20A9} 20>22 20>28 8|29b13
+20a22 Left{6|20A9} 8|30r34
+20a28 Right{6|20A9} 8|30r50
+24V14*"and"{6|20A9} 24>20 24>26 8|32b14
+24a20 Left{6|20A9} 8|33r25
+24a26 Right{6|20A9} 8|33r44
+27V14*"or"{6|20A9} 27>19 27>25 8|35b14
+27a19 Left{6|20A9} 8|36r25
+27a25 Right{6|20A9} 8|36r43
+30V14*"xor"{6|20A9} 30>20 30>26 8|38b14
+30a20 Left{6|20A9} 8|39r25
+30a26 Right{6|20A9} 8|39r44
+X 8 orka-simd-sse2-integers-logical.adb
+26V13 Convert[2|20]{9|20A9} 30s25 30s41 33s16 33s35 36s16 36s34 39s16 39s35
+27V13 Convert[2|20]{6|20A9} 30s7 33s7 36s7 39s7
+X 9 orka-simd-sse2-longs.ads
+17K24*Longs 8|19r21 23r18 24r18 9|24e25
+20A9*m128l(3|36I9)<3|20E9> 8|26r61 27r54
+X 10 orka-simd-sse2-longs-logical.ads
+17K30*Logical 8|19w27 24r24 10|32e33
+20V13*And_Not{9|20A9} 8|30s16
+23V14*"and"{9|20A9} 8|33s31
+26V14*"or"{9|20A9} 8|36s31
+29V14*"xor"{9|20A9} 8|39s31
+

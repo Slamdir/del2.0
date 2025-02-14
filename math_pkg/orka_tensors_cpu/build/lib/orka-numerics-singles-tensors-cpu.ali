@@ -1,0 +1,1288 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -mf16c
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FIXED_POINT
+RV NO_FLOATING_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_RECURSION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RR NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RR NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.numerics.singles.tensors.cpu%b  orka-numerics-singles-tensors-cpu.ads  75c5c1df NE OO PR PK
+W ada%s			ada.ads			ada.ali
+W ada.characters%s	a-charac.ads		a-charac.ali
+Z ada.characters.latin_1%s  a-chlat1.ads	a-chlat1.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z ada.unchecked_conversion%s
+W orka%s		orka.ads		orka.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.singles%s  orka-numerics-singles.ads  orka-numerics-singles.ali
+W orka.numerics.singles.tensors%s  orka-numerics-singles-tensors.ads  orka-numerics-singles-tensors.ali
+W orka.numerics.singles.tensors%s  orka-numerics-singles-tensors.ads  orka-numerics-singles-tensors.ali
+W orka.numerics.tensors%s  orka-numerics-tensors.adb  orka-numerics-tensors.ali
+Z orka.numerics.tensors.operations%s  orka-numerics-tensors-operations.adb  orka-numerics-tensors-operations.ali
+W orka.numerics.tensors.simd_cpu%s  orka-numerics-tensors-simd_cpu.adb  orka-numerics-tensors-simd_cpu.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.integers%s  orka-simd-avx-integers.ads  orka-simd-avx-integers.ali
+W orka.simd.avx.integers.logical%s  orka-simd-avx-integers-logical.adb  orka-simd-avx-integers-logical.ali
+W orka.simd.avx.singles%s  orka-simd-avx-singles.ads  orka-simd-avx-singles.ali
+W orka.simd.avx.singles.arithmetic%s  orka-simd-avx-singles-arithmetic.adb  orka-simd-avx-singles-arithmetic.ali
+W orka.simd.avx.singles.compare%s  orka-simd-avx-singles-compare.adb  orka-simd-avx-singles-compare.ali
+W orka.simd.avx.singles.logical%s  orka-simd-avx-singles-logical.ads  orka-simd-avx-singles-logical.ali
+W orka.simd.avx.singles.math%s  orka-simd-avx-singles-math.ads  orka-simd-avx-singles-math.ali
+W orka.simd.avx2%s	orka-simd-avx2.ads	orka-simd-avx2.ali
+W orka.simd.avx2.integers%s  orka-simd-avx2-integers.ads  orka-simd-avx2-integers.ali
+W orka.simd.avx2.integers.arithmetic%s  orka-simd-avx2-integers-arithmetic.ads  orka-simd-avx2-integers-arithmetic.ali
+W orka.simd.avx2.integers.logical%s  orka-simd-avx2-integers-logical.adb  orka-simd-avx2-integers-logical.ali
+W orka.simd.avx2.integers.random%s  orka-simd-avx2-integers-random.adb  orka-simd-avx2-integers-random.ali
+W orka.simd.avx2.integers.shift%s  orka-simd-avx2-integers-shift.adb  orka-simd-avx2-integers-shift.ali
+Z system%s		system.ads		system.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+Z system.img_flt%s	s-imgflt.ads		s-imgflt.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+U orka.numerics.singles.tensors.cpu%s  orka-numerics-singles-tensors-cpu.ads  78d1d757 EB EE OO PF PR PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.streams%s		a-stream.adb		a-stream.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W orka%s		orka.ads		orka.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.singles%s  orka-numerics-singles.ads  orka-numerics-singles.ali
+W orka.numerics.singles.tensors%s  orka-numerics-singles-tensors.ads  orka-numerics-singles-tensors.ali
+W orka.numerics.singles.tensors%s  orka-numerics-singles-tensors.ads  orka-numerics-singles-tensors.ali
+W orka.numerics.tensors%s  orka-numerics-tensors.adb  orka-numerics-tensors.ali
+W orka.numerics.tensors.simd_cpu%s  orka-numerics-tensors-simd_cpu.adb  orka-numerics-tensors-simd_cpu.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.integers%s  orka-simd-avx-integers.ads  orka-simd-avx-integers.ali
+W orka.simd.avx.integers.logical%s  orka-simd-avx-integers-logical.adb  orka-simd-avx-integers-logical.ali
+W orka.simd.avx.singles%s  orka-simd-avx-singles.ads  orka-simd-avx-singles.ali
+W orka.simd.avx.singles.arithmetic%s  orka-simd-avx-singles-arithmetic.adb  orka-simd-avx-singles-arithmetic.ali
+W orka.simd.avx.singles.compare%s  orka-simd-avx-singles-compare.adb  orka-simd-avx-singles-compare.ali
+W orka.simd.avx.singles.logical%s  orka-simd-avx-singles-logical.ads  orka-simd-avx-singles-logical.ali
+W orka.simd.avx.singles.math%s  orka-simd-avx-singles-math.ads  orka-simd-avx-singles-math.ali
+W orka.simd.avx2%s	orka-simd-avx2.ads	orka-simd-avx2.ali
+W orka.simd.avx2.integers%s  orka-simd-avx2-integers.ads  orka-simd-avx2-integers.ali
+W orka.simd.avx2.integers.arithmetic%s  orka-simd-avx2-integers-arithmetic.ads  orka-simd-avx2-integers-arithmetic.ali
+W orka.simd.avx2.integers.logical%s  orka-simd-avx2-integers-logical.adb  orka-simd-avx2-integers-logical.ali
+W orka.simd.avx2.integers.random%s  orka-simd-avx2-integers-random.adb  orka-simd-avx2-integers-random.ali
+W orka.simd.avx2.integers.shift%s  orka-simd-avx2-integers-shift.adb  orka-simd-avx2-integers-shift.ali
+Z system%s		system.ads		system.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-assert.ads		20240801081714 ba465f5c ada.assertions%s
+D a-charac.ads		20240801081714 2d3ec45b ada.characters%s
+D a-chlat1.ads		20240801081714 e0d72e76 ada.characters.latin_1%s
+D a-contai.ads		20240801081714 61e5e089 ada.containers%s
+D a-coinho.ads		20240801081714 f2039f43 ada.containers.indefinite_holders%s
+D a-coinho.adb		20240801081714 bc004e30 ada.containers.indefinite_holders%b
+D a-except.ads		20240801081714 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081714 bf4f806b ada.finalization%s
+D a-ioexce.ads		20240801081714 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240801081714 84bea7a3 ada.numerics%s
+D a-nuaufl.ads		20240801081714 020cac40 ada.numerics.aux_float%s
+D a-nagefl.ads		20240801081714 53f456a7 ada.numerics.aux_generic_float%s
+D a-naliop.ads		20240801081714 6b421e5f ada.numerics.aux_linker_options%s
+D a-nalofl.ads		20240801081714 6d8e51a4 ada.numerics.aux_long_float%s
+D a-nallfl.ads		20240801081714 6ccf65a3 ada.numerics.aux_long_long_float%s
+D a-nashfl.ads		20240801081714 b54ed4fb ada.numerics.aux_short_float%s
+D a-ngelfu.ads		20240801081714 5506716e ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20240801081714 2940142d ada.numerics.generic_elementary_functions%b
+D a-stream.ads		20240801081714 119b8fb3 ada.streams%s
+D a-string.ads		20240801081714 90ac6797 ada.strings%s
+D a-strmap.ads		20240801081714 1f91ebb6 ada.strings.maps%s
+D a-strmap.adb		20240801081714 da700cc5 ada.strings.maps%b
+D a-strsea.ads		20240801081714 2b7aab86 ada.strings.search%s
+D a-sttebu.ads		20240801081714 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20240801081714 98c60381 ada.strings.unbounded%s
+D a-strunb.adb		20240801081714 3b950306 ada.strings.unbounded%b
+D a-stuten.ads		20240801081714 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20240801081714 c3a8ac65 ada.unchecked_deallocation%s
+D interfac.ads		20240801081714 9111f9c1 interfaces%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
+D orka-numerics-singles.ads  20241106002736 ee71d58d orka.numerics.singles%s
+D orka-numerics-singles-tensors.ads  20241106002738 88ade88d orka.numerics.singles.tensors%s
+D orka-numerics-singles-tensors.ads  20241106002738 88ade88d orka.numerics.singles.tensors%s
+D orka-numerics-singles-tensors-cpu.ads  20241106002738 75c5c1df orka.numerics.singles.tensors.cpu%s
+D orka-numerics-singles-tensors-cpu.ads  20241106002738 75c5c1df orka.numerics.singles.tensors.cpu%b
+D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
+D orka-numerics-tensors.adb  20241106002738 f6198d4f orka.numerics.tensors%b
+D orka-numerics-tensors-operations.ads  20241106002738 6fcb5dbf orka.numerics.tensors.operations%s
+D orka-numerics-tensors-operations.adb  20241106002738 b6735ed4 orka.numerics.tensors.operations%b
+D orka-numerics-tensors-simd_cpu.ads  20241106002738 aadada72 orka.numerics.tensors.simd_cpu%s
+D orka-numerics-tensors-simd_cpu.adb  20241106002738 1ac1e65e orka.numerics.tensors.simd_cpu%b
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-integers.ads  20241106002738 d9312ec8 orka.simd.avx.integers%s
+D orka-simd-avx-integers-convert.ads  20241106002736 c165c350 orka.simd.avx.integers.convert%s
+D orka-simd-avx-integers-logical.ads  20241106002736 e435b1bd orka.simd.avx.integers.logical%s
+D orka-simd-avx-integers-logical.adb  20241106002736 89d19f0f orka.simd.avx.integers.logical%b
+D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-logical.ads  20241106002736 600e2762 orka.simd.avx.longs.logical%s
+D orka-simd-avx-longs-logical.adb  20241106002736 39ab4740 orka.simd.avx.longs.logical%b
+D orka-simd-avx-singles.ads  20241106002736 e2e0e917 orka.simd.avx.singles%s
+D orka-simd-avx-singles-arithmetic.ads  20241106002738 100a1ca2 orka.simd.avx.singles.arithmetic%s
+D orka-simd-avx-singles-arithmetic.adb  20241106002738 fe5aef9c orka.simd.avx.singles.arithmetic%b
+D orka-simd-avx-singles-compare.ads  20241106002738 fbe34508 orka.simd.avx.singles.compare%s
+D orka-simd-avx-singles-logical.ads  20241106002736 2d5cb6dd orka.simd.avx.singles.logical%s
+D orka-simd-avx-singles-math.ads  20241106002736 3c2d6d21 orka.simd.avx.singles.math%s
+D orka-simd-avx-singles-swizzle.ads  20241106002738 bdaeb515 orka.simd.avx.singles.swizzle%s
+D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
+D orka-simd-avx2-integers.ads  20241106002736 f8477638 orka.simd.avx2.integers%s
+D orka-simd-avx2-integers-arithmetic.ads  20241106002738 5e3388d3 orka.simd.avx2.integers.arithmetic%s
+D orka-simd-avx2-integers-convert.ads  20241106002736 e4b28f97 orka.simd.avx2.integers.convert%s
+D orka-simd-avx2-integers-logical.ads  20241106002736 9945aa4f orka.simd.avx2.integers.logical%s
+D orka-simd-avx2-integers-logical.adb  20241106002736 2920f2e4 orka.simd.avx2.integers.logical%b
+D orka-simd-avx2-integers-random.ads  20241106002736 96474813 orka.simd.avx2.integers.random%s
+D orka-simd-avx2-integers-random.adb  20241106002736 2aab9e5e orka.simd.avx2.integers.random%b
+D orka-simd-avx2-integers-shift.ads  20241106002736 60ff7d13 orka.simd.avx2.integers.shift%s
+D orka-simd-avx2-integers-shift.adb  20241106002736 94570e88 orka.simd.avx2.integers.shift%b
+D orka-simd-avx2-longs.ads  20241106002736 af0ea8c1 orka.simd.avx2.longs%s
+D orka-simd-avx2-longs-logical.ads  20241106002736 e891eba3 orka.simd.avx2.longs.logical%s
+D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse-singles-arithmetic.ads  20241106002738 cf74ffdd orka.simd.sse.singles.arithmetic%s
+D orka-simd-sse-singles-swizzle.ads  20241106002738 d17f6df8 orka.simd.sse.singles.swizzle%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse3.ads	20241106002736 0e1275ce orka.simd.sse3%s
+D orka-simd-sse3-singles.ads  20241106002736 a25d8787 orka.simd.sse3.singles%s
+D orka-simd-sse3-singles-arithmetic.ads  20241106002736 cd821d54 orka.simd.sse3.singles.arithmetic%s
+D orka-simd-sse3-singles-arithmetic.adb  20241106002736 4a7fa9c7 orka.simd.sse3.singles.arithmetic%b
+D orka-simd-sse3-singles-swizzle.ads  20241106002736 ed1b7382 orka.simd.sse3.singles.swizzle%s
+D system.ads		20240801081714 e4f8b086 system%s
+D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
+D s-bitops.ads		20240801081714 cdf3ac3c system.bit_ops%s
+D s-carun8.ads		20240801081714 90e69e63 system.compare_array_unsigned_8%s
+D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
+D s-exnflt.ads		20240801081714 84371ff2 system.exn_flt%s
+D s-exponr.ads		20240801081714 2127300b system.exponr%s
+D s-fatflt.ads		20240801081714 11beb392 system.fat_flt%s
+D s-fatgen.ads		20240801081714 d28c6cfe system.fat_gen%s
+D s-fatgen.adb		20240801081714 6cc1fec9 system.fat_gen%b
+D s-finmas.ads		20240801081714 28987ac5 system.finalization_masters%s
+D s-finroo.ads		20240801081714 4ff27390 system.finalization_root%s
+D s-imagei.ads		20240801081714 5e131ce0 system.image_i%s
+D s-imager.ads		20240801081714 45c7157d system.image_r%s
+D s-imageu.ads		20240801081714 b0b50650 system.image_u%s
+D s-imgflt.ads		20240801081714 d12816b5 system.img_flt%s
+D s-imgint.ads		20240801081714 67e4edfb system.img_int%s
+D s-imguns.ads		20240801081714 c4e23690 system.img_uns%s
+D s-memory.ads		20240801081714 18949c1a system.memory%s
+D s-parame.ads		20240801081714 3597fc11 system.parameters%s
+D s-pooglo.ads		20240801081714 91708d21 system.pool_global%s
+D s-powflt.ads		20240801081714 a51ab9b8 system.powten_flt%s
+D s-putima.ads		20240801081714 17291fe4 system.put_images%s
+D s-retsta.ads		20240801081714 0f6b06cb system.return_stack%s
+D s-secsta.ads		20240801081714 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081714 df77073e system.soft_links%s
+D s-stache.ads		20240801081714 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081714 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20240801081714 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20240801081714 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20240801081714 a1861007 system.stream_attributes%s
+D s-stratt.adb		20240801081714 c8964632 system.stream_attributes%b
+D s-statxd.ads		20240801081714 b54789f6 system.stream_attributes.xdr%s
+D s-string.ads		20240801081714 582aac7d system.strings%s
+D s-ststop.ads		20240801081714 c569db7c system.strings.stream_ops%s
+D s-traent.ads		20240801081714 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081714 fa2a7f59 system.unsigned_types%s
+D s-valspe.ads		20240801081714 b0fcd073 system.val_spec%s
+D s-vaispe.ads		20240801081714 8280550e system.value_i_spec%s
+D s-vauspe.ads		20240801081714 89269ba5 system.value_u_spec%s
+D s-vs_int.ads		20240801081714 06b6b724 system.vs_int%s
+D s-vs_uns.ads		20240801081714 e7f47a27 system.vs_uns%s
+D d:\ada_capstone\del2.0\math_pkg\orka_tensors_cpu\gnat.adc  20241106002736 00000000
+G a e
+G c b s s [b orka__numerics__singles__tensors__cpu 23 1 29_1]
+G c s s s [s orka__numerics__singles__tensors__cpu 29 1 none]
+G c Z s s [is_materialized orka__numerics__singles__tensors__cpu 79 24 29_1]
+G c Z s s [materialize orka__numerics__singles__tensors__cpu 81 25 29_1]
+G c Z s s [kind orka__numerics__singles__tensors__cpu 83 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 85 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 86 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 87 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 89 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 91 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 92 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 93 24 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu 95 24 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 99 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 100 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 102 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 103 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 105 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 106 25 29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu 107 25 29_1]
+G c Z s s [image orka__numerics__singles__tensors__cpu 112 13 29_1]
+G c Z s s [shape orka__numerics__singles__tensors__cpu 115 13 29_1]
+G c Z s s [elements orka__numerics__singles__tensors__cpu 118 13 29_1]
+G c Z s s [axes orka__numerics__singles__tensors__cpu 121 13 29_1]
+G c Z s s [empty orka__numerics__singles__tensors__cpu 126 13 29_1]
+G c Z s s [fill orka__numerics__singles__tensors__cpu 129 13 29_1]
+G c Z s s [zeros orka__numerics__singles__tensors__cpu 132 13 29_1]
+G c Z s s [zeros orka__numerics__singles__tensors__cpu 135 13 29_1]
+G c Z s s [ones orka__numerics__singles__tensors__cpu 138 13 29_1]
+G c Z s s [ones orka__numerics__singles__tensors__cpu 141 13 29_1]
+G c Z s s [to_tensor orka__numerics__singles__tensors__cpu 144 13 29_1]
+G c Z s s [to_tensor orka__numerics__singles__tensors__cpu 147 13 29_1]
+G c Z s s [to_boolean_tensor orka__numerics__singles__tensors__cpu 150 13 29_1]
+G c Z s s [to_boolean_tensor orka__numerics__singles__tensors__cpu 155 13 29_1]
+G c Z s s [array_range orka__numerics__singles__tensors__cpu 158 13 29_1]
+G c Z s s [array_range orka__numerics__singles__tensors__cpu 161 13 29_1]
+G c Z s s [linear_space orka__numerics__singles__tensors__cpu 164 13 29_1]
+G c Z s s [log_space orka__numerics__singles__tensors__cpu 170 13 29_1]
+G c Z s s [geometric_space orka__numerics__singles__tensors__cpu 177 13 29_1]
+G c Z s s [identity orka__numerics__singles__tensors__cpu 184 13 29_1]
+G c Z s s [identity orka__numerics__singles__tensors__cpu 187 13 29_1]
+G c Z s s [upper_triangular orka__numerics__singles__tensors__cpu 190 13 29_1]
+G c Z s s [main_diagonal orka__numerics__singles__tensors__cpu 193 13 29_1]
+G c Z s s [diagonal orka__numerics__singles__tensors__cpu 196 13 29_1]
+G c Z s s [diagonal orka__numerics__singles__tensors__cpu 199 13 29_1]
+G c Z s s [trace orka__numerics__singles__tensors__cpu 202 13 29_1]
+G c Z s s [reshape orka__numerics__singles__tensors__cpu 205 13 29_1]
+G c Z s s [reshape orka__numerics__singles__tensors__cpu 208 13 29_1]
+G c Z s s [flatten orka__numerics__singles__tensors__cpu 211 13 29_1]
+G c Z s s [concatenate orka__numerics__singles__tensors__cpu 214 13 29_1]
+G c Z s s [Oconcat orka__numerics__singles__tensors__cpu 219 13 29_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors__cpu 229 13 29_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__cpu 232 13 29_1]
+G c Z s s [outer orka__numerics__singles__tensors__cpu 235 13 29_1]
+G c Z s s [inverse orka__numerics__singles__tensors__cpu 238 13 29_1]
+G c Z s s [transpose orka__numerics__singles__tensors__cpu 241 13 29_1]
+G c Z s s [solve orka__numerics__singles__tensors__cpu 244 13 29_1]
+G c Z s s [solve orka__numerics__singles__tensors__cpu 247 13 29_1]
+G c Z s s [divide_by orka__numerics__singles__tensors__cpu 250 13 29_1]
+G c Z s s [divide_by orka__numerics__singles__tensors__cpu 253 13 29_1]
+G c Z s s [determinancy orka__numerics__singles__tensors__cpu 258 13 29_1]
+G c Z s s [q orka__numerics__singles__tensors__cpu 260 13 29_1]
+G c Z s s [r orka__numerics__singles__tensors__cpu 261 13 29_1]
+G c Z s s [qr orka__numerics__singles__tensors__cpu 264 13 29_1]
+G c Z s s [qr orka__numerics__singles__tensors__cpu 267 13 29_1]
+G c Z s s [qr_for_least_squares orka__numerics__singles__tensors__cpu 270 13 29_1]
+G c Z s s [least_squares orka__numerics__singles__tensors__cpu 273 13 29_1]
+G c Z s s [least_squares orka__numerics__singles__tensors__cpu 278 13 29_1]
+G c Z s s [constrained_least_squares orka__numerics__singles__tensors__cpu 281 13 29_1]
+G c Z s s [cholesky orka__numerics__singles__tensors__cpu 284 13 29_1]
+G c Z s s [cholesky_update orka__numerics__singles__tensors__cpu 287 13 29_1]
+G c Z s s [norm orka__numerics__singles__tensors__cpu 295 24 29_1]
+G c Z s s [normalize orka__numerics__singles__tensors__cpu 297 24 29_1]
+G c Z s s [standardize orka__numerics__singles__tensors__cpu 299 24 29_1]
+G c Z s s [correlation_coefficient orka__numerics__singles__tensors__cpu 302 13 29_1]
+G c Z s s [Oadd orka__numerics__singles__tensors__cpu 308 24 29_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors__cpu 310 24 29_1]
+G c Z s s [Odivide orka__numerics__singles__tensors__cpu 312 24 29_1]
+G c Z s s [divide_or_zero orka__numerics__singles__tensors__cpu 314 24 29_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__cpu 316 24 29_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__cpu 318 24 29_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__cpu 319 24 29_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors__cpu 321 24 29_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors__cpu 322 24 29_1]
+G c Z s s [Odivide orka__numerics__singles__tensors__cpu 324 24 29_1]
+G c Z s s [Odivide orka__numerics__singles__tensors__cpu 325 24 29_1]
+G c Z s s [Oadd orka__numerics__singles__tensors__cpu 327 24 29_1]
+G c Z s s [Oadd orka__numerics__singles__tensors__cpu 328 24 29_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors__cpu 330 24 29_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors__cpu 331 24 29_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors__cpu 333 24 29_1]
+G c Z s s [Omod orka__numerics__singles__tensors__cpu 335 24 29_1]
+G c Z s s [Orem orka__numerics__singles__tensors__cpu 336 24 29_1]
+G c Z s s [Omod orka__numerics__singles__tensors__cpu 338 24 29_1]
+G c Z s s [Orem orka__numerics__singles__tensors__cpu 339 24 29_1]
+G c Z s s [Oabs orka__numerics__singles__tensors__cpu 341 24 29_1]
+G c Z s s [multiply orka__numerics__singles__tensors__cpu 349 24 29_1]
+G c Z s s [power orka__numerics__singles__tensors__cpu 351 24 29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu 357 24 29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu 358 24 29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu 360 24 29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu 361 24 29_1]
+G c Z s s [sqrt orka__numerics__singles__tensors__cpu 363 24 29_1]
+G c Z s s [ceil orka__numerics__singles__tensors__cpu 365 24 29_1]
+G c Z s s [floor orka__numerics__singles__tensors__cpu 366 24 29_1]
+G c Z s s [round orka__numerics__singles__tensors__cpu 367 24 29_1]
+G c Z s s [truncate orka__numerics__singles__tensors__cpu 368 24 29_1]
+G c Z s s [exp orka__numerics__singles__tensors__cpu 370 24 29_1]
+G c Z s s [log orka__numerics__singles__tensors__cpu 371 24 29_1]
+G c Z s s [log10 orka__numerics__singles__tensors__cpu 372 24 29_1]
+G c Z s s [log2 orka__numerics__singles__tensors__cpu 373 24 29_1]
+G c Z s s [sin orka__numerics__singles__tensors__cpu 379 24 29_1]
+G c Z s s [cos orka__numerics__singles__tensors__cpu 380 24 29_1]
+G c Z s s [tan orka__numerics__singles__tensors__cpu 381 24 29_1]
+G c Z s s [arcsin orka__numerics__singles__tensors__cpu 383 24 29_1]
+G c Z s s [arccos orka__numerics__singles__tensors__cpu 384 24 29_1]
+G c Z s s [arctan orka__numerics__singles__tensors__cpu 385 24 29_1]
+G c Z s s [degrees orka__numerics__singles__tensors__cpu 387 24 29_1]
+G c Z s s [radians orka__numerics__singles__tensors__cpu 388 24 29_1]
+G c Z s s [reduce_associative orka__numerics__singles__tensors__cpu 393 13 29_1]
+G c Z s s [reduce_associative orka__numerics__singles__tensors__cpu 399 13 29_1]
+G c Z s s [reduce orka__numerics__singles__tensors__cpu 406 13 29_1]
+G c Z s s [reduce orka__numerics__singles__tensors__cpu 412 13 29_1]
+G c Z s s [sum orka__numerics__singles__tensors__cpu 418 24 29_1]
+G c Z s s [product orka__numerics__singles__tensors__cpu 420 24 29_1]
+G c Z s s [sum orka__numerics__singles__tensors__cpu 423 13 29_1]
+G c Z s s [product orka__numerics__singles__tensors__cpu 426 13 29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu 432 24 29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu 433 24 29_1]
+G c Z s s [quantile orka__numerics__singles__tensors__cpu 435 24 29_1]
+G c Z s s [median orka__numerics__singles__tensors__cpu 436 24 29_1]
+G c Z s s [mean orka__numerics__singles__tensors__cpu 438 24 29_1]
+G c Z s s [variance orka__numerics__singles__tensors__cpu 441 13 29_1]
+G c Z s s [standard_deviation orka__numerics__singles__tensors__cpu 444 13 29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu 447 13 29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu 450 13 29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu 453 13 29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu 456 13 29_1]
+G c Z s s [quantile orka__numerics__singles__tensors__cpu 459 13 29_1]
+G c Z s s [median orka__numerics__singles__tensors__cpu 465 13 29_1]
+G c Z s s [mean orka__numerics__singles__tensors__cpu 468 13 29_1]
+G c Z s s [variance orka__numerics__singles__tensors__cpu 471 13 29_1]
+G c Z s s [standard_deviation orka__numerics__singles__tensors__cpu 477 13 29_1]
+G c Z s s [and_not orka__numerics__singles__tensors__cpu 486 24 29_1]
+G c Z s s [Oand orka__numerics__singles__tensors__cpu 488 24 29_1]
+G c Z s s [Oand orka__numerics__singles__tensors__cpu 490 24 29_1]
+G c Z s s [Oor orka__numerics__singles__tensors__cpu 492 24 29_1]
+G c Z s s [Oxor orka__numerics__singles__tensors__cpu 494 24 29_1]
+G c Z s s [Onot orka__numerics__singles__tensors__cpu 496 24 29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu 502 24 29_1]
+G c Z s s [One orka__numerics__singles__tensors__cpu 503 24 29_1]
+G c Z s s [Ogt orka__numerics__singles__tensors__cpu 505 24 29_1]
+G c Z s s [Olt orka__numerics__singles__tensors__cpu 506 24 29_1]
+G c Z s s [Oge orka__numerics__singles__tensors__cpu 508 24 29_1]
+G c Z s s [Ole orka__numerics__singles__tensors__cpu 509 24 29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu 513 24 29_1]
+G c Z s s [One orka__numerics__singles__tensors__cpu 514 24 29_1]
+G c Z s s [Ogt orka__numerics__singles__tensors__cpu 516 24 29_1]
+G c Z s s [Olt orka__numerics__singles__tensors__cpu 517 24 29_1]
+G c Z s s [Oge orka__numerics__singles__tensors__cpu 519 24 29_1]
+G c Z s s [Ole orka__numerics__singles__tensors__cpu 520 24 29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu 524 24 29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1]
+G c Z s s [One orka__numerics__singles__tensors__cpu 527 24 29_1]
+G c Z s s [Ogt orka__numerics__singles__tensors__cpu 529 24 29_1]
+G c Z s s [Olt orka__numerics__singles__tensors__cpu 530 24 29_1]
+G c Z s s [Oge orka__numerics__singles__tensors__cpu 532 24 29_1]
+G c Z s s [Ole orka__numerics__singles__tensors__cpu 533 24 29_1]
+G c Z s s [all_close orka__numerics__singles__tensors__cpu 538 13 29_1]
+G c Z s s [any_true orka__numerics__singles__tensors__cpu 544 13 29_1]
+G c Z s s [any_true orka__numerics__singles__tensors__cpu 547 13 29_1]
+G c Z s s [all_true orka__numerics__singles__tensors__cpu 550 13 29_1]
+G c Z s s [all_true orka__numerics__singles__tensors__cpu 553 13 29_1]
+G c Z s s [reset_random orka__numerics__singles__tensors__cpu 557 14 29_1]
+G c Z s s [random_uniform orka__numerics__singles__tensors__cpu 559 24 29_1]
+G c Z s s [vector_arrayIP orka__numerics__singles__tensors__cpu 564 9 29_1]
+G c Z s s [cpu_tensorDA orka__numerics__singles__tensors__cpu 566 9 29_1]
+G c Z s s [cpu_tensorDF orka__numerics__singles__tensors__cpu 566 9 29_1]
+G c Z s s [cpu_tensorIP orka__numerics__singles__tensors__cpu 566 9 29_1]
+G c Z s s [cpu_qr_factorizationDA orka__numerics__singles__tensors__cpu 573 9 29_1]
+G c Z s s [cpu_qr_factorizationDF orka__numerics__singles__tensors__cpu 573 9 29_1]
+G c Z s s [cpu_qr_factorizationIP orka__numerics__singles__tensors__cpu 573 9 29_1]
+G c Z s s [swap_rows orka__numerics__singles__tensors__cpu 25 14 29_1]
+G c Z s s [scale_row orka__numerics__singles__tensors__cpu 38 14 29_1]
+G c Z s s [replace_row orka__numerics__singles__tensors__cpu 46 14 29_1]
+G c Z s s [forward_substitute orka__numerics__singles__tensors__cpu 55 14 29_1]
+G c Z s s [back_substitute orka__numerics__singles__tensors__cpu 65 14 29_1]
+G c Z s s [create_qr orka__numerics__singles__tensors__cpu 75 13 29_1]
+G c Z s s [make_upper_triangular orka__numerics__singles__tensors__cpu 84 14 29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu__operations 41 24 99_4_29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu__operations 42 24 99_4_29_1]
+G c Z s s [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu__operations 56 25 99_4_29_1]
+G c Z s s [set orka__numerics__singles__tensors__cpu__operations 57 25 99_4_29_1]
+G c Z s s [zeros orka__numerics__singles__tensors__cpu__operations 63 24 99_4_29_1]
+G c Z s s [zeros orka__numerics__singles__tensors__cpu__operations 64 24 99_4_29_1]
+G c Z s s [ones orka__numerics__singles__tensors__cpu__operations 66 24 99_4_29_1]
+G c Z s s [ones orka__numerics__singles__tensors__cpu__operations 67 24 99_4_29_1]
+G c Z s s [to_tensor orka__numerics__singles__tensors__cpu__operations 70 13 99_4_29_1]
+G c Z s s [to_boolean_tensor orka__numerics__singles__tensors__cpu__operations 73 13 99_4_29_1]
+G c Z s s [geometric_space orka__numerics__singles__tensors__cpu__operations 76 13 99_4_29_1]
+G c Z s s [array_range orka__numerics__singles__tensors__cpu__operations 83 13 99_4_29_1]
+G c Z s s [array_range orka__numerics__singles__tensors__cpu__operations 86 13 99_4_29_1]
+G c Z s s [identity orka__numerics__singles__tensors__cpu__operations 89 13 99_4_29_1]
+G c Z s s [upper_triangular orka__numerics__singles__tensors__cpu__operations 94 13 99_4_29_1]
+G c Z s s [trace orka__numerics__singles__tensors__cpu__operations 97 13 99_4_29_1]
+G c Z s s [flatten orka__numerics__singles__tensors__cpu__operations 100 13 99_4_29_1]
+G c Z s s [reshape orka__numerics__singles__tensors__cpu__operations 103 13 99_4_29_1]
+G c Z s s [Oconcat orka__numerics__singles__tensors__cpu__operations 106 13 99_4_29_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1]
+G c Z s s [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1]
+G c Z s s [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1]
+G c Z s s [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1]
+G c Z s s [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1]
+G c Z s s [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1]
+G c Z s s [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1]
+G c Z s s [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1]
+G c Z s s [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1]
+G c Z s s [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1]
+G c Z s s [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1]
+G c Z s s [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1]
+G c Z s s [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1]
+G c Z s s [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1]
+G c Z s s [norm orka__numerics__singles__tensors__cpu__operations 160 13 99_4_29_1]
+G c Z s s [normalize orka__numerics__singles__tensors__cpu__operations 163 13 99_4_29_1]
+G c Z s s [standardize orka__numerics__singles__tensors__cpu__operations 166 13 99_4_29_1]
+G c Z s s [correlation_coefficient orka__numerics__singles__tensors__cpu__operations 169 13 99_4_29_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors__cpu__operations 175 24 99_4_29_1]
+G c Z s s [Oadd orka__numerics__singles__tensors__cpu__operations 177 24 99_4_29_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors__cpu__operations 179 24 99_4_29_1]
+G c Z s s [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1]
+G c Z s s [Orem orka__numerics__singles__tensors__cpu__operations 183 24 99_4_29_1]
+G c Z s s [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1]
+G c Z s s [Orem orka__numerics__singles__tensors__cpu__operations 187 24 99_4_29_1]
+G c Z s s [power orka__numerics__singles__tensors__cpu__operations 189 24 99_4_29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu__operations 191 24 99_4_29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu__operations 193 24 99_4_29_1]
+G c Z s s [log10 orka__numerics__singles__tensors__cpu__operations 195 24 99_4_29_1]
+G c Z s s [log2 orka__numerics__singles__tensors__cpu__operations 197 24 99_4_29_1]
+G c Z s s [degrees orka__numerics__singles__tensors__cpu__operations 199 24 99_4_29_1]
+G c Z s s [radians orka__numerics__singles__tensors__cpu__operations 201 24 99_4_29_1]
+G c Z s s [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1]
+G c Z s s [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1]
+G c Z s s [sum orka__numerics__singles__tensors__cpu__operations 208 13 99_4_29_1]
+G c Z s s [product orka__numerics__singles__tensors__cpu__operations 211 13 99_4_29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1]
+G c Z s s [min orka__numerics__singles__tensors__cpu__operations 221 24 99_4_29_1]
+G c Z s s [max orka__numerics__singles__tensors__cpu__operations 223 24 99_4_29_1]
+G c Z s s [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1]
+G c Z s s [median orka__numerics__singles__tensors__cpu__operations 227 24 99_4_29_1]
+G c Z s s [mean orka__numerics__singles__tensors__cpu__operations 229 24 99_4_29_1]
+G c Z s s [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1]
+G c Z s s [standard_deviation orka__numerics__singles__tensors__cpu__operations 235 13 99_4_29_1]
+G c Z s s [mean orka__numerics__singles__tensors__cpu__operations 240 13 99_4_29_1]
+G c Z s s [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1]
+G c Z s s [median orka__numerics__singles__tensors__cpu__operations 249 13 99_4_29_1]
+G c Z s s [standard_deviation orka__numerics__singles__tensors__cpu__operations 252 13 99_4_29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu__operations 261 24 99_4_29_1]
+G c Z s s [One orka__numerics__singles__tensors__cpu__operations 263 24 99_4_29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu__operations 267 24 99_4_29_1]
+G c Z s s [One orka__numerics__singles__tensors__cpu__operations 269 24 99_4_29_1]
+G c Z s s [Ogt orka__numerics__singles__tensors__cpu__operations 271 24 99_4_29_1]
+G c Z s s [Olt orka__numerics__singles__tensors__cpu__operations 273 24 99_4_29_1]
+G c Z s s [Oge orka__numerics__singles__tensors__cpu__operations 275 24 99_4_29_1]
+G c Z s s [Ole orka__numerics__singles__tensors__cpu__operations 277 24 99_4_29_1]
+G c Z s s [and_not orka__numerics__singles__tensors__cpu__operations 281 24 99_4_29_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1]
+G c Z s s [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1]
+G c Z s s [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1]
+G c Z s s [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1]
+G c Z s s [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1]
+G c Z s s [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1]
+G c Z s s [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1]
+G c Z s s [median_of_three orka__numerics__singles__tensors__cpu__operations 865 13 99_4_29_1]
+G c Z s s [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1]
+G c Z s s [convert orka__numerics__singles__tensors__cpu 105 13 29_1]
+G c Z s s [convert orka__numerics__singles__tensors__cpu 106 13 29_1]
+G c Z s s [from_last orka__numerics__singles__tensors__cpu 108 13 29_1]
+G c Z s s [data_vectors orka__numerics__singles__tensors__cpu 111 13 29_1]
+G c Z s s [data_vectors orka__numerics__singles__tensors__cpu 114 13 29_1]
+G c Z s s [data_offset orka__numerics__singles__tensors__cpu 117 13 29_1]
+G c Z s s [data_padding orka__numerics__singles__tensors__cpu 121 13 29_1]
+G c Z s s [to_index orka__numerics__singles__tensors__cpu 124 13 29_1]
+G c Z s s [reset_padding orka__numerics__singles__tensors__cpu 129 13 29_1]
+G c Z s s [disable_padding orka__numerics__singles__tensors__cpu 143 13 29_1]
+G c Z s s [without_data orka__numerics__singles__tensors__cpu 150 13 29_1]
+G c Z s s [without_data orka__numerics__singles__tensors__cpu 165 13 29_1]
+G c Z s s [identity_vector_type orka__numerics__singles__tensors__cpu 179 13 29_1]
+G c Z s s [identity_element orka__numerics__singles__tensors__cpu 180 13 29_1]
+G c Z s s [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1]
+G c Z s s [apply orka__numerics__singles__tensors__cpu 182 13 29_1]
+G c Z s s [applyR orka__numerics__singles__tensors__cpu__applyGP6776 184 13 29_1]
+G c Z s s [apply orka__numerics__singles__tensors__cpu 184 13 29_1]
+G c Z s s [flattened_index orka__numerics__singles__tensors__cpu 289 13 29_1]
+G c Z s s [multiply_add orka__numerics__singles__tensors__cpu 919 14 29_1]
+G c Z s s [power orka__numerics__singles__tensors__cpu 1229 13 29_1]
+G r i none [b orka__numerics__singles__tensors__cpu 23 1 29_1] [operations orka__numerics__tensors 38 31 none]
+G r i none [b orka__numerics__singles__tensors__cpu 23 1 29_1] [generic_apply orka__numerics__singles__tensors 1300 13 19_1]
+G r i none [s orka__numerics__singles__tensors__cpu 29 1 none] [simd_cpu orka__numerics__tensors 74 31 none]
+G r c none [get orka__numerics__singles__tensors__cpu 87 24 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 87 24 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 87 24 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 87 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 91 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 91 24 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 91 24 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 92 24 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 92 24 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 92 24 29_1] [Oand orka__simd__avx2__integers__logical 23 13 none]
+G r c none [get orka__numerics__singles__tensors__cpu 93 24 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 93 24 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 93 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 93 24 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 93 24 29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [get orka__numerics__singles__tensors__cpu 93 24 29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu 95 24 29_1] [Oand orka__simd__avx2__integers__logical 23 13 none]
+G r c none [get orka__numerics__singles__tensors__cpu 95 24 29_1] [Oadd orka__simd__avx2__integers__arithmetic 23 13 none]
+G r c none [get orka__numerics__singles__tensors__cpu 95 24 29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [get orka__numerics__singles__tensors__cpu 95 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 102 25 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 102 25 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 103 25 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 103 25 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 103 25 29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [set orka__numerics__singles__tensors__cpu 107 25 29_1] [full_range orka__numerics__singles__tensors 1235 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 107 25 29_1] [full_shape orka__numerics__singles__tensors 1244 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 107 25 29_1] [is_equal orka__numerics__singles__tensors 57 13 19_1]
+G r s tensor_index [set orka__numerics__singles__tensors__cpu 107 25 29_1] [tensor_indexIP orka__numerics__singles__tensors 64 9 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 107 25 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu 107 25 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [image orka__numerics__singles__tensors__cpu 112 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [image orka__numerics__singles__tensors__cpu 112 13 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [image orka__numerics__singles__tensors__cpu 112 13 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [elements orka__numerics__singles__tensors__cpu 118 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [empty orka__numerics__singles__tensors__cpu 126 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [fill orka__numerics__singles__tensors__cpu 129 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_tensor orka__numerics__singles__tensors__cpu 144 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_boolean_tensor orka__numerics__singles__tensors__cpu 150 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_boolean_tensor orka__numerics__singles__tensors__cpu 150 13 29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [linear_space orka__numerics__singles__tensors__cpu 164 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [log_space orka__numerics__singles__tensors__cpu 170 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [identity orka__numerics__singles__tensors__cpu 187 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [main_diagonal orka__numerics__singles__tensors__cpu 193 13 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [main_diagonal orka__numerics__singles__tensors__cpu 193 13 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [main_diagonal orka__numerics__singles__tensors__cpu 193 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [diagonal orka__numerics__singles__tensors__cpu 196 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [diagonal orka__numerics__singles__tensors__cpu 199 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [concatenate orka__numerics__singles__tensors__cpu 214 13 29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [concatenate orka__numerics__singles__tensors__cpu 214 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [concatenate orka__numerics__singles__tensors__cpu 214 13 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [concatenate orka__numerics__singles__tensors__cpu 214 13 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 226 13 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 229 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 229 13 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 229 13 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 229 13 29_1] [sum orka__simd__avx__singles__arithmetic 41 13 none]
+G r c none [outer orka__numerics__singles__tensors__cpu 235 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [transpose orka__numerics__singles__tensors__cpu 241 13 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [transpose orka__numerics__singles__tensors__cpu 241 13 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [transpose orka__numerics__singles__tensors__cpu 241 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [transpose orka__numerics__singles__tensors__cpu 241 13 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [Oadd orka__numerics__singles__tensors__cpu 308 24 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Osubtract orka__numerics__singles__tensors__cpu 310 24 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Odivide orka__numerics__singles__tensors__cpu 312 24 29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [divide_or_zero orka__numerics__singles__tensors__cpu 314 24 29_1] [divide_or_zero orka__simd__avx__singles__arithmetic 26 13 none]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu 316 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu 319 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu 322 24 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Odivide orka__numerics__singles__tensors__cpu 324 24 29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Odivide orka__numerics__singles__tensors__cpu 325 24 29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Oadd orka__numerics__singles__tensors__cpu 328 24 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Osubtract orka__numerics__singles__tensors__cpu 330 24 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Osubtract orka__numerics__singles__tensors__cpu 333 24 29_1] [Osubtract orka__simd__avx__singles__arithmetic 35 13 none]
+G r c none [Oabs orka__numerics__singles__tensors__cpu 341 24 29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [multiply orka__numerics__singles__tensors__cpu 349 24 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [min orka__numerics__singles__tensors__cpu 358 24 29_1] [min orka__simd__avx__singles__math 20 13 none]
+G r c none [max orka__numerics__singles__tensors__cpu 361 24 29_1] [max orka__simd__avx__singles__math 26 13 none]
+G r c none [sqrt orka__numerics__singles__tensors__cpu 363 24 29_1] [sqrt orka__simd__avx__singles__math 40 13 none]
+G r c none [ceil orka__numerics__singles__tensors__cpu 365 24 29_1] [ceil orka__simd__avx__singles__math 55 13 none]
+G r c none [floor orka__numerics__singles__tensors__cpu 366 24 29_1] [floor orka__simd__avx__singles__math 51 13 none]
+G r c none [round orka__numerics__singles__tensors__cpu 367 24 29_1] [round_nearest_integer orka__simd__avx__singles__math 47 13 none]
+G r c none [truncate orka__numerics__singles__tensors__cpu 368 24 29_1] [round_truncate orka__simd__avx__singles__math 59 13 none]
+G r j expression_type [reduce_associative orka__numerics__singles__tensors__cpu 393 13 29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [reduce_associative orka__numerics__singles__tensors__cpu 393 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r j expression_type [reduce orka__numerics__singles__tensors__cpu 406 13 29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [reduce orka__numerics__singles__tensors__cpu 406 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu 447 13 29_1] [min orka__simd__avx__singles__math 20 13 none]
+G r c none [max orka__numerics__singles__tensors__cpu 450 13 29_1] [max orka__simd__avx__singles__math 26 13 none]
+G r c none [and_not orka__numerics__singles__tensors__cpu 486 24 29_1] [and_not orka__simd__avx__singles__logical 20 13 none]
+G r c none [and_not orka__numerics__singles__tensors__cpu 486 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oand orka__numerics__singles__tensors__cpu 488 24 29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [Oand orka__numerics__singles__tensors__cpu 488 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oand orka__numerics__singles__tensors__cpu 490 24 29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [Oand orka__numerics__singles__tensors__cpu 490 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oor orka__numerics__singles__tensors__cpu 492 24 29_1] [Oor orka__simd__avx__singles__logical 26 13 none]
+G r c none [Oor orka__numerics__singles__tensors__cpu 492 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oxor orka__numerics__singles__tensors__cpu 494 24 29_1] [Oxor orka__simd__avx__singles__logical 29 13 none]
+G r c none [Oxor orka__numerics__singles__tensors__cpu 494 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Onot orka__numerics__singles__tensors__cpu 496 24 29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [Onot orka__numerics__singles__tensors__cpu 496 24 29_1] [and_not orka__simd__avx__singles__logical 20 13 none]
+G r c none [Onot orka__numerics__singles__tensors__cpu 496 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Ogt orka__numerics__singles__tensors__cpu 505 24 29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [Ogt orka__numerics__singles__tensors__cpu 505 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Olt orka__numerics__singles__tensors__cpu 506 24 29_1] [Olt orka__simd__avx__singles__compare 37 13 none]
+G r c none [Olt orka__numerics__singles__tensors__cpu 506 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oge orka__numerics__singles__tensors__cpu 508 24 29_1] [Oge orka__simd__avx__singles__compare 28 13 none]
+G r c none [Oge orka__numerics__singles__tensors__cpu 508 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Ole orka__numerics__singles__tensors__cpu 509 24 29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Ole orka__numerics__singles__tensors__cpu 509 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [Oxor orka__simd__avx__singles__logical 29 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu 526 24 29_1] [and_not orka__simd__avx__singles__logical 20 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu 527 24 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu 527 24 29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu 527 24 29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu 527 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [One orka__numerics__singles__tensors__cpu 527 24 29_1] [Oxor orka__simd__avx__singles__logical 29 13 none]
+G r c none [Ogt orka__numerics__singles__tensors__cpu 529 24 29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [Ogt orka__numerics__singles__tensors__cpu 529 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Olt orka__numerics__singles__tensors__cpu 530 24 29_1] [Olt orka__simd__avx__singles__compare 37 13 none]
+G r c none [Olt orka__numerics__singles__tensors__cpu 530 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oge orka__numerics__singles__tensors__cpu 532 24 29_1] [Oge orka__simd__avx__singles__compare 28 13 none]
+G r c none [Oge orka__numerics__singles__tensors__cpu 532 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Ole orka__numerics__singles__tensors__cpu 533 24 29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Ole orka__numerics__singles__tensors__cpu 533 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [any_true orka__numerics__singles__tensors__cpu 547 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [any_true orka__numerics__singles__tensors__cpu 547 13 29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [any_true orka__numerics__singles__tensors__cpu 547 13 29_1] [shift_elements_right_zeros orka__simd__avx2__integers__shift 89 13 none]
+G r c none [any_true orka__numerics__singles__tensors__cpu 547 13 29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [any_true orka__numerics__singles__tensors__cpu 547 13 29_1] [test_all_zero orka__simd__avx__integers__logical 20 13 none]
+G r c none [all_true orka__numerics__singles__tensors__cpu 553 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [all_true orka__numerics__singles__tensors__cpu 553 13 29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [all_true orka__numerics__singles__tensors__cpu 553 13 29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [all_true orka__numerics__singles__tensors__cpu 553 13 29_1] [Oor orka__simd__avx__singles__logical 26 13 none]
+G r c none [all_true orka__numerics__singles__tensors__cpu 553 13 29_1] [test_all_ones orka__simd__avx__integers__logical 23 13 none]
+G r c none [reset_random orka__numerics__singles__tensors__cpu 557 14 29_1] [reset orka__simd__avx2__integers__random 43 14 none]
+G r c none [random_uniform orka__numerics__singles__tensors__cpu 559 24 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [random_uniform orka__numerics__singles__tensors__cpu 559 24 29_1] [next orka__simd__avx2__integers__random 36 14 none]
+G r s tensor_shape [cpu_tensorIP orka__numerics__singles__tensors__cpu 566 9 29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r s tensor_shape [cpu_qr_factorizationIP orka__numerics__singles__tensors__cpu 573 9 29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [replace_row orka__numerics__singles__tensors__cpu 46 14 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [forward_substitute orka__numerics__singles__tensors__cpu 55 14 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [forward_substitute orka__numerics__singles__tensors__cpu 55 14 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [back_substitute orka__numerics__singles__tensors__cpu 65 14 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [back_substitute orka__numerics__singles__tensors__cpu 65 14 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [back_substitute orka__numerics__singles__tensors__cpu 65 14 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [back_substitute orka__numerics__singles__tensors__cpu 65 14 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [make_upper_triangular orka__numerics__singles__tensors__cpu 84 14 29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [make_upper_triangular orka__numerics__singles__tensors__cpu 84 14 29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [make_upper_triangular orka__numerics__singles__tensors__cpu 84 14 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [make_upper_triangular orka__numerics__singles__tensors__cpu 84 14 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 41 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 41 24 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 41 24 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 42 24 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 42 24 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 42 24 99_4_29_1] [Oand orka__simd__avx2__integers__logical 23 13 none]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [get orka__numerics__singles__tensors__cpu__operations 44 24 99_4_29_1] [depth orka__numerics__singles__tensors 179 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [full_range orka__numerics__singles__tensors 1235 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [full_shape orka__numerics__singles__tensors 1244 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [is_equal orka__numerics__singles__tensors 57 13 19_1]
+G r s tensor_index [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [tensor_indexIP orka__numerics__singles__tensors 64 9 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 46 25 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [full_range orka__numerics__singles__tensors 1235 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [full_shape orka__numerics__singles__tensors 1244 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [is_equal orka__numerics__singles__tensors 57 13 19_1]
+G r s tensor_index [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [tensor_indexIP orka__numerics__singles__tensors 64 9 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 51 25 99_4_29_1] [depth orka__numerics__singles__tensors 179 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 56 25 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 56 25 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 57 25 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 57 25 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [set orka__numerics__singles__tensors__cpu__operations 57 25 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [zeros orka__numerics__singles__tensors__cpu__operations 63 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [zeros orka__numerics__singles__tensors__cpu__operations 64 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [ones orka__numerics__singles__tensors__cpu__operations 66 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [ones orka__numerics__singles__tensors__cpu__operations 67 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_tensor orka__numerics__singles__tensors__cpu__operations 70 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_boolean_tensor orka__numerics__singles__tensors__cpu__operations 73 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_boolean_tensor orka__numerics__singles__tensors__cpu__operations 73 13 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [geometric_space orka__numerics__singles__tensors__cpu__operations 76 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [array_range orka__numerics__singles__tensors__cpu__operations 83 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [array_range orka__numerics__singles__tensors__cpu__operations 86 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [identity orka__numerics__singles__tensors__cpu__operations 89 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [upper_triangular orka__numerics__singles__tensors__cpu__operations 94 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [upper_triangular orka__numerics__singles__tensors__cpu__operations 94 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [upper_triangular orka__numerics__singles__tensors__cpu__operations 94 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [upper_triangular orka__numerics__singles__tensors__cpu__operations 94 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [trace orka__numerics__singles__tensors__cpu__operations 97 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [trace orka__numerics__singles__tensors__cpu__operations 97 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [trace orka__numerics__singles__tensors__cpu__operations 97 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [flatten orka__numerics__singles__tensors__cpu__operations 100 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oconcat orka__numerics__singles__tensors__cpu__operations 106 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [Oconcat orka__numerics__singles__tensors__cpu__operations 106 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oconcat orka__numerics__singles__tensors__cpu__operations 106 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [Oconcat orka__numerics__singles__tensors__cpu__operations 106 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Oexpon orka__numerics__singles__tensors__cpu__operations 112 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [shift_elements_right_zeros orka__simd__avx2__integers__shift 89 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [test_all_zero orka__simd__avx__integers__logical 20 13 none]
+G r c none [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [inverse orka__numerics__singles__tensors__cpu__operations 115 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [shift_elements_right_zeros orka__simd__avx2__integers__shift 89 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [test_all_zero orka__simd__avx__integers__logical 20 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [solve orka__numerics__singles__tensors__cpu__operations 118 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 121 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 124 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr_for_least_squares orka__numerics__singles__tensors__cpu__operations 127 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [least_squares orka__numerics__singles__tensors__cpu__operations 130 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [least_squares orka__numerics__singles__tensors__cpu__operations 133 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [constrained_least_squares orka__numerics__singles__tensors__cpu__operations 136 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [cholesky orka__numerics__singles__tensors__cpu__operations 139 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [full_range orka__numerics__singles__tensors 1235 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [full_shape orka__numerics__singles__tensors 1244 13 19_1]
+G r c none [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [is_equal orka__numerics__singles__tensors 57 13 19_1]
+G r s tensor_index [cholesky_update orka__numerics__singles__tensors__cpu__operations 142 13 99_4_29_1] [tensor_indexIP orka__numerics__singles__tensors 64 9 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [solve orka__numerics__singles__tensors__cpu__operations 147 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 150 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [divide_by orka__numerics__singles__tensors__cpu__operations 153 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [norm orka__numerics__singles__tensors__cpu__operations 160 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [norm orka__numerics__singles__tensors__cpu__operations 160 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [norm orka__numerics__singles__tensors__cpu__operations 160 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [norm orka__numerics__singles__tensors__cpu__operations 160 13 99_4_29_1] [sum orka__simd__avx__singles__arithmetic 41 13 none]
+G r c none [normalize orka__numerics__singles__tensors__cpu__operations 163 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [standardize orka__numerics__singles__tensors__cpu__operations 166 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [standardize orka__numerics__singles__tensors__cpu__operations 166 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [correlation_coefficient orka__numerics__singles__tensors__cpu__operations 169 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [correlation_coefficient orka__numerics__singles__tensors__cpu__operations 169 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [correlation_coefficient orka__numerics__singles__tensors__cpu__operations 169 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [correlation_coefficient orka__numerics__singles__tensors__cpu__operations 169 13 99_4_29_1] [sum orka__simd__avx__singles__arithmetic 41 13 none]
+G r c none [Omultiply orka__numerics__singles__tensors__cpu__operations 175 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Oadd orka__numerics__singles__tensors__cpu__operations 177 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Osubtract orka__numerics__singles__tensors__cpu__operations 179 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1] [round_truncate orka__simd__avx__singles__math 59 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 181 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 183 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 183 24 99_4_29_1] [round_truncate orka__simd__avx__singles__math 59 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 183 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 183 24 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1] [round_truncate orka__simd__avx__singles__math 59 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Omod orka__numerics__singles__tensors__cpu__operations 185 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 187 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 187 24 99_4_29_1] [round_truncate orka__simd__avx__singles__math 59 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 187 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [Orem orka__numerics__singles__tensors__cpu__operations 187 24 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [power orka__numerics__singles__tensors__cpu__operations 189 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [power orka__numerics__singles__tensors__cpu__operations 189 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [power orka__numerics__singles__tensors__cpu__operations 189 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [power orka__numerics__singles__tensors__cpu__operations 189 24 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 191 24 99_4_29_1] [min orka__simd__avx__singles__math 20 13 none]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 193 24 99_4_29_1] [max orka__simd__avx__singles__math 26 13 none]
+G r c none [log10 orka__numerics__singles__tensors__cpu__operations 195 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [log2 orka__numerics__singles__tensors__cpu__operations 197 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [degrees orka__numerics__singles__tensors__cpu__operations 199 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [degrees orka__numerics__singles__tensors__cpu__operations 199 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [radians orka__numerics__singles__tensors__cpu__operations 201 24 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [radians orka__numerics__singles__tensors__cpu__operations 201 24 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [Oadd orka__numerics__singles__tensors 1190 24 19_1]
+G r k expression_type [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r j expression_type [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 203 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [Omultiply orka__numerics__singles__tensors 1192 24 19_1]
+G r k expression_type [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r j expression_type [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 205 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 208 13 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 208 13 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [sum orka__numerics__singles__tensors__cpu__operations 208 13 99_4_29_1] [Oadd orka__numerics__singles__tensors 1190 24 19_1]
+G r k expression_type [sum orka__numerics__singles__tensors__cpu__operations 208 13 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 211 13 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 211 13 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [product orka__numerics__singles__tensors__cpu__operations 211 13 99_4_29_1] [Omultiply orka__numerics__singles__tensors 1192 24 19_1]
+G r k expression_type [product orka__numerics__singles__tensors__cpu__operations 211 13 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [min orka__numerics__singles__tensors 1195 24 19_1]
+G r k expression_type [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r j expression_type [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 217 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [max orka__numerics__singles__tensors 1196 24 19_1]
+G r k expression_type [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r j expression_type [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 219 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 221 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 221 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [min orka__numerics__singles__tensors__cpu__operations 221 24 99_4_29_1] [min orka__numerics__singles__tensors 1195 24 19_1]
+G r k expression_type [min orka__numerics__singles__tensors__cpu__operations 221 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 223 24 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 223 24 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [max orka__numerics__singles__tensors__cpu__operations 223 24 99_4_29_1] [max orka__numerics__singles__tensors 1196 24 19_1]
+G r k expression_type [max orka__numerics__singles__tensors__cpu__operations 223 24 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [Olt orka__simd__avx__singles__compare 37 13 none]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [Oand orka__simd__avx2__integers__logical 23 13 none]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [Oadd orka__simd__avx2__integers__arithmetic 23 13 none]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [quantile orka__numerics__singles__tensors__cpu__operations 225 24 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [mean orka__numerics__singles__tensors__cpu__operations 229 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [Oadd orka__numerics__singles__tensors 1190 24 19_1]
+G r k expression_type [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r j expression_type [variance orka__numerics__singles__tensors__cpu__operations 232 13 99_4_29_1] [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [mean orka__numerics__singles__tensors__cpu__operations 240 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [x orka__numerics__singles__tensors 1222 24 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [y orka__numerics__singles__tensors 1223 24 19_1]
+G r c none [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [Oadd orka__numerics__singles__tensors 1190 24 19_1]
+G r k expression_type [variance orka__numerics__singles__tensors__cpu__operations 243 13 99_4_29_1] [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G r c none [standard_deviation orka__numerics__singles__tensors__cpu__operations 252 13 99_4_29_1] [sqrt orka__simd__avx__singles__math 40 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 261 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 261 24 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 261 24 99_4_29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 261 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 263 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 263 24 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 263 24 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 263 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 267 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 267 24 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 267 24 99_4_29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 267 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 269 24 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 269 24 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 269 24 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [One orka__numerics__singles__tensors__cpu__operations 269 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Ogt orka__numerics__singles__tensors__cpu__operations 271 24 99_4_29_1] [Olt orka__simd__avx__singles__compare 37 13 none]
+G r c none [Ogt orka__numerics__singles__tensors__cpu__operations 271 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Olt orka__numerics__singles__tensors__cpu__operations 273 24 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [Olt orka__numerics__singles__tensors__cpu__operations 273 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oge orka__numerics__singles__tensors__cpu__operations 275 24 99_4_29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Oge orka__numerics__singles__tensors__cpu__operations 275 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Ole orka__numerics__singles__tensors__cpu__operations 277 24 99_4_29_1] [Oge orka__simd__avx__singles__compare 28 13 none]
+G r c none [Ole orka__numerics__singles__tensors__cpu__operations 277 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [and_not orka__numerics__singles__tensors__cpu__operations 281 24 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [and_not orka__numerics__singles__tensors__cpu__operations 281 24 99_4_29_1] [and_not orka__simd__avx__singles__logical 20 13 none]
+G r c none [and_not orka__numerics__singles__tensors__cpu__operations 281 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [and_not orka__numerics__singles__tensors__cpu__operations 281 24 99_4_29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Oxor orka__simd__avx__singles__logical 29 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [and_not orka__simd__avx__singles__logical 20 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [Oor orka__simd__avx__singles__logical 26 13 none]
+G r c none [Oeq orka__numerics__singles__tensors__cpu__operations 283 24 99_4_29_1] [test_all_ones orka__simd__avx__integers__logical 23 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Ole orka__simd__avx__singles__compare 34 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [Oor orka__simd__avx__singles__logical 26 13 none]
+G r c none [all_close orka__numerics__singles__tensors__cpu__operations 286 13 99_4_29_1] [test_all_ones orka__simd__avx__integers__logical 23 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Oeq orka__simd__avx__singles__compare 25 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [shift_elements_right_zeros orka__simd__avx2__integers__shift 89 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [Oand orka__simd__avx__singles__logical 23 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [test_all_zero orka__simd__avx__integers__logical 20 13 none]
+G r c none [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [matrix_solve orka__numerics__singles__tensors__cpu__operations 206 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [householder_matrix orka__numerics__singles__tensors__cpu__operations 307 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr orka__numerics__singles__tensors__cpu__operations 356 13 99_4_29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [add orka__numerics__singles__tensors 1229 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [qr_solve orka__numerics__singles__tensors__cpu__operations 415 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [rows orka__numerics__singles__tensors 173 13 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [columns orka__numerics__singles__tensors 176 13 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [shape orka__numerics__singles__tensors 78 13 19_1]
+G r s tensor_shape [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [cholesky_lower orka__numerics__singles__tensors__cpu__operations 546 13 99_4_29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [Olt orka__simd__avx__singles__compare 37 13 none]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [Oand orka__simd__avx2__integers__logical 23 13 none]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [Oadd orka__simd__avx2__integers__arithmetic 23 13 none]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [shift_elements_left_zeros orka__simd__avx2__integers__shift 85 13 none]
+G r c none [quick_select orka__numerics__singles__tensors__cpu__operations 876 13 99_4_29_1] [Ogt orka__simd__avx__singles__compare 31 13 none]
+G r c none [data_vectors orka__numerics__singles__tensors__cpu 114 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [to_index orka__numerics__singles__tensors__cpu 124 13 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [disable_padding orka__numerics__singles__tensors__cpu 143 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [without_data orka__numerics__singles__tensors__cpu 165 13 29_1] [elements orka__numerics__singles__tensors 51 13 19_1]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Osubtract orka__simd__avx__singles__arithmetic 32 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Odivide orka__simd__avx__singles__arithmetic 23 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [min orka__simd__avx__singles__math 20 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [max orka__simd__avx__singles__math 26 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Osubtract orka__simd__avx__singles__arithmetic 35 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [Oabs orka__simd__avx__singles__arithmetic 38 13 none]
+G r c none [applyR orka__numerics__singles__tensors__cpu__applyGP6699 182 13 29_1] [sqrt orka__simd__avx__singles__math 40 13 none]
+G r c none [flattened_index orka__numerics__singles__tensors__cpu 289 13 29_1] [trim orka__numerics__singles__tensors 55 13 19_1]
+G r c none [flattened_index orka__numerics__singles__tensors__cpu 289 13 29_1] [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G r c none [multiply_add orka__numerics__singles__tensors__cpu 919 14 29_1] [Omultiply orka__simd__avx__singles__arithmetic 20 13 none]
+G r c none [multiply_add orka__numerics__singles__tensors__cpu 919 14 29_1] [Oadd orka__simd__avx__singles__arithmetic 29 13 none]
+X 33 orka.ads
+17K9*Orka 98e9 39|17r6 19r6 20r6 21r6 22r6 23r6 24r6 25r6 26r6 27r6 29r9
+. 29r50 68r22
+35I9*Integer_32<integer> 39|31r4
+62F9*Float_32<short_float>
+X 34 orka-numerics.ads
+17K14*Numerics 33|17k9 34|23e18 39|17r11 29r14 29r55 68r27
+X 35 orka-numerics-singles.ads
+17K23*Singles 34|17k14 35|19e26 39|29r23 29r64 68r36
+X 37 orka-numerics-singles-tensors.ads
+19K31*Tensors[40|25] 35|17k23 39|29r31 29r72 68r44
+X 39 orka-numerics-singles-tensors-cpu.ads
+29K39*CPU[44|74] 37|19k31 39|68r52
+X 40 orka-numerics-tensors.ads
+24F9 Element_Type
+25k23*Tensors 39|17r20 40|1306e26
+85h9*Tensor
+476h9*QR_Factorization
+747h9*Expression
+X 44 orka-numerics-tensors-simd_cpu.ads
+37A9 Vector_Type(40|24F9)<18E9>
+40V19 "*"{37A9} 40|1292i22
+41V19 "/"{37A9} 40|1293i22
+42V19 "+"{37A9} 40|1290i22
+43V19 "-"{37A9} 40|1291i22
+44V19 "-"{37A9} 40|1297i22
+45V19 "abs"{37A9} 40|1298i22
+48V18 Sqrt{37A9} 40|1299i21
+49V18 Min{37A9} 40|1294i21
+50V18 Max{37A9} 40|1295i21
+74k31 SIMD_CPU 39|17w28 44|588e35
+X 46 orka-simd.ads
+17K14*SIMD 39|19r11 20r11 21r11 22r11 23r11 24r11 25r11 26r11 27r11 30r4
+. 32r4 33r4 34r4 35r4 36r4 37r4 38r4 39r4 40r4 41r4 42r4 43r4 44r4 45r4 46r4
+. 47r4 48r4 49r4 50r4 51r4 52r4 53r4 54r4 55r4 56r4 57r4 58r4 59r4 60r4 61r4
+. 62r4 63r4 64r4 65r4 66r4 67r4 46|19e14
+X 47 orka-simd-avx.ads
+17K19*AVX 39|19r16 20r16 21r16 22r16 27r16 30r9 32r9 37r9 38r9 39r9 40r9
+. 41r9 42r9 43r9 44r9 45r9 46r9 47r9 48r9 49r9 50r9 51r9 52r9 53r9 54r9 55r9
+. 56r9 57r9 58r9 59r9 60r9 61r9 62r9 63r9 64r9 47|28e18
+20I9*Index_8D<short_short_integer> 39|30r13
+X 48 orka-simd-avx-integers.ads
+17K23*Integers 39|27r20 32r13 37r13 38r13 48|24e27
+20A9*m256i(33|35I9)<47|20I9> 39|32r22
+X 50 orka-simd-avx-integers-logical.ads
+17K32*Logical 39|27w29 37r22 38r22 50|29e35
+20V13*Test_All_Zero{boolean} 39|38r30
+23V13*Test_All_Ones{boolean} 39|37r30
+X 55 orka-simd-avx-singles.ads
+17K23*Singles 39|19r20 20r20 21r20 22r20 39r13 40r13 41r13 42r13 43r13 44r13
+. 45r13 46r13 47r13 48r13 49r13 50r13 51r13 52r13 53r13 54r13 55r13 56r13
+. 57r13 58r13 59r13 60r13 61r13 62r13 63r13 64r13 55|24e26
+20A9*m256(33|62F9)<47|20I9> 39|39r21
+X 56 orka-simd-avx-singles-arithmetic.ads
+17K31*Arithmetic 39|19w28 40r21 41r21 42r21 43r21 44r21 45r21 46r21 47r21
+. 56|67e37
+20V14*"*"{55|20A9} 39|40r33 40|1292i22
+23V14*"/"{55|20A9} 39|41r33 40|1293i22
+26V13*Divide_Or_Zero{55|20A9} 39|47r32
+29V14*"+"{55|20A9} 39|42r33 40|1290i22
+32V14*"-"{55|20A9} 39|43r33 40|1291i22
+35V14*"-"{55|20A9} 39|44r33 40|1297i22
+38V14*"abs"{55|20A9} 39|45r33 40|1298i22
+41V13*Sum{33|62F9} 39|46r32
+X 58 orka-simd-avx-singles-compare.ads
+17K31*Compare 39|20w28 59r21 60r21 61r21 62r21 63r21 64r21 58|74e34
+25V14*"="{55|20A9} 39|59r30
+28V14*">="{55|20A9} 39|63r30
+31V14*">"{55|20A9} 39|61r30
+34V14*"<="{55|20A9} 39|64r30
+37V14*"<"{55|20A9} 39|62r30
+40V14*"/="{55|20A9} 39|60r30
+X 59 orka-simd-avx-singles-logical.ads
+17K31*Logical 39|21w28 55r21 56r21 57r21 58r21 59|32e34
+20V13*And_Not{55|20A9} 39|55r29
+23V14*"and"{55|20A9} 39|56r30
+26V14*"or"{55|20A9} 39|57r30
+29V14*"xor"{55|20A9} 39|58r30
+X 60 orka-simd-avx-singles-math.ads
+17K31*Math 39|22w28 48r21 49r21 50r21 51r21 52r21 53r21 54r21 60|63e31
+20V13*Min{55|20A9} 39|49r26 40|1294i21
+26V13*Max{55|20A9} 39|50r26 40|1295i21
+40V13*Sqrt{55|20A9} 39|48r26 40|1299i21
+47V13*Round_Nearest_Integer{55|20A9} 39|53r26
+51V13*Floor{55|20A9} 39|52r26
+55V13*Ceil{55|20A9} 39|51r26
+59V13*Round_Truncate{55|20A9} 39|54r26
+X 62 orka-simd-avx2.ads
+17K19*AVX2 39|23r16 24r16 25r16 26r16 33r9 34r9 35r9 36r9 65r9 66r9 67r9
+. 62|19e19
+X 63 orka-simd-avx2-integers.ads
+19K24*Integers 39|23r21 24r21 25r21 26r21 33r14 34r14 35r14 36r14 65r14 66r14
+. 67r14 63|24e28
+22A12*m256i{48|20A9}<47|20I9>
+X 64 orka-simd-avx2-integers-arithmetic.ads
+17K33*Arithmetic 39|23w30 33r23 64|45e39
+23V14*"+"{63|22A12} 39|33r35
+X 66 orka-simd-avx2-integers-logical.ads
+17K33*Logical 39|24w30 34r23 66|32e36
+23V14*"and"{63|22A12} 39|34r32
+X 68 orka-simd-avx2-integers-random.ads
+19K33*Random 39|25w30 65r23 66r23 67r23 68|52e35
+26A9*State(63|22A12) 39|65r30
+36U14*Next 39|66r30
+43U14*Reset 39|67r30
+X 70 orka-simd-avx2-integers-shift.ads
+19K33*Shift 39|26w30 35r23 36r23 70|93e34
+85V13*Shift_Elements_Left_Zeros{63|22A12} 39|35r29
+89V13*Shift_Elements_Right_Zeros{63|22A12} 39|36r29
+X 86 system.ads
+67M9*Address
+X 104 s-memory.ads
+51V13*Alloc{86|67M9} 101i<c,__gnat_malloc>22
+66U14*Free 102i<c,__gnat_free>22
+74V13*Realloc{86|67M9} 103i<c,__gnat_realloc>22
+

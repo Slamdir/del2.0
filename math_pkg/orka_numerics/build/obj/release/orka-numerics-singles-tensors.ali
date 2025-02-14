@@ -1,0 +1,359 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -mavx2
+A -mf16c
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_ACCESS_SUBPROGRAMS
+RV NO_ALLOCATORS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_ENUMERATION_MAPS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_RECURSION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_STREAMS
+RV NO_UNCHECKED_ACCESS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RR NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RR NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RV NO_IMPLICIT_LOOPS
+RV NO_ELABORATION_CODE
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.numerics.singles.tensors%b  orka-numerics-singles-tensors.ads  88ade88d NE OO PR PK
+W ada%s			ada.ads			ada.ali
+Z ada.assertions%s	a-assert.adb		a-assert.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+Z ada.containers.indefinite_holders%s
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.finalization%s	a-finali.ads		a-finali.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.generic_elementary_functions%s
+Z ada.streams%s		a-stream.adb		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W orka%s		orka.ads		orka.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.singles%s  orka-numerics-singles.ads  orka-numerics-singles.ali
+W orka.numerics.tensors%s  orka-numerics-tensors.adb  orka-numerics-tensors.ali
+Z system%s		system.ads		system.ali
+Z system.atomic_counters%s  s-atocou.adb	s-atocou.ali
+Z system.exception_table%s  s-exctab.adb	s-exctab.ali
+Z system.exn_flt%s	s-exnflt.ads		s-exnflt.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.storage_elements%s  s-stoele.ads	s-stoele.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+Z system.strings.stream_ops%s  s-ststop.adb	s-ststop.ali
+
+U orka.numerics.singles.tensors%s  orka-numerics-singles-tensors.ads  eefa5e0d EB EE OO PF PR PK
+W ada%s			ada.ads			ada.ali
+Z ada.assertions%s	a-assert.adb		a-assert.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+Z ada.containers.indefinite_holders%s
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.finalization%s	a-finali.ads		a-finali.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux_float%s  a-nuaufl.ads	a-nuaufl.ali
+Z ada.numerics.aux_generic_float%s
+Z ada.numerics.aux_long_float%s  a-nalofl.ads	a-nalofl.ali
+Z ada.numerics.aux_long_long_float%s  a-nallfl.ads  a-nallfl.ali
+Z ada.numerics.aux_short_float%s  a-nashfl.ads	a-nashfl.ali
+Z ada.numerics.generic_elementary_functions%s
+Z ada.streams%s		a-stream.adb		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z ada.unchecked_deallocation%s
+W orka%s		orka.ads		orka.ali
+W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
+W orka.numerics.singles%s  orka-numerics-singles.ads  orka-numerics-singles.ali
+W orka.numerics.tensors%s  orka-numerics-tensors.adb  orka-numerics-tensors.ali
+Z system%s		system.ads		system.ali
+Z system.atomic_counters%s  s-atocou.adb	s-atocou.ali
+Z system.exception_table%s  s-exctab.adb	s-exctab.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20240801081714 76789da1 ada%s
+D a-assert.ads		20240801081714 ba465f5c ada.assertions%s
+D a-contai.ads		20240801081714 61e5e089 ada.containers%s
+D a-coinho.ads		20240801081714 f2039f43 ada.containers.indefinite_holders%s
+D a-coinho.adb		20240801081714 bc004e30 ada.containers.indefinite_holders%b
+D a-except.ads		20240801081714 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081714 bf4f806b ada.finalization%s
+D a-ioexce.ads		20240801081714 40018c65 ada.io_exceptions%s
+D a-numeri.ads		20240801081714 84bea7a3 ada.numerics%s
+D a-nuaufl.ads		20240801081714 020cac40 ada.numerics.aux_float%s
+D a-nagefl.ads		20240801081714 53f456a7 ada.numerics.aux_generic_float%s
+D a-naliop.ads		20240801081714 6b421e5f ada.numerics.aux_linker_options%s
+D a-nalofl.ads		20240801081714 6d8e51a4 ada.numerics.aux_long_float%s
+D a-nallfl.ads		20240801081714 6ccf65a3 ada.numerics.aux_long_long_float%s
+D a-nashfl.ads		20240801081714 b54ed4fb ada.numerics.aux_short_float%s
+D a-ngelfu.ads		20240801081714 5506716e ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20240801081714 2940142d ada.numerics.generic_elementary_functions%b
+D a-stream.ads		20240801081714 119b8fb3 ada.streams%s
+D a-string.ads		20240801081714 90ac6797 ada.strings%s
+D a-sttebu.ads		20240801081714 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20240801081714 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20240801081714 c3a8ac65 ada.unchecked_deallocation%s
+D interfac.ads		20240801081714 9111f9c1 interfaces%s
+D i-c.ads		20240801081714 aac316ce interfaces.c%s
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
+D orka-numerics-singles.ads  20241106002736 ee71d58d orka.numerics.singles%s
+D orka-numerics-singles-tensors.ads  20241106002738 88ade88d orka.numerics.singles.tensors%s
+D orka-numerics-singles-tensors.ads  20241106002738 88ade88d orka.numerics.singles.tensors%b
+D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
+D orka-numerics-tensors.adb  20241106002738 f6198d4f orka.numerics.tensors%b
+D system.ads		20240801081714 e4f8b086 system%s
+D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
+D s-atocou.adb		20240801081714 6fe685de system.atomic_counters%b
+D s-atopri.ads		20240801081714 e19c1d89 system.atomic_primitives%s
+D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
+D s-exctab.adb		20240801081714 89d79d5b system.exception_table%b
+D s-exnflt.ads		20240801081714 84371ff2 system.exn_flt%s
+D s-exponr.ads		20240801081714 2127300b system.exponr%s
+D s-fatflt.ads		20240801081714 11beb392 system.fat_flt%s
+D s-fatgen.ads		20240801081714 d28c6cfe system.fat_gen%s
+D s-fatgen.adb		20240801081714 6cc1fec9 system.fat_gen%b
+D s-finmas.ads		20240801081714 28987ac5 system.finalization_masters%s
+D s-finroo.ads		20240801081714 4ff27390 system.finalization_root%s
+D s-imagei.ads		20240801081714 5e131ce0 system.image_i%s
+D s-imgint.ads		20240801081714 67e4edfb system.img_int%s
+D s-memory.ads		20240801081714 18949c1a system.memory%s
+D s-parame.ads		20240801081714 3597fc11 system.parameters%s
+D s-pooglo.ads		20240801081714 91708d21 system.pool_global%s
+D s-putima.ads		20240801081714 17291fe4 system.put_images%s
+D s-retsta.ads		20240801081714 0f6b06cb system.return_stack%s
+D s-secsta.ads		20240801081714 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081714 df77073e system.soft_links%s
+D s-stache.ads		20240801081714 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081714 ccded4e8 system.storage_elements%s
+D s-stopoo.ads		20240801081714 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20240801081714 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20240801081714 a1861007 system.stream_attributes%s
+D s-stratt.adb		20240801081714 c8964632 system.stream_attributes%b
+D s-statxd.ads		20240801081714 b54789f6 system.stream_attributes.xdr%s
+D s-string.ads		20240801081714 582aac7d system.strings%s
+D s-ststop.ads		20240801081714 c569db7c system.strings.stream_ops%s
+D s-traent.ads		20240801081714 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081714 fa2a7f59 system.unsigned_types%s
+D s-valspe.ads		20240801081714 b0fcd073 system.val_spec%s
+D s-vaispe.ads		20240801081714 8280550e system.value_i_spec%s
+D s-vauspe.ads		20240801081714 89269ba5 system.value_u_spec%s
+D s-vs_int.ads		20240801081714 06b6b724 system.vs_int%s
+D s-vs_uns.ads		20240801081714 e7f47a27 system.vs_uns%s
+D d:\ada_capstone\del2.0\math_pkg\orka_numerics\gnat.adc  20241106002736 00000000
+G a e
+G c s s s [s orka__numerics__singles__tensors 19 1 none]
+G c Z s s [square_root orka__numerics__singles__tensors 30 13 19_1]
+G c Z s s [elements orka__numerics__singles__tensors 51 13 19_1]
+G c Z s s [image orka__numerics__singles__tensors 53 13 19_1]
+G c Z s s [trim orka__numerics__singles__tensors 55 13 19_1]
+G c Z s s [is_equal orka__numerics__singles__tensors 57 13 19_1]
+G c Z s s [image orka__numerics__singles__tensors 67 13 19_1]
+G c Z s s [shape orka__numerics__singles__tensors 78 13 19_1]
+G c Z s s [rows orka__numerics__singles__tensors 173 13 19_1]
+G c Z s s [columns orka__numerics__singles__tensors 176 13 19_1]
+G c Z s s [depth orka__numerics__singles__tensors 179 13 19_1]
+G c Z s s [is_square orka__numerics__singles__tensors 184 13 19_1]
+G c Z s s [same_shape orka__numerics__singles__tensors 189 13 19_1]
+G c Z s s [same_kind orka__numerics__singles__tensors 193 13 19_1]
+G c Z s s [Oadd orka__numerics__singles__tensors 1190 24 19_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors 1191 24 19_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors 1192 24 19_1]
+G c Z s s [Odivide orka__numerics__singles__tensors 1193 24 19_1]
+G c Z s s [min orka__numerics__singles__tensors 1195 24 19_1]
+G c Z s s [max orka__numerics__singles__tensors 1196 24 19_1]
+G c Z s s [Oadd orka__numerics__singles__tensors 1198 24 19_1]
+G c Z s s [Oadd orka__numerics__singles__tensors 1199 24 19_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors 1201 24 19_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors 1202 24 19_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors 1204 24 19_1]
+G c Z s s [Omultiply orka__numerics__singles__tensors 1205 24 19_1]
+G c Z s s [Odivide orka__numerics__singles__tensors 1207 24 19_1]
+G c Z s s [Odivide orka__numerics__singles__tensors 1208 24 19_1]
+G c Z s s [Osubtract orka__numerics__singles__tensors 1210 24 19_1]
+G c Z s s [Oabs orka__numerics__singles__tensors 1212 24 19_1]
+G c Z s s [sqrt orka__numerics__singles__tensors 1214 24 19_1]
+G c Z s s [min orka__numerics__singles__tensors 1216 24 19_1]
+G c Z s s [min orka__numerics__singles__tensors 1217 24 19_1]
+G c Z s s [max orka__numerics__singles__tensors 1219 24 19_1]
+G c Z s s [max orka__numerics__singles__tensors 1220 24 19_1]
+G c Z s s [x orka__numerics__singles__tensors 1222 24 19_1]
+G c Z s s [y orka__numerics__singles__tensors 1223 24 19_1]
+G c Z s s [number orka__numerics__singles__tensors 1225 24 19_1]
+G c Z s s [add orka__numerics__singles__tensors 1229 13 19_1]
+G c Z s s [to_index orka__numerics__singles__tensors 1231 13 19_1]
+G c Z s s [full_range orka__numerics__singles__tensors 1235 13 19_1]
+G c Z s s [full_shape orka__numerics__singles__tensors 1244 13 19_1]
+G c Z s s [sqrt orka__numerics__singles__tensors__ef 53 13 1254_4_19_1]
+G c Z s s [log orka__numerics__singles__tensors__ef 76 13 1254_4_19_1]
+G c Z s s [log orka__numerics__singles__tensors__ef 80 13 1254_4_19_1]
+G c Z s s [exp orka__numerics__singles__tensors__ef 84 13 1254_4_19_1]
+G c Z s s [Oexpon orka__numerics__singles__tensors__ef 87 13 1254_4_19_1]
+G c Z s s [sin orka__numerics__singles__tensors__ef 95 13 1254_4_19_1]
+G c Z s s [sin orka__numerics__singles__tensors__ef 100 13 1254_4_19_1]
+G c Z s s [cos orka__numerics__singles__tensors__ef 105 13 1254_4_19_1]
+G c Z s s [cos orka__numerics__singles__tensors__ef 110 13 1254_4_19_1]
+G c Z s s [tan orka__numerics__singles__tensors__ef 115 13 1254_4_19_1]
+G c Z s s [tan orka__numerics__singles__tensors__ef 118 13 1254_4_19_1]
+G c Z s s [cot orka__numerics__singles__tensors__ef 123 13 1254_4_19_1]
+G c Z s s [cot orka__numerics__singles__tensors__ef 126 13 1254_4_19_1]
+G c Z s s [arcsin orka__numerics__singles__tensors__ef 132 13 1254_4_19_1]
+G c Z s s [arcsin orka__numerics__singles__tensors__ef 136 13 1254_4_19_1]
+G c Z s s [arccos orka__numerics__singles__tensors__ef 140 13 1254_4_19_1]
+G c Z s s [arccos orka__numerics__singles__tensors__ef 144 13 1254_4_19_1]
+G c Z s s [arctan orka__numerics__singles__tensors__ef 148 13 1254_4_19_1]
+G c Z s s [arctan orka__numerics__singles__tensors__ef 155 13 1254_4_19_1]
+G c Z s s [arccot orka__numerics__singles__tensors__ef 163 13 1254_4_19_1]
+G c Z s s [arccot orka__numerics__singles__tensors__ef 170 13 1254_4_19_1]
+G c Z s s [sinh orka__numerics__singles__tensors__ef 178 13 1254_4_19_1]
+G c Z s s [cosh orka__numerics__singles__tensors__ef 181 13 1254_4_19_1]
+G c Z s s [tanh orka__numerics__singles__tensors__ef 185 13 1254_4_19_1]
+G c Z s s [coth orka__numerics__singles__tensors__ef 189 13 1254_4_19_1]
+G c Z s s [arcsinh orka__numerics__singles__tensors__ef 193 13 1254_4_19_1]
+G c Z s s [arccosh orka__numerics__singles__tensors__ef 196 13 1254_4_19_1]
+G c Z s s [arctanh orka__numerics__singles__tensors__ef 201 13 1254_4_19_1]
+G c Z s s [arccoth orka__numerics__singles__tensors__ef 205 13 1254_4_19_1]
+G c Z s s [sin orka__numerics__singles__tensors__ef__aux 54 13 45_4_1254_4_19_1]
+G c Z s s [cos orka__numerics__singles__tensors__ef__aux 63 13 45_4_1254_4_19_1]
+G c Z s s [tan orka__numerics__singles__tensors__ef__aux 72 13 45_4_1254_4_19_1]
+G c Z s s [exp orka__numerics__singles__tensors__ef__aux 81 13 45_4_1254_4_19_1]
+G c Z s s [sqrt orka__numerics__singles__tensors__ef__aux 90 13 45_4_1254_4_19_1]
+G c Z s s [log orka__numerics__singles__tensors__ef__aux 99 13 45_4_1254_4_19_1]
+G c Z s s [acos orka__numerics__singles__tensors__ef__aux 108 13 45_4_1254_4_19_1]
+G c Z s s [asin orka__numerics__singles__tensors__ef__aux 117 13 45_4_1254_4_19_1]
+G c Z s s [atan orka__numerics__singles__tensors__ef__aux 126 13 45_4_1254_4_19_1]
+G c Z s s [sinh orka__numerics__singles__tensors__ef__aux 135 13 45_4_1254_4_19_1]
+G c Z s s [cosh orka__numerics__singles__tensors__ef__aux 144 13 45_4_1254_4_19_1]
+G c Z s s [tanh orka__numerics__singles__tensors__ef__aux 153 13 45_4_1254_4_19_1]
+G c Z s s [pow orka__numerics__singles__tensors__ef__aux 162 13 45_4_1254_4_19_1]
+G c Z s s [exp_strict orka__numerics__singles__tensors__ef 65 13 1254_4_19_1]
+G c Z s s [local_atan orka__numerics__singles__tensors__ef 69 13 1254_4_19_1]
+G c Z s s [Oeq orka__numerics__singles__tensors__expression_holders 55 13 1268_4_19_1]
+G c Z s s [to_holder orka__numerics__singles__tensors__expression_holders 57 13 1268_4_19_1]
+G c Z s s [is_empty orka__numerics__singles__tensors__expression_holders 59 13 1268_4_19_1]
+G c Z s s [clear orka__numerics__singles__tensors__expression_holders 61 14 1268_4_19_1]
+G c Z s s [element orka__numerics__singles__tensors__expression_holders 63 13 1268_4_19_1]
+G c Z s s [replace_element orka__numerics__singles__tensors__expression_holders 65 14 1268_4_19_1]
+G c Z s s [query_element orka__numerics__singles__tensors__expression_holders 69 14 1268_4_19_1]
+G c Z s s [update_element orka__numerics__singles__tensors__expression_holders 73 14 1268_4_19_1]
+G c Z s s [constant_reference orka__numerics__singles__tensors__expression_holders 87 13 1268_4_19_1]
+G c Z s s [reference orka__numerics__singles__tensors__expression_holders 91 13 1268_4_19_1]
+G c Z s s [assign orka__numerics__singles__tensors__expression_holders 95 14 1268_4_19_1]
+G c Z s s [copy orka__numerics__singles__tensors__expression_holders 97 13 1268_4_19_1]
+G c Z s s [move orka__numerics__singles__tensors__expression_holders 99 14 1268_4_19_1]
+G c Z s s [swap orka__numerics__singles__tensors__expression_holders 101 14 1268_4_19_1]
+G c Z s s [reference orka__numerics__singles__tensors__expression_holders 119 14 1268_4_19_1]
+G c Z s s [unreference orka__numerics__singles__tensors__expression_holders 122 14 1268_4_19_1]
+G c Z s s [read orka__numerics__singles__tensors__expression_holders 125 14 1268_4_19_1]
+G c Z s s [write orka__numerics__singles__tensors__expression_holders 129 14 1268_4_19_1]
+G c Z s s [put_image orka__numerics__singles__tensors__expression_holders 138 14 1268_4_19_1]
+G c Z s s [adjust orka__numerics__singles__tensors__expression_holders 144 25 1268_4_19_1]
+G c Z s s [finalize orka__numerics__singles__tensors__expression_holders 145 25 1268_4_19_1]
+G c Z s s [adjust orka__numerics__singles__tensors__expression_holders 151 25 1268_4_19_1]
+G c Z s s [finalize orka__numerics__singles__tensors__expression_holders 154 25 1268_4_19_1]
+G c Z s s [write orka__numerics__singles__tensors__expression_holders 167 14 1268_4_19_1]
+G c Z s s [read orka__numerics__singles__tensors__expression_holders 173 14 1268_4_19_1]
+G c Z s s [write orka__numerics__singles__tensors__expression_holders 187 14 1268_4_19_1]
+G c Z s s [read orka__numerics__singles__tensors__expression_holders 193 14 1268_4_19_1]
+G c Z s s [holderDA orka__numerics__singles__tensors__expression_holders 133 9 1268_4_19_1]
+G c Z s s [holderDF orka__numerics__singles__tensors__expression_holders 133 9 1268_4_19_1]
+G c Z s s [holderIP orka__numerics__singles__tensors__expression_holders 133 9 1268_4_19_1]
+G c Z s s [reference_control_typeDA orka__numerics__singles__tensors__expression_holders 147 9 1268_4_19_1]
+G c Z s s [reference_control_typeDF orka__numerics__singles__tensors__expression_holders 147 9 1268_4_19_1]
+G c Z s s [reference_control_typeIP orka__numerics__singles__tensors__expression_holders 147 9 1268_4_19_1]
+G c Z s s [constant_reference_typeDI orka__numerics__singles__tensors__expression_holders 157 9 1268_4_19_1]
+G c Z s s [constant_reference_typeDA orka__numerics__singles__tensors__expression_holders 157 9 1268_4_19_1]
+G c Z s s [constant_reference_typeDF orka__numerics__singles__tensors__expression_holders 157 9 1268_4_19_1]
+G c Z s s [constant_reference_typeIP orka__numerics__singles__tensors__expression_holders 157 9 1268_4_19_1]
+G c Z s s [reference_typeDI orka__numerics__singles__tensors__expression_holders 179 9 1268_4_19_1]
+G c Z s s [reference_typeDA orka__numerics__singles__tensors__expression_holders 179 9 1268_4_19_1]
+G c Z s s [reference_typeDF orka__numerics__singles__tensors__expression_holders 179 9 1268_4_19_1]
+G c Z s s [reference_typeIP orka__numerics__singles__tensors__expression_holders 179 9 1268_4_19_1]
+G c Z s s [shared_holderIP orka__numerics__singles__tensors__expression_holders 112 9 1268_4_19_1]
+G c Z s s [free orka__numerics__singles__tensors__expression_holders 40 14 1268_4_19_1]
+G c Z s s [detach orka__numerics__singles__tensors__expression_holders 43 14 1268_4_19_1]
+G c Z s s [element_arrayIP orka__numerics__singles__tensors 32 9 19_1]
+G c Z s s [boolean_arrayIP orka__numerics__singles__tensors 34 9 19_1]
+G c Z s s [tensor_shapeIP orka__numerics__singles__tensors 41 9 19_1]
+G c Z s s [tensor_indexIP orka__numerics__singles__tensors 64 9 19_1]
+G c Z s s [range_typeIP orka__numerics__singles__tensors 69 9 19_1]
+G c Z s s [tensor_rangeIP orka__numerics__singles__tensors 76 9 19_1]
+G c Z s s [expression_typeDA orka__numerics__singles__tensors 1270 9 19_1]
+G c Z s s [expression_typeDF orka__numerics__singles__tensors 1270 9 19_1]
+G c Z s s [expression_typeDI orka__numerics__singles__tensors 1270 9 19_1]
+G c Z s s [expression_typeIP orka__numerics__singles__tensors 1270 9 19_1]
+G r i none [s orka__numerics__singles__tensors 19 1 none] [tensors orka__numerics 25 23 none]
+X 27 orka.ads
+17K9*Orka 98e9 31|17r6 19r9 19r46 20r22
+62F9*Float_32<short_float> 31|19r69
+X 28 orka-numerics.ads
+17K14*Numerics 27|17k9 28|23e18 31|17r11 19r14 19r51 20r27
+X 29 orka-numerics-singles.ads
+17K23*Singles 28|17k14 29|19e26 31|19r23 20r36
+X 31 orka-numerics-singles-tensors.ads
+19K31*Tensors[32|25] 29|17k23 31|20r44
+X 32 orka-numerics-tensors.ads
+25k23*Tensors 31|17w20 19r60 32|1306e26
+747h9*Expression
+X 34 system.ads
+67M9*Address
+X 49 s-memory.ads
+51V13*Alloc{34|67M9} 101i<c,__gnat_malloc>22
+66U14*Free 102i<c,__gnat_free>22
+74V13*Realloc{34|67M9} 103i<c,__gnat_realloc>22
+

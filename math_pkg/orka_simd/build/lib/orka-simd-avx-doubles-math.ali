@@ -1,0 +1,142 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.avx.doubles.math%b  orka-simd-avx-doubles-math.adb  79fff344 NE OO PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+W orka.simd.avx.doubles.arithmetic%s  orka-simd-avx-doubles-arithmetic.adb  orka-simd-avx-doubles-arithmetic.ali
+W orka.simd.avx.doubles.swizzle%s  orka-simd-avx-doubles-swizzle.adb  orka-simd-avx-doubles-swizzle.ali
+
+U orka.simd.avx.doubles.math%s  orka-simd-avx-doubles-math.ads  e1a72f43 BN NE OO PU PK
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx-doubles-math.ads  20241106002736 3dd9fe33 orka.simd.avx.doubles.math%s
+D orka-simd-avx-doubles-math.adb  20241106002738 e9cd163e orka.simd.avx.doubles.math%b
+D orka-simd-avx-doubles-swizzle.ads  20241106002738 2e6d7f18 orka.simd.avx.doubles.swizzle%s
+D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20241106002736 e1bbae56 orka.simd.sse2.doubles%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [min orka__simd__avx__doubles__math 20 13 none]
+G c Z s s [max orka__simd__avx__doubles__math 26 13 none]
+G c Z s b [reciprocal_sqrt orka__simd__avx__doubles__math 32 13 none]
+G c Z s s [sqrt orka__simd__avx__doubles__math 36 13 none]
+G c Z s s [round orka__simd__avx__doubles__math 40 13 none]
+G c Z s s [round_nearest_integer orka__simd__avx__doubles__math 43 13 none]
+G c Z s s [floor orka__simd__avx__doubles__math 48 13 none]
+G c Z s s [ceil orka__simd__avx__doubles__math 53 13 none]
+G c Z s s [round_truncate orka__simd__avx__doubles__math 58 13 none]
+G c Z s b [cross_product orka__simd__avx__doubles__math 63 13 none]
+G r c none [reciprocal_sqrt orka__simd__avx__doubles__math 32 13 none] [Odivide orka__simd__avx__doubles__arithmetic 33 13 none]
+G r c none [cross_product orka__simd__avx__doubles__math 63 13 none] [permute_within_lanes orka__simd__avx__doubles__swizzle 130 13 none]
+G r c none [cross_product orka__simd__avx__doubles__math 63 13 none] [permute_lanes orka__simd__avx__doubles__swizzle 147 13 none]
+G r c none [cross_product orka__simd__avx__doubles__math 63 13 none] [blend orka__simd__avx__doubles__swizzle 77 13 none]
+G r c none [cross_product orka__simd__avx__doubles__math 63 13 none] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
+G r c none [cross_product orka__simd__avx__doubles__math 63 13 none] [Osubtract orka__simd__avx__doubles__arithmetic 42 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 6|17r9 66r5 7|17r6 18r6 20r14 58r5
+35I9*Integer_32<integer> 6|40r49
+63F9*Float_64<long_float>
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 6|17r14 66r10 7|17r11 18r11 20r19 23r11 29r11 30r11
+. 58r10
+X 3 orka-simd-avx.ads
+17K19*AVX 2|17k14 3|28e18 6|17r19 66r15 7|17r16 18r16 20r24 23r16 29r16 30r16
+. 58r15
+X 4 orka-simd-avx-doubles.ads
+17K23*Doubles 3|17k19 4|27e26 6|17r23 66r19 7|17r20 18r20 20r28 23r20 29r20
+. 30r20 58r19
+20A9*m256d(1|63F9)<1|20E9> 6|20r32 20r46 26r32 26r46 32r41 32r55 36r30 36r44
+. 40r31 40r68 43r47 43r61 48r31 48r45 53r30 53r44 58r40 58r54 63r42 63r56
+. 7|22r41 22r55 28r42 28r56 32r36 32r50 35r36 35r50 40r26 41r26 42r26 47r28
+. 48r28 53r29
+X 5 orka-simd-avx-doubles-arithmetic.ads
+17K31*Arithmetic 73e37 7|17w28 23r28 29r28
+20V14*"*"{4|20A9} 7|53s43 53s66
+33V14*"/"{4|20A9} 7|25s30
+42V14*"-"{4|20A9} 7|53s55
+X 6 orka-simd-avx-doubles-math.ads
+17K31*Math 4|17k23 6|66l27 66e31 7|20b36 58l27 58t31
+20V13*Min{4|20A9} 20>18 20>24
+20a18 Left{4|20A9}
+20a24 Right{4|20A9}
+26V13*Max{4|20A9} 26>18 26>24
+26a18 Left{4|20A9}
+26a24 Right{4|20A9}
+32V13*Reciprocal_Sqrt{4|20A9} 32>30 7|22b13 26l8 26t23
+32a30 Elements{4|20A9} 7|22b30 25r38
+36V13*Sqrt{4|20A9} 36>19 7|25s32
+36a19 Elements{4|20A9}
+40V13*Round{4|20A9} 40>20 40>38 44s7 49s7 54s7 59s7
+40a20 Elements{4|20A9}
+40i38 Rounding{1|35I9}
+43V13*Round_Nearest_Integer{4|20A9} 43>36
+43a36 Elements{4|20A9} 44r14
+48V13*Floor{4|20A9} 48>20
+48a20 Elements{4|20A9} 49r14
+53V13*Ceil{4|20A9} 53>19
+53a19 Elements{4|20A9} 54r14
+58V13*Round_Truncate{4|20A9} 58>29
+58a29 Elements{4|20A9} 59r14
+63V13*Cross_Product{4|20A9} 63>28 63>34 7|28b13 56l8 56t21
+63a28 Left{4|20A9} 7|28b28 47r46 53r38
+63a34 Right{4|20A9} 7|28b34 48r46 53r68
+X 7 orka-simd-avx-doubles-math.adb
+32V16 Shuffle{4|20A9} 32>25 35b16 45l11 45t18 47s37 48s37 55s14
+32a25 Elements{4|20A9} 35b25 40r57 41r56
+36N10 Mask_1_0_1_0 40r67
+37N10 Mask_1_2_0_0 41r66
+38N10 Mask_0_1_1_1 42r54
+40a10 YXWZ{4|20A9} 41r50 42r42
+41a10 WZXY{4|20A9} 42r48
+42a10 YZXY{4|20A9} 44r17
+47a7 Left_YZX{4|20A9} 53r57
+48a7 Right_YZX{4|20A9} 53r45
+53a7 Result_ZXY{4|20A9} 55r23
+X 8 orka-simd-avx-doubles-swizzle.ads
+20K31*Swizzle 7|18w28 30r28 8|170e34
+77V13*Blend{4|20A9} 7|42s35
+130V13*Permute_Within_Lanes{4|20A9} 7|40s35
+147V13*Permute_Lanes{4|20A9} 7|41s35
+

@@ -1,0 +1,102 @@
+V "GNAT Lib v14"
+A -O3
+A -gnatA
+A -gnatn
+A -ffunction-sections
+A -fdata-sections
+A -gnatyg
+A -gnatyA
+A -gnatyO
+A -gnatyM99
+A -gnaty-
+A -gnatyI
+A -gnatys
+A -gnatW8
+A -mavx2
+A -mf16c
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RR NO_ABORT_STATEMENTS
+RV NO_FLOATING_POINT
+RR NO_IMPLICIT_DYNAMIC_CODE
+RR NO_IMPLEMENTATION_ATTRIBUTES
+RR NO_IMPLEMENTATION_IDENTIFIERS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLEMENTATION_RESTRICTIONS
+RR NO_IMPLEMENTATION_UNITS
+RR NO_IMPLICIT_ALIASING
+RR NO_OBSOLESCENT_FEATURES
+RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
+
+U orka.simd.avx2.longs.convert%s  orka-simd-avx2-longs-convert.ads  b3946d6f NE OO PU PK
+W orka%s		orka.ads		orka.ali
+W orka.simd%s		orka-simd.ads		orka-simd.ali
+W orka.simd.avx%s	orka-simd-avx.ads	orka-simd-avx.ali
+W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
+W orka.simd.avx.doubles.arithmetic%s  orka-simd-avx-doubles-arithmetic.adb  orka-simd-avx-doubles-arithmetic.ali
+W orka.simd.avx.longs%s	orka-simd-avx-longs.ads	orka-simd-avx-longs.ali
+W orka.simd.avx.longs.convert%s  orka-simd-avx-longs-convert.ads  orka-simd-avx-longs-convert.ali
+W orka.simd.avx2%s	orka-simd-avx2.ads	orka-simd-avx2.ali
+W orka.simd.avx2.longs%s  orka-simd-avx2-longs.ads  orka-simd-avx2-longs.ali
+W orka.simd.avx2.longs.shift%s  orka-simd-avx2-longs-shift.adb  orka-simd-avx2-longs-shift.ali
+
+D orka.ads		20241106002736 46d22267 orka%s
+D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-convert.ads  20241106002738 9a8d2f34 orka.simd.avx.longs.convert%s
+D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
+D orka-simd-avx2-longs.ads  20241106002736 af0ea8c1 orka.simd.avx2.longs%s
+D orka-simd-avx2-longs-convert.ads  20241106002736 cb53c59a orka.simd.avx2.longs.convert%s
+D orka-simd-avx2-longs-shift.ads  20241106002736 cec24b51 orka.simd.avx2.longs.shift%s
+D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D system.ads		20240801081714 e4f8b086 system%s
+D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+G a e
+G c Z s s [to_unit_floats orka__simd__avx2__longs__convert 32 13 none]
+G r c none [to_unit_floats orka__simd__avx2__longs__convert 32 13 none] [shift_bits_right_zeros orka__simd__avx2__longs__shift 54 13 none]
+G r c none [to_unit_floats orka__simd__avx2__longs__convert 32 13 none] [convert orka__simd__avx__longs__convert 24 13 none]
+G r c none [to_unit_floats orka__simd__avx2__longs__convert 32 13 none] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
+X 1 orka.ads
+17K9*Orka 98e9 10|17r6 18r6 19r6 21r9 38r5
+36I9*Integer_64<long_long_integer>
+63F9*Float_64<long_float> 10|30r60 33r50 33r66
+X 2 orka-simd.ads
+17K14*SIMD 1|17k9 2|19e14 10|17r11 18r11 19r11 21r14 24r8 25r8 26r8 28r61
+. 38r10
+X 3 orka-simd-avx.ads
+17K19*AVX 28e18 10|17r16 18r16 24r13 25r13 28r66
+X 4 orka-simd-avx-doubles.ads
+17K23*Doubles 27e26 10|18r20 24r17 25r17
+20A9*m256d(1|63F9)<1|20E9> 10|28r47 30r33 32r54
+X 5 orka-simd-avx-doubles-arithmetic.ads
+17K31*Arithmetic 73e37 10|18w28 25r25
+20V14*"*"{4|20A9} 10|34s9
+X 6 orka-simd-avx-longs.ads
+17K23*Longs 24e24 10|17r20 28r70
+20A9*m256l(1|36I9)<1|20E9>
+X 7 orka-simd-avx-longs-convert.ads
+19K29*Convert 30e32 10|17w26 28r76
+24V13*Convert{4|20A9} 10|28r84
+X 8 orka-simd-avx2.ads
+17K19*AVX2 2|17k14 8|19e19 10|19r16 21r19 26r13 38r15
+X 9 orka-simd-avx2-longs.ads
+20K24*Longs 8|17k19 9|26e25 10|19r21 21r24 26r18 38r20
+24A12*m256l{6|20A9}<1|20E9> 10|28r33 32r40
+X 10 orka-simd-avx2-longs-convert.ads
+21K30*Convert 9|20k24 10|38l26 38e33
+28V13*Convert=28:84{4|20A9} 33s7
+28a22 Elements{9|24A12}
+30a4*Smallest_Elements{4|20A9} 34r11
+32V13*To_Unit_Floats{4|20A9} 32>29
+32a29 Elements{9|24A12} 33r40
+X 11 orka-simd-avx2-longs-shift.ads
+17K30*Shift 10|19w27 26r24 11|68e31
+54V13*Shift_Bits_Right_Zeros{9|24A12} 10|33s16
+
