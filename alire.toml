@@ -14,6 +14,7 @@ executables = ["json_test"]
 [[depends-on]]
 orka_tensors_cpu = "*"
 gnatcoll = "^25.0.0"
+aunit = "*" 
 
 [build-switches]
 "*".style_checks="No"

@@ -61,11 +61,11 @@ D a-stuten.ads		20240801081714 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
 D interfac.ads		20240801081714 9111f9c1 interfaces%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
-D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
-D orka-numerics-tensors-operations.ads  20241106002738 6fcb5dbf orka.numerics.tensors.operations%s
-D orka-numerics-tensors-operations.adb  20241106002738 b6735ed4 orka.numerics.tensors.operations%b
+D orka.ads		20250214151732 46d22267 orka%s
+D orka-numerics.ads	20250214151732 c626d649 orka.numerics%s
+D orka-numerics-tensors.ads  20250214151732 8826630d orka.numerics.tensors%s
+D orka-numerics-tensors-operations.ads  20250214151732 6fcb5dbf orka.numerics.tensors.operations%s
+D orka-numerics-tensors-operations.adb  20250214151732 b6735ed4 orka.numerics.tensors.operations%b
 D system.ads		20240801081714 e4f8b086 system%s
 D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
 D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
@@ -79,7 +79,7 @@ D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
 D s-stoele.ads		20240801081714 ccded4e8 system.storage_elements%s
 D s-traent.ads		20240801081714 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20240801081714 fa2a7f59 system.unsigned_types%s
-D d:\ada_capstone\del2.0\math_pkg\orka_numerics\gnat.adc  20241106002736 00000000
+D c:\users\rajes\downloads\vsada\del2.0\math_pkg\orka_numerics\gnat.adc  20250214151732 00000000
 G a e
 G c Z s b [operations orka__numerics__tensors 38 31 none]
 X 1 ada.ads
