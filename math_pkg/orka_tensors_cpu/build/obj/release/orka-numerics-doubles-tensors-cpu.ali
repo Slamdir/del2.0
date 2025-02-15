@@ -155,47 +155,47 @@ D a-tags.ads		20240801081714 9eaa38c6 ada.tags%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20240801081714 c3a8ac65 ada.unchecked_deallocation%s
 D interfac.ads		20240801081714 9111f9c1 interfaces%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
-D orka-numerics-doubles.ads  20241106002736 d7a74aec orka.numerics.doubles%s
-D orka-numerics-doubles-tensors.ads  20241106002738 826dd580 orka.numerics.doubles.tensors%s
-D orka-numerics-doubles-tensors.ads  20241106002738 826dd580 orka.numerics.doubles.tensors%s
-D orka-numerics-doubles-tensors-cpu.ads  20241106002738 6e119d3d orka.numerics.doubles.tensors.cpu%s
-D orka-numerics-doubles-tensors-cpu.ads  20241106002738 6e119d3d orka.numerics.doubles.tensors.cpu%b
-D orka-numerics-tensors.ads  20241106002738 8826630d orka.numerics.tensors%s
-D orka-numerics-tensors.adb  20241106002738 f6198d4f orka.numerics.tensors%b
-D orka-numerics-tensors-operations.ads  20241106002738 6fcb5dbf orka.numerics.tensors.operations%s
-D orka-numerics-tensors-operations.adb  20241106002738 b6735ed4 orka.numerics.tensors.operations%b
-D orka-numerics-tensors-simd_cpu.ads  20241106002738 aadada72 orka.numerics.tensors.simd_cpu%s
-D orka-numerics-tensors-simd_cpu.adb  20241106002738 1ac1e65e orka.numerics.tensors.simd_cpu%b
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
-D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
-D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
-D orka-simd-avx-doubles-arithmetic.adb  20241106002738 7994dbb0 orka.simd.avx.doubles.arithmetic%b
-D orka-simd-avx-doubles-compare.ads  20241106002738 defe872a orka.simd.avx.doubles.compare%s
-D orka-simd-avx-doubles-logical.ads  20241106002736 d7929c01 orka.simd.avx.doubles.logical%s
-D orka-simd-avx-doubles-math.ads  20241106002736 3dd9fe33 orka.simd.avx.doubles.math%s
-D orka-simd-avx-doubles-swizzle.ads  20241106002738 2e6d7f18 orka.simd.avx.doubles.swizzle%s
-D orka-simd-avx-doubles-swizzle.adb  20241106002736 2ec3cd8f orka.simd.avx.doubles.swizzle%b
-D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
-D orka-simd-avx-longs-convert.ads  20241106002738 9a8d2f34 orka.simd.avx.longs.convert%s
-D orka-simd-avx-longs-logical.ads  20241106002736 600e2762 orka.simd.avx.longs.logical%s
-D orka-simd-avx-longs-logical.adb  20241106002736 39ab4740 orka.simd.avx.longs.logical%b
-D orka-simd-avx2.ads	20241106002736 61495efa orka.simd.avx2%s
-D orka-simd-avx2-longs.ads  20241106002736 af0ea8c1 orka.simd.avx2.longs%s
-D orka-simd-avx2-longs-arithmetic.ads  20241106002738 7f28d4ba orka.simd.avx2.longs.arithmetic%s
-D orka-simd-avx2-longs-convert.ads  20241106002736 cb53c59a orka.simd.avx2.longs.convert%s
-D orka-simd-avx2-longs-logical.ads  20241106002736 e891eba3 orka.simd.avx2.longs.logical%s
-D orka-simd-avx2-longs-random.ads  20241106002736 7e043ef9 orka.simd.avx2.longs.random%s
-D orka-simd-avx2-longs-random.adb  20241106002736 a06826b9 orka.simd.avx2.longs.random%b
-D orka-simd-avx2-longs-shift.ads  20241106002736 cec24b51 orka.simd.avx2.longs.shift%s
-D orka-simd-avx2-longs-shift.adb  20241106002736 93cb7d85 orka.simd.avx2.longs.shift%b
-D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
-D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
-D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-doubles.ads  20241106002736 e1bbae56 orka.simd.sse2.doubles%s
-D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-numerics.ads	20250215192558 c626d649 orka.numerics%s
+D orka-numerics-doubles.ads  20250215192558 d7a74aec orka.numerics.doubles%s
+D orka-numerics-doubles-tensors.ads  20250215192558 826dd580 orka.numerics.doubles.tensors%s
+D orka-numerics-doubles-tensors.ads  20250215192558 826dd580 orka.numerics.doubles.tensors%s
+D orka-numerics-doubles-tensors-cpu.ads  20250215192558 6e119d3d orka.numerics.doubles.tensors.cpu%s
+D orka-numerics-doubles-tensors-cpu.ads  20250215192558 6e119d3d orka.numerics.doubles.tensors.cpu%b
+D orka-numerics-tensors.ads  20250215192558 8826630d orka.numerics.tensors%s
+D orka-numerics-tensors.adb  20250215192558 f6198d4f orka.numerics.tensors%b
+D orka-numerics-tensors-operations.ads  20250215192558 6fcb5dbf orka.numerics.tensors.operations%s
+D orka-numerics-tensors-operations.adb  20250215192558 b6735ed4 orka.numerics.tensors.operations%b
+D orka-numerics-tensors-simd_cpu.ads  20250215192558 aadada72 orka.numerics.tensors.simd_cpu%s
+D orka-numerics-tensors-simd_cpu.adb  20250215192558 1ac1e65e orka.numerics.tensors.simd_cpu%b
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20250215192558 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20250215192558 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20250215192558 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx-doubles-arithmetic.adb  20250215192558 7994dbb0 orka.simd.avx.doubles.arithmetic%b
+D orka-simd-avx-doubles-compare.ads  20250215192558 defe872a orka.simd.avx.doubles.compare%s
+D orka-simd-avx-doubles-logical.ads  20250215192558 d7929c01 orka.simd.avx.doubles.logical%s
+D orka-simd-avx-doubles-math.ads  20250215192558 3dd9fe33 orka.simd.avx.doubles.math%s
+D orka-simd-avx-doubles-swizzle.ads  20250215192558 2e6d7f18 orka.simd.avx.doubles.swizzle%s
+D orka-simd-avx-doubles-swizzle.adb  20250215192558 2ec3cd8f orka.simd.avx.doubles.swizzle%b
+D orka-simd-avx-longs.ads  20250215192558 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-convert.ads  20250215192558 9a8d2f34 orka.simd.avx.longs.convert%s
+D orka-simd-avx-longs-logical.ads  20250215192558 600e2762 orka.simd.avx.longs.logical%s
+D orka-simd-avx-longs-logical.adb  20250215192558 39ab4740 orka.simd.avx.longs.logical%b
+D orka-simd-avx2.ads	20250215192558 61495efa orka.simd.avx2%s
+D orka-simd-avx2-longs.ads  20250215192558 af0ea8c1 orka.simd.avx2.longs%s
+D orka-simd-avx2-longs-arithmetic.ads  20250215192558 7f28d4ba orka.simd.avx2.longs.arithmetic%s
+D orka-simd-avx2-longs-convert.ads  20250215192558 cb53c59a orka.simd.avx2.longs.convert%s
+D orka-simd-avx2-longs-logical.ads  20250215192558 e891eba3 orka.simd.avx2.longs.logical%s
+D orka-simd-avx2-longs-random.ads  20250215192558 7e043ef9 orka.simd.avx2.longs.random%s
+D orka-simd-avx2-longs-random.adb  20250215192558 a06826b9 orka.simd.avx2.longs.random%b
+D orka-simd-avx2-longs-shift.ads  20250215192558 cec24b51 orka.simd.avx2.longs.shift%s
+D orka-simd-avx2-longs-shift.adb  20250215192558 93cb7d85 orka.simd.avx2.longs.shift%b
+D orka-simd-sse.ads	20250215192558 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20250215192558 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20250215192558 e1bbae56 orka.simd.sse2.doubles%s
+D orka-simd-sse2-longs.ads  20250215192558 c218be70 orka.simd.sse2.longs%s
 D system.ads		20240801081714 e4f8b086 system%s
 D s-atocou.ads		20240801081714 dc18efc3 system.atomic_counters%s
 D s-bitops.ads		20240801081714 cdf3ac3c system.bit_ops%s
@@ -240,7 +240,7 @@ D s-vauspe.ads		20240801081714 89269ba5 system.value_u_spec%s
 D s-vs_int.ads		20240801081714 06b6b724 system.vs_int%s
 D s-vs_llu.ads		20240801081714 8f3536c5 system.vs_llu%s
 D s-vs_uns.ads		20240801081714 e7f47a27 system.vs_uns%s
-D d:\ada_capstone\del2.0\math_pkg\orka_tensors_cpu\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_tensors_cpu\gnat.adc  20250215192558 00000000
 G a e
 G c b s s [b orka__numerics__doubles__tensors__cpu 23 1 29_1]
 G c s s s [s orka__numerics__doubles__tensors__cpu 29 1 none]
@@ -535,9 +535,9 @@ G c Z s s [without_data orka__numerics__doubles__tensors__cpu 150 13 29_1]
 G c Z s s [without_data orka__numerics__doubles__tensors__cpu 165 13 29_1]
 G c Z s s [identity_vector_type orka__numerics__doubles__tensors__cpu 179 13 29_1]
 G c Z s s [identity_element orka__numerics__doubles__tensors__cpu 180 13 29_1]
-G c Z s s [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1]
+G c Z s s [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1]
 G c Z s s [apply orka__numerics__doubles__tensors__cpu 182 13 29_1]
-G c Z s s [applyR orka__numerics__doubles__tensors__cpu__applyGP6776 184 13 29_1]
+G c Z s s [applyR orka__numerics__doubles__tensors__cpu__applyGP6959 184 13 29_1]
 G c Z s s [apply orka__numerics__doubles__tensors__cpu 184 13 29_1]
 G c Z s s [flattened_index orka__numerics__doubles__tensors__cpu 289 13 29_1]
 G c Z s s [multiply_add orka__numerics__doubles__tensors__cpu 919 14 29_1]
@@ -1146,15 +1146,15 @@ G r c none [data_vectors orka__numerics__doubles__tensors__cpu 114 13 29_1] [ele
 G r c none [to_index orka__numerics__doubles__tensors__cpu 124 13 29_1] [to_index orka__numerics__doubles__tensors 1231 13 19_1]
 G r c none [disable_padding orka__numerics__doubles__tensors__cpu 143 13 29_1] [elements orka__numerics__doubles__tensors 51 13 19_1]
 G r c none [without_data orka__numerics__doubles__tensors__cpu 165 13 29_1] [elements orka__numerics__doubles__tensors 51 13 19_1]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Oadd orka__simd__avx__doubles__arithmetic 39 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Osubtract orka__simd__avx__doubles__arithmetic 42 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Odivide orka__simd__avx__doubles__arithmetic 33 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [min orka__simd__avx__doubles__math 20 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [max orka__simd__avx__doubles__math 26 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Osubtract orka__simd__avx__doubles__arithmetic 45 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [Oabs orka__simd__avx__doubles__arithmetic 49 13 none]
-G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6699 182 13 29_1] [sqrt orka__simd__avx__doubles__math 36 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Oadd orka__simd__avx__doubles__arithmetic 39 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Osubtract orka__simd__avx__doubles__arithmetic 42 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Odivide orka__simd__avx__doubles__arithmetic 33 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [min orka__simd__avx__doubles__math 20 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [max orka__simd__avx__doubles__math 26 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Osubtract orka__simd__avx__doubles__arithmetic 45 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [Oabs orka__simd__avx__doubles__arithmetic 49 13 none]
+G r c none [applyR orka__numerics__doubles__tensors__cpu__applyGP6880 182 13 29_1] [sqrt orka__simd__avx__doubles__math 36 13 none]
 G r c none [flattened_index orka__numerics__doubles__tensors__cpu 289 13 29_1] [trim orka__numerics__doubles__tensors 55 13 19_1]
 G r c none [flattened_index orka__numerics__doubles__tensors__cpu 289 13 29_1] [to_index orka__numerics__doubles__tensors 1231 13 19_1]
 G r c none [multiply_add orka__numerics__doubles__tensors__cpu 919 14 29_1] [Omultiply orka__simd__avx__doubles__arithmetic 20 13 none]

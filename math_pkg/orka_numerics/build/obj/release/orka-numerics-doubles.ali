@@ -36,13 +36,13 @@ W orka.numerics%s	orka-numerics.ads	orka-numerics.ali
 
 D ada.ads		20240801081714 76789da1 ada%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-numerics.ads	20241106002738 c626d649 orka.numerics%s
-D orka-numerics-doubles.ads  20241106002736 d7a74aec orka.numerics.doubles%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-numerics.ads	20250215192558 c626d649 orka.numerics%s
+D orka-numerics-doubles.ads  20250215192558 d7a74aec orka.numerics.doubles%s
 D system.ads		20240801081714 e4f8b086 system%s
 D s-exctab.ads		20240801081714 91bef6ef system.exception_table%s
 D s-stalib.ads		20240801081714 1c9580f6 system.standard_library%s
-D d:\ada_capstone\del2.0\math_pkg\orka_numerics\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_numerics\gnat.adc  20250215192558 00000000
 G a e
 X 3 orka.ads
 17K9*Orka 98e9 5|17r9 19r5

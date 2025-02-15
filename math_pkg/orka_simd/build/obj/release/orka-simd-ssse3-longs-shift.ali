@@ -42,15 +42,15 @@ W orka.simd.ssse3.longs%s  orka-simd-ssse3-longs.ads  orka-simd-ssse3-longs.ali
 
 D ada.ads		20240801081714 76789da1 ada%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
-D orka-simd-ssse3.ads	20241106002738 aa91adce orka.simd.ssse3%s
-D orka-simd-ssse3-longs.ads  20241106002736 d8966083 orka.simd.ssse3.longs%s
-D orka-simd-ssse3-longs-shift.ads  20241106002738 014b1ba9 orka.simd.ssse3.longs.shift%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-longs.ads  20250215192558 c218be70 orka.simd.sse2.longs%s
+D orka-simd-ssse3.ads	20250215192558 aa91adce orka.simd.ssse3%s
+D orka-simd-ssse3-longs.ads  20250215192558 d8966083 orka.simd.ssse3.longs%s
+D orka-simd-ssse3-longs-shift.ads  20250215192558 014b1ba9 orka.simd.ssse3.longs.shift%s
 D system.ads		20240801081714 e4f8b086 system%s
-D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s s [align_right_bytes orka__simd__ssse3__longs__shift 26 13 none]
 X 1 ada.ads

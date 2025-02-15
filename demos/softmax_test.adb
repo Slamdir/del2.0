@@ -14,46 +14,34 @@ procedure Softmax_Test is
    package DMod renames Del.Model;
    package DLoss renames Del.Loss;
 
-   --Data_1 : D.Tensor_T := Zeros((2, 2));
-   X : D.Tensor_T := To_Tensor ([5.0, 2.0, 3.0, D.Element_T(-5.0), 5.0, 6.0, 3.0, 15.0, 9.0], [3,3]);
-   Data : D.Tensor_T := Ones((2, 3));
+   --Put_Line(Loss.Forward(Expected, Actual)'Image);
+   --Put_Line(Loss.Backward(Expected, Actual).Image);
 
-   Result : D.Tensor_T := Zeros((3, 3));
+   procedure TestForward1 (Loss : DLoss.Cross_Entropy_T) is
+      Actual   : D.Tensor_T := To_Tensor ([0.1, 0.7, 0.2], [1, 3]);
+      Expected : D.Tensor_T := To_Tensor ([0.0, 1.0, 0.0], [1, 3]);
+   begin
+      Put_Line("Testing with: ");
+      Put_Line("Actual:    " & Actual.Image);
+      Put_Line("Expected:  " & Expected.Image);
+      Put_Line(Loss.Forward(Expected, Actual)'Image);
+   end TestForward1;
 
-   L : DOp.Linear_T;
-   R : DOp.ReLU_T;
-   M : DOp.SoftMax_T;
+   procedure TestForward2 (Loss : DLoss.Cross_Entropy_T) is
+      Actual   : D.Tensor_T := To_Tensor ([0.9, 0.05, 0.05], [1, 3]);
+      Expected : D.Tensor_T := To_Tensor ([0.0, 1.0, 0.0], [1, 3]);
+   begin
+      Put_Line("Testing with: ");
+      Put_Line("Actual:    " & Actual.Image);
+      Put_Line("Expected:  " & Expected.Image);
+      Put_Line(Loss.Forward(Expected, Actual)'Image);
+   end TestForward2;
 
-   Network : DMod.Model;
-   
-   --  Output : constant D.Tensor_T := Sum(X, 1);
-   Output2 : constant D.Tensor_T := DOp.Forward(M, X);
-   --  Output3 : D.Tensor_T := Log10(X);
-
-   Expected : D.Tensor_T := To_Tensor ([1.0, 0.0], [1, 2]);
-   Actual   : D.Tensor_T := To_Tensor ([2.0, 1.0], [1, 2]);
    Loss     : DLoss.Cross_Entropy_T;
 
 begin
-   --L.D.Insert ("Data", Data_1);
-   --Put_Line (Image (L.D.Element ("Data")));
 
-   --Put_Line(Image(Data));
-   --Data := DOp.Forward(L, X);
-   --Put_Line (Image(Data));
-
-   --  Result := X * Data;
-   --  Put_Line(Image(Result));
-
-   --  DMod.Add_Layer(Network, new DOp.Linear_T);
-   --  DMod.Add_Layer(Network, new DOp.ReLU_T);
-
-   --  DMod.Run_Layers(Network);
-
-   --  Put_Line(Image(Output2));
-   --  Put_Line(Image(Output3));
-
-   Put_Line(Loss.Forward(Expected, Actual)'Image);
-   --  Put_Line(Loss.Backward(Expected, Actual).Image);
+   TestForward1(Loss);
+   TestForward2(Loss);
 
 end Softmax_Test;

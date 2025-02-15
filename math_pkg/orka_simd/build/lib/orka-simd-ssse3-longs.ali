@@ -33,12 +33,12 @@ RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
 U orka.simd.ssse3.longs%s  orka-simd-ssse3-longs.ads  7207cd4d NE OO PU PK
 W orka.simd.ssse3%s	orka-simd-ssse3.ads	orka-simd-ssse3.ali
 
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-ssse3.ads	20241106002738 aa91adce orka.simd.ssse3%s
-D orka-simd-ssse3-longs.ads  20241106002736 d8966083 orka.simd.ssse3.longs%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-ssse3.ads	20250215192558 aa91adce orka.simd.ssse3%s
+D orka-simd-ssse3-longs.ads  20250215192558 d8966083 orka.simd.ssse3.longs%s
 D system.ads		20240801081714 e4f8b086 system%s
-D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 X 1 orka.ads
 17K9*Orka 98e9 4|17r9 19r5

@@ -58,30 +58,30 @@ W orka.simd.sse4_1.singles%s  orka-simd-sse4_1-singles.ads  orka-simd-sse4_1-sin
 
 D ada.ads		20240801081714 76789da1 ada%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
-D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
-D orka-simd-sse-singles-arithmetic.ads  20241106002738 cf74ffdd orka.simd.sse.singles.arithmetic%s
-D orka-simd-sse-singles-arithmetic.adb  20241106002738 a5b91d57 orka.simd.sse.singles.arithmetic%b
-D orka-simd-sse-singles-compare.ads  20241106002736 74de47c1 orka.simd.sse.singles.compare%s
-D orka-simd-sse-singles-logical.ads  20241106002736 0511c507 orka.simd.sse.singles.logical%s
-D orka-simd-sse-singles-swizzle.ads  20241106002738 d17f6df8 orka.simd.sse.singles.swizzle%s
-D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-integers.ads  20241106002738 843c4788 orka.simd.sse2.integers%s
-D orka-simd-sse2-longs.ads  20241106002738 c218be70 orka.simd.sse2.longs%s
-D orka-simd-sse4_1.ads	20241106002736 7c2bd306 orka.simd.sse4_1%s
-D orka-simd-sse4_1-integers.ads  20241106002736 6aecf3c7 orka.simd.sse4_1.integers%s
-D orka-simd-sse4_1-integers-logical.ads  20241106002736 d404b203 orka.simd.sse4_1.integers.logical%s
-D orka-simd-sse4_1-integers-logical.adb  20241106002736 a94784f3 orka.simd.sse4_1.integers.logical%b
-D orka-simd-sse4_1-longs.ads  20241106002736 3a154937 orka.simd.sse4_1.longs%s
-D orka-simd-sse4_1-longs-logical.ads  20241106002736 eef8951b orka.simd.sse4_1.longs.logical%s
-D orka-simd-sse4_1-longs-logical.adb  20241106002736 d339a858 orka.simd.sse4_1.longs.logical%b
-D orka-simd-sse4_1-singles.ads  20241106002736 83022de4 orka.simd.sse4_1.singles%s
-D orka-simd-sse4_1-singles-compare.ads  20241106002736 bac1f826 orka.simd.sse4_1.singles.compare%s
-D orka-simd-sse4_1-singles-compare.adb  20241106002738 ebb6e6b0 orka.simd.sse4_1.singles.compare%b
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-sse.ads	20250215192558 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20250215192558 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse-singles-arithmetic.ads  20250215192558 cf74ffdd orka.simd.sse.singles.arithmetic%s
+D orka-simd-sse-singles-arithmetic.adb  20250215192558 a5b91d57 orka.simd.sse.singles.arithmetic%b
+D orka-simd-sse-singles-compare.ads  20250215192558 74de47c1 orka.simd.sse.singles.compare%s
+D orka-simd-sse-singles-logical.ads  20250215192558 0511c507 orka.simd.sse.singles.logical%s
+D orka-simd-sse-singles-swizzle.ads  20250215192558 d17f6df8 orka.simd.sse.singles.swizzle%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-integers.ads  20250215192558 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-longs.ads  20250215192558 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse4_1.ads	20250215192558 7c2bd306 orka.simd.sse4_1%s
+D orka-simd-sse4_1-integers.ads  20250215192558 6aecf3c7 orka.simd.sse4_1.integers%s
+D orka-simd-sse4_1-integers-logical.ads  20250215192558 d404b203 orka.simd.sse4_1.integers.logical%s
+D orka-simd-sse4_1-integers-logical.adb  20250215192558 a94784f3 orka.simd.sse4_1.integers.logical%b
+D orka-simd-sse4_1-longs.ads  20250215192558 3a154937 orka.simd.sse4_1.longs%s
+D orka-simd-sse4_1-longs-logical.ads  20250215192558 eef8951b orka.simd.sse4_1.longs.logical%s
+D orka-simd-sse4_1-longs-logical.adb  20250215192558 d339a858 orka.simd.sse4_1.longs.logical%b
+D orka-simd-sse4_1-singles.ads  20250215192558 83022de4 orka.simd.sse4_1.singles%s
+D orka-simd-sse4_1-singles-compare.ads  20250215192558 bac1f826 orka.simd.sse4_1.singles.compare%s
+D orka-simd-sse4_1-singles-compare.adb  20250215192558 ebb6e6b0 orka.simd.sse4_1.singles.compare%b
 D system.ads		20240801081714 e4f8b086 system%s
-D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s b [is_equal orka__simd__sse4_1__singles__compare 24 13 none]
 G r c none [is_equal orka__simd__sse4_1__singles__compare 24 13 none] [Osubtract orka__simd__sse__singles__arithmetic 42 13 none]

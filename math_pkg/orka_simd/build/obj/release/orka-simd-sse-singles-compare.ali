@@ -39,14 +39,14 @@ W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
 U orka.simd.sse.singles.compare%s  orka-simd-sse-singles-compare.ads  ba0ab4cc NE OO PU PK
 W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
 
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
-D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
-D orka-simd-sse-singles-compare.ads  20241106002736 74de47c1 orka.simd.sse.singles.compare%s
-D orka-simd-sse-singles-compare.adb  20241106002736 3e04e0ca orka.simd.sse.singles.compare%b
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-sse.ads	20250215192558 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20250215192558 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse-singles-compare.ads  20250215192558 74de47c1 orka.simd.sse.singles.compare%s
+D orka-simd-sse-singles-compare.adb  20250215192558 3e04e0ca orka.simd.sse.singles.compare%b
 D system.ads		20240801081714 e4f8b086 system%s
-D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s s [Oeq orka__simd__sse__singles__compare 20 13 none]
 G c Z s s [Oge orka__simd__sse__singles__compare 23 13 none]

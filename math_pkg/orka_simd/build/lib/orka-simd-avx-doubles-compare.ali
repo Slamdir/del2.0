@@ -51,26 +51,26 @@ W orka.simd.avx.doubles%s  orka-simd-avx-doubles.ads  orka-simd-avx-doubles.ali
 
 D ada.ads		20240801081714 76789da1 ada%s
 D a-unccon.ads		20240801081714 0e9b276f ada.unchecked_conversion%s
-D orka.ads		20241106002736 46d22267 orka%s
-D orka-simd.ads		20241106002738 af6b2ebe orka.simd%s
-D orka-simd-avx.ads	20241106002736 ce60f0e0 orka.simd.avx%s
-D orka-simd-avx-doubles.ads  20241106002736 dc7ed170 orka.simd.avx.doubles%s
-D orka-simd-avx-doubles-arithmetic.ads  20241106002738 83866451 orka.simd.avx.doubles.arithmetic%s
-D orka-simd-avx-doubles-arithmetic.adb  20241106002738 7994dbb0 orka.simd.avx.doubles.arithmetic%b
-D orka-simd-avx-doubles-compare.ads  20241106002738 defe872a orka.simd.avx.doubles.compare%s
-D orka-simd-avx-doubles-compare.adb  20241106002738 13207c8d orka.simd.avx.doubles.compare%b
-D orka-simd-avx-doubles-logical.ads  20241106002736 d7929c01 orka.simd.avx.doubles.logical%s
-D orka-simd-avx-doubles-swizzle.ads  20241106002738 2e6d7f18 orka.simd.avx.doubles.swizzle%s
-D orka-simd-avx-doubles-swizzle.adb  20241106002736 2ec3cd8f orka.simd.avx.doubles.swizzle%b
-D orka-simd-avx-longs.ads  20241106002738 e106ead4 orka.simd.avx.longs%s
-D orka-simd-avx-longs-logical.ads  20241106002736 600e2762 orka.simd.avx.longs.logical%s
-D orka-simd-avx-longs-logical.adb  20241106002736 39ab4740 orka.simd.avx.longs.logical%b
-D orka-simd-sse.ads	20241106002736 f8acd7fb orka.simd.sse%s
-D orka-simd-sse-singles.ads  20241106002736 ced4f30d orka.simd.sse.singles%s
-D orka-simd-sse2.ads	20241106002736 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-doubles.ads  20241106002736 e1bbae56 orka.simd.sse2.doubles%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20250215192558 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20250215192558 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-arithmetic.ads  20250215192558 83866451 orka.simd.avx.doubles.arithmetic%s
+D orka-simd-avx-doubles-arithmetic.adb  20250215192558 7994dbb0 orka.simd.avx.doubles.arithmetic%b
+D orka-simd-avx-doubles-compare.ads  20250215192558 defe872a orka.simd.avx.doubles.compare%s
+D orka-simd-avx-doubles-compare.adb  20250215192558 13207c8d orka.simd.avx.doubles.compare%b
+D orka-simd-avx-doubles-logical.ads  20250215192558 d7929c01 orka.simd.avx.doubles.logical%s
+D orka-simd-avx-doubles-swizzle.ads  20250215192558 2e6d7f18 orka.simd.avx.doubles.swizzle%s
+D orka-simd-avx-doubles-swizzle.adb  20250215192558 2ec3cd8f orka.simd.avx.doubles.swizzle%b
+D orka-simd-avx-longs.ads  20250215192558 e106ead4 orka.simd.avx.longs%s
+D orka-simd-avx-longs-logical.ads  20250215192558 600e2762 orka.simd.avx.longs.logical%s
+D orka-simd-avx-longs-logical.adb  20250215192558 39ab4740 orka.simd.avx.longs.logical%b
+D orka-simd-sse.ads	20250215192558 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20250215192558 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20250215192558 e1bbae56 orka.simd.sse2.doubles%s
 D system.ads		20240801081714 e4f8b086 system%s
-D d:\ada_capstone\del2.0\math_pkg\orka_simd\gnat.adc  20241106002736 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s s [compare orka__simd__avx__doubles__compare 20 13 none]
 G c Z s s [Oeq orka__simd__avx__doubles__compare 32 13 none]
