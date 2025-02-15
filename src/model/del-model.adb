@@ -56,7 +56,7 @@ package body Del.Model is
 
       for epoch in 1 .. Num_Epochs loop
             -- shuffle Indecies
-            
+
 
             -- shuffle -- generate a complete and distinct set of index values the same size as the dataset and store in shuffle object
             -- loop accross number of batches in data (last one may be incomplete)
@@ -69,7 +69,8 @@ package body Del.Model is
                 -- optimizer.step()
                      -- apply gradient changes accross all weights and biases
         -- return loss_history
-      
+      end loop;
+
       for I in 1 .. Num_Epochs loop
          Put_Line("Epoch:" & I'Image);
          
