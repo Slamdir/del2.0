@@ -170,7 +170,7 @@ package body Del.Operators is
          return Output;
       end Divide_By_Row;
 
-      Exp_Values     : Tensor_T := Ada.Numerics.e ** X;
+      Exp_Values     : Tensor_T := Exp(X);
       Exp_Values_Sum : Tensor_T := Row_Sum(Exp_Values);
       Output         : Tensor_T := Divide_By_Row(Exp_Values, Exp_Values_Sum);
 
