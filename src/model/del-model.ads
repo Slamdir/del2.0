@@ -1,4 +1,3 @@
-with Ada.Containers.Vectors;
 with Orka.Numerics.Singles.Tensors;
 with Del.JSON; use Del.JSON;
 

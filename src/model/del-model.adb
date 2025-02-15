@@ -2,6 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Ada.Numerics.Float_Random;
 
 package body Del.Model is
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T) is
@@ -23,6 +24,8 @@ package body Del.Model is
       JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
       JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
    is
+      type Index_Array is array (Positive range <>) of Integer;
+      Indecies        : Index_Array(1..Shape(Data)(1));
       Training_Data   : Tensor_T := Data;
       Training_Labels : Tensor_T := Labels;
       Loss_Value : Element_T;
@@ -42,9 +45,30 @@ package body Del.Model is
          end;
       end if;
 
-      Put_Line("Starting training with" & Num_Epochs'Image & " epochs");
-      Put_Line("Data shape: " & Shape(Training_Data)(1)'Image & "," & Shape(Training_Data)(2)'Image);
-      Put_Line("Labels shape: " & Shape(Training_Labels)(1)'Image & "," & Shape(Training_Labels)(2)'Image);
+      -- self: item calling the function?
+      -- data: input node values
+      -- target: target label (same size as input node values)
+      -- batch_size: size of batches input node data is handled in
+      -- num_epochs: number of repitions on the passed dataset (should be kept at 1 or a low number to avoid overfit)
+      -- optimizer: object that handles gradient decent
+      -- loss_fn: object that handles loss function
+      -- def fit(self,data,target,batch_size,num_epochs,optimizer,loss_fn):
+
+      for epoch in 1 .. Num_Epochs loop
+            -- shuffle Indecies
+            
+
+            -- shuffle -- generate a complete and distinct set of index values the same size as the dataset and store in shuffle object
+            -- loop accross number of batches in data (last one may be incomplete)
+                -- reset optimizer internal values for new loop
+                -- feedforward next batchsize of data (loop)
+                -- find average loss
+                -- loss := loss_fn.forward(X,Y) -- average loss
+                -- grad := loss_fn.backward() -- initial gradient
+                -- loop to compute remaining gradients
+                -- optimizer.step()
+                     -- apply gradient changes accross all weights and biases
+        -- return loss_history
       
       for I in 1 .. Num_Epochs loop
          Put_Line("Epoch:" & I'Image);

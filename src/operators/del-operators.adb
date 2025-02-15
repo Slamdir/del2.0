@@ -1,4 +1,3 @@
-with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Numerics;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 
