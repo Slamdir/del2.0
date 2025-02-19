@@ -2,6 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Del.ONNX;
 
 package body Del.Model is
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T) is
@@ -14,7 +15,12 @@ package body Del.Model is
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
 
- procedure Train_Model
+   function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector is
+   begin
+      return Self.Layers;
+   end Get_Layers_Vector;
+
+   procedure Train_Model
      (Self       : in Model;
       Num_Epochs : Positive;
       Data       : Tensor_T;
@@ -130,4 +136,12 @@ package body Del.Model is
          Put_Line(Ada.Exceptions.Exception_Information(E));
          raise;
    end Run_Layers;
+
+   procedure Export_ONNX(
+      Self : in Model;
+      Filename : String) is
+   begin
+      Del.ONNX.Save_ONNX_Model(Self, Filename);
+   end Export_ONNX;
+
 end Del.Model;
