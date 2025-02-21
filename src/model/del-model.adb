@@ -1,4 +1,3 @@
-with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
@@ -55,6 +54,8 @@ package body Del.Model is
       -- def fit(self,data,target,batch_size,num_epochs,optimizer,loss_fn):
 
       for epoch in 1 .. Num_Epochs loop
+      --Just to have this compile
+      Put_Line("");
             -- shuffle Indecies
 
 
@@ -155,4 +156,10 @@ package body Del.Model is
          Put_Line(Ada.Exceptions.Exception_Information(E));
          raise;
    end Run_Layers;
+
+function Get_Params(Self : Model) return Layer_Vectors.Vector is
+begin
+   return Self.Layers;
+end Get_Params;
+
 end Del.Model;

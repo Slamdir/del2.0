@@ -7,10 +7,10 @@ package body Del.Loss is
    overriding function Forward (L : Cross_Entropy_T; Expected : Tensor_T; Actual : Tensor_T) return Element_T is
       Epsilon     : constant Float := 1.0E-8;
       Total_Loss  : Float := 0.0;
-      Proba       : Tensor_T := Del.Operators.SoftMax(Actual);
+      Proba       : constant Tensor_T := Del.Operators.SoftMax(Actual);
 
-      Rows        : Integer := Shape(Expected)(1);
-      Columns     : Integer := Shape(Expected)(2);
+      Rows        : constant Integer := Shape(Expected)(1);
+      Columns     : constant Integer := Shape(Expected)(2);
    begin
 
       for I in 1 .. Rows loop

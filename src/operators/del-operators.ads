@@ -1,8 +1,6 @@
 package Del.Operators is
    type Linear_T is new Func_T with null record;
    type Linear_Access_T is access all Linear_T'Class;
-
-   procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive);
    
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T;
    overriding function Backward (L : in out Linear_T; Dy : Tensor_T) return Tensor_T;
@@ -23,5 +21,9 @@ package Del.Operators is
    overriding function Get_Params (L : SoftMax_T) return Params_T;
 
    function SoftMax(X : Tensor_T) return Tensor_T;
+
+   procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive);
+   --  procedure Initialize(L : in out ReLU_T; In_Nodes, Out_Nodes : Positive);
+   --  procedure Initialize(L : in out SoftMax_T; In_Nodes, Out_Nodes : Positive);
 
 end Del.Operators;

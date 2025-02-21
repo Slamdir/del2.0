@@ -43,18 +43,18 @@ W orka.simd.sse.singles%s  orka-simd-sse-singles.ads  orka-simd-sse-singles.ali
 W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
 W orka.simd.sse2.doubles%s  orka-simd-sse2-doubles.ads  orka-simd-sse2-doubles.ali
 
-D orka.ads		20250215191640 46d22267 orka%s
-D orka-simd.ads		20250215191640 af6b2ebe orka.simd%s
-D orka-simd-avx.ads	20250215191640 ce60f0e0 orka.simd.avx%s
-D orka-simd-avx-doubles.ads  20250215191640 dc7ed170 orka.simd.avx.doubles%s
-D orka-simd-avx-doubles-swizzle.ads  20250215191640 2e6d7f18 orka.simd.avx.doubles.swizzle%s
-D orka-simd-avx-doubles-swizzle.adb  20250215191640 2ec3cd8f orka.simd.avx.doubles.swizzle%b
-D orka-simd-sse.ads	20250215191640 f8acd7fb orka.simd.sse%s
-D orka-simd-sse-singles.ads  20250215191640 ced4f30d orka.simd.sse.singles%s
-D orka-simd-sse2.ads	20250215191640 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-doubles.ads  20250215191640 e1bbae56 orka.simd.sse2.doubles%s
+D orka.ads		20250215195514 46d22267 orka%s
+D orka-simd.ads		20250215195512 af6b2ebe orka.simd%s
+D orka-simd-avx.ads	20250215195512 ce60f0e0 orka.simd.avx%s
+D orka-simd-avx-doubles.ads  20250215195512 dc7ed170 orka.simd.avx.doubles%s
+D orka-simd-avx-doubles-swizzle.ads  20250215195512 2e6d7f18 orka.simd.avx.doubles.swizzle%s
+D orka-simd-avx-doubles-swizzle.adb  20250215195512 2ec3cd8f orka.simd.avx.doubles.swizzle%b
+D orka-simd-sse.ads	20250215195512 f8acd7fb orka.simd.sse%s
+D orka-simd-sse-singles.ads  20250215195512 ced4f30d orka.simd.sse.singles%s
+D orka-simd-sse2.ads	20250215195512 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20250215195512 e1bbae56 orka.simd.sse2.doubles%s
 D system.ads		20240801081714 e4f8b086 system%s
-D "c:\users\natha\documents\nathanael's files\nathanael's school\college\3rd year\senior project\del2.0\math_pkg\orka_simd\gnat.adc"  20250215191640 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215195512 00000000
 G a e
 G c Z s s [shuffle_within_lanes orka__simd__avx__doubles__swizzle 26 13 none]
 G c Z s s [unpack_high orka__simd__avx__doubles__swizzle 48 13 none]

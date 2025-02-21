@@ -1,7 +1,7 @@
-with Orka.Numerics.Singles.Tensors;
 with Del.JSON; use Del.JSON;
 
 package Del.Model is
+
    type Model is tagged private;
 
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T);
@@ -20,14 +20,14 @@ package Del.Model is
 
    procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T);
 
+   function Get_Params(Self : Model) return Layer_Vectors.Vector;
+
 private
-   package Layer_Vectors is new
-     Ada.Containers.Vectors
-       (Index_Type   => Positive,
-        Element_Type => Func_Access_T);
 
    type Model is tagged record
       Layers    : Layer_Vectors.Vector;
       Loss_Func : Loss_Access_T;
+      Optimizer : Optim_Access_T;
    end record;
+
 end Del.Model;
