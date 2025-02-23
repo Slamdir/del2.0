@@ -2,6 +2,7 @@ with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Ada.Numerics.Float_Random;
+with Del.Utilities; 
 
 package body Del.Model is
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T) is
@@ -16,100 +17,101 @@ package body Del.Model is
 
  procedure Train_Model
      (Self       : in Model;
-      Num_Epochs : Positive;
       Data       : Tensor_T;
       Labels     : Tensor_T;
-      JSON_File  : String := "";
-      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
-      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
+      Batch_Size : Positive;
+      Num_Epochs : Positive)
+      --  JSON_File  : String := "";
+      --  JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
+      --  JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
    is
-      type Index_Array is array (Positive range <>) of Integer;
-      Indecies        : Index_Array(1..Shape(Data)(1));
-      Training_Data   : Tensor_T := Data;
-      Training_Labels : Tensor_T := Labels;
+      package Util renames Del.Utilities;
       Loss_Value : Element_T;
    begin
-      -- If JSON file is provided, load data from it
-      if JSON_File /= "" then
-         Put_Line("Loading data from JSON file: " & JSON_File);
-         declare
-            Dataset : constant Dataset_Array := Load_Dataset(
-               Filename => JSON_File,
-               Data_Shape => JSON_Data_Shape,
-               Target_Shape => JSON_Target_Shape);
-         begin
-            Training_Data := Dataset(1).Data.all;
-            Training_Labels := Dataset(1).Target.all;
-            Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-         end;
-      end if;
-
-      -- self: item calling the function?
-      -- data: input node values
-      -- target: target label (same size as input node values)
-      -- batch_size: size of batches input node data is handled in
-      -- num_epochs: number of repitions on the passed dataset (should be kept at 1 or a low number to avoid overfit)
-      -- optimizer: object that handles gradient decent
-      -- loss_fn: object that handles loss function
-      -- def fit(self,data,target,batch_size,num_epochs,optimizer,loss_fn):
-
+      --  -- If JSON file is provided, load data from it
+      --  if JSON_File /= "" then
+      --     Put_Line("Loading data from JSON file: " & JSON_File);
+      --     declare
+      --        Dataset : constant Dataset_Array := Load_Dataset(
+      --           Filename => JSON_File,
+      --           Data_Shape => JSON_Data_Shape,
+      --           Target_Shape => JSON_Target_Shape);
+      --     begin
+      --        Training_Data := Dataset(1).Data.all;
+      --        Training_Labels := Dataset(1).Target.all;
+      --        Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+      --     end;
+      --  end if;
       for epoch in 1 .. Num_Epochs loop
-      --Just to have this compile
-      Put_Line("");
-            -- shuffle Indecies
-
-
-            -- shuffle -- generate a complete and distinct set of index values the same size as the dataset and store in shuffle object
-            -- loop accross number of batches in data (last one may be incomplete)
-                -- reset optimizer internal values for new loop
-                -- feedforward next batchsize of data (loop)
-                -- find average loss
-                -- loss := loss_fn.forward(X,Y) -- average loss
-                -- grad := loss_fn.backward() -- initial gradient
-                -- loop to compute remaining gradients
-                -- optimizer.step()
-                     -- apply gradient changes accross all weights and biases
-        -- return loss_history
-      end loop;
-
-      for I in 1 .. Num_Epochs loop
-         Put_Line("Epoch:" & I'Image);
-         
          declare
-            -- Forward pass
-            Output : Tensor_T := Run_Layers(Self, Training_Data);
+            -- shuffle Indecies
+            Indecies : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
          begin
-            if Self.Loss_Func /= null then
-               -- Compute loss and gradient
-               Loss_Value := Self.Loss_Func.Forward(Training_Labels, Output);
-               
+            -- loop accross number of batches in data (last one may be incomplete)
+            for batch in 1 .. (Shape(Data)(1) / Batch_Size) loop
                declare
-                  Loss_Grad : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Output);
-                  Grad : Tensor_T := Loss_Grad;
-                  C : Layer_Vectors.Cursor := Self.Layers.Last;
+                  Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
+                  Training_Labels : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
+                  Actual_Labels   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
+                  max_Index       : Positive;
+                  data_Index      : Positive := 1;
                begin
-                  -- Backward pass through all layers
-                  while Layer_Vectors.Has_Element(C) loop
+                  if Shape(Data)(1) < (batch * Batch_Size) then
+                     max_Index := Shape(Data)(1);
+                  else
+                     max_Index := (batch * Batch_Size);
+                  end if;
+
+                  -- grab batch of training data and labels
+                  for batch_Index in (((batch - 1) * Batch_Size) + 1) .. max_Index loop
                      declare
-                        Current_Layer : constant Func_Access_T := Layer_Vectors.Element(C);
+                        Row_Data  : Tensor_T := Data(Indecies(batch_Index));
+                        Row_Label : Tensor_T := Labels(Indecies(batch_Index));
                      begin
-                        Grad := Current_Layer.all.Backward(Grad);
+                        Training_Data.Set(Index => data_Index, Value => Row_Data);
+                        Training_Labels.Set(Index => data_Index, Value => Row_Label);
+                        data_Index := data_Index + 1;
                      end;
-                     Layer_Vectors.Previous(C);
                   end loop;
+
+                  -- reset optimizer internal values for new loop
+                  Self.Optimizer.Zero_Gradient(Self.Layers);
+
+                  -- feedforward next batchsize of data (loop)
+                  Actual_Labels := Self.Run_Layers(Training_Data);
+
+                  -- loss := loss_fn.forward(X,Y) -- average loss
+                  Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
+
+                  -- grad := loss_fn.backward() -- initial gradient
+                  declare
+                     Gradient    : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Actual_Labels); 
+                     Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
+                  begin
+
+                     -- loop to compute remaining gradients
+                     while Layer_Vectors.Has_Element(Cursor) loop
+                        Gradient := Layer_Vectors.Element(Cursor).Backward(Gradient);
+                        Layer_Vectors.Previous(Cursor);
+                     end loop;
+
+                     -- apply gradient changes accross all weights and biases
+                     Self.Optimizer.Step (Self.Layers);
+                  end;
+
+                  -- Output loss for user feedback
+                  Put_Line("Loss of previous pass: " & Loss_Value'Image);
                end;
-               
-               Put_Line("Loss:" & Loss_Value'Image);
-            end if;
+            end loop;
          end;
       end loop;
-   exception
-      when E : JSON_Parse_Error =>
-         Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
-         raise;
-      when E : others =>
-         Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
-         raise;
+   --  exception
+   --     when E : JSON_Parse_Error =>
+   --        Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
+   --        raise;
+   --     when E : others =>
+   --        Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
+   --        raise;
    end Train_Model;
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T is

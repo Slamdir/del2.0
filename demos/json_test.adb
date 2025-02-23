@@ -38,24 +38,25 @@ begin
       declare
          Layer1 : Func_Access_T := new Linear_T;
       begin
-         Put_Line("Initializing layer...");
-         Linear_T(Layer1.all).Initialize(2, 4);  
+      Put_Line("");
+         --  Put_Line("Initializing layer...");
+         --  Linear_T(Layer1.all).Initialize(2, 4);  
          
-         Put_Line("Adding layer to model...");
-         Del.Model.Add_Layer(My_Model, Layer1);
+         --  Put_Line("Adding layer to model...");
+         --  Del.Model.Add_Layer(My_Model, Layer1);
          
-         Put_Line("Attempting to load and process JSON data...");
-         -- Use unified Train_Model with all parameters
-         Del.Model.Train_Model(
-            Self => My_Model,
-            Num_Epochs => 1,
-            Data => Empty_Tensor,
-            Labels => Empty_Tensor,
-            JSON_File => Json_Filename,
-            JSON_Data_Shape => Data_Shape,
-            JSON_Target_Shape => Target_Shape);
+         --  Put_Line("Attempting to load and process JSON data...");
+         --  -- Use unified Train_Model with all parameters
+         --  Del.Model.Train_Model(
+         --     Self => My_Model,
+         --     Num_Epochs => 1,
+         --     Data => Empty_Tensor,
+         --     Labels => Empty_Tensor,
+         --     JSON_File => Json_Filename,
+         --     JSON_Data_Shape => Data_Shape,
+         --     JSON_Target_Shape => Target_Shape);
             
-         Put_Line("JSON loading test completed successfully!");
+         --  Put_Line("JSON loading test completed successfully!");
       end;
    end;
    

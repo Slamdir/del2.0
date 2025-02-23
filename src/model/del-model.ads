@@ -9,12 +9,10 @@ package Del.Model is
    -- Unified training procedure that handles both tensor and JSON input
    procedure Train_Model
      (Self       : in Model;
-      Num_Epochs : Positive;
       Data       : Tensor_T;
       Labels     : Tensor_T;
-      JSON_File  : String := "";           -- Optional JSON file
-      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);  -- Shape for JSON data
-      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1)); -- Shape for JSON targets
+      Batch_Size : Positive;
+      Num_Epochs : Positive);
 
    function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T;
 
