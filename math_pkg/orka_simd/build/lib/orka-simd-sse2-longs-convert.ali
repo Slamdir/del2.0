@@ -41,17 +41,17 @@ W orka.simd.sse2.integers%s  orka-simd-sse2-integers.ads  orka-simd-sse2-integer
 W orka.simd.sse2.integers.shift%s  orka-simd-sse2-integers-shift.adb  orka-simd-sse2-integers-shift.ali
 W orka.simd.sse2.longs%s  orka-simd-sse2-longs.ads  orka-simd-sse2-longs.ali
 
-D orka.ads		20250214151732 46d22267 orka%s
-D orka-simd.ads		20250214151732 af6b2ebe orka.simd%s
-D orka-simd-sse2.ads	20250214151732 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-doubles.ads  20250214151732 e1bbae56 orka.simd.sse2.doubles%s
-D orka-simd-sse2-doubles-arithmetic.ads  20250214151732 308afe0b orka.simd.sse2.doubles.arithmetic%s
-D orka-simd-sse2-integers.ads  20250214151732 843c4788 orka.simd.sse2.integers%s
-D orka-simd-sse2-integers-shift.ads  20250214151732 b21cdf8f orka.simd.sse2.integers.shift%s
-D orka-simd-sse2-longs.ads  20250214151732 c218be70 orka.simd.sse2.longs%s
-D orka-simd-sse2-longs-convert.ads  20250214151732 a392a9b0 orka.simd.sse2.longs.convert%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20250215192558 e1bbae56 orka.simd.sse2.doubles%s
+D orka-simd-sse2-doubles-arithmetic.ads  20250215192558 308afe0b orka.simd.sse2.doubles.arithmetic%s
+D orka-simd-sse2-integers.ads  20250215192558 843c4788 orka.simd.sse2.integers%s
+D orka-simd-sse2-integers-shift.ads  20250215192558 b21cdf8f orka.simd.sse2.integers.shift%s
+D orka-simd-sse2-longs.ads  20250215192558 c218be70 orka.simd.sse2.longs%s
+D orka-simd-sse2-longs-convert.ads  20250215192558 a392a9b0 orka.simd.sse2.longs.convert%s
 D system.ads		20240801081714 e4f8b086 system%s
-D c:\users\rajes\downloads\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250214151732 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s s [convert orka__simd__sse2__longs__convert 28 13 none]
 G c Z s s [convert orka__simd__sse2__longs__convert 31 13 none]

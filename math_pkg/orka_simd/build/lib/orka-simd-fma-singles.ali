@@ -33,12 +33,12 @@ RR MAX_ASYNCHRONOUS_SELECT_NESTING=0
 U orka.simd.fma.singles%s  orka-simd-fma-singles.ads  97c60385 NE OO PU PK
 W orka.simd.fma%s	orka-simd-fma.ads	orka-simd-fma.ali
 
-D orka.ads		20250214151732 46d22267 orka%s
-D orka-simd.ads		20250214151732 af6b2ebe orka.simd%s
-D orka-simd-fma.ads	20250214151732 79816a32 orka.simd.fma%s
-D orka-simd-fma-singles.ads  20250214151732 ee4769b7 orka.simd.fma.singles%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-fma.ads	20250215192558 79816a32 orka.simd.fma%s
+D orka-simd-fma-singles.ads  20250215192558 ee4769b7 orka.simd.fma.singles%s
 D system.ads		20240801081714 e4f8b086 system%s
-D c:\users\rajes\downloads\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250214151732 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 X 1 orka.ads
 17K9*Orka 98e9 4|17r9 19r5

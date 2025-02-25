@@ -1,5 +1,7 @@
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Streams.Stream_IO;
 with Del.Model;
+with Interfaces;
 
 package Del.ONNX is
    ONNX_Error : exception;
@@ -24,7 +26,18 @@ package Del.ONNX is
       ReLU,
       Unknown
    );
-
+   
+   -- Protobuf field types
+   type Field_Type is (
+      VARINT,
+      FIXED64,
+      LENGTH_DELIMITED,
+      START_GROUP,
+      END_GROUP,
+      FIXED32
+   );
+   
+   Wire_Type_Length : constant := 2;  -- LENGTH_DELIMITED wire type
    
    Max_IO_Count : constant := 10;
    subtype IO_Index is Positive range 1 .. Max_IO_Count;
@@ -40,10 +53,37 @@ package Del.ONNX is
       Output_Count : Natural := 0;
    end record;
 
-   -- Core procedures
+   -- Core procedures for ONNX import/export
    procedure Load_ONNX_Model(
       Model : in out Del.Model.Model;
       Filename : String);
+      
+   procedure Save_ONNX_Model(
+      Model : in Del.Model.Model;
+      Filename : String);
+
+   
+   procedure Write_Field_Header(
+      Stream : Ada.Streams.Stream_IO.Stream_Access;
+      Field_Number : Positive;
+      Wire_Type : Field_Type);
+      
+   procedure Write_String_Field(
+      Stream : Ada.Streams.Stream_IO.Stream_Access;
+      Field_Number : Positive;
+      Value : String);
+      
+   procedure Write_Varint(
+      Stream : Ada.Streams.Stream_IO.Stream_Access;
+      Value : Interfaces.Unsigned_32);
+      
+   procedure Write_Tensor_Dimensions(
+      Stream : Ada.Streams.Stream_IO.Stream_Access;
+      Shape : Tensor_Shape_T);
+      
+   procedure Write_Tensor_Data(
+      Stream : Ada.Streams.Stream_IO.Stream_Access;
+      Tensor : in Tensor_T);
 
 private
    -- Internal procedures

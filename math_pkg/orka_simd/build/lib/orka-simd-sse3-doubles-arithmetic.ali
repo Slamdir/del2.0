@@ -37,15 +37,15 @@ W orka.simd.sse2%s	orka-simd-sse2.ads	orka-simd-sse2.ali
 W orka.simd.sse2.doubles%s  orka-simd-sse2-doubles.ads  orka-simd-sse2-doubles.ali
 W orka.simd.sse3.doubles%s  orka-simd-sse3-doubles.ads  orka-simd-sse3-doubles.ali
 
-D orka.ads		20250214151732 46d22267 orka%s
-D orka-simd.ads		20250214151732 af6b2ebe orka.simd%s
-D orka-simd-sse2.ads	20250214151732 a0948dbe orka.simd.sse2%s
-D orka-simd-sse2-doubles.ads  20250214151732 e1bbae56 orka.simd.sse2.doubles%s
-D orka-simd-sse3.ads	20250214151732 0e1275ce orka.simd.sse3%s
-D orka-simd-sse3-doubles.ads  20250214151732 6977661d orka.simd.sse3.doubles%s
-D orka-simd-sse3-doubles-arithmetic.ads  20250214151732 2a7f61fe orka.simd.sse3.doubles.arithmetic%s
+D orka.ads		20250215192558 46d22267 orka%s
+D orka-simd.ads		20250215192558 af6b2ebe orka.simd%s
+D orka-simd-sse2.ads	20250215192558 a0948dbe orka.simd.sse2%s
+D orka-simd-sse2-doubles.ads  20250215192558 e1bbae56 orka.simd.sse2.doubles%s
+D orka-simd-sse3.ads	20250215192558 0e1275ce orka.simd.sse3%s
+D orka-simd-sse3-doubles.ads  20250215192558 6977661d orka.simd.sse3.doubles%s
+D orka-simd-sse3-doubles-arithmetic.ads  20250215192558 2a7f61fe orka.simd.sse3.doubles.arithmetic%s
 D system.ads		20240801081714 e4f8b086 system%s
-D c:\users\rajes\downloads\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250214151732 00000000
+D m:\vsada\del2.0\math_pkg\orka_simd\gnat.adc  20250215192558 00000000
 G a e
 G c Z s s [add_subtract orka__simd__sse3__doubles__arithmetic 24 13 none]
 G c Z s s [horizontal_add orka__simd__sse3__doubles__arithmetic 29 13 none]
