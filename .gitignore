@@ -2,3 +2,7 @@
 /bin/
 /alire/
 /config/
+/math_pkg/orka_types/build/
+/math_pkg/orka_smid/build/
+/math_pkg/orka_tensors_cpu/build/
+/math_pkg/orka_numerics/build/
