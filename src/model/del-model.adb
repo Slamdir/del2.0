@@ -2,166 +2,175 @@ with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Ada.Numerics.Float_Random;
-with Del.Utilities; 
+with Del.Utilities;
+with Ada.Text_IO; use Ada.Text_IO;
 
 package body Del.Model is
-   procedure Add_Layer(Self : in out Model; Layer : Func_Access_T) is
+   procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
    begin
-       Self.Layers.Append(Layer);
+      Self.Layers.Append (Layer);
    end Add_Layer;
 
-   procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T) is 
+   procedure Add_Loss (Self : in out Model; Loss_Func : Loss_Access_T) is 
    begin 
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
 
- procedure Train_Model
+   procedure Train_Model
      (Self       : in Model;
       Data       : Tensor_T;
       Labels     : Tensor_T;
       Batch_Size : Positive;
       Num_Epochs : Positive)
-      --  JSON_File  : String := "";
-      --  JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
-      --  JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1))
    is
       package Util renames Del.Utilities;
       Loss_Value : Element_T;
    begin
-      --  -- If JSON file is provided, load data from it
-      --  if JSON_File /= "" then
-      --     Put_Line("Loading data from JSON file: " & JSON_File);
-      --     declare
-      --        Dataset : constant Dataset_Array := Load_Dataset(
-      --           Filename => JSON_File,
-      --           Data_Shape => JSON_Data_Shape,
-      --           Target_Shape => JSON_Target_Shape);
-      --     begin
-      --        Training_Data := Dataset(1).Data.all;
-      --        Training_Labels := Dataset(1).Target.all;
-      --        Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-      --     end;
-      --  end if;
       for epoch in 1 .. Num_Epochs loop
          declare
-            -- shuffle Indecies
-            Indecies : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
+            -- Shuffle indices
+            Indices : Util.Integer_Array := Util.Generate_Random_List (Shape (Data) (1));
          begin
-            -- loop accross number of batches in data (last one may be incomplete)
-            for batch in 1 .. (Shape(Data)(1) / Batch_Size) loop
+            -- Loop across number of batches in data (last one may be incomplete)
+            for batch in 1 .. (Shape (Data) (1) / Batch_Size) loop
                declare
-                  Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
-                  Training_Labels : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
-                  Actual_Labels   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
+                  Training_Data   : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
+                  Training_Labels : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
+                  Actual_Labels   : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
                   max_Index       : Positive;
                   data_Index      : Positive := 1;
                begin
-                  if Shape(Data)(1) < (batch * Batch_Size) then
-                     max_Index := Shape(Data)(1);
+                  if Shape (Data) (1) < (batch * Batch_Size) then
+                     max_Index := Shape (Data) (1);
                   else
                      max_Index := (batch * Batch_Size);
                   end if;
 
-                  -- grab batch of training data and labels
+                  -- Grab batch of training data and labels
                   for batch_Index in (((batch - 1) * Batch_Size) + 1) .. max_Index loop
                      declare
-                        Row_Data  : Tensor_T := Data(Indecies(batch_Index));
-                        Row_Label : Tensor_T := Labels(Indecies(batch_Index));
+                        Row_Data  : Tensor_T := Data (Indices (batch_Index));
+                        Row_Label : Tensor_T := Labels (Indices (batch_Index));
                      begin
-                        Training_Data.Set(Index => data_Index, Value => Row_Data);
-                        Training_Labels.Set(Index => data_Index, Value => Row_Label);
+                        Training_Data.Set (Index => data_Index, Value => Row_Data);
+                        Training_Labels.Set (Index => data_Index, Value => Row_Label);
                         data_Index := data_Index + 1;
                      end;
                   end loop;
 
-                  -- reset optimizer internal values for new loop
-                  Self.Optimizer.Zero_Gradient(Self.Layers);
+                  -- Reset optimizer internal values for new loop
+                  Self.Optimizer.Zero_Gradient (Self.Layers);
 
-                  -- feedforward next batchsize of data (loop)
-                  Actual_Labels := Self.Run_Layers(Training_Data);
+                  -- Feedforward next batch of data
+                  Actual_Labels := Self.Run_Layers (Training_Data);
 
-                  -- loss := loss_fn.forward(X,Y) -- average loss
-                  Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
+                  -- Compute loss
+                  Loss_Value := Self.Loss_Func.Forward (Training_Labels, Actual_Labels);
 
-                  -- grad := loss_fn.backward() -- initial gradient
+                  -- Backpropagation
                   declare
-                     Gradient    : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Actual_Labels); 
+                     Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
                      Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
                   begin
-
-                     -- loop to compute remaining gradients
-                     while Layer_Vectors.Has_Element(Cursor) loop
-                        Gradient := Layer_Vectors.Element(Cursor).Backward(Gradient);
-                        Layer_Vectors.Previous(Cursor);
+                     while Layer_Vectors.Has_Element (Cursor) loop
+                        Gradient := Layer_Vectors.Element (Cursor).Backward (Gradient);
+                        Layer_Vectors.Previous (Cursor);
                      end loop;
 
-                     -- apply gradient changes accross all weights and biases
+                     -- Apply gradient changes
                      Self.Optimizer.Step (Self.Layers);
                   end;
 
                   -- Output loss for user feedback
-                  Put_Line("Loss of previous pass: " & Loss_Value'Image);
+                  Put_Line ("Loss of previous pass: " & Loss_Value'Image);
                end;
             end loop;
          end;
       end loop;
-   --  exception
-   --     when E : JSON_Parse_Error =>
-   --        Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
-   --        raise;
-   --     when E : others =>
-   --        Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
-   --        raise;
    end Train_Model;
 
-   function Run_Layers(Self : in Model; Input : Tensor_T) return Tensor_T is
+   procedure Train_Model_JSON
+     (Self          : in out Model;
+      JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T;
+      Batch_Size    : Positive;
+      Num_Epochs    : Positive)
+   is
+      Dataset : constant Dataset_Array := Load_Dataset
+        (Filename     => JSON_File,
+         Data_Shape   => Data_Shape,
+         Target_Shape => Target_Shape);
+      Training_Data   : Tensor_T := Dataset (1).Data.all;
+      Training_Labels : Tensor_T := Dataset (1).Target.all;
    begin
-      Put_Line("Run_Layers called with input shape: " & 
-               Shape(Input)(1)'Image & "," & Shape(Input)(2)'Image);
+      Put_Line ("Loading data from JSON file: " & JSON_File);
+      Put_Line ("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+
+      -- Call Train_Model with the loaded data
+      Train_Model
+        (Self       => Self,
+         Data       => Training_Data,
+         Labels     => Training_Labels,
+         Batch_Size => Batch_Size,
+         Num_Epochs => Num_Epochs);
+   exception
+      when E : JSON_Parse_Error =>
+         Put_Line ("Error loading JSON data: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+      when E : others =>
+         Put_Line ("Unexpected error: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+   end Train_Model_JSON;
+
+   function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
+   begin
+      Put_Line ("Run_Layers called with input shape: " & 
+                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
                
       if Self.Layers.Length = 0 then
-          Put_Line("No layers in network");
-          return Input;
+         Put_Line ("No layers in network");
+         return Input;
       end if;
 
-      Put_Line("Network has" & Self.Layers.Length'Image & " layers");
+      Put_Line ("Network has" & Self.Layers.Length'Image & " layers");
 
       declare
          Current_Input : Tensor_T := Input;
          First_Layer  : constant Func_Access_T := Self.Layers.First_Element;
-         First_Output : constant Tensor_T := First_Layer.all.Forward(Current_Input);
+         First_Output : constant Tensor_T := First_Layer.all.Forward (Current_Input);
          Result : Tensor_T := First_Output;
          C : Layer_Vectors.Cursor := Self.Layers.First;
       begin
          -- Skip the first element since we've already processed it
-         Layer_Vectors.Next(C);
+         Layer_Vectors.Next (C);
          
-         while Layer_Vectors.Has_Element(C) loop
-             Put_Line("Processing next layer");
-             Put_Line("Current input shape: " & Shape(Result)(1)'Image & "," & Shape(Result)(2)'Image);
-             
-             declare
-                Current_Layer : constant Func_Access_T := Layer_Vectors.Element(C);
-             begin
-                Result := Current_Layer.all.Forward(Result);
-             end;
-             
-             Put_Line("Layer output shape: " & Shape(Result)(1)'Image & "," & Shape(Result)(2)'Image);
-             Layer_Vectors.Next(C);
+         while Layer_Vectors.Has_Element (C) loop
+            Put_Line ("Processing next layer");
+            Put_Line ("Current input shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
+            
+            declare
+               Current_Layer : constant Func_Access_T := Layer_Vectors.Element (C);
+            begin
+               Result := Current_Layer.all.Forward (Result);
+            end;
+            
+            Put_Line ("Layer output shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
+            Layer_Vectors.Next (C);
          end loop;
          
          return Result;
       end;
    exception
       when E : others =>
-         Put_Line("Error in Run_Layers: ");
-         Put_Line(Ada.Exceptions.Exception_Information(E));
+         Put_Line ("Error in Run_Layers: ");
+         Put_Line (Ada.Exceptions.Exception_Information (E));
          raise;
    end Run_Layers;
 
-function Get_Params(Self : Model) return Layer_Vectors.Vector is
-begin
-   return Self.Layers;
-end Get_Params;
+   function Get_Params (Self : Model) return Layer_Vectors.Vector is
+   begin
+      return Self.Layers;
+   end Get_Params;
 
 end Del.Model;

@@ -145,29 +145,38 @@ function Load_Dataset
          JSON_Data : constant JSON_Value := Read(To_String(Content));
          Data_Array : constant JSON_Array := Get_JSON_Array(JSON_Data, "data");
          Label_Array : constant JSON_Array := Get_JSON_Array(JSON_Data, "labels");
-         Dataset : Dataset_Array(1 .. 1);  -- Start with one entry
+         Num_Samples : constant Positive := Length(Data_Array);
+         Dataset : Dataset_Array(1 .. Num_Samples);
       begin
-         Put_Line("Data array length:" & Length(Data_Array)'Image);
-         Put_Line("Label array length:" & Length(Label_Array)'Image);
+         -- Validate that data and labels have the same length
+         if Length(Data_Array) /= Length(Label_Array) then
+            raise JSON_Parse_Error with "Data and labels arrays have different lengths";
+         end if;
          
-         -- Convert the first data entry into a tensor
-         declare
-            First_Data : constant JSON_Array := Get(Get(Data_Array, 1));
-         begin
-            Dataset(1).Data := new Tensor_T'(From_JSON_Array(First_Data, Data_Shape));
-         end;
-
-         
-         declare
-            Label_Value : constant JSON_Value := Get(Label_Array, 1);
-            Label : constant Integer := Integer'(Label_Value.Get);
-            Target : Tensor_T := Zeros(Target_Shape);
-         begin
-            Put_Line("Label value:" & Label'Image);
-            
-            Target.Set((1, Label), 1.0);
-            Dataset(1).Target := new Tensor_T'(Target);
-         end;
+         -- Process each sample
+         for I in 1 .. Num_Samples loop
+            declare
+               Sample_Data : constant JSON_Array := Get(Get(Data_Array, I));
+               Label_Value : constant JSON_Value := Get(Label_Array, I);
+               Label : constant Integer := Integer'(Label_Value.Get);
+            begin
+               -- Validate label is within expected range (1 to 4)
+               if Label < 1 or Label > Target_Shape(2) then
+                  raise JSON_Parse_Error with "Label " & Label'Image & " out of bounds for Target_Shape " & Target_Shape(2)'Image;
+               end if;
+               
+               -- Create Data tensor for this sample (shape should be (1, num_features), e.g., (1, 2))
+               Dataset(I).Data := new Tensor_T'(From_JSON_Array(Sample_Data, Data_Shape));
+               
+               -- Create Target tensor for this sample (shape should be (1, num_classes), e.g., (1, 4))
+               declare
+                  Target : Tensor_T := Zeros(Target_Shape);
+               begin
+                  Target.Set((1, Label), 1.0);
+                  Dataset(I).Target := new Tensor_T'(Target);
+               end;
+            end;
+         end loop;
          
          return Dataset;
       end;
