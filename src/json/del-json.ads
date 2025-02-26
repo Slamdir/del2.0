@@ -1,9 +1,6 @@
 -- File: del-json.ads
 with GNATCOLL.JSON; use GNATCOLL.JSON;
-with Orka.Numerics.Singles.Tensors;
-with Del; use Del;
 with Ada.Strings.Unbounded;
-with Ada.Text_IO;
 with Ada.Containers;
 
 package Del.JSON is

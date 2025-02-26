@@ -43,7 +43,7 @@ begin
    Original_Model.Train_Model(
       Num_Epochs => 5,
       Data => Test_Data,
-      Labels => Test_Labels);
+      Labels => Test_Labels, Batch_Size => 1);
    
    -- Step 2: Export the trained model
    Put_Line("Exporting model to: " & Export_Path);
@@ -73,7 +73,7 @@ begin
    Loaded_Model.Train_Model(
       Num_Epochs => 5,
       Data => Test_Data,
-      Labels => Test_Labels);
+      Labels => Test_Labels, Batch_Size => 1);
    
    Put_Line("Test completed successfully!");
 exception

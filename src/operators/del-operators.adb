@@ -1,74 +1,48 @@
-with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Numerics;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
-
 with Ada.Real_Time; use Ada.Real_Time;
-
 package body Del.Operators is
 
    procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive) is
       -- Initialize with uniform random values between -0.1 and 0.1 for stable training
       Weights : Tensor_T := Random_Uniform((In_Nodes, Out_Nodes));
-      Bias    : Tensor_T := Zeros((1, Out_Nodes));
-      Map     : Data_Maps.Map := L.Map;
+      Bias    : Tensor_T := Random_Uniform((1, Out_Nodes));
+
+      Weights_Grad : Tensor_T := Zeros((In_Nodes, Out_Nodes));
+      Bias_Grad : Tensor_T := Zeros((1, Out_Nodes));
+
+      Weights_Velocity : Tensor_T := Zeros((In_Nodes, Out_Nodes));
+      Bias_Velocity : Tensor_T := Zeros((1, Out_Nodes));
    begin
-      Put_Line(Weights.Image);
-      Map.Insert("weights", Weights);
-      Map.Insert("bias", Bias);
-      L.Map := Map;
+      L.Map.Insert("weights", Weights);
+      L.Map.Insert("bias", Bias);
+
+      L.Map.Insert("weights_grad", Weights_Grad);
+      L.Map.Insert("bias_grad", Bias_Grad);
+
+      L.Map.Insert("weights_velocity", Weights_Velocity);
+      L.Map.Insert("bias_velocity", Bias_Velocity);
    end Initialize;
 
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T is
          Weights : constant Tensor_T := L.Map("weights");
          Bias    : constant Tensor_T := L.Map("bias");
-         Map : Data_Maps.Map := L.Map;
-         Batch_Size : constant Positive := Shape(X)(1);
-         Out_Size : constant Positive := Shape(Weights)(2);
-         Output : Tensor_T := Zeros((Batch_Size, Out_Size));  -- Initialize with correct dimensions
+
+         Temp    : constant Tensor_T := X * Weights;
+         Output  : constant Tensor_T := Temp + Bias; 
       begin
          -- Store input for backward pass using Include instead of Insert
-         Map.Include("input", X);
-         L.Map := Map;
-         
-         for i in 1 .. Batch_Size loop
-            for j in 1 .. Out_Size loop
-               declare
-                  Sum : Element_T := 0.0;
-               begin
-                  -- Dot product for this output element
-                  for k in 1 .. Shape(Weights)(1) loop
-                     declare
-                        X_Val : constant Element_T := X.Get((i, k));
-                        W_Val : constant Element_T := Weights.Get((k, j));
-                     begin
-                        Sum := Sum + X_Val * W_Val;
-                     end;
-                  end loop;
-                  -- Add bias
-                  Sum := Sum + Bias.Get((1, j));
-                  -- Set output
-                  Output.Set((i, j), Sum);
-               end;
-            end loop;
-         end loop;
-         
+         L.Map.Include("input", X);
          return Output;
       end Forward;
 
    overriding function Backward (L : in out Linear_T; Dy : Tensor_T) return Tensor_T is
-      Input   : constant Tensor_T := L.Map("input");
-      Weights : constant Tensor_T := L.Map("weights");
+      Input      : constant Tensor_T := L.Map("input");
+      Weights    : constant Tensor_T := L.Map("weights");
       Batch_Size : constant Positive := Shape(Input)(1);
-      
-      -- Get current gradients or initialize if they don't exist
-      Weights_Grad : Tensor_T := (if L.Map.Contains("weights_grad") 
-                                 then L.Map("weights_grad") 
-                                 else Zeros(Shape(Weights)));
-      Bias_Grad    : Tensor_T := (if L.Map.Contains("bias_grad") 
-                                 then L.Map("bias_grad") 
-                                 else Zeros((1, Shape(Weights)(2))));
-      Map : Data_Maps.Map := L.Map;
-      
+
+      -- Get current gradients
+      Weights_Grad   : Tensor_T := L.Map("weights_grad");
+      Bias_Grad      : Tensor_T := L.Map("bias_grad");
+
       -- For computing bias gradients
       New_Bias_Grad : Tensor_T := Zeros((1, Shape(Dy)(2)));
       Sum_Row : Tensor_T := Dy(1);  -- Initialize with first row
@@ -88,9 +62,8 @@ package body Del.Operators is
       Bias_Grad := Add(Bias_Grad, New_Bias_Grad);
       
       -- Store updated gradients
-      Map.Insert("weights_grad", Weights_Grad);
-      Map.Insert("bias_grad", Bias_Grad);
-      L.Map := Map;
+      L.Map("weights_grad") := Weights_Grad;
+      L.Map("bias_grad")    := Bias_Grad;
       
       -- Return gradient with respect to input
       -- grad_input = dy * weights.T
@@ -116,7 +89,7 @@ package body Del.Operators is
 
    overriding function Backward (L : in out ReLU_T; Dy : Tensor_T) return Tensor_T is
       Zero : Tensor_T := Zeros(Dy.Shape);
-      Map : Data_Maps.Map := L.Map;
+      Map  : Data_Maps.Map := L.Map;
    begin
       if Map.Contains("forward_output") then
          declare

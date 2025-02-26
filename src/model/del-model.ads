@@ -1,8 +1,7 @@
-with Ada.Containers.Vectors;
-with Orka.Numerics.Singles.Tensors;
 with Del.JSON; use Del.JSON;
 
 package Del.Model is
+
    type Model is tagged private;
 
    -- Layer management
@@ -19,27 +18,30 @@ package Del.Model is
    -- Training procedure
    procedure Train_Model(
       Self       : in Model;
-      Num_Epochs : Positive;
       Data       : Tensor_T;
       Labels     : Tensor_T;
-      JSON_File  : String := "";
-      JSON_Data_Shape   : Tensor_Shape_T := (1 => 1, 2 => 1);
-      JSON_Target_Shape : Tensor_Shape_T := (1 => 1, 2 => 1));
+      Batch_Size : Positive;
+      Num_Epochs : Positive);
 
-   -- ONNX export
+   -- Training procedure with JSON file input
+   procedure Train_Model_JSON
+     (Self          : in out Model;
+      JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T;
+      Batch_Size    : Positive;
+      Num_Epochs    : Positive);
+
    procedure Export_ONNX(
       Self : in Model;
       Filename : String);
 
 private
-   package Layer_Vectors is new
-     Ada.Containers.Vectors
-       (Index_Type   => Positive,
-        Element_Type => Func_Access_T);
 
    type Model is tagged record
       Layers    : Layer_Vectors.Vector;
       Loss_Func : Loss_Access_T;
+      Optimizer : Optim_Access_T;
    end record;
    
    -- Make Layer_Vectors visible to ONNX package

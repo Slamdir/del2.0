@@ -64,6 +64,7 @@ begin
       Print_Shape(Bias, "Bias");
    end;
    
+   Put_Line("");
    -- Test forward pass
    Put_Line("2. Testing Forward Pass");
    Put_Line("Input Data:");
@@ -81,6 +82,7 @@ begin
          Put_Line("Error in forward pass: " & Ada.Exceptions.Exception_Information(E));
    end;
    
+   Put_Line("");
    -- Test backward pass
    Put_Line("3. Testing Backward Pass");
    Put_Line("Gradient Data:");

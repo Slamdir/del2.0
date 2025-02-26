@@ -1,8 +1,11 @@
 with Ada.Containers.Indefinite_Hashed_Maps;
 with Ada.Strings.Hash;
+with Ada.Containers.Vectors;
+with Ada.Containers.Indefinite_Vectors;
 with Orka; use Orka;
 with Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Ada.Text_IO; use Ada.Text_IO;
 
 package Del is
 
@@ -35,6 +38,18 @@ package Del is
    function Forward  (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Element_T is abstract;
    function Backward (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Tensor_T is abstract;
 
+   type Optim_T is abstract tagged private;
+   type Optim_Access_T is access all Optim_T'Class;
+
+   --Vector of layers (needed for optim and model)
+   package Layer_Vectors is new
+     Ada.Containers.Vectors
+       (Index_Type   => Positive,
+        Element_Type => Func_Access_T);
+
+   procedure Step (Self : Optim_T; Layers : Layer_Vectors.Vector) is abstract;
+   procedure Zero_Gradient (Self : Optim_T; Layers : Layer_Vectors.Vector) is abstract;
+
 private
    type Func_T is abstract tagged record
       Map : Data_Maps.Map;
@@ -43,4 +58,9 @@ private
    type Loss_T is abstract tagged record
       Map : Data_Maps.Map;
    end record;
+
+   type Optim_T is abstract tagged record
+      Learning_Rate : Float;
+   end record;
+
 end Del;
