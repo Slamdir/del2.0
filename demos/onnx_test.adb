@@ -14,14 +14,14 @@ procedure ONNX_Test is
    
    Model_Path : constant String := "bin/model.onnx";  -- Adjust path as needed
 begin
---     Put_Line("Loading ONNX model from: " & Model_Path);
---     Del.ONNX.Load_ONNX_Model(Model, Model_Path);
+   Put_Line("Loading ONNX model from: " & Model_Path);
+   Del.ONNX.Load_ONNX_Model(Model, Model_Path);
    
---     Put_Line("Training loaded model...");
---     Model.Train_Model(
---        Num_Epochs => 5,
---        Data => Test_Data,
---        Labels => Test_Labels);
+   Put_Line("Training loaded model...");
+   Model.Train_Model(
+      Num_Epochs => 5,
+      Data => Test_Data,
+      Labels => Test_Labels, Batch_Size => 1);
    
    Put_Line("Test completed successfully!");
 exception

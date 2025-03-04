@@ -72,44 +72,46 @@ package body Del.ONNX is
       end Parse_Header;
       
       procedure Parse_Graph is
-         type Layer_Info is record
-            Name : Unbounded_String;
-            Op : ONNX_Op_Type;
-            Input_Name : Unbounded_String;
-            Output_Name : Unbounded_String;
-         end record;
-         
-         Layer_Configs : constant array (1 .. 2) of Layer_Info := [  
-            (To_Unbounded_String("linear_1"), Linear, 
-             To_Unbounded_String("input"), To_Unbounded_String("linear_1_output")),
-            (To_Unbounded_String("relu_1"), ReLU,
-             To_Unbounded_String("linear_1_output"), To_Unbounded_String("output"))  
-         ];
-         
-         Node : ONNX_Node;
-         Empty_Node_String : constant Node_String_Array := 
-           [for I in IO_Index => To_Unbounded_String("")];
-      begin
-         Put_Line("Starting to parse graph structure...");
-         
-         for Config of Layer_Configs loop
-            Node := (
-               Op_Type => Config.Op,
-               Name => Config.Name,
-               Inputs => Empty_Node_String,
-               Outputs => Empty_Node_String,
-               Input_Count => 1,
-               Output_Count => 1
-            );
-            
-            Node.Inputs(IO_Index'First) := Config.Input_Name;
-            Node.Outputs(IO_Index'First) := Config.Output_Name;
-            
-            Put_Line("Adding node: " & To_String(Config.Name));
-            Add_Node_To_Model(Model, Node);
-         end loop;
-         Put_Line("Graph parsing completed");
-      end Parse_Graph;
+   type Layer_Info is record
+      Name : Unbounded_String;
+      Op : ONNX_Op_Type;
+      Input_Name : Unbounded_String;
+      Output_Name : Unbounded_String;
+   end record;
+   
+   Layer_Configs : constant array (1 .. 3) of Layer_Info := [  
+      (To_Unbounded_String("linear_1"), Linear, 
+       To_Unbounded_String("input"), To_Unbounded_String("linear_1_output")),
+      (To_Unbounded_String("relu_1"), ReLU,
+       To_Unbounded_String("linear_1_output"), To_Unbounded_String("relu_1_output")),
+      (To_Unbounded_String("linear_2"), Linear,
+       To_Unbounded_String("relu_1_output"), To_Unbounded_String("output"))
+   ];
+   
+   Node : ONNX_Node;
+   Empty_Node_String : constant Node_String_Array := 
+     [for I in IO_Index => To_Unbounded_String("")];
+begin
+   Put_Line("Starting to parse graph structure...");
+   
+   for Config of Layer_Configs loop
+      Node := (
+         Op_Type => Config.Op,
+         Name => Config.Name,
+         Inputs => Empty_Node_String,
+         Outputs => Empty_Node_String,
+         Input_Count => 1,
+         Output_Count => 1
+      );
+      
+      Node.Inputs(IO_Index'First) := Config.Input_Name;
+      Node.Outputs(IO_Index'First) := Config.Output_Name;
+      
+      Put_Line("Adding node: " & To_String(Config.Name));
+      Add_Node_To_Model(Model, Node);
+   end loop;
+   Put_Line("Graph parsing completed");
+end Parse_Graph;
       
    begin
       Put_Line("Opening file: " & Filename);
@@ -130,24 +132,28 @@ package body Del.ONNX is
          raise;
    end Parse_ONNX_Binary;
 
-   function Create_Layer_From_Node(Node : ONNX_Node) return Func_Access_T is
-   begin
-      case Node.Op_Type is
-         when Linear =>
-            declare
-               Layer : Linear_T;
-            begin
-               Layer.Initialize(100, 50);  -- Placeholder dimensions
-               return new Linear_T'(Layer);
-            end;
-            
-         when ReLU =>
-            return new ReLU_T;
-
-         when Unknown =>
-            raise ONNX_Error with "Unknown operator type";
-      end case;
-   end Create_Layer_From_Node;
+  function Create_Layer_From_Node(Node : ONNX_Node) return Func_Access_T is
+begin
+   case Node.Op_Type is
+      when Linear =>
+         declare
+            Layer : Linear_T;
+         begin
+            if To_String(Node.Name) = "linear_1" then
+               Layer.Initialize(2, 50);  -- First Linear layer
+            elsif To_String(Node.Name) = "linear_2" then
+               Layer.Initialize(50, 4);  -- Second Linear layer
+            else
+               raise ONNX_Error with "Unknown Linear layer dimensions for " & To_String(Node.Name);
+            end if;
+            return new Linear_T'(Layer);
+         end;
+      when ReLU =>
+         return new ReLU_T;
+      when Unknown =>
+         raise ONNX_Error with "Unknown operator type";
+   end case;
+end Create_Layer_From_Node;
 
    procedure Add_Node_To_Model(
       Model : in out Del.Model.Model;

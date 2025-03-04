@@ -29,10 +29,10 @@ begin
    Linear_Layer.Initialize(3, 5);
    Network.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
-   --  Put_Line("First Step");
-   --  Optim.Step(Network.Get_Params);
+   Put_Line("First Step");
+   Optim.Step(Network.Get_Layers_Vector);
    
-   --  Put_Line("Second Step");
-   --  Optim.Step(Network.Get_Params);
+   Put_Line("Second Step");
+   Optim.Step(Network.Get_Layers_Vector);
 
 end Optim_Test;

@@ -36,6 +36,8 @@ package Del.Model is
       Self : in Model;
       Filename : String);
 
+      function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector;
+
 private
 
    type Model is tagged record
@@ -44,8 +46,6 @@ private
       Optimizer : Optim_Access_T;
    end record;
    
-   -- Make Layer_Vectors visible to ONNX package
-   function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector;
    
    -- Implementation of layer access functions
    function Get_Layer_Count(Self : Model) return Natural is
