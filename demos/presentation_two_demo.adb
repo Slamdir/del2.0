@@ -6,7 +6,7 @@ with Del.Initializers;
 with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 
-procedure Main_Demo is
+procedure presentation_two_demo is
 
    Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-4.0), Del.Element_T(-5.0), 5.0, 0.0, 3.0, 15.0, 9.0], [3,3]);
 
@@ -34,4 +34,4 @@ begin
       Put_Line(Result.Image);
    end;
 
-end Main_Demo;
+end presentation_two_demo;

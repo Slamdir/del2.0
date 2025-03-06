@@ -2,6 +2,7 @@ with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
+with Del.Operators; use Del.Operators;
 with Ada.Numerics.Float_Random;
 with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
@@ -190,51 +191,62 @@ package body Del.Model is
       end loop;
    end Train_Model;
 
-   function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
-   begin
-      Put_Line ("Run_Layers called with input shape: " & 
-                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
-               
-      if Self.Layers.Length = 0 then
-         Put_Line ("No layers in network");
-         return Input;
-      end if;
+function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
+begin
+   Put_Line("Run_Layers called with input shape: " & 
+            Shape(Input)(1)'Image & "," & Shape(Input)(2)'Image);
+            
+   if Self.Layers.Length = 0 then
+      Put_Line("No layers in network");
+      return Input;
+   end if;
 
-      Put_Line ("Network has" & Self.Layers.Length'Image & " layers");
+   Put_Line("Network has" & Self.Layers.Length'Image & " layers");
 
+   if Self.Layers.Length = 1 then
+      -- Process just the first layer
       declare
-         Current_Input : Tensor_T := Input;
-         First_Layer  : constant Func_Access_T := Self.Layers.First_Element;
-         First_Output : constant Tensor_T := First_Layer.all.Forward (Current_Input);
-         Result : Tensor_T := First_Output;
-         C : Layer_Vectors.Cursor := Self.Layers.First;
+         Layer : constant Func_Access_T := Self.Layers.First_Element;
       begin
-         -- Skip the first element since we've already processed it
-         Layer_Vectors.Next (C);
-         
-         while Layer_Vectors.Has_Element (C) loop
-            Put_Line ("Processing next layer");
-            Put_Line ("Current input shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
-            
-            declare
-               Current_Layer : constant Func_Access_T := Layer_Vectors.Element (C);
-            begin
-               Result := Current_Layer.all.Forward (Result);
-            end;
-            
-            Put_Line ("Layer output shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
-            Layer_Vectors.Next (C);
-         end loop;
-         
-         return Result;
+         Put_Line("Processing single layer");
+         return Layer.all.Forward(Input);
       end;
-   exception
-      when E : others =>
-         Put_Line ("Error in Run_Layers: ");
-         Put_Line (Ada.Exceptions.Exception_Information (E));
-         raise;
-   end Run_Layers;
-
+   elsif Self.Layers.Length = 2 then
+      -- Process two layers sequentially with explicit variables
+      declare
+         Layer1 : constant Func_Access_T := Self.Layers.Element(1);
+         Layer2 : constant Func_Access_T := Self.Layers.Element(2);
+      begin
+         Put_Line("Processing layer 1");
+         declare
+            Output1 : constant Tensor_T := Layer1.all.Forward(Input);
+         begin
+            Put_Line("Processing layer 2");
+            return Layer2.all.Forward(Output1);
+         end;
+      end;
+   else
+      -- For more than two layers (uncommon in this case)
+      declare
+         Current : Tensor_T := Input;
+      begin
+         for I in 1 .. Integer(Self.Layers.Length) loop
+            declare
+               Layer : constant Func_Access_T := Self.Layers.Element(I);
+            begin
+               Put_Line("Processing layer" & I'Image);
+               Current := Layer.all.Forward(Current);
+            end;
+         end loop;
+         return Current;
+      end;
+   end if;
+exception
+   when E : others =>
+      Put_Line("Error in Run_Layers: ");
+      Put_Line(Ada.Exceptions.Exception_Information(E));
+      raise;
+end Run_Layers;
    procedure Export_ONNX(
       Self : in Model;
       Filename : String) is
