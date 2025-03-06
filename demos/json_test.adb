@@ -53,14 +53,17 @@ begin
          Put_Line("Model Architecture: Linear (2 -> 5) -> ReLU");
       end;
 
-      -- Train the model
-      Put_Line("Initiating training...");
-      Del.Model.Train_Model_JSON
-        (Self          => My_Model,
-         JSON_File     => Json_Filename,
+      -- Load data from JSON
+      Put_Line("Loading data from JSON...");
+      My_Model.Load_Data_From_JSON
+        (JSON_File     => Json_Filename,
          Data_Shape    => Data_Shape,
-         Target_Shape  => Target_Shape,
-         Batch_Size    => Batch_Size,
+         Target_Shape  => Target_Shape);
+
+      -- Train the model using the loaded data
+      Put_Line("Initiating training...");
+      My_Model.Train_Model
+        (Batch_Size    => Batch_Size,
          Num_Epochs    => Num_Epochs);
 
       Put_Line("Training completed successfully!");

@@ -5,6 +5,7 @@ with Del.ONNX;
 with Ada.Numerics.Float_Random;
 with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Unchecked_Deallocation;
 
 package body Del.Model is
    procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
@@ -21,6 +22,97 @@ package body Del.Model is
    begin
       return Self.Layers;
    end Get_Layers_Vector;
+   
+   -- Data management procedures
+   procedure Load_Data_From_JSON
+     (Self          : in out Model;
+      JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T) 
+   is
+      Dataset : constant Dataset_Array := Load_Dataset
+        (Filename     => JSON_File,
+         Data_Shape   => Data_Shape,
+         Target_Shape => Target_Shape);
+         
+      procedure Free is new Ada.Unchecked_Deallocation
+        (Object => Training_Data'Class, Name => Training_Data_Access);
+   begin
+      Put_Line ("Loading data from JSON file: " & JSON_File);
+      Put_Line ("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+
+      -- Free any existing dataset
+      if Self.Dataset /= null then
+         Free(Self.Dataset);
+      end if;
+
+      -- Store the loaded data in the model
+      Self.Dataset := new Training_Data'
+        (Data   => new Tensor_T'(Dataset(1).Data.all),
+         Labels => new Tensor_T'(Dataset(1).Target.all));
+   exception
+      when E : JSON_Parse_Error =>
+         Put_Line ("Error loading JSON data: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+      when E : others =>
+         Put_Line ("Unexpected error: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+   end Load_Data_From_JSON;
+   
+   procedure Set_Data
+     (Self   : in out Model;
+      Data   : Tensor_T;
+      Labels : Tensor_T) 
+   is
+      procedure Free is new Ada.Unchecked_Deallocation
+        (Object => Training_Data'Class, Name => Training_Data_Access);
+   begin
+      -- Free any existing dataset
+      if Self.Dataset /= null then
+         Free(Self.Dataset);
+      end if;
+
+      -- Store the provided data in the model
+      Self.Dataset := new Training_Data'
+        (Data   => new Tensor_T'(Data), 
+         Labels => new Tensor_T'(Labels));
+   end Set_Data;
+   
+   function Get_Data(Self : Model) return Tensor_T is
+   begin
+      if Self.Dataset = null then
+         raise Program_Error with "No dataset loaded";
+      end if;
+      return Self.Dataset.Data.all;
+   end Get_Data;
+   
+   function Get_Labels(Self : Model) return Tensor_T is
+   begin
+      if Self.Dataset = null then
+         raise Program_Error with "No dataset loaded";
+      end if;
+      return Self.Dataset.Labels.all;
+   end Get_Labels;
+
+   -- Training procedure using internal dataset
+   procedure Train_Model
+     (Self       : in out Model;
+      Batch_Size : Positive;
+      Num_Epochs : Positive)
+   is
+   begin
+      if Self.Dataset = null then
+         raise Program_Error with "No dataset loaded for training";
+      end if;
+
+      -- Call the existing Train_Model with the internal dataset
+      Train_Model
+        (Self       => Self,
+         Data       => Self.Dataset.Data.all,
+         Labels     => Self.Dataset.Labels.all,
+         Batch_Size => Batch_Size,
+         Num_Epochs => Num_Epochs);
+   end Train_Model;
 
    procedure Train_Model
      (Self       : in Model;
@@ -41,8 +133,8 @@ package body Del.Model is
             for batch in 1 .. (Shape (Data) (1) / Batch_Size) loop
                declare
                   Training_Data   : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
-                  Training_Labels : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
-                  Actual_Labels   : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
+                  Training_Labels : Tensor_T := Zeros ((Batch_Size, Shape (Labels) (2)));
+                  Actual_Labels : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
                   max_Index       : Positive;
                   data_Index      : Positive := 1;
                begin
@@ -65,69 +157,38 @@ package body Del.Model is
                   end loop;
 
                   -- Reset optimizer internal values for new loop
-                  Self.Optimizer.Zero_Gradient (Self.Layers);
+                  -- COMMENT: Commenting out backprop components
+                  -- Self.Optimizer.Zero_Gradient (Self.Layers);
 
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers (Training_Data);
 
+                  -- COMMENT: Commenting out backprop components
                   -- Compute loss
-                  Loss_Value := Self.Loss_Func.Forward (Training_Labels, Actual_Labels);
+                  -- Loss_Value := Self.Loss_Func.Forward (Training_Labels, Actual_Labels);
 
+                  -- COMMENT: Commenting out backprop components
                   -- Backpropagation
-                  declare
-                     Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
-                     Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
-                  begin
-                     while Layer_Vectors.Has_Element (Cursor) loop
-                        Gradient := Layer_Vectors.Element (Cursor).Backward (Gradient);
-                        Layer_Vectors.Previous (Cursor);
-                     end loop;
+                  -- declare
+                  --    Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
+                  --    Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
+                  -- begin
+                  --    while Layer_Vectors.Has_Element (Cursor) loop
+                  --       Gradient := Layer_Vectors.Element (Cursor).Backward (Gradient);
+                  --       Layer_Vectors.Previous (Cursor);
+                  --    end loop;
 
-                     -- Apply gradient changes
-                     Self.Optimizer.Step (Self.Layers);
-                  end;
+                  --    -- Apply gradient changes
+                  --    Self.Optimizer.Step (Self.Layers);
+                  -- end;
 
-                  -- Output loss for user feedback
-                  Put_Line ("Loss of previous pass: " & Loss_Value'Image);
+                  -- Output progress for user feedback
+                  Put_Line ("Processed epoch" & epoch'Image & ", batch" & batch'Image);
                end;
             end loop;
          end;
       end loop;
    end Train_Model;
-
-   procedure Train_Model_JSON
-     (Self          : in out Model;
-      JSON_File     : String;
-      Data_Shape    : Tensor_Shape_T;
-      Target_Shape  : Tensor_Shape_T;
-      Batch_Size    : Positive;
-      Num_Epochs    : Positive)
-   is
-      Dataset : constant Dataset_Array := Load_Dataset
-        (Filename     => JSON_File,
-         Data_Shape   => Data_Shape,
-         Target_Shape => Target_Shape);
-      Training_Data   : Tensor_T := Dataset (1).Data.all;
-      Training_Labels : Tensor_T := Dataset (1).Target.all;
-   begin
-      Put_Line ("Loading data from JSON file: " & JSON_File);
-      Put_Line ("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-
-      -- Call Train_Model with the loaded data
-      Train_Model
-        (Self       => Self,
-         Data       => Training_Data,
-         Labels     => Training_Labels,
-         Batch_Size => Batch_Size,
-         Num_Epochs => Num_Epochs);
-   exception
-      when E : JSON_Parse_Error =>
-         Put_Line ("Error loading JSON data: " & Ada.Exceptions.Exception_Message (E));
-         raise;
-      when E : others =>
-         Put_Line ("Unexpected error: " & Ada.Exceptions.Exception_Message (E));
-         raise;
-   end Train_Model_JSON;
 
    function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
    begin
