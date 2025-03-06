@@ -6,7 +6,7 @@ with Del.Operators; use Del.Operators;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 
-procedure ONNX_Structure_Test is
+procedure ONNX_test is
    Model : Del.Model.Model;
    Model_Path : constant String := "bin/model.onnx";
 begin
@@ -48,4 +48,4 @@ exception
    when E : others =>
       Put_Line("Error: " & Exception_Message(E));
       Put_Line("Exception info: " & Exception_Information(E));
-end ONNX_Structure_Test;
+end ONNX_test;
