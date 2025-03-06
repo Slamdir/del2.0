@@ -39,6 +39,8 @@ package body Del.Optimizers is
                --Update Bias
                Layer_Vectors.Element(C).Map("bias_velocity") := Layer_Bias_Velocity;
                Layer_Vectors.Element(C).Map("bias") := Layer_Bias_Data;
+               Put_Line("Layer Weight Data");
+               Put_line(Layer_Weight_Data.Image);
             end;
          end if;
          Layer_Vectors.Next(C);
