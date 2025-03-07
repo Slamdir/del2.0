@@ -59,7 +59,7 @@ procedure Combined_Demo is
       return;
    end if;
    Load_ONNX_Model(My_Model, Model_Path);
-   Put_Line("✓ ONNX model loaded successfully.");
+   Put_Line("ONNX model loaded successfully.");
    New_Line;
 
    -- Step 2: Verify and load JSON data
@@ -100,7 +100,7 @@ procedure Combined_Demo is
       Batch_Size    => Batch_Size,
       Num_Epochs    => Num_Epochs);
    
-   Put_Line("✓ Training completed successfully.");
+   Put_Line("Training completed successfully.");
    New_Line;
 
     -- Step 4: Test forward pass with sample data
@@ -146,7 +146,7 @@ procedure Combined_Demo is
       Put_Line("Optimizer Step " & I'Image);
       Optim.Step(My_Model.Get_Layers_Vector);
    end loop;
-   Put_Line("✓ Optimization steps completed.");
+   Put_Line("Optimization steps completed.");
    New_Line;
 
     -- Step 6: Final forward pass after optimization
@@ -190,6 +190,5 @@ exception
       Put_Line("ERROR: JSON parsing failed - " & Exception_Message(E));
    when E : others =>
       Put_Line("ERROR: Unexpected issue - " & Exception_Message(E));
-
 
 end Combined_Demo;

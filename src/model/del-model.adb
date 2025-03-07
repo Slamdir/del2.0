@@ -129,7 +129,19 @@ package body Del.Model is
          raise;
    end Train_Model_JSON;
 
+   function Do_Forward (S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
+      use Layer_Vectors;
+      T : Tensor_T := Layer_Vectors.Element (C).Forward (IT);
+   begin
+      if C = S.Layers.Last then
+         return T;
+      else
+         return Do_Forward (S, Layer_Vectors.Next (C), T);
+      end if;
+   end;
+
    function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
+      C : Layer_Vectors.Cursor := Self.Layers.First;
    begin
       Put_Line ("Run_Layers called with input shape: " & 
                 Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
@@ -141,32 +153,7 @@ package body Del.Model is
 
       Put_Line ("Network has" & Self.Layers.Length'Image & " layers");
 
-      declare
-         Current_Input : Tensor_T := Input;
-         First_Layer  : constant Func_Access_T := Self.Layers.First_Element;
-         First_Output : constant Tensor_T := First_Layer.all.Forward (Current_Input);
-         Result : Tensor_T := First_Output;
-         C : Layer_Vectors.Cursor := Self.Layers.First;
-      begin
-         -- Skip the first element since we've already processed it
-         Layer_Vectors.Next (C);
-         
-         while Layer_Vectors.Has_Element (C) loop
-            Put_Line ("Processing next layer");
-            Put_Line ("Current input shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
-            
-            declare
-               Current_Layer : constant Func_Access_T := Layer_Vectors.Element (C);
-            begin
-               Result := Current_Layer.all.Forward (Result);
-            end;
-            
-            Put_Line ("Layer output shape: " & Shape (Result) (1)'Image & "," & Shape (Result) (2)'Image);
-            Layer_Vectors.Next (C);
-         end loop;
-         
-         return Result;
-      end;
+      return Do_Forward (Self, C, Input);
    exception
       when E : others =>
          Put_Line ("Error in Run_Layers: ");
