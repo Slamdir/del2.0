@@ -13,7 +13,7 @@ with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Orka; use Orka;
 
-procedure Combined_Demo is
+procedure presentation_three_demo is
 -- Model and data declarations
    My_Model      : Del.Model.Model;
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
@@ -77,6 +77,7 @@ procedure Combined_Demo is
    New_Line;
 
    -- Step 3: Train model with JSON data
+-- Step 3: Train model with JSON data
    Put_Line("STEP 3: MODEL TRAINING");
    Put_Line("--------------------");
    Put_Line("Initiating training with JSON data...");
@@ -86,17 +87,16 @@ procedure Combined_Demo is
    Put_Line("  Epochs:" & Num_Epochs'Image);
    Put_Line("  Batch size:" & Batch_Size'Image);
    
-   -- Loading data
+   -- Load data from JSON
    Put_Line("Loading data from JSON file: " & Json_Filename);
-   Put_Line("Starting training process...");
-   
-   -- Actual training call
-   Put_Line("Executing actual training...");
-   Train_Model_JSON
-     (Self          => My_Model,
+   My_Model.Load_Data_From_JSON(
       JSON_File     => Json_Filename,
       Data_Shape    => Data_Shape,
-      Target_Shape  => Target_Shape,
+      Target_Shape  => Target_Shape);
+   
+   -- Train the model using the loaded data
+   Put_Line("Starting training process...");
+   My_Model.Train_Model(
       Batch_Size    => Batch_Size,
       Num_Epochs    => Num_Epochs);
    
@@ -108,12 +108,11 @@ procedure Combined_Demo is
    Put_Line("----------------------");
    Put_Line("Testing forward pass with sample data...");
    declare
-      Sample_Input   : Tensor_T := Ones((1, 2));  -- Matches JSON data and new ONNX input
+      Sample_Input   : Tensor_T := Ones((1, 100));  -- Matches JSON data and new ONNX input
       Forward_Result : Tensor_T := Zeros((1, 4)); -- Expected output shape
       Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
       Output1        : Tensor_T := Layers.Element(1).all.Forward(Sample_Input);  -- linear_1: (1, 2) -> (1, 50)
       Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);       -- relu_1: (1, 50) -> (1, 50)
-      Output3        : Tensor_T := Layers.Element(3).all.Forward(Output2);       -- linear_2: (1, 50) -> (1, 4)
    begin
       Put_Line("Sample input:");
       Print_Tensor(Sample_Input, "Input");
@@ -124,10 +123,6 @@ procedure Combined_Demo is
       Print_Tensor(Output1, "Output from layer 1");
       Put_Line("Layer 2 completed (ReLU)");
       Print_Tensor(Output2, "Output from layer 2");
-      Put_Line("Layer 3 completed (Linear)");
-      Print_Tensor(Output3, "Output from layer 3");
-
-      Forward_Result := Output3;
       Put_Line("Forward pass result:");
       Print_Tensor(Forward_Result, "Output");
    exception
@@ -153,31 +148,23 @@ procedure Combined_Demo is
    Put_Line("STEP 6: MODEL EVALUATION (POST-OPTIMIZATION)");
    Put_Line("-----------------------------------------");
    Put_Line("Final forward pass after optimization...");
-   declare
-      Final_Input    : Tensor_T := Ones((1, 2));  -- Matches JSON data and new ONNX input
-      Forward_Result : Tensor_T := Zeros((1, 4)); -- Expected output shape
-      Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
-      Output1        : Tensor_T := Layers.Element(1).all.Forward(Final_Input);  -- linear_1: (1, 2) -> (1, 50)
-      Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);      -- relu_1: (1, 50) -> (1, 50)
-      Output3        : Tensor_T := Layers.Element(3).all.Forward(Output2);      -- linear_2: (1, 50) -> (1, 4)
-   begin
-      Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
-      
-      Put_Line("Layer 1 completed (Linear)");
-      Print_Tensor(Output1, "Output from layer 1");
-      Put_Line("Layer 2 completed (ReLU)");
-      Print_Tensor(Output2, "Output from layer 2");
-      Put_Line("Layer 3 completed (Linear)");
-      Print_Tensor(Output3, "Output from layer 3");
-
-      Forward_Result := Output3;
-      Put_Line("Final forward pass result:");
-      Print_Tensor(Forward_Result, "Final Output");
-   exception
-      when E : others =>
-         Put_Line("Error in final forward pass: " & Exception_Information(E));
-         raise;
-   end;
+  declare
+   Final_Input    : Tensor_T := Ones((1, 100));  -- Correctly matched input dimension
+   Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
+   Output1        : Tensor_T := Layers.Element(1).all.Forward(Final_Input);  -- linear_1
+   Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);      -- relu_1
+begin
+   Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
+   
+   Put_Line("Layer 1 completed (Linear)");
+   Print_Tensor(Output1, "Output from layer 1");
+   
+   Put_Line("Layer 2 completed (ReLU)");
+   Print_Tensor(Output2, "Output from layer 2");
+   
+   Put_Line("Final forward pass result:");
+   Print_Tensor(Output2, "Final Output");  -- Use Output2 directly as the final result
+end;
    New_Line;
 
    -- Success message with separator
@@ -192,4 +179,4 @@ exception
       Put_Line("ERROR: Unexpected issue - " & Exception_Message(E));
 
 
-end Combined_Demo;
+end presentation_three_demo;

@@ -1,4 +1,3 @@
--- File: del-json.ads
 with GNATCOLL.JSON; use GNATCOLL.JSON;
 with Ada.Strings.Unbounded;
 with Ada.Containers;

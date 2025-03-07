@@ -1,4 +1,5 @@
 with Ada.Real_Time; use Ada.Real_Time;
+with Ada.Exceptions;
 package body Del.Operators is
 
    procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive) is
@@ -23,16 +24,55 @@ package body Del.Operators is
    end Initialize;
 
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T is
+   begin
+      Put_Line("Linear_T.Forward - Input shape: " & 
+               Shape(X)(1)'Image & "," & Shape(X)(2)'Image);
+      
+      declare
          Weights : constant Tensor_T := L.Map("weights");
          Bias    : constant Tensor_T := L.Map("bias");
-
-         Temp    : constant Tensor_T := X * Weights;
-         Output  : constant Tensor_T := Temp + Bias; 
       begin
-         -- Store input for backward pass using Include instead of Insert
-         L.Map.Include("input", X);
-         return Output;
-      end Forward;
+         Put_Line("Input shape: " & Shape(X)(1)'Image & "," & Shape(X)(2)'Image);
+         Put_Line("Weights shape: " & Shape(Weights)(1)'Image & "," & Shape(Weights)(2)'Image);
+         -- Rest of the code
+                  
+         -- Perform matrix multiplication
+         declare
+            Product : constant Tensor_T := X * Weights;
+            
+            -- Create a result tensor for adding bias
+            Result : Tensor_T := Zeros(Product.Shape);
+            
+            -- For each row in the product
+            Batch_Size : constant Positive := Shape(Product)(1);
+            Features : constant Positive := Shape(Product)(2);
+         begin
+            Put_Line("Matrix multiplication successful");
+            Put_Line("Product shape: " & 
+                     Shape(Product)(1)'Image & "," & Shape(Product)(2)'Image);
+            
+            -- For each row in the result, add the bias (first row of Bias tensor)
+            for I in 1 .. Batch_Size loop
+               Result.Set(I, Add(Product(I), Bias(1)));
+            end loop;
+            
+            Put_Line("Bias addition successful");
+            Put_Line("Result shape: " & 
+                     Shape(Result)(1)'Image & "," & Shape(Result)(2)'Image);
+            
+            -- Store input for backward pass
+            L.Map.Include("input", X);
+            
+            -- Return the result
+            return Result;
+         end;
+      end;
+   exception
+      when E : others =>
+         Put_Line("Error in Linear_T.Forward: " & 
+                  Ada.Exceptions.Exception_Message(E));
+         raise;
+   end Forward;
 
    overriding function Backward (L : in out Linear_T; Dy : Tensor_T) return Tensor_T is
       Input      : constant Tensor_T := L.Map("input");

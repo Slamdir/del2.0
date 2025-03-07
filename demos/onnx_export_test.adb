@@ -1,6 +1,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Exceptions;
 with Del.Model;
+with Del.Data;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
 with Orka.Numerics.Singles.Tensors.CPU;
@@ -39,11 +40,15 @@ begin
    Put_Line("Building original model...");
    Build_Simple_Network(Original_Model);
    
+   -- Create a dataset from the test data and load it into the model
+   Put_Line("Setting up dataset for original model...");
+   Original_Model.Set_Dataset(Del.Data.Create(Test_Data, Test_Labels));
+   
+   -- Train the model using the simplified API
    Put_Line("Training original model...");
    Original_Model.Train_Model(
       Num_Epochs => 5,
-      Data => Test_Data,
-      Labels => Test_Labels, Batch_Size => 1);
+      Batch_Size => 1);
    
    -- Step 2: Export the trained model
    Put_Line("Exporting model to: " & Export_Path);
@@ -68,12 +73,15 @@ begin
                Loaded_Output.Shape(2)'Image);
    end;
    
+   -- Set the same dataset for the loaded model
+   Put_Line("Setting up dataset for loaded model...");
+   Loaded_Model.Set_Dataset(Del.Data.Create(Test_Data, Test_Labels));
+   
    -- Step 5: Train the loaded model to ensure it works
    Put_Line("Training loaded model...");
    Loaded_Model.Train_Model(
       Num_Epochs => 5,
-      Data => Test_Data,
-      Labels => Test_Labels, Batch_Size => 1);
+      Batch_Size => 1);
    
    Put_Line("Test completed successfully!");
 exception
