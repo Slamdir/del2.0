@@ -1,5 +1,7 @@
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded.Text_IO;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
 with Ada.Numerics.Float_Random;
@@ -7,6 +9,47 @@ with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
 
 package body Del.Model is
+
+   procedure Export_To_JSON(Self : in Model; Filename : String) is
+      use Ada.Text_IO;
+      use Ada.Strings.Unbounded.Text_IO;
+      File : File_Type;
+      JSON_Content : Unbounded_String := To_Unbounded_String("{`model`: {`layers`: [");
+      C : Layer_Vectors.Cursor := Self.Layers.First;
+      Layer_Count : Natural := Natural(Self.Layers.Length);
+      Index : Natural := 0;
+   begin
+      -- Open the file
+      Create(File, Out_File, Filename);
+
+      -- Iterate through layers
+      while Layer_Vectors.Has_Element(C) loop
+         declare
+            Layer : constant Func_Access_T := Layer_Vectors.Element(C);
+         begin
+            JSON_Content := JSON_Content & To_Unbounded_String("{`layer`: `" & Layer.all'Img & "`}");
+            Index := Index + 1;
+            if Index < Layer_Count then
+               JSON_Content := JSON_Content & To_Unbounded_String(",");
+            end if;
+         end;
+         Layer_Vectors.Next(C);
+      end loop;
+
+      -- Close JSON format
+      JSON_Content := JSON_Content & To_Unbounded_String("]}}");
+
+      -- Write JSON to file
+      Put_Line(File, To_String(JSON_Content));
+
+      -- Close file
+      Close(File);
+      Put_Line("Model exported to JSON file: " & Filename);
+   exception
+      when E : others =>
+         Put_Line("Error exporting model: " & Ada.Exceptions.Exception_Message(E));
+   end Export_To_JSON;
+
    procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
    begin
       Self.Layers.Append (Layer);
@@ -16,6 +59,11 @@ package body Del.Model is
    begin 
       Self.Loss_Func := Loss_Func;
    end Add_Loss;
+
+   procedure Set_Optimizer(Self : in out Model; Opt : Optim_Access_T) is
+   begin
+      Self.Optimizer := Opt;
+   end Set_Optimizer;
 
    function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector is
    begin
@@ -32,12 +80,23 @@ package body Del.Model is
       package Util renames Del.Utilities;
       Loss_Value : Element_T;
    begin
+      -- Check if model has layers
+      if Self.Layers.Length = 0 then
+         Put_Line("Error: No layers in the network.");
+         raise Constraint_Error;
+      end if;
+
+      -- Check if loss function is assigned
+      if Self.Loss_Func = null then
+         Put_Line("Error: Loss function not set.");
+         raise Constraint_Error;
+      end if;
+
       for epoch in 1 .. Num_Epochs loop
          declare
             -- Shuffle indices
             Indices : Util.Integer_Array := Util.Generate_Random_List (Shape (Data) (1));
          begin
-            -- Loop across number of batches in data (last one may be incomplete)
             for batch in 1 .. (Shape (Data) (1) / Batch_Size) loop
                declare
                   Training_Data   : Tensor_T := Zeros ((Batch_Size, Shape (Data) (2)));
@@ -65,7 +124,11 @@ package body Del.Model is
                   end loop;
 
                   -- Reset optimizer internal values for new loop
-                  Self.Optimizer.Zero_Gradient (Self.Layers);
+                  if Self.Optimizer = null then
+                     Put_Line("Error: Optimizer not set.");
+                     raise Constraint_Error;
+                  end if;
+                  --Self.Optimizer.Zero_Gradient (Self.Layers);
 
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers (Training_Data);
@@ -84,7 +147,7 @@ package body Del.Model is
                      end loop;
 
                      -- Apply gradient changes
-                     Self.Optimizer.Step (Self.Layers);
+                     --Self.Optimizer.Step (Self.Layers);
                   end;
 
                   -- Output loss for user feedback
@@ -93,7 +156,18 @@ package body Del.Model is
             end loop;
          end;
       end loop;
+
+      Put_Line("Training completed.");
+
+   exception
+      when Constraint_Error =>
+         Put_Line("Training failed due to uninitialized object.");
+         raise;
+      when others =>
+         Put_Line("Unexpected error occurred.");
+         raise;
    end Train_Model;
+
 
    procedure Train_Model_JSON
      (Self          : in out Model;
@@ -180,5 +254,10 @@ package body Del.Model is
    begin
       Del.ONNX.Save_ONNX_Model(Self, Filename);
    end Export_ONNX;
+
+   
+
+   -- Train_Model(My_Model, 10, Training_Data, Training_Labels);
+   -- Export_To_JSON(My_Model, "model_output.json");
 
 end Del.Model;

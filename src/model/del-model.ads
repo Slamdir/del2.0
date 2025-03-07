@@ -36,8 +36,14 @@ package Del.Model is
       Self : in Model;
       Filename : String);
 
-      function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector;
+   -- Export the model to JSON format
+   procedure Export_To_JSON(
+      Self : in Model;
+      Filename : String);
 
+   procedure Set_Optimizer(Self : in out Model; Opt : Optim_Access_T);
+
+   function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector;
 private
 
    type Model is tagged record
@@ -45,7 +51,6 @@ private
       Loss_Func : Loss_Access_T;
       Optimizer : Optim_Access_T;
    end record;
-   
    
    -- Implementation of layer access functions
    function Get_Layer_Count(Self : Model) return Natural is

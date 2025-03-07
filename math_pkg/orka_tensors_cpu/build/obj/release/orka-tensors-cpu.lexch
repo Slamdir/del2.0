@@ -1,9 +1,9 @@
 [LIBRARY PATH]
-M:\VSAda\del2.0\math_pkg\orka_tensors_cpu\build\lib\liborka-tensors-cpu.a
+C:\Users\rajes\Downloads\VsAda\del2.0\math_pkg\orka_tensors_cpu\build\lib\liborka-tensors-cpu.a
 [OBJECT FILES]
-M:\VSAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-doubles-tensors-cpu.o
-20250215192740
-M:\VSAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-singles-tensors-cpu.o
-20250215192740
-M:\VSAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-tensors-simd_cpu.o
-20250215192736
+C:\Users\rajes\Downloads\VsAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-doubles-tensors-cpu.o
+20250307025038
+C:\Users\rajes\Downloads\VsAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-singles-tensors-cpu.o
+20250307025040
+C:\Users\rajes\Downloads\VsAda\del2.0\math_pkg\orka_tensors_cpu\build\obj\release\orka-numerics-tensors-simd_cpu.o
+20250307025028
