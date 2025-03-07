@@ -2,6 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Exceptions; use Ada.Exceptions;
 with Del; use Del;
 with Del.Model;
+with Del.Data; use Del.Data;
 with Del.JSON; use Del.JSON;
 with Del.Operators; use Del.Operators;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
@@ -43,28 +44,28 @@ begin
       begin
          Put_Line("  Initializing Linear layer (Input: 2, Output: 5)...");
          Linear_T(Layer1.all).Initialize(2, 5);  -- 2 inputs -> 5 outputs
-         Del.Model.Add_Layer(My_Model, Layer1);
+         My_Model.Add_Layer(Layer1);
          Put_Line("  Linear layer added.");
 
          Put_Line("  Adding ReLU activation layer...");
-         Del.Model.Add_Layer(My_Model, Layer2);
+         My_Model.Add_Layer(Layer2);
          Put_Line("  ReLU layer added.");
 
          Put_Line("Model Architecture: Linear (2 -> 5) -> ReLU");
       end;
 
-      -- Load data from JSON
+      -- Load data from JSON (now using the model's wrapper function)
       Put_Line("Loading data from JSON...");
       My_Model.Load_Data_From_JSON
         (JSON_File     => Json_Filename,
          Data_Shape    => Data_Shape,
          Target_Shape  => Target_Shape);
 
-      -- Train the model using the loaded data
+      -- Train the model using the simplified training function
       Put_Line("Initiating training...");
       My_Model.Train_Model
-        (Batch_Size    => Batch_Size,
-         Num_Epochs    => Num_Epochs);
+        (Batch_Size => Batch_Size,
+         Num_Epochs => Num_Epochs);
 
       Put_Line("Training completed successfully!");
    end;
