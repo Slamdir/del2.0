@@ -1,7 +1,11 @@
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded.Text_IO;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
+with Del.JSON;
+with Ada.Exceptions;
 with Del.Operators; use Del.Operators;
 with Ada.Numerics.Float_Random;
 with Del.Utilities;
@@ -10,6 +14,7 @@ with Ada.Unchecked_Deallocation;
 with Del.Data;
 
 package body Del.Model is
+
    procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
    begin
       Self.Layers.Append (Layer);
@@ -70,6 +75,86 @@ package body Del.Model is
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_Data_From_JSON;
+
+   procedure Export_To_JSON(Self : in Model; Filename : String) is
+      use Ada.Text_IO;
+      use Ada.Strings.Unbounded.Text_IO;
+      File : File_Type;
+      JSON_Content  : Unbounded_String := To_Unbounded_String("{ ""data"": [");
+      C             : Layer_Vectors.Cursor := Self.Layers.First;
+      Data_Export   : Unbounded_String;
+      Labels_Export : Unbounded_String;
+   begin
+      -- Open the file
+      Create(File, Out_File, Filename);
+
+      -- Ensure dataset exists before exporting
+      if Self.Dataset = null then
+         Put_Line("Warning: No dataset loaded. Exporting empty JSON.");
+         JSON_Content := JSON_Content & To_Unbounded_String("], ""labels"": [] }");
+         Put(File, To_String(JSON_Content));
+         Close(File);
+         return;
+      end if;
+
+      -- Retrieve dataset
+      declare
+         Data_Tensor   : Tensor_T := Self.Dataset.Get_Data;
+         Labels_Tensor : Tensor_T := Self.Dataset.Get_Labels;
+      begin
+         -- Initialize Unbounded_String for data and labels
+         Data_Export := To_Unbounded_String("");
+         Labels_Export := To_Unbounded_String(", ""labels"": [");
+
+         for I in 1 .. Shape(Data_Tensor)(1) loop
+            -- Start array for each data row
+            Data_Export := Data_Export & To_Unbounded_String("[");
+            for J in 1 .. Shape(Data_Tensor)(2) loop
+               declare
+                  Value : Float_32 := Data_Tensor.Get((I, J)); -- ✅ FIX: Use `Get`
+               begin
+                  Data_Export := Data_Export 
+                                 & To_Unbounded_String(Float_32'Image(Value)); -- ✅ FIX: Convert properly
+                  if J < Shape(Data_Tensor)(2) then
+                     Data_Export := Data_Export & To_Unbounded_String(", ");
+                  end if;
+               end;
+            end loop;
+            Data_Export := Data_Export & To_Unbounded_String("]");
+
+            -- Export labels (Y true values)
+            declare
+               Label_Value : Float_32 := Labels_Tensor.Get((I, 1)); -- ✅ FIX: Use `Get`
+            begin
+               Labels_Export := Labels_Export 
+                              & To_Unbounded_String(Float_32'Image(Label_Value)); -- ✅ FIX: Convert properly
+            end;
+
+            -- Formatting commas
+            if I < Shape(Data_Tensor)(1) then
+               Data_Export := Data_Export & To_Unbounded_String(",");
+               Labels_Export := Labels_Export & To_Unbounded_String(",");
+            end if;
+         end loop;
+      end;
+
+      -- Finalize JSON structure
+      JSON_Content := JSON_Content & Data_Export 
+                     & To_Unbounded_String("]") 
+                     & Labels_Export 
+                     & To_Unbounded_String("] }");
+
+      -- Write JSON to file
+      Put(File, To_String(JSON_Content));
+
+      -- Close file
+      Close(File);
+      Put_Line("Model training data successfully exported to JSON file: " & Filename);
+   exception
+      when E : others =>
+         Put_Line("Error exporting model data: " & Ada.Exceptions.Exception_Message(E));
+   end Export_To_JSON;
+
 
    -- Single Training procedure that uses the internal dataset
    procedure Train_Model
@@ -159,7 +244,17 @@ package body Del.Model is
          end;
       end loop;
       end;
+
+      -- Automatically export model after training
+      declare
+         Output_File : constant String := "model_output.json";
+      begin
+         Export_To_JSON(Self, Output_File);
+         Put_Line("Model successfully exported to JSON: " & Output_File);
+      end;
+
    end Train_Model;
+
 
 function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
 begin

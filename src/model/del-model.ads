@@ -38,6 +38,10 @@ package Del.Model is
      (Self     : in Model;
       Filename : String);
 
+   procedure Export_To_JSON(
+      Self : in Model;
+      Filename : String);
+
 private
    type Model is tagged record
       Layers    : Layer_Vectors.Vector;
