@@ -8,7 +8,7 @@ procedure Export_Model is
    JSON_File   : constant String := "bin/initial_testing.json";
    Output_File : constant String := "model_output.json";
 
-   -- Define layers
+   --  layers
    Linear_Layer  : Del.Operators.Linear_Access_T;
    ReLU_Layer    : Del.Operators.ReLU_Access_T;
    Softmax_Layer : Del.Operators.SoftMax_Access_T;
@@ -16,7 +16,7 @@ procedure Export_Model is
 begin
    Put_Line("Initializing model...");
 
-   -- Add layers to the model
+   --  layers to the model
    Linear_Layer := new Del.Operators.Linear_T;
    Linear_Layer.Initialize(2, 4); -- Input 2 neurons, Output 4 neurons
    Network.Add_Layer(Del.Func_Access_T(Linear_Layer));
@@ -27,16 +27,16 @@ begin
    Softmax_Layer := new Del.Operators.SoftMax_T;
    Network.Add_Layer(Del.Func_Access_T(Softmax_Layer));
 
-   -- Load dataset from JSON file
+   -- loading dataset from JSON file
    Put_Line("Loading dataset...");
    Network.Load_Data_From_JSON(
       JSON_File    => JSON_File,
-      Data_Shape   => (1 => 1, 2 => 2),  -- 100 samples, 2 features each
-      Target_Shape => (1 => 1, 2 => 4)   -- 100 samples, 1 label each
+      Data_Shape   => (1 => 1, 2 => 2),  
+      Target_Shape => (1 => 1, 2 => 4)   
    );
    Put_Line("Dataset successfully loaded.");
 
-   -- Train the model
+   -- train the model
    Put_Line("Starting model training...");
    Network.Train_Model(Batch_Size => 10, Num_Epochs => 50);
    Put_Line("Training complete.");

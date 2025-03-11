@@ -81,40 +81,42 @@ package body Del.Model is
       use Ada.Strings.Unbounded.Text_IO;
       File : File_Type;
       JSON_Content  : Unbounded_String := To_Unbounded_String("{ ""data"": [");
-      C             : Layer_Vectors.Cursor := Self.Layers.First;
       Data_Export   : Unbounded_String;
       Labels_Export : Unbounded_String;
+      Predictions_Export : Unbounded_String;
    begin
       -- Open the file
       Create(File, Out_File, Filename);
 
-      -- Ensure dataset exists before exporting
+      -- dataset exists before exporting
       if Self.Dataset = null then
          Put_Line("Warning: No dataset loaded. Exporting empty JSON.");
-         JSON_Content := JSON_Content & To_Unbounded_String("], ""labels"": [] }");
+         JSON_Content := JSON_Content & To_Unbounded_String("], ""labels"": [], ""predictions"": [] }");
          Put(File, To_String(JSON_Content));
          Close(File);
          return;
       end if;
 
-      -- Retrieve dataset
+      -- dataset
       declare
          Data_Tensor   : Tensor_T := Self.Dataset.Get_Data;
          Labels_Tensor : Tensor_T := Self.Dataset.Get_Labels;
+         Predictions   : Tensor_T := Self.Run_Layers(Data_Tensor); -- Get trained model predictions
       begin
-         -- Initialize Unbounded_String for data and labels
+         -- set up JSON strings
          Data_Export := To_Unbounded_String("");
          Labels_Export := To_Unbounded_String(", ""labels"": [");
+         Predictions_Export := To_Unbounded_String(", ""predictions"": [");
 
          for I in 1 .. Shape(Data_Tensor)(1) loop
-            -- Start array for each data row
+            -- Start array for each data row 
             Data_Export := Data_Export & To_Unbounded_String("[");
             for J in 1 .. Shape(Data_Tensor)(2) loop
                declare
-                  Value : Float_32 := Data_Tensor.Get((I, J)); -- ✅ FIX: Use `Get`
+                  Value : Float_32 := Data_Tensor.Get((I, J));
                begin
-                  Data_Export := Data_Export 
-                                 & To_Unbounded_String(Float_32'Image(Value)); -- ✅ FIX: Convert properly
+                  -- Export each value in the data tensor
+                  Data_Export := Data_Export & To_Unbounded_String((Float_32'Image(Value)));
                   if J < Shape(Data_Tensor)(2) then
                      Data_Export := Data_Export & To_Unbounded_String(", ");
                   end if;
@@ -122,29 +124,45 @@ package body Del.Model is
             end loop;
             Data_Export := Data_Export & To_Unbounded_String("]");
 
-            -- Export labels (Y true values)
+            --  Export model labels
             declare
-               Label_Value : Float_32 := Labels_Tensor.Get((I, 1)); -- ✅ FIX: Use `Get`
+               Label_Value : Integer := Integer(Float_32'Floor(Labels_Tensor.Get((I, 1)))); 
             begin
-               Labels_Export := Labels_Export 
-                              & To_Unbounded_String(Float_32'Image(Label_Value)); -- ✅ FIX: Convert properly
+               Labels_Export := Labels_Export & To_Unbounded_String(Integer'Image(Label_Value));
             end;
 
-            -- Formatting commas
+            -- eport model predictions 
+            Predictions_Export := Predictions_Export & To_Unbounded_String("[");
+            for J in 1 .. Shape(Predictions)(2) loop
+               declare
+                  Pred_Value : Float_32 := Predictions.Get((I, J));
+               begin
+                  Predictions_Export := Predictions_Export & To_Unbounded_String((Float_32'Image(Pred_Value)));
+                  if J < Shape(Predictions)(2) then
+                     Predictions_Export := Predictions_Export & To_Unbounded_String(", ");
+                  end if;
+               end;
+            end loop;
+            Predictions_Export := Predictions_Export & To_Unbounded_String("]");
+
+            -- commas
             if I < Shape(Data_Tensor)(1) then
                Data_Export := Data_Export & To_Unbounded_String(",");
                Labels_Export := Labels_Export & To_Unbounded_String(",");
+               Predictions_Export := Predictions_Export & To_Unbounded_String(",");
             end if;
          end loop;
       end;
 
-      -- Finalize JSON structure
+      -- JSON structure
       JSON_Content := JSON_Content & Data_Export 
                      & To_Unbounded_String("]") 
                      & Labels_Export 
+                     & To_Unbounded_String("]") 
+                     & Predictions_Export 
                      & To_Unbounded_String("] }");
 
-      -- Write JSON to file
+      -- JSON to file
       Put(File, To_String(JSON_Content));
 
       -- Close file
@@ -154,7 +172,6 @@ package body Del.Model is
       when E : others =>
          Put_Line("Error exporting model data: " & Ada.Exceptions.Exception_Message(E));
    end Export_To_JSON;
-
 
    -- Single Training procedure that uses the internal dataset
    procedure Train_Model
