@@ -79,14 +79,12 @@ package body Del.ONNX is
       Output_Name : Unbounded_String;
    end record;
    
-   Layer_Configs : constant array (1 .. 3) of Layer_Info := [  
-      (To_Unbounded_String("linear_1"), Linear, 
-       To_Unbounded_String("input"), To_Unbounded_String("linear_1_output")),
-      (To_Unbounded_String("relu_1"), ReLU,
-       To_Unbounded_String("linear_1_output"), To_Unbounded_String("relu_1_output")),
-      (To_Unbounded_String("linear_2"), Linear,
-       To_Unbounded_String("relu_1_output"), To_Unbounded_String("output"))
-   ];
+Layer_Configs : constant array (1 .. 2) of Layer_Info := [  
+   (To_Unbounded_String("linear_1"), Linear, 
+    To_Unbounded_String("input"), To_Unbounded_String("linear_1_output")),
+   (To_Unbounded_String("relu_1"), ReLU,
+    To_Unbounded_String("linear_1_output"), To_Unbounded_String("output"))
+];
    
    Node : ONNX_Node;
    Empty_Node_String : constant Node_String_Array := 
@@ -140,9 +138,9 @@ begin
             Layer : Linear_T;
          begin
             if To_String(Node.Name) = "linear_1" then
-               Layer.Initialize(2, 50);  -- First Linear layer
+               Layer.Initialize(100, 50);  -- First linear layer: input 100, output 50
             elsif To_String(Node.Name) = "linear_2" then
-               Layer.Initialize(50, 4);  -- Second Linear layer
+               Layer.Initialize(50, 4);    -- Second linear layer: adjust as needed
             else
                raise ONNX_Error with "Unknown Linear layer dimensions for " & To_String(Node.Name);
             end if;
