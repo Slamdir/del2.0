@@ -161,40 +161,6 @@ package body Del.Model is
       end;
    end Train_Model;
 
-   procedure Train_Model_JSON
-     (Self          : in out Model;
-      JSON_File     : String;
-      Data_Shape    : Tensor_Shape_T;
-      Target_Shape  : Tensor_Shape_T;
-      Batch_Size    : Positive;
-      Num_Epochs    : Positive)
-   is
-      Dataset : constant Dataset_Array := Load_Dataset
-        (Filename     => JSON_File,
-         Data_Shape   => Data_Shape,
-         Target_Shape => Target_Shape);
-      Training_Data   : Tensor_T := Dataset (1).Data.all;
-      Training_Labels : Tensor_T := Dataset (1).Target.all;
-   begin
-      Put_Line ("Loading data from JSON file: " & JSON_File);
-      Put_Line ("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-
-      -- Call Train_Model with the loaded data
-      Train_Model
-        (Self       => Self,
-         Data       => Training_Data,
-         Labels     => Training_Labels,
-         Batch_Size => Batch_Size,
-         Num_Epochs => Num_Epochs);
-   exception
-      when E : JSON_Parse_Error =>
-         Put_Line ("Error loading JSON data: " & Ada.Exceptions.Exception_Message (E));
-         raise;
-      when E : others =>
-         Put_Line ("Unexpected error: " & Ada.Exceptions.Exception_Message (E));
-         raise;
-   end Train_Model_JSON;
-
    function Do_Forward (S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
       use Layer_Vectors;
       T : Tensor_T := Layer_Vectors.Element (C).Forward (IT);

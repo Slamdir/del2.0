@@ -59,7 +59,7 @@ procedure presentation_three_demo is
       return;
    end if;
    Load_ONNX_Model(My_Model, Model_Path);
-   Put_Line("✓ ONNX model loaded successfully.");
+   Put_Line("ONNX model loaded successfully.");
    New_Line;
 
    -- Step 2: Verify and load JSON data
@@ -100,7 +100,7 @@ procedure presentation_three_demo is
       Batch_Size    => Batch_Size,
       Num_Epochs    => Num_Epochs);
    
-   Put_Line("✓ Training completed successfully.");
+   Put_Line("Training completed successfully.");
    New_Line;
 
     -- Step 4: Test forward pass with sample data
@@ -141,7 +141,7 @@ procedure presentation_three_demo is
       Put_Line("Optimizer Step " & I'Image);
       Optim.Step(My_Model.Get_Layers_Vector);
    end loop;
-   Put_Line("✓ Optimization steps completed.");
+   Put_Line("Optimization steps completed.");
    New_Line;
 
     -- Step 6: Final forward pass after optimization
