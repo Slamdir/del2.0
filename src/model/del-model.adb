@@ -161,62 +161,72 @@ package body Del.Model is
       end;
    end Train_Model;
 
-function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
-begin
-   Put_Line("Run_Layers called with input shape: " & 
-            Shape(Input)(1)'Image & "," & Shape(Input)(2)'Image);
-            
-   if Self.Layers.Length = 0 then
-      Put_Line("No layers in network");
-      return Input;
-   end if;
+   procedure Train_Model_JSON
+     (Self          : in out Model;
+      JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T;
+      Batch_Size    : Positive;
+      Num_Epochs    : Positive)
+   is
+      Dataset : constant Dataset_Array := Load_Dataset
+        (Filename     => JSON_File,
+         Data_Shape   => Data_Shape,
+         Target_Shape => Target_Shape);
+      Training_Data   : Tensor_T := Dataset (1).Data.all;
+      Training_Labels : Tensor_T := Dataset (1).Target.all;
+   begin
+      Put_Line ("Loading data from JSON file: " & JSON_File);
+      Put_Line ("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
+
+      -- Call Train_Model with the loaded data
+      Train_Model
+        (Self       => Self,
+         Data       => Training_Data,
+         Labels     => Training_Labels,
+         Batch_Size => Batch_Size,
+         Num_Epochs => Num_Epochs);
+   exception
+      when E : JSON_Parse_Error =>
+         Put_Line ("Error loading JSON data: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+      when E : others =>
+         Put_Line ("Unexpected error: " & Ada.Exceptions.Exception_Message (E));
+         raise;
+   end Train_Model_JSON;
+
+   function Do_Forward (S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
+      use Layer_Vectors;
+      T : Tensor_T := Layer_Vectors.Element (C).Forward (IT);
+   begin
+      if C = S.Layers.Last then
+         return T;
+      else
+         return Do_Forward (S, Layer_Vectors.Next (C), T);
+      end if;
+   end;
+
+   function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
+      C : Layer_Vectors.Cursor := Self.Layers.First;
+   begin
+      Put_Line ("Run_Layers called with input shape: " & 
+                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
+               
+      if Self.Layers.Length = 0 then
+         Put_Line ("No layers in network");
+         return Input;
+      end if;
 
    Put_Line("Network has" & Self.Layers.Length'Image & " layers");
 
-   if Self.Layers.Length = 1 then
-      -- Process just the first layer
-      declare
-         Layer : constant Func_Access_T := Self.Layers.First_Element;
-      begin
-         Put_Line("Processing single layer");
-         return Layer.all.Forward(Input);
-      end;
-   elsif Self.Layers.Length = 2 then
-      -- Process two layers sequentially with explicit variables
-      declare
-         Layer1 : constant Func_Access_T := Self.Layers.Element(1);
-         Layer2 : constant Func_Access_T := Self.Layers.Element(2);
-      begin
-         Put_Line("Processing layer 1");
-         declare
-            Output1 : constant Tensor_T := Layer1.all.Forward(Input);
-         begin
-            Put_Line("Processing layer 2");
-            return Layer2.all.Forward(Output1);
-         end;
-      end;
-   else
-      -- For more than two layers (uncommon in this case)
-      declare
-         Current : Tensor_T := Input;
-      begin
-         for I in 1 .. Integer(Self.Layers.Length) loop
-            declare
-               Layer : constant Func_Access_T := Self.Layers.Element(I);
-            begin
-               Put_Line("Processing layer" & I'Image);
-               Current := Layer.all.Forward(Current);
-            end;
-         end loop;
-         return Current;
-      end;
-   end if;
-exception
-   when E : others =>
-      Put_Line("Error in Run_Layers: ");
-      Put_Line(Ada.Exceptions.Exception_Information(E));
-      raise;
-end Run_Layers;
+      return Do_Forward (Self, C, Input);
+   exception
+      when E : others =>
+         Put_Line ("Error in Run_Layers: ");
+         Put_Line (Ada.Exceptions.Exception_Information (E));
+         raise;
+   end Run_Layers;
+
 
    procedure Export_ONNX(
       Self : in Model;
