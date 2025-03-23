@@ -100,6 +100,7 @@ package body Del.Model is
             Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
          begin
             -- Loop across number of batches in data (last one may be incomplete)
+            Util.Print_Array (Indices);
             for batch in 1 .. (Shape(Data)(1) / Batch_Size) loop
                declare
                   Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
@@ -127,30 +128,27 @@ package body Del.Model is
                   end loop;
 
                   -- Reset optimizer internal values for new loop
-                  -- COMMENT: Commenting out backprop components
-                  -- Self.Optimizer.Zero_Gradient(Self.Layers);
+                  Self.Optimizer.Zero_Gradient(Self.Layers);
 
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers(Training_Data);
 
-                  -- COMMENT: Commenting out backprop components
                   -- Compute loss
-                  -- Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
+                  Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
 
-                  -- COMMENT: Commenting out backprop components
                   -- Backpropagation
-                  -- declare
-                  --    Gradient    : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Actual_Labels); 
-                  --    Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
-                  -- begin
-                  --    while Layer_Vectors.Has_Element(Cursor) loop
-                  --       Gradient := Layer_Vectors.Element(Cursor).Backward(Gradient);
-                  --       Layer_Vectors.Previous(Cursor);
-                  --    end loop;
+                  declare
+                    Gradient    : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Actual_Labels); 
+                    Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
+                  begin
+                    while Layer_Vectors.Has_Element(Cursor) loop
+                       Gradient := Layer_Vectors.Element(Cursor).Backward(Gradient);
+                       Layer_Vectors.Previous(Cursor);
+                    end loop;
 
-                  --    -- Apply gradient changes
-                  --    Self.Optimizer.Step(Self.Layers);
-                  -- end;
+                    -- Apply gradient changes
+                    Self.Optimizer.Step(Self.Layers);
+                  end;
 
                   -- Output progress for user feedback
                   Put_Line("Processed epoch" & epoch'Image & ", batch" & batch'Image);

@@ -1,6 +1,5 @@
 with Del;
 with Del.Operators;
-with Del.Initializers;
 with Del.Model;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Exceptions;
@@ -10,7 +9,6 @@ with Orka; use Orka;
 
 procedure linear_test is
    package D renames Del;
-   package DI renames Del.Initializers;
    package DOp renames Del.Operators;
    package DMod renames Del.Model;
    
