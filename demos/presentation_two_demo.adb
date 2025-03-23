@@ -1,7 +1,6 @@
 with Del;
 with Del.Operators;
 with Del.Model;
-with Del.Initializers;
 
 with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;

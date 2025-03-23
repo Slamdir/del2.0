@@ -5,7 +5,6 @@ with Ada.Containers.Vectors;
 with Del; use Del;
 with Del.Model; use Del.Model;
 with Del.Operators; use Del.Operators;
-with Del.Initializers; use Del.Initializers;
 with Del.Optimizers; use Del.Optimizers;
 with Del.JSON; use Del.JSON;
 with Del.ONNX; use Del.ONNX;

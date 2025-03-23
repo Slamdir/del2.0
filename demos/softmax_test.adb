@@ -1,6 +1,5 @@
 with Del;
 with Del.Operators;
-with Del.Initializers;
 with Del.Model;
 with Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
@@ -9,7 +8,6 @@ with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 procedure Softmax_Test is
 
    package D renames Del;
-   package DI renames Del.Initializers;
    package DOp renames Del.Operators;
    package DMod renames Del.Model;
    package DLoss renames Del.Loss;
