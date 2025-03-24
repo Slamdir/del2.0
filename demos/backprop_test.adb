@@ -7,6 +7,7 @@ with Del.Model; use Del.Model;
 with Del.Operators; use Del.Operators;
 with Del.Optimizers; use Del.Optimizers;
 with Del.JSON; use Del.JSON;
+with Del.Loss; use Del.Loss;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Orka; use Orka;
@@ -19,13 +20,12 @@ procedure backprop_test is
    Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "data/spiral_3.json";
+   Json_Filename : constant String := "bin/spiral_3.json";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
 
-   -- Optimizer
-   Optim         : Del.Optimizers.SGD_T := Del.Optimizers.Create_SGD_T(
-      Learning_Rate => 0.1, Weight_Decay => 0.1, Momentum => 0.9);
+   Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
+      Learning_Rate => 0.1, Weight_Decay => 0.1, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
@@ -56,9 +56,12 @@ procedure backprop_test is
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(20, 5);
+   Linear_Layer.Initialize(20, 3);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
+   -- Add loss function
+   My_Model.Set_Optimizer(Optimizer);
+   
    -- Step 2: Verify and load JSON data
    Put_Line("STEP 2: DATASET CONFIGURATION");
    Put_Line("---------------------------");
@@ -100,7 +103,7 @@ procedure backprop_test is
    Put_Line("Training completed successfully.");
    New_Line;
 
-    -- Step 4: Test forward pass with sample data
+   -- Step 4: Test forward pass with sample data
    Put_Line("STEP 4: MODEL EVALUATION");
    Put_Line("----------------------");
    Put_Line("Testing forward pass with sample data...");
@@ -130,13 +133,13 @@ procedure backprop_test is
    New_Line;
 
    
-      -- Step 5: Apply optimizer steps
+   -- Step 5: Apply optimizer steps
    Put_Line("STEP 5: OPTIMIZER APPLICATION");
    Put_Line("---------------------------");
    Put_Line("Applying optimizer steps...");
    for I in 1 .. 2 loop
       Put_Line("Optimizer Step " & I'Image);
-      Optim.Step(My_Model.Get_Layers_Vector);
+      Optimizer.Step(My_Model.Get_Layers_Vector);  -- Changed from Optim to Optimizer
    end loop;
    Put_Line("Optimization steps completed.");
    New_Line;

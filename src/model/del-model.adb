@@ -24,6 +24,11 @@ package body Del.Model is
    begin
       return Self.Layers;
    end Get_Layers_Vector;
+
+   procedure Set_Optimizer(Self : in out Model; Optimizer : Optim_Access_T) is
+   begin
+      Self.Optimizer := Optimizer;
+   end Set_Optimizer;
    
    -- Data management procedures
    procedure Set_Dataset(Self : in out Model; Dataset : Training_Data_Access) is
