@@ -8,6 +8,7 @@ with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Del.Data;
+with Del.YAML; use Del.YAML;
 
 package body Del.Model is
    procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
@@ -194,6 +195,59 @@ package body Del.Model is
          Put_Line (Ada.Exceptions.Exception_Information (E));
          raise;
    end Run_Layers;
+
+   -- Add these new procedures to del-model.adb
+
+   procedure Load_Data_From_YAML
+     (Self          : in out Model;
+      YAML_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T) 
+   is
+   begin
+      Put_Line("Loading data from YAML file: " & YAML_File);
+      
+      -- Use the Del.Data package to load the dataset
+      Set_Dataset(
+         Self    => Self,
+         Dataset => Del.Data.Load_From_YAML(
+            YAML_File    => YAML_File,
+            Data_Shape   => Data_Shape,
+            Target_Shape => Target_Shape));
+            
+      Put_Line("YAML dataset loaded successfully");
+   exception
+      when E : YAML_Parse_Error =>
+         Put_Line("Error loading YAML data: " & Ada.Exceptions.Exception_Message(E));
+         raise;
+      when E : others =>
+         Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
+         raise;
+   end Load_Data_From_YAML;
+   
+   procedure Load_Data_From_File
+     (Self          : in out Model;
+      Filename      : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T)
+   is
+   begin
+      Put_Line("Loading data from file: " & Filename);
+      
+      -- Use the Del.Data package to automatically detect and load the dataset
+      Set_Dataset(
+         Self    => Self,
+         Dataset => Del.Data.Load_From_File(
+            Filename     => Filename,
+            Data_Shape   => Data_Shape,
+            Target_Shape => Target_Shape));
+            
+      Put_Line("Dataset loaded successfully");
+   exception
+      when E : others =>
+         Put_Line("Error loading data: " & Ada.Exceptions.Exception_Message(E));
+         raise;
+   end Load_Data_From_File;
 
 
    procedure Export_ONNX(
