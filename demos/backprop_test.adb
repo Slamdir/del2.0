@@ -133,20 +133,8 @@ procedure backprop_test is
    end;
    New_Line;
 
-   
-   -- Step 5: Apply optimizer steps
-   Put_Line("STEP 5: OPTIMIZER APPLICATION");
-   Put_Line("---------------------------");
-   Put_Line("Applying optimizer steps...");
-   for I in 1 .. 2 loop
-      Put_Line("Optimizer Step " & I'Image);
-      Optimizer.Step(My_Model.Get_Layers_Vector);  -- Changed from Optim to Optimizer
-   end loop;
-   Put_Line("Optimization steps completed.");
-   New_Line;
-
-    -- Step 6: Final forward pass after optimization
-   Put_Line("STEP 6: MODEL EVALUATION (POST-OPTIMIZATION)");
+   -- Step 5: Final forward pass after optimization
+   Put_Line("STEP 5: MODEL EVALUATION (POST-OPTIMIZATION)");
    Put_Line("-----------------------------------------");
    Put_Line("Final forward pass after optimization...");
   declare

@@ -105,7 +105,6 @@ package body Del.Model is
             Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
          begin
             -- Loop across number of batches in data (last one may be incomplete)
-            Util.Print_Array (Indices);
             for batch in 1 .. (Shape(Data)(1) / Batch_Size) loop
                declare
                   Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
