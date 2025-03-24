@@ -20,7 +20,7 @@ procedure backprop_test is
    Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "bin/spiral_3.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
 
