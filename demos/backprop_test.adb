@@ -61,6 +61,7 @@ procedure backprop_test is
 
    -- Add loss function
    My_Model.Set_Optimizer(Optimizer);
+   My_Model.Add_Loss(new Cross_Entropy_T); 
    
    -- Step 2: Verify and load JSON data
    Put_Line("STEP 2: DATASET CONFIGURATION");
