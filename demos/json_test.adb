@@ -16,7 +16,7 @@ begin
       My_Model      : Del.Model.Model;
       Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- 1 sample, 2 features
       Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- 1 sample, 4 classes
-      Json_Filename : constant String := "bin/initial_testing.json";
+      Json_Filename : constant String := "demos/demo-data/spiral_3.json";
       Batch_Size    : constant Positive := 10;
       Num_Epochs    : constant Positive := 1;
    begin

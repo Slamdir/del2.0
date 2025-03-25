@@ -83,20 +83,20 @@ end Combine_Dataset_Samples;
    end Load_From_JSON;
    
    function Load_From_YAML
-     (YAML_File     : String;
+   (YAML_File     : String;
       Data_Shape    : Tensor_Shape_T;
       Target_Shape  : Tensor_Shape_T) return Training_Data_Access
    is
       Dataset : constant Dataset_Array := Del.YAML.Load_Dataset
-        (Filename     => YAML_File,
+      (Filename     => YAML_File,
          Data_Shape   => Data_Shape,
          Target_Shape => Target_Shape);
    begin
       Put_Line("Loading data from YAML file: " & YAML_File);
       Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-      return new Training_Data'
-        (Data   => new Tensor_T'(Dataset(1).Data.all),
-         Labels => new Tensor_T'(Dataset(1).Target.all));
+      
+      -- Use the Combine_Dataset_Samples function to combine all samples
+      return Combine_Dataset_Samples(Dataset, Data_Shape, Target_Shape);
    exception
       when E : YAML_Parse_Error =>
          Put_Line("Error loading YAML data: " & Ada.Exceptions.Exception_Message(E));
