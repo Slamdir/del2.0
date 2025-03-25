@@ -21,7 +21,7 @@ procedure backprop_test is
    Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3_3.json";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
 
@@ -53,7 +53,7 @@ procedure backprop_test is
 
    -- Step 1: Create Model and add layers
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(2, 4);
+   Linear_Layer.Initialize(2, 3);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
    Put_Line("Weights for Linear: ");
@@ -67,7 +67,7 @@ procedure backprop_test is
    --  My_Model.Add_Layer(Del.Func_Access_T(ReLU_Layer));
 
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(4, 3);
+   Linear_Layer.Initialize(3, 3);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
    Put_Line("Weights for Linear: ");
@@ -125,75 +125,60 @@ procedure backprop_test is
    Put_Line("Training completed successfully.");
    New_Line;
 
-   -- Step 4: Test forward pass with sample data
---     Put_Line("STEP 4: MODEL EVALUATION");
---     Put_Line("----------------------");
---     Put_Line("Testing forward pass with sample data...");
---     declare
---        Sample_Input   : Tensor_T := Ones((1, 100));  -- Matches JSON data and new ONNX input
---        Forward_Result : Tensor_T := Zeros((1, 4)); -- Expected output shape
---        Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
---        Output1        : Tensor_T := Layers.Element(1).all.Forward(Sample_Input);  -- linear_1: (1, 2) -> (1, 50)
---        Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);       -- relu_1: (1, 50) -> (1, 50)
---     begin
---        Put_Line("Sample input:");
---        Print_Tensor(Sample_Input, "Input");
+   --  Step 4: Test forward pass with sample data
+   Put_Line("STEP 4: MODEL EVALUATION");
+   Put_Line("----------------------");
+   Put_Line("Testing forward pass with sample data...");
+   declare
+      Sample_Input   : Tensor_T := Ones((1, 100));  -- Matches JSON data and new ONNX input
+      Forward_Result : Tensor_T := Zeros((1, 4)); -- Expected output shape
+      Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
+      Output1        : Tensor_T := Layers.Element(1).all.Forward(Sample_Input);  -- linear_1: (1, 2) -> (1, 50)
+      Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);       -- relu_1: (1, 50) -> (1, 50)
+   begin
+      Put_Line("Sample input:");
+      Print_Tensor(Sample_Input, "Input");
 
---        Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
+      Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
       
---        Put_Line("Layer 1 completed (Linear)");
---        Print_Tensor(Output1, "Output from layer 1");
---        Put_Line("Layer 2 completed (ReLU)");
---        Print_Tensor(Output2, "Output from layer 2");
---        Put_Line("Forward pass result:");
---        Print_Tensor(Forward_Result, "Output");
---     exception
---        when E : others =>
---           Put_Line("Error in forward pass: " & Exception_Information(E));
---           raise;
---     end;
---     New_Line;
+      Put_Line("Layer 1 completed (Linear)");
+      Print_Tensor(Output1, "Output from layer 1");
+      Put_Line("Layer 2 completed (ReLU)");
+      Print_Tensor(Output2, "Output from layer 2");
+      Put_Line("Forward pass result:");
+      Print_Tensor(Forward_Result, "Output");
+   exception
+      when E : others =>
+         Put_Line("Error in forward pass: " & Exception_Information(E));
+         raise;
+   end;
+   New_Line;
 
-   
---     -- Step 5: Apply optimizer steps
---     Put_Line("STEP 5: OPTIMIZER APPLICATION");
---     Put_Line("---------------------------");
---     Put_Line("Applying optimizer steps...");
---     for I in 1 .. 2 loop
---        Put_Line("Optimizer Step " & I'Image);
---        Optimizer.Step(My_Model.Get_Layers_Vector);  -- Changed from Optim to Optimizer
---     end loop;
---     Put_Line("Optimization steps completed.");
---     New_Line;
+    -- Step 5: Final forward pass after optimization
+   Put_Line("STEP 5: MODEL EVALUATION (POST-OPTIMIZATION)");
+   Put_Line("-----------------------------------------");
+   Put_Line("Final forward pass after optimization...");
+  declare
+      Final_Input    : Tensor_T := Ones((1, 100));  -- Correctly matched input dimension
+      Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
+      Output1        : Tensor_T := Layers.Element(1).all.Forward(Final_Input);  -- linear_1
+      Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);      -- relu_1
+   begin
+      Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
+      
+      Put_Line("Layer 1 completed (Linear)");
+      Print_Tensor(Output1, "Output from layer 1");
+      
+      Put_Line("Layer 2 completed (ReLU)");
+      Print_Tensor(Output2, "Output from layer 2");
 
---      -- Step 6: Final forward pass after optimization
---     Put_Line("STEP 6: MODEL EVALUATION (POST-OPTIMIZATION)");
---     Put_Line("-----------------------------------------");
---     Put_Line("Final forward pass after optimization...");
---    declare
---        Final_Input    : Tensor_T := Ones((1, 100));  -- Correctly matched input dimension
---        Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
---        Output1        : Tensor_T := Layers.Element(1).all.Forward(Final_Input);  -- linear_1
---        Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);      -- relu_1
---     begin
---        Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
-      
---        Put_Line("Layer 1 completed (Linear)");
---        Print_Tensor(Output1, "Output from layer 1");
-      
---        Put_Line("Layer 2 completed (ReLU)");
---        Print_Tensor(Output2, "Output from layer 2");
-      
---        Put_Line("Final forward pass result:");
---        Print_Tensor(Output2, "Final Output");  -- Use Output2 directly as the final result
-
---        declare 
---           Temp: Tensor_T := My_Model.Run_Layers (Input);
---        begin
---           Put_Line(Temp.Image);
---        end;
---     end;
---     New_Line;
+      declare 
+         Temp: Tensor_T := My_Model.Run_Layers (Input);
+      begin
+         Put_Line(Temp.Image);
+      end;
+   end;
+   New_Line;
 
    -- Success message with separator
    Put_Line("=============================================================");
