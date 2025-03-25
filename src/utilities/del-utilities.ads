@@ -4,4 +4,6 @@ package Del.Utilities is
    
    function Generate_Random_List(x : Positive) return Integer_Array;
 
+   procedure Print_Array(arr : Integer_Array);
+
 end Del.Utilities;

@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-import random
 import time
 
 import numpy as np
@@ -21,8 +20,8 @@ def WriteData(data: list, labels: list):
         "labels": labels
     }
     timestamp = time.time()
-    os.makedirs("data", exist_ok=True)
-    with open(f"data/{timestamp}.json", 'w', encoding='utf-8') as file:
+    os.makedirs("generated-data", exist_ok=True)
+    with open(f"generated-data/{timestamp}.json", 'w', encoding='utf-8') as file:
         json.dump(generatedData, file, ensure_ascii=False, indent=4)
     print("Done writting generated data!")
     print("Ending program...")
@@ -39,7 +38,7 @@ def GenerateGridData():
     for q in range(quantity):
         values = []
         for d in range(dimension):
-            num = random.randint(lower, upper)
+            num = np.random.randint(lower, upper)
             values.append(num)
         data.append(values)
     
@@ -58,7 +57,7 @@ def GenerateGridData():
 
 
 # generates and labels data in a spiral pattern
-def GenerateSpiralData(noise=0.1):
+def GenerateSpiralData():
     # base values used to store the data passed to json file
     data = []
     labels = []
@@ -74,7 +73,7 @@ def GenerateSpiralData(noise=0.1):
         t = np.linspace(0, 3, quantity//types) + i * 2*np.pi/types
         
         # Add some noise
-        t = t + noise * random.uniform(-1, 1)
+        t = t + noise * np.random.uniform(-1, 1, size=t.shape)
     
         # Convert polar coordinates to cartesian
         x = r * np.cos(t)
@@ -96,28 +95,30 @@ def GenerateSpiralData(noise=0.1):
 # ===== MAIN =====
 
 # gets data from terminal, if available with a max of 5
-args = [None] * 7
-argsLength = len(sys.argv) - 1 if len(sys.argv) < 8 else 7
+args = [None] * 8
+argsLength = len(sys.argv) - 1 if len(sys.argv) < 9 else 8
 for i in range(argsLength):
     args[i] = sys.argv[i+1]
 
 
 # integer indicating the size of the random dataset to be generated, defaults to 100
-quantity = NullCoalesce(args[0], 100)
+quantity: int = NullCoalesce(int(args[0]), 100)
 # integer indicating labels that can be given to the data, defaults to 4
-types = NullCoalesce(args[1], 4)
+types: int = NullCoalesce(int(args[1]), 4)
 # integer indicating the dimension of the points in the random dataset, defaults to 2
-dimension = NullCoalesce(args[2], 2)
+dimension: int = NullCoalesce(int(args[2]), 2)
 # integer indicating lower range for the generated values, defaults to -100
-lower = NullCoalesce(args[3], -100)
+lower: int = NullCoalesce(int(args[3]), -100)
 # integer indicating upper range for the generated values, defaults to 100
-upper = NullCoalesce(args[4], 100)
+upper: int = NullCoalesce(int(args[4]), 100)
 # integer indicating shape of data to generate:
 #   1: grid
 #   2: spiral
-shape = NullCoalesce(args[5], 1)
+shape: int = NullCoalesce(int(args[5]), 1)
 # integer indicating if labels should be generated, 1 to generate and any other value to not
-createLabels = (NullCoalesce(args[6], 1) == 1)
+createLabels: bool = (NullCoalesce(int(args[6]), 1) == 1)
+# decimal indicating noise multiplier if spiral generation is chosen
+noise: float = NullCoalesce(float(args[7]), 0.1)
 
 print(f"-=~=- Values -=~=-\nQuantity: {quantity}\nTypes: {types}\nDimension: {dimension}\nLower: {lower}\nUpper: {upper}\nShape: {shape}\nCreate Labels: {createLabels}\n\n")
 

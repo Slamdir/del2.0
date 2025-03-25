@@ -9,6 +9,7 @@ package Del.Model is
    -- Layer management
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T);
    procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T);
+   procedure Set_Optimizer(Self : in out Model; Optimizer : Optim_Access_T);
    
    -- Layer access
    function Get_Layer_Count(Self : Model) return Natural;

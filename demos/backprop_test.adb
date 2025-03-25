@@ -7,24 +7,25 @@ with Del.Model; use Del.Model;
 with Del.Operators; use Del.Operators;
 with Del.Optimizers; use Del.Optimizers;
 with Del.JSON; use Del.JSON;
-with Del.ONNX; use Del.ONNX;
+with Del.Loss; use Del.Loss;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Orka; use Orka;
 
-procedure presentation_three_demo is
+procedure backprop_test is
 -- Model and data declarations
    My_Model      : Del.Model.Model;
+   Linear_Layer  : Linear_Access_T;
+   ReLU_Layer    : ReLU_Access_T;
+   Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
-   Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- Per sample: 1 sample, 4 classes
-   Json_Filename : constant String := "bin/initial_testing.json";
-   Model_Path    : constant String := "bin/model.onnx";
+   Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
+   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
 
-   -- Optimizer
-   Optim         : Del.Optimizers.SGD_T := Del.Optimizers.Create_SGD_T(
-      Learning_Rate => 0.1, Weight_Decay => 0.1, Momentum => 0.9);
+   Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
+      Learning_Rate => 0.1, Weight_Decay => 0.1, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
@@ -49,18 +50,19 @@ procedure presentation_three_demo is
    Put_Line("=============================================================");
    New_Line;
 
-     -- Step 1: Load ONNX model
-   Put_Line("STEP 1: LOADING ONNX MODEL");
-   Put_Line("------------------------");
-   Put_Line("Loading ONNX model from: " & Model_Path);
-   if not Exists(Model_Path) then
-      Put_Line("ERROR: ONNX file not found: " & Model_Path);
-      return;
-   end if;
-   Load_ONNX_Model(My_Model, Model_Path);
-   Put_Line("ONNX model loaded successfully.");
-   New_Line;
+   -- Step 1: Create Model and add layers
+   Linear_Layer := new Linear_T;
+   Linear_Layer.Initialize(2, 20);
+   My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
+   Linear_Layer := new Linear_T;
+   Linear_Layer.Initialize(20, 3);
+   My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
+
+   -- Add loss function
+   My_Model.Set_Optimizer(Optimizer);
+   My_Model.Add_Loss(new Cross_Entropy_T); 
+   
    -- Step 2: Verify and load JSON data
    Put_Line("STEP 2: DATASET CONFIGURATION");
    Put_Line("---------------------------");
@@ -92,6 +94,7 @@ procedure presentation_three_demo is
       Data_Shape    => Data_Shape,
       Target_Shape  => Target_Shape);
    
+
    -- Train the model using the loaded data
    Put_Line("Starting training process...");
    My_Model.Train_Model(
@@ -101,7 +104,7 @@ procedure presentation_three_demo is
    Put_Line("Training completed successfully.");
    New_Line;
 
-    -- Step 4: Test forward pass with sample data
+   -- Step 4: Test forward pass with sample data
    Put_Line("STEP 4: MODEL EVALUATION");
    Put_Line("----------------------");
    Put_Line("Testing forward pass with sample data...");
@@ -130,20 +133,8 @@ procedure presentation_three_demo is
    end;
    New_Line;
 
-   
-      -- Step 5: Apply optimizer steps
-   Put_Line("STEP 5: OPTIMIZER APPLICATION");
-   Put_Line("---------------------------");
-   Put_Line("Applying optimizer steps...");
-   for I in 1 .. 2 loop
-      Put_Line("Optimizer Step " & I'Image);
-      Optim.Step(My_Model.Get_Layers_Vector);
-   end loop;
-   Put_Line("Optimization steps completed.");
-   New_Line;
-
-    -- Step 6: Final forward pass after optimization
-   Put_Line("STEP 6: MODEL EVALUATION (POST-OPTIMIZATION)");
+   -- Step 5: Final forward pass after optimization
+   Put_Line("STEP 5: MODEL EVALUATION (POST-OPTIMIZATION)");
    Put_Line("-----------------------------------------");
    Put_Line("Final forward pass after optimization...");
   declare
@@ -162,6 +153,12 @@ begin
    
    Put_Line("Final forward pass result:");
    Print_Tensor(Output2, "Final Output");  -- Use Output2 directly as the final result
+
+   declare 
+      Temp: Tensor_T := My_Model.Run_Layers (Input);
+   begin
+      Put_Line(Temp.Image);
+   end;
 end;
    New_Line;
 
@@ -177,4 +174,4 @@ exception
       Put_Line("ERROR: Unexpected issue - " & Exception_Message(E));
 
 
-end presentation_three_demo;
+end backprop_test;
