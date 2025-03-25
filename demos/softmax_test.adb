@@ -16,12 +16,20 @@ procedure Softmax_Test is
    --Put_Line(Loss.Backward(Expected, Actual).Image);
 
    procedure TestForward1 (Loss : DLoss.Cross_Entropy_T) is
-      Actual   : D.Tensor_T := To_Tensor ([0.1, 0.7, 0.2], [1, 3]);
-      Expected : D.Tensor_T := To_Tensor ([0.0, 1.0, 0.0], [1, 3]);
+      Actual   : D.Tensor_T := To_Tensor (
+        [Del.Element_T(-1.2515702), Del.Element_T(-1.6863402), Del.Element_T(-1.4078702),
+         6.27207E+01, 1.06094E+02, 8.9826601,
+         8.58803E+01, 5.86717E+01, 5.04719E1], [3, 3]);
+
+      Expected : D.Tensor_T := To_Tensor (
+        [ 1.00000E+00, 0.00000E+00, 0.00000E+00,
+        0.00000E+00, 1.00000E+00, 0.00000E+00,
+        1.00000E+00, 0.00000E+00, 0.00000E+00], [3, 3]);
    begin
       Put_Line("Testing with: ");
       Put_Line("Actual:    " & Actual.Image);
       Put_Line("Expected:  " & Expected.Image);
+      New_Line;
       Put_Line(Loss.Forward(Expected, Actual)'Image);
    end TestForward1;
 
@@ -32,6 +40,7 @@ procedure Softmax_Test is
       Put_Line("Testing with: ");
       Put_Line("Actual:    " & Actual.Image);
       Put_Line("Expected:  " & Expected.Image);
+      New_Line;
       Put_Line(Loss.Forward(Expected, Actual)'Image);
    end TestForward2;
 

@@ -1,5 +1,6 @@
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
+with Del.Loss;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
@@ -76,6 +77,17 @@ package body Del.Model is
          raise;
    end Load_Data_From_JSON;
 
+   function Do_Backward(S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
+      use Layer_Vectors;
+      T : Tensor_T := Layer_Vectors.Element(C).Backward (IT);
+   begin
+      if C = S.Layers.First then
+         return T;
+      else
+         return Do_Backward (S, Layer_Vectors.Previous(C), T);
+      end if;
+   end;
+
    -- Single Training procedure that uses the internal dataset
    procedure Train_Model
      (Self       : in out Model;
@@ -83,7 +95,7 @@ package body Del.Model is
       Num_Epochs : Positive)
    is
       package Util renames Del.Utilities;
-      Loss_Value : Element_T;
+      Loss_Value : Float;
    begin
       -- Check if dataset is loaded
       if Self.Dataset = null then
@@ -132,27 +144,38 @@ package body Del.Model is
                      end;
                   end loop;
 
+                  Put_Line("Before Zero Grad");
                   -- Reset optimizer internal values for new loop
                   Self.Optimizer.Zero_Gradient(Self.Layers);
-
+                  Put_Line("After Zero Grad");
+                  New_Line;
+                  
+                  Put_Line("Before Run Layers");
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers(Training_Data);
+                  Put_Line("After Run Layers");
+                  New_Line;
+
+                  Put_Line("Before Compute Loss");
+                  Put_Line("Target Labels " & Training_Labels.Image);
+                  New_Line;
+
+                  Put_Line("Actual Labels " & Actual_Labels.Image);
+                  New_Line;
 
                   -- Compute loss
                   Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
+                  Put_Line("After Compute Loss " & Loss_Value'Image);
+                  New_Line;
 
                   -- Backpropagation
                   declare
-                    Gradient    : Tensor_T := Self.Loss_Func.Backward(Training_Labels, Actual_Labels); 
-                    Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
+                     Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
+                     Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
+                     New_Grad    : Tensor_T := Do_Backward (Self, Cursor, Gradient);
                   begin
-                    while Layer_Vectors.Has_Element(Cursor) loop
-                       Gradient := Layer_Vectors.Element(Cursor).Backward(Gradient);
-                       Layer_Vectors.Previous(Cursor);
-                    end loop;
-
-                    -- Apply gradient changes
-                    Self.Optimizer.Step(Self.Layers);
+                     -- Apply gradient changes
+                     Self.Optimizer.Step (Self.Layers);
                   end;
 
                   -- Output progress for user feedback

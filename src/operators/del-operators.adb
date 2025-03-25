@@ -1,5 +1,7 @@
 with Ada.Real_Time; use Ada.Real_Time;
 with Ada.Exceptions;
+with Ada.Numerics;
+with Ada.Numerics.Elementary_Functions;
 package body Del.Operators is
 
    procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive) is
@@ -55,7 +57,7 @@ package body Del.Operators is
             for I in 1 .. Batch_Size loop
                Result.Set(I, Add(Product(I), Bias(1)));
             end loop;
-            
+
             Put_Line("Bias addition successful");
             Put_Line("Result shape: " & 
                      Shape(Result)(1)'Image & "," & Shape(Result)(2)'Image);
@@ -165,9 +167,59 @@ package body Del.Operators is
       return Output;
    end Row_Sum;
 
+   function Find_Row_Max(T : Tensor_T) return Tensor_T is
+      Rows : constant Positive := Shape(T)(1);
+      Cols : constant Positive := Shape(T)(2);
+      Result : Tensor_T := Zeros((Rows, 1));
+   begin
+      for I in 1 .. Rows loop
+         -- Start with first element of row as max
+         declare
+            Max_Val : Element_T := T.Get((I, 1));
+         begin
+            -- Find maximum value in row
+            for J in 2 .. Cols loop
+               declare
+                  Current_Val : constant Element_T := T.Get((I, J));
+               begin
+                  if Current_Val > Max_Val then
+                     Max_Val := Current_Val;
+                  end if;
+               end;
+            end loop;
+            Result.Set(I, Max_Val);
+         end;
+      end loop;
+      return Result;
+   end Find_Row_Max;
+
    -- Allows for Cross_Entropy to call SoftMax with the Actual Values
    function SoftMax(X : Tensor_T) return Tensor_T is
+   
+   -- Main SoftMax implementation with numerical stability
+   Rows : constant Positive := Shape(X)(1);
+   Cols : constant Positive := Shape(X)(2);
+   
+   -- Find max values for each row
+   Max_Values : constant Tensor_T := Find_Row_Max(X);
+   
+   -- Create shifted input 
+   Shifted_X : Tensor_T := Zeros(X.Shape);
+   begin
+   -- Subtract max value from each element in the row
+      for I in 1 .. Rows loop
+         for J in 1 .. Cols loop
+            declare
+               Current_Value : constant Element_T := X.Get((I, J));
+               Max_Value : constant Element_T := Max_Values.Get(I);
+               New_Value : constant Element_T := Current_Value - Max_Value;
+            begin
+               Shifted_X.Set((I, J), New_Value);
+            end;
+         end loop;
+      end loop;
 
+   declare
       function Divide_By_Row (Exp_Values : Tensor_T; Exp_Values_Sum : Tensor_T) return Tensor_T is
          Rows     : Integer := Shape(Exp_Values)(1);
          Output   : Tensor_T := Zeros(Shape(Exp_Values));
@@ -183,12 +235,13 @@ package body Del.Operators is
          return Output;
       end Divide_By_Row;
 
-      Exp_Values     : Tensor_T := Exp(X);
+      Exp_Values     : Tensor_T := Exp( Shifted_X );
       Exp_Values_Sum : Tensor_T := Row_Sum(Exp_Values);
       Output         : Tensor_T := Divide_By_Row(Exp_Values, Exp_Values_Sum);
 
-   begin
-      return Output;
+      begin
+         return Output;
+      end;
    end SoftMax;
 
    -- Acts as a proxy to call SoftMax
