@@ -1,4 +1,5 @@
 with Del.JSON; use Del.JSON;
+with Del.YAML; use Del.YAML;
 
 package Del.Data is
    -- Training data type definition
@@ -17,6 +18,18 @@ package Del.Data is
    -- Data loading functions
    function Load_From_JSON
      (JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T) return Training_Data_Access;
+      
+   -- New YAML loading function
+   function Load_From_YAML
+     (YAML_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T) return Training_Data_Access;
+      
+   -- Generic load function that detects file type by extension
+   function Load_From_File
+     (Filename      : String;
       Data_Shape    : Tensor_Shape_T;
       Target_Shape  : Tensor_Shape_T) return Training_Data_Access;
 

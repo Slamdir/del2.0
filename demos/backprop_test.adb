@@ -21,9 +21,9 @@ procedure backprop_test is
    Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "data/spiral_3_3.json";
-   Batch_Size    : constant Positive := 5;  -- Process 10 samples per batch
-   Num_Epochs    : constant Positive := 5;
+   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
+   Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
+   Num_Epochs    : constant Positive := 50;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
       Learning_Rate => 0.3, Weight_Decay => 0.001, Momentum => 0.9));
