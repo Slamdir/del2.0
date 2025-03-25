@@ -73,7 +73,7 @@ def GenerateSpiralData():
         t = np.linspace(0, 3, quantity//types) + i * 2*np.pi/types
         
         # Add some noise
-        t = t + noise * np.random.uniform(-1, 1, size=t.shape)
+        t = t + noise * np.random.uniform(lower * 0.01, upper * 0.01, size=t.shape)
     
         # Convert polar coordinates to cartesian
         x = r * np.cos(t)
