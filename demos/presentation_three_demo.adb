@@ -165,6 +165,19 @@ begin
 end;
    New_Line;
 
+-- Step 7: Export Model Data to JSON
+   Put_Line("STEP 7: EXPORT MODEL DATA TO JSON");
+   Put_Line("---------------------------------");
+   declare
+      Export_Filename : constant String := "demos/output/exported_model.json";
+begin
+      My_Model.Export_To_JSON(Export_Filename);
+   exception
+      when E : others =>
+         Put_Line("ERROR: Failed to export model to JSON - " & Exception_Message(E));
+end;
+   New_Line;
+
    -- Success message with separator
    Put_Line("=============================================================");
    Put_Line("             Demo completed successfully!                    ");

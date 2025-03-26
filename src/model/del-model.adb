@@ -1,5 +1,7 @@
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded.Text_IO;
 with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
@@ -76,6 +78,118 @@ package body Del.Model is
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_Data_From_JSON;
+
+   procedure Export_To_JSON(Self : in Model; Filename : String) is
+      use Ada.Text_IO;
+      use Ada.Strings.Unbounded.Text_IO;
+      File : File_Type;
+      JSON_Content : Unbounded_String := To_Unbounded_String("{ ""data"": [");
+      Data_Export, Labels_Export, Predictions_Export, Outputs_Export : Unbounded_String;
+   begin
+      -- Open the file
+      Create(File, Out_File, Filename);
+
+      -- Ensure dataset exists
+      if Self.Dataset = null then
+         Put_Line("Warning: No dataset loaded. Exporting empty JSON.");
+         JSON_Content := JSON_Content & To_Unbounded_String("], ""labels"": [], ""predictions"": [], ""outputs"": [] }");
+         Put(File, To_String(JSON_Content));
+         Close(File);
+         return;
+      end if;
+
+      -- Load dataset and predictions
+      declare
+         Data_Tensor   : Tensor_T := Self.Dataset.Get_Data;
+         Labels_Tensor : Tensor_T := Self.Dataset.Get_Labels;
+         Predictions   : Tensor_T := Self.Run_Layers(Data_Tensor);
+         Final_Outputs : Tensor_T := Self.Run_Layers(Predictions); 
+      begin
+         -- Initialize JSON components
+         Data_Export := To_Unbounded_String(""); 
+         Labels_Export := To_Unbounded_String(", ""labels"": ["); 
+         Predictions_Export := To_Unbounded_String(", ""predictions"": [");
+         Outputs_Export := To_Unbounded_String(", ""outputs"": [");
+
+         -- 🔹 Loop through all 100 samples
+         for I in 1 .. Shape(Data_Tensor)(1) loop
+            -- Data Export (Store each X, Y pair)
+            Data_Export := Data_Export & To_Unbounded_String("[");
+            for J in 1 .. Shape(Data_Tensor)(2) loop
+               declare
+                  Value : Float_32 := Data_Tensor.Get((I, J));
+               begin
+                  Data_Export := Data_Export & To_Unbounded_String(Float_32'Image(Value)); 
+                  if J < Shape(Data_Tensor)(2) then 
+                     Data_Export := Data_Export & To_Unbounded_String(", ");
+                  end if;
+               end;
+            end loop;
+            Data_Export := Data_Export & To_Unbounded_String("]"); 
+
+            -- Labels Export (Store corresponding label)
+            declare
+               Label_Value : Integer := Integer(Float_32'Floor(Labels_Tensor.Get((I, 1))));
+            begin
+               Labels_Export := Labels_Export & To_Unbounded_String(Integer'Image(Label_Value));
+            end;
+
+            -- Predictions Export (Store softmax outputs)
+            Predictions_Export := Predictions_Export & To_Unbounded_String("[");
+            for J in 1 .. Shape(Predictions)(2) loop
+               declare
+                  Pred_Value : Float_32 := Predictions.Get((I, J));
+               begin
+                  Predictions_Export := Predictions_Export & To_Unbounded_String(Float_32'Image(Pred_Value));
+                  if J < Shape(Predictions)(2) then
+                     Predictions_Export := Predictions_Export & To_Unbounded_String(", ");
+                  end if;
+               end;
+            end loop;
+            Predictions_Export := Predictions_Export & To_Unbounded_String("]");
+
+            -- Outputs Export (Final model output values)
+            Outputs_Export := Outputs_Export & To_Unbounded_String("[");
+            for J in 1 .. Shape(Final_Outputs)(2) loop
+               declare
+                  Output_Value : Float_32 := Final_Outputs.Get((I, J));
+               begin
+                  Outputs_Export := Outputs_Export & To_Unbounded_String(Float_32'Image(Output_Value));
+                  if J < Shape(Final_Outputs)(2) then
+                     Outputs_Export := Outputs_Export & To_Unbounded_String(", ");
+                  end if;
+               end;
+            end loop;
+            Outputs_Export := Outputs_Export & To_Unbounded_String("]");
+
+            -- Add commas correctly to separate JSON elements
+            if I < Shape(Data_Tensor)(1) then
+               Data_Export := Data_Export & To_Unbounded_String(",");
+               Labels_Export := Labels_Export & To_Unbounded_String(",");
+               Predictions_Export := Predictions_Export & To_Unbounded_String(",");
+               Outputs_Export := Outputs_Export & To_Unbounded_String(",");
+            end if;
+         end loop;
+      end;
+
+      -- Construct JSON Structure
+      JSON_Content := JSON_Content & Data_Export 
+                     & To_Unbounded_String("]") 
+                     & Labels_Export 
+                     & To_Unbounded_String("]") 
+                     & Predictions_Export 
+                     & To_Unbounded_String("]") 
+                     & Outputs_Export 
+                     & To_Unbounded_String("] }");
+
+      -- Write to JSON file
+      Put(File, To_String(JSON_Content));
+      Close(File);
+      Put_Line("Model training data and final outputs successfully exported to JSON file: " & Filename);
+   exception
+      when E : others =>
+         Put_Line("Error exporting model data: " & Ada.Exceptions.Exception_Message(E));
+   end Export_To_JSON;
 
    -- Single Training procedure that uses the internal dataset
    procedure Train_Model
@@ -162,6 +276,15 @@ package body Del.Model is
          end;
       end loop;
       end;
+
+      -- Automatically export model after training
+      declare
+         Output_File : constant String := "demos\output\model_output.json";
+      begin
+         Export_To_JSON(Self, Output_File);
+         Put_Line("Model successfully exported to JSON: " & Output_File);
+      end;
+      
    end Train_Model;
 
    function Do_Forward (S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
