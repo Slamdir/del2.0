@@ -11,10 +11,6 @@ package body Del.Optimizers is
 
    overriding procedure Step(Self : SGD_T; Layers : Layer_Vectors.Vector) is
       C : Layer_Vectors.Cursor := Layers.First;
-      Grad_Clip_Max : constant Element_T := 1.0;
-      Grad_Clip_Min : constant Element_T := -1.0;
-      Weight_Clip_Max : constant Element_T := 1.0E16;
-      Weight_Clip_Min : constant Element_T := -1.0E16;
    begin
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then

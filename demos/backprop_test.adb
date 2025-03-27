@@ -22,11 +22,11 @@ procedure backprop_test is
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
    Json_Filename : constant String := "demos/demo-data/spiral_3_3.json";
-   Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
+   Batch_Size    : constant Positive := 30;
    Num_Epochs    : constant Positive := 50;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
-      Learning_Rate => 0.3, Weight_Decay => 0.001, Momentum => 0.9));
+      Learning_Rate => 1.0, Weight_Decay => 0.001, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
@@ -53,7 +53,7 @@ procedure backprop_test is
 
    -- Step 1: Create Model and add layers
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(2, 3);
+   Linear_Layer.Initialize(2, 30);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
    Put_Line("Weights for Linear: ");
@@ -67,7 +67,7 @@ procedure backprop_test is
    --  My_Model.Add_Layer(Del.Func_Access_T(ReLU_Layer));
 
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(3, 3);
+   Linear_Layer.Initialize(30, 3);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
    Put_Line("Weights for Linear: ");
