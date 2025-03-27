@@ -17,7 +17,7 @@ procedure presentation_three_demo is
    My_Model      : Del.Model.Model;
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- Per sample: 1 sample, 4 classes
-   Json_Filename : constant String := "bin/initial_testing.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
    Model_Path    : constant String := "bin/model.onnx";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
