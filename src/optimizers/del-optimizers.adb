@@ -11,42 +11,48 @@ package body Del.Optimizers is
 
    overriding procedure Step(Self : SGD_T; Layers : Layer_Vectors.Vector) is
       C : Layer_Vectors.Cursor := Layers.First;
+      Grad_Clip_Max : constant Element_T := 1.0;
+      Grad_Clip_Min : constant Element_T := -1.0;
+      Weight_Clip_Max : constant Element_T := 1.0E16;
+      Weight_Clip_Min : constant Element_T := -1.0E16;
    begin
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then
-            declare
-               Layer_Weight_Data     : Tensor_T := Layer_Vectors.Element(C).Map("weights");
-               Layer_Bias_Data       : Tensor_T := Layer_Vectors.Element(C).Map("bias");
+               declare
+                  -- Parameter retrieval
+                  Layer_Weight_Data     : Tensor_T := Layer_Vectors.Element(C).Map("weights");
+                  Layer_Bias_Data       : Tensor_T := Layer_Vectors.Element(C).Map("bias");
+                  Layer_Weight_Grad     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
+                  Layer_Bias_Grad       : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
+                  Layer_Weight_Velocity : Tensor_T := Layer_Vectors.Element(C).Map("weights_velocity");
+                  Layer_Bias_Velocity   : Tensor_T := Layer_Vectors.Element(C).Map("bias_velocity");
 
-               Layer_Weight_Grad     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
-               Layer_Bias_Grad       : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
+                  -- Local parameters
+                  LR : constant Element_T := Element_T(Self.Learning_Rate);
+                  WD : constant Element_T := Element_T(Self.Weight_Decay);
+                  Momentum : constant Element_T := Element_T(Self.Momentum);
+               begin
+                  -- Weight update with corrected momentum/decay
+                  Layer_Weight_Velocity := Momentum * Layer_Weight_Velocity 
+                                          + (Layer_Weight_Grad + WD * Layer_Weight_Data);
+                  Layer_Weight_Data := Layer_Weight_Data - LR * Layer_Weight_Velocity;
 
-               Layer_Weight_Velocity : Tensor_T := Layer_Vectors.Element(C).Map("weights_velocity");
-               Layer_Bias_Velocity   : Tensor_T := Layer_Vectors.Element(C).Map("bias_velocity");
-            begin
-               --Calculate Weights
-               Layer_Weight_Velocity := Element_T(Self.Momentum) * Layer_Weight_Velocity + Layer_Weight_Grad + Element_T(Self.Weight_Decay) * Layer_Weight_Data;
-               Layer_Weight_Data     := Layer_Weight_Data - Element_T(Self.Learning_Rate) * Layer_Weight_Velocity;
+                  -- Bias update (no weight decay)
+                  Layer_Bias_Velocity := Momentum * Layer_Bias_Velocity 
+                                       + Layer_Bias_Grad;
+                  Layer_Bias_Data := Layer_Bias_Data - LR * Layer_Bias_Velocity;
 
-               --Update Weights
-               Layer_Vectors.Element(C).Map("weights_velocity") := Layer_Weight_Velocity;
-               Layer_Vectors.Element(C).Map("weights") := Layer_Weight_Data;
-
-               --Calculate Bias
-               Layer_Bias_Velocity  := Element_T(Self.Momentum) * Layer_Bias_Velocity + Layer_Bias_Grad + Element_T(Self.Weight_Decay) * Layer_Bias_Data;
-               Layer_Bias_Data      := Layer_Bias_Data - Element_T(Self.Learning_Rate) * Layer_Bias_Velocity;
-
-               --Update Bias
-               Layer_Vectors.Element(C).Map("bias_velocity") := Layer_Bias_Velocity;
-               Layer_Vectors.Element(C).Map("bias") := Layer_Bias_Data;
-               Put_Line("Layer Weight Data");
-               Put_line(Layer_Weight_Data.Image);
-            end;
+                  -- Store updated parameters
+                  Layer_Vectors.Element(C).Map.Insert("weights_velocity", Layer_Weight_Velocity);
+                  Layer_Vectors.Element(C).Map.Insert("weights", Layer_Weight_Data);
+                  Layer_Vectors.Element(C).Map.Insert("bias_velocity", Layer_Bias_Velocity);
+                  Layer_Vectors.Element(C).Map.Insert("bias", Layer_Bias_Data);
+               end;
          end if;
          Layer_Vectors.Next(C);
       end loop;
-
    end Step;
+
 
    overriding procedure Zero_Gradient(Self : SGD_T; Layers : Layer_Vectors.Vector) is 
       C : Layer_Vectors.Cursor := Layers.First;
@@ -55,13 +61,38 @@ package body Del.Optimizers is
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then
             declare
+               Layer_Weight_Grad     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
+               Layer_Bias_Grad       : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
+
                Weight_Shape     : Tensor_Shape_T := Layer_Vectors.Element(C).Map("weights_grad").Shape;
                Bias_Shape       : Tensor_Shape_T := Layer_Vectors.Element(C).Map("bias_grad").Shape;
             begin
+
+               Put_Line("Layer Weight Before Zero Grad");
+               Put_line(Layer_Weight_Grad.Image);
+               New_Line;
+
+               Put_Line("Layer Bias Before Zero Grad");
+               Put_Line(Layer_Bias_Grad.Image);
+               New_Line;
+
                --Zero Weight Grad
                   Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
                --Zero Bias Grad
                   Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
+
+                  declare 
+                     Layer_Weight_Grad2     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
+                     Layer_Bias_Grad2      : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
+                  begin
+                     Put_Line("Layer Weight After Zero Grad");
+                     Put_line(Layer_Weight_Grad2.Image);
+                     New_Line;
+
+                     Put_Line("Layer Bias After Zero Grad");
+                     Put_Line(Layer_Bias_Grad2.Image);
+                     New_Line;
+                  end;
             end;
          end if;
          Layer_Vectors.Next(C);

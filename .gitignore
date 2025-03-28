@@ -6,3 +6,4 @@
 /math_pkg/orka_simd/build/**
 /math_pkg/orka_tensors_cpu/build/**
 /math_pkg/orka_numerics/build/**
+/generated-data/

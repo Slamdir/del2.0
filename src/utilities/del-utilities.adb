@@ -29,4 +29,20 @@ package body Del.Utilities is
       return List;
    end Generate_Random_List;
 
+   procedure Print_Array(arr : Integer_Array) is
+   begin
+      Put_Line("*******************************************");
+      Put_Line("*            Indecies                     *");
+      Put_Line("*******************************************");
+      Put_Line("\n\n");
+      Put("[");
+      for I in arr'Range loop
+         Put(Integer'Image(arr(I)));
+         if I /= arr'Last then
+            Put(", ");
+         end if;
+      end loop;
+      Put_Line("]");
+   end Print_Array;
+
 end Del.Utilities;

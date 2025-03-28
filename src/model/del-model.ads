@@ -1,5 +1,6 @@
 -- File: del-model.ads
 with Del.JSON; use Del.JSON;
+with Del.YAML; use Del.YAML;
 with Del.Data; use Del.Data;
 
 package Del.Model is
@@ -8,6 +9,7 @@ package Del.Model is
    -- Layer management
    procedure Add_Layer(Self : in out Model; Layer : Func_Access_T);
    procedure Add_Loss(Self : in out Model; Loss_Func : Loss_Access_T);
+   procedure Set_Optimizer(Self : in out Model; Optimizer : Optim_Access_T);
    
    -- Layer access
    function Get_Layer_Count(Self : Model) return Natural;
@@ -18,10 +20,24 @@ package Del.Model is
    procedure Set_Dataset(Self : in out Model; Dataset : Training_Data_Access);
    function Get_Dataset(Self : Model) return Training_Data_Access;
    
-   -- Convenience function to load data directly from JSON
+   -- Convenience functions to load data directly
    procedure Load_Data_From_JSON
      (Self          : in out Model;
       JSON_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T);
+      
+   -- New function to load data from YAML
+   procedure Load_Data_From_YAML
+     (Self          : in out Model;
+      YAML_File     : String;
+      Data_Shape    : Tensor_Shape_T;
+      Target_Shape  : Tensor_Shape_T);
+   
+   -- Generic load function that detects file type by extension
+   procedure Load_Data_From_File
+     (Self          : in out Model;
+      Filename      : String;
       Data_Shape    : Tensor_Shape_T;
       Target_Shape  : Tensor_Shape_T);
    
