@@ -10,7 +10,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Del.Data;
 with Del.YAML; use Del.YAML;
-
+with Del.Export; 
 package body Del.Model is
    procedure Add_Layer (Self : in out Model; Layer : Func_Access_T) is
    begin
@@ -247,7 +247,12 @@ package body Del.Model is
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_Data_From_YAML;
-   
+
+   procedure Export_To_JSON(Self : in Model; Filename : String) is
+   begin
+      Del.Export.Export_To_JSON(Self, Filename);
+   end Export_To_JSON;
+
    procedure Load_Data_From_File
      (Self          : in out Model;
       Filename      : String;

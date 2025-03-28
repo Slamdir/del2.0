@@ -18,6 +18,7 @@ procedure presentation_three_demo is
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- Per sample: 1 sample, 4 classes
    Json_Filename : constant String := "demos/demo-data/spiral_3.json";
+   Output_File : constant String := "demos\output\model_output.json";
    Model_Path    : constant String := "bin/model.onnx";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 50;
@@ -164,6 +165,10 @@ begin
    Print_Tensor(Output2, "Final Output");  -- Use Output2 directly as the final result
 end;
    New_Line;
+
+   Put_Line("Exporting model output to JSON...");
+   My_Model.Export_To_JSON(Output_File);
+   Put_Line("Export complete. Output written to: " & Output_File);
 
    -- Success message with separator
    Put_Line("=============================================================");
