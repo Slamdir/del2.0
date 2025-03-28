@@ -22,8 +22,4 @@ package Del.Operators is
 
    function SoftMax(X : Tensor_T) return Tensor_T;
 
-   procedure Initialize(L : in out Linear_T; In_Nodes, Out_Nodes : Positive);
-   --  procedure Initialize(L : in out ReLU_T; In_Nodes, Out_Nodes : Positive);
-   --  procedure Initialize(L : in out SoftMax_T; In_Nodes, Out_Nodes : Positive);
-
 end Del.Operators;

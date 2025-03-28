@@ -31,11 +31,12 @@ package Del is
    function Forward (L : in out Func_T; X : Tensor_T) return Tensor_T is abstract;
    function Backward (L : in out Func_T; Dy : Tensor_T) return Tensor_T is abstract;
    function Get_Params (L : Func_T) return Params_T is abstract;
+   procedure Initialize (L : in out Func_T; In_Nodes, Out_Nodes : Positive);
 
    type Loss_T is abstract tagged private;
    type Loss_Access_T is access all Loss_T'Class;
 
-   function Forward  (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Element_T is abstract;
+   function Forward  (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Float is abstract;
    function Backward (L : Loss_T; Expected : Tensor_T; Actual : Tensor_T) return Tensor_T is abstract;
 
    type Optim_T is abstract tagged private;
