@@ -1,0 +1,15 @@
+// A launch configuration that launches the extension inside a new window
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"preLaunchTask": "ada: Build project",
+			"name": "Ada - Build & Debug (Windows)",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/bin/backprop_test.exe",
+			"externalConsole": true,
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}
