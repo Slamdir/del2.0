@@ -10,8 +10,9 @@ package body Del.Data is
    is
    begin
       return new Training_Data'
-        (Data   => new Tensor_T'(Data),
-         Labels => new Tensor_T'(Labels));
+        (Data    => new Tensor_T'(Data),
+         Labels  => new Tensor_T'(Labels),
+         Dataset => null);
    end Create;
    
    function Get_Data(Self : Training_Data) return Tensor_T is
@@ -55,7 +56,8 @@ begin
    -- Return the combined dataset
    return new Training_Data'
      (Data   => new Tensor_T'(Combined_Data),
-      Labels => new Tensor_T'(Combined_Labels));
+      Labels => new Tensor_T'(Combined_Labels),
+      Dataset => null);
 end Combine_Dataset_Samples;
    
    function Load_From_JSON
@@ -72,7 +74,9 @@ end Combine_Dataset_Samples;
       Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
       return new Training_Data'
         (Data   => new Tensor_T'(Dataset(1).Data.all),
-         Labels => new Tensor_T'(Dataset(1).Target.all));
+         Labels => new Tensor_T'(Dataset(1).Target.all),
+         Dataset => new Dataset_Array'(Dataset));
+
    exception
       when E : JSON_Parse_Error =>
          Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));
@@ -105,7 +109,12 @@ end Combine_Dataset_Samples;
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_From_YAML;
-   
+
+   function Get_All_Samples(Self : Training_Data) return Dataset_Array is
+   begin
+      return Self.Dataset.all;
+   end Get_All_Samples;
+
    function Load_From_File
      (Filename      : String;
       Data_Shape    : Tensor_Shape_T;
