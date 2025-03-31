@@ -111,14 +111,17 @@ package body Del.Model is
          Put_Line("Starting training with:" & 
                  " Data shape: (" & Shape(Data)(1)'Image & "," & Shape(Data)(2)'Image & ")" &
                  " Labels shape: (" & Shape(Labels)(1)'Image & "," & Shape(Labels)(2)'Image & ")");
-
+      Put_Line ("Num Epochs " & Num_Epochs'Image);
+      Put_Line(Shape(Data)(1)'Image);
       for epoch in 1 .. Num_Epochs loop
          declare
             -- Shuffle indices
             Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
+            Batch_Loops : Integer := (Shape(Data)(1) / Batch_Size);
          begin
+            Put_Line("Batch Loops " & Batch_Loops'Image);
             -- Loop across number of batches in data (last one may be incomplete)
-            for batch in 1 .. (Shape(Data)(1) / Batch_Size) loop
+            for batch in 1 .. Batch_Loops loop
                declare
                   Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
                   Training_Labels : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
