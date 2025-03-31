@@ -3,6 +3,30 @@ with Ada.Numerics;
 with Ada.Numerics.Elementary_Functions;
 package body Del.Operators is
 
+   function Col_Sum(Values : Tensor_T) return Tensor_T is
+      Rows     : Integer := Shape(Values)(1);
+      Cols     : Integer := Shape(Values)(2);
+      Output   : Tensor_T := Zeros((Rows, 1));
+   begin
+      for I in 1 .. Rows loop
+         declare
+            Row_I   : Tensor_T := Values(I);
+            Sum     : Element_T := 0.0;
+            begin
+               for J in 1 .. Cols loop
+                  declare
+                     Temp : Element_T := Row_I(J);
+                  begin
+                     Sum := Sum + Temp;
+                  end;
+               end loop;
+               Output.Set(I, Sum);
+            end;
+      end loop;
+      --  Put_Line(Image(Output));
+      return Output;
+   end Col_Sum;
+
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T is
    begin
       Put_Line("Linear_T.Forward - Input shape: " & 
@@ -63,27 +87,19 @@ package body Del.Operators is
       Weights_Grad   : Tensor_T := L.Map("weights_grad");
       Bias_Grad      : Tensor_T := L.Map("bias_grad");
 
-      -- For computing bias gradients
-      New_Bias_Grad : Tensor_T := Zeros((1, Shape(Dy)(2)));
-      Sum_Row : Tensor_T := Dy(1);  -- Initialize with first row
+      -- sum(d_y, axis = 0)
+      New_Bias_Grad : Tensor_T := Col_Sum(Dy.Transpose).Transpose;
    begin
       -- Update gradients
       -- weights_grad = input.T * dy
       Weights_Grad := Add(Weights_Grad, Multiply(Transpose(Input), Dy));
-      
-      -- bias_grad = sum(dy, axis=0)
-      -- Sum all rows
-      for I in 2 .. Batch_Size loop
-         Sum_Row := Add(Sum_Row, Dy(I));
-      end loop;
-      -- Set as first (and only) row of New_Bias_Grad
-      New_Bias_Grad.Set(1, Sum_Row);
-      
+
+      -- bias_grad = bias_grad + sum(d_y, axis = 0) 
       Bias_Grad := Add(Bias_Grad, New_Bias_Grad);
       
       -- Store updated gradients
-      L.Map("weights_grad") := Weights_Grad;
-      L.Map("bias_grad")    := Bias_Grad;
+      L.Map.Include("weights_grad", Weights_Grad);
+      L.Map.Include("bias_grad", Bias_Grad);
       
       -- Return gradient with respect to input
       -- grad_input = dy * weights.T
@@ -114,7 +130,7 @@ package body Del.Operators is
       if Map.Contains("forward_output") then
          declare
             Forward_Output : Tensor_T := Map("forward_output");
-            Mask : Tensor_T := Forward_Output / (Forward_Output + Ones(Dy.Shape));
+            Mask : Tensor_T := Forward_Output > Zeros(Forward_Output.Shape);
          begin
             return Dy * Mask;
          end;
@@ -128,22 +144,6 @@ package body Del.Operators is
    begin
       return (Dummy, Dummy);
    end Get_Params;
-
-   function Row_Sum(Values : Tensor_T) return Tensor_T is
-      Rows     : Integer := Shape(Values)(1);
-      Output   : Tensor_T := Zeros((Rows, 1));
-   begin
-      --  Put_Line ("Rows: " & Rows'Image & " Columns: " & Columns'Image);
-      for I in 1 .. Rows loop
-      declare
-         Row_I : Tensor_T := Values(I);
-         begin
-            Output.Set(I, Sum(Row_I));
-         end;
-      end loop;
-      --  Put_Line(Image(Output));
-      return Output;
-   end Row_Sum;
 
    function Find_Row_Max(T : Tensor_T) return Tensor_T is
       Rows : constant Positive := Shape(T)(1);
@@ -214,7 +214,7 @@ package body Del.Operators is
       end Divide_By_Row;
 
       Exp_Values     : Tensor_T := Exp( Shifted_X );
-      Exp_Values_Sum : Tensor_T := Row_Sum(Exp_Values);
+      Exp_Values_Sum : Tensor_T := Col_Sum(Exp_Values);
       Output         : Tensor_T := Divide_By_Row(Exp_Values, Exp_Values_Sum);
 
       begin
@@ -230,8 +230,16 @@ package body Del.Operators is
    end Forward;
 
    overriding function Backward (L : in out SoftMax_T; Dy : Tensor_T) return Tensor_T is
+
+      Flat     : Tensor_T := Dy.Flatten;
+      Diag     : Tensor_T := Diagonal(Flat);
+      Off_Diag : Tensor_T := Outer(Flat, Flat);
+
    begin
-      return Dy;  -- Your existing implementation
+
+      --  return Diag - Off_Diag;
+      return Dy;
+
    end Backward;
 
    overriding function Get_Params (L : SoftMax_T) return Params_T is

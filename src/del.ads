@@ -3,7 +3,7 @@ with Ada.Strings.Hash;
 with Ada.Containers.Vectors;
 with Ada.Containers.Indefinite_Vectors;
 with Orka; use Orka;
-with Orka.Numerics.Singles.Tensors;
+with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 with Ada.Text_IO; use Ada.Text_IO;
 
@@ -14,6 +14,8 @@ package Del is
    subtype Tensor_Shape_T is Orka.Numerics.Singles.Tensors.Tensor_Shape;
    subtype Element_T is Orka.Numerics.Singles.Tensors.Element;
    subtype Elements_T is Orka.Numerics.Singles.Tensors.Element_Array;
+
+   package Random_Tensor is new Generic_Random(Tensor_T);
 
    package Data_Maps is new
      Ada.Containers.Indefinite_Hashed_Maps

@@ -22,11 +22,14 @@ procedure backprop_test is
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
    Json_Filename : constant String := "demos/demo-data/spiral_3_3.json";
-   Batch_Size    : constant Positive := 30;
-   Num_Epochs    : constant Positive := 50;
+   Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
+   Num_Epochs    : constant Positive := 100;
+
+   Hidden_Units  : constant Positive := 10;
+   Num_Classes   : constant Positive := 3;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
-      Learning_Rate => 1.0, Weight_Decay => 0.001, Momentum => 0.9));
+      Learning_Rate => 0.002, Weight_Decay => 0.1, Momentum => 0.0));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
@@ -53,29 +56,15 @@ procedure backprop_test is
 
    -- Step 1: Create Model and add layers
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(2, 30);
+   Linear_Layer.Initialize(2, Hidden_Units);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
-
-   Put_Line("Weights for Linear: ");
-   Put_Line(Linear_Layer.Get_Params(0).Image);
-
-   Put_Line("Bias for Linear: ");
-   Put_Line(Linear_Layer.Get_Params(1).Image);
-   New_Line;
 
    --  ReLU_Layer := new ReLU_T;
    --  My_Model.Add_Layer(Del.Func_Access_T(ReLU_Layer));
 
    Linear_Layer := new Linear_T;
-   Linear_Layer.Initialize(30, 3);
+   Linear_Layer.Initialize(Hidden_Units, Num_Classes);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
-
-   Put_Line("Weights for Linear: ");
-   Put_Line(Linear_Layer.Get_Params(0).Image);
-
-   Put_Line("Bias for Linear: ");
-   Put_Line(Linear_Layer.Get_Params(1).Image);
-   New_Line;
 
    Softmax_Layer := new Softmax_T;
    My_Model.Add_Layer(Del.Func_Access_T(Softmax_Layer));

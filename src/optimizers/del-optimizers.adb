@@ -39,10 +39,10 @@ package body Del.Optimizers is
                   Layer_Bias_Data := Layer_Bias_Data - LR * Layer_Bias_Velocity;
 
                   -- Store updated parameters
-                  Layer_Vectors.Element(C).Map.Insert("weights_velocity", Layer_Weight_Velocity);
-                  Layer_Vectors.Element(C).Map.Insert("weights", Layer_Weight_Data);
-                  Layer_Vectors.Element(C).Map.Insert("bias_velocity", Layer_Bias_Velocity);
-                  Layer_Vectors.Element(C).Map.Insert("bias", Layer_Bias_Data);
+                  Layer_Vectors.Element(C).Map.Include("weights_velocity", Layer_Weight_Velocity);
+                  Layer_Vectors.Element(C).Map.Include("weights", Layer_Weight_Data);
+                  Layer_Vectors.Element(C).Map.Include("bias_velocity", Layer_Bias_Velocity);
+                  Layer_Vectors.Element(C).Map.Include("bias", Layer_Bias_Data);
                end;
          end if;
          Layer_Vectors.Next(C);
@@ -63,32 +63,10 @@ package body Del.Optimizers is
                Weight_Shape     : Tensor_Shape_T := Layer_Vectors.Element(C).Map("weights_grad").Shape;
                Bias_Shape       : Tensor_Shape_T := Layer_Vectors.Element(C).Map("bias_grad").Shape;
             begin
-
-               Put_Line("Layer Weight Before Zero Grad");
-               Put_line(Layer_Weight_Grad.Image);
-               New_Line;
-
-               Put_Line("Layer Bias Before Zero Grad");
-               Put_Line(Layer_Bias_Grad.Image);
-               New_Line;
-
                --Zero Weight Grad
                   Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
                --Zero Bias Grad
                   Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
-
-                  declare 
-                     Layer_Weight_Grad2     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
-                     Layer_Bias_Grad2      : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
-                  begin
-                     Put_Line("Layer Weight After Zero Grad");
-                     Put_line(Layer_Weight_Grad2.Image);
-                     New_Line;
-
-                     Put_Line("Layer Bias After Zero Grad");
-                     Put_Line(Layer_Bias_Grad2.Image);
-                     New_Line;
-                  end;
             end;
          end if;
          Layer_Vectors.Next(C);

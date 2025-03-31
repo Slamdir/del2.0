@@ -70,9 +70,11 @@ end Combine_Dataset_Samples;
    begin
       Put_Line("Loading data from JSON file: " & JSON_File);
       Put_Line("Dataset loaded successfully. Samples:" & Dataset'Length'Image);
-      return new Training_Data'
-        (Data   => new Tensor_T'(Dataset(1).Data.all),
-         Labels => new Tensor_T'(Dataset(1).Target.all));
+
+      return Combine_Dataset_Samples(Dataset, Data_Shape, Target_Shape);
+      --  return new Training_Data'
+      --    (Data   => new Tensor_T'(Dataset(1).Data.all),
+      --     Labels => new Tensor_T'(Dataset(1).Target.all));
    exception
       when E : JSON_Parse_Error =>
          Put_Line("Error loading JSON data: " & Ada.Exceptions.Exception_Message(E));

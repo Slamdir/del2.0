@@ -4,8 +4,8 @@ package body Del is
 
    procedure Initialize (L : in out Func_T; In_Nodes, Out_Nodes : Positive) is
       -- Initialize with uniform random values between -0.1 and 0.1 for stable training
-      Weights : Tensor_T := Random_Uniform((In_Nodes, Out_Nodes));
-      Bias    : Tensor_T := Random_Uniform((1, Out_Nodes));
+      Weights : Tensor_T := Random_Tensor.Normal((In_Nodes, Out_Nodes));
+      Bias    : Tensor_T := Zeros((1, Out_Nodes));
 
       Weights_Grad : Tensor_T := Zeros((In_Nodes, Out_Nodes));
       Bias_Grad : Tensor_T := Zeros((1, Out_Nodes));
