@@ -18,18 +18,17 @@ procedure backprop_test is
    Linear_Layer  : Linear_Access_T;
    ReLU_Layer    : ReLU_Access_T;
    Softmax_Layer : Softmax_Access_T;
-   Input : Del.Tensor_T := To_Tensor([9.0, 2.0, Del.Element_T(-5.0), 0.0, 15.0, 9.0], [3,2]);
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
    Json_Filename : constant String := "demos/demo-data/spiral_3_3.json";
    Batch_Size    : constant Positive := 10;  -- Process 10 samples per batch
-   Num_Epochs    : constant Positive := 100;
+   Num_Epochs    : constant Positive := 25;
 
-   Hidden_Units  : constant Positive := 10;
+   Hidden_Units  : constant Positive := 40;
    Num_Classes   : constant Positive := 3;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
-      Learning_Rate => 0.002, Weight_Decay => 0.1, Momentum => 0.0));
+      Learning_Rate => 0.6, Weight_Decay => 0.01, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
@@ -59,8 +58,8 @@ procedure backprop_test is
    Linear_Layer.Initialize(2, Hidden_Units);
    My_Model.Add_Layer(Del.Func_Access_T(Linear_Layer));
 
-   --  ReLU_Layer := new ReLU_T;
-   --  My_Model.Add_Layer(Del.Func_Access_T(ReLU_Layer));
+   ReLU_Layer := new ReLU_T;
+   My_Model.Add_Layer(Del.Func_Access_T(ReLU_Layer));
 
    Linear_Layer := new Linear_T;
    Linear_Layer.Initialize(Hidden_Units, Num_Classes);
@@ -112,61 +111,6 @@ procedure backprop_test is
       Num_Epochs    => Num_Epochs);
    
    Put_Line("Training completed successfully.");
-   New_Line;
-
-   --  Step 4: Test forward pass with sample data
-   Put_Line("STEP 4: MODEL EVALUATION");
-   Put_Line("----------------------");
-   Put_Line("Testing forward pass with sample data...");
-   declare
-      Sample_Input   : Tensor_T := Ones((1, 100));  -- Matches JSON data and new ONNX input
-      Forward_Result : Tensor_T := Zeros((1, 4)); -- Expected output shape
-      Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
-      Output1        : Tensor_T := Layers.Element(1).all.Forward(Sample_Input);  -- linear_1: (1, 2) -> (1, 50)
-      Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);       -- relu_1: (1, 50) -> (1, 50)
-   begin
-      Put_Line("Sample input:");
-      Print_Tensor(Sample_Input, "Input");
-
-      Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
-      
-      Put_Line("Layer 1 completed (Linear)");
-      Print_Tensor(Output1, "Output from layer 1");
-      Put_Line("Layer 2 completed (ReLU)");
-      Print_Tensor(Output2, "Output from layer 2");
-      Put_Line("Forward pass result:");
-      Print_Tensor(Forward_Result, "Output");
-   exception
-      when E : others =>
-         Put_Line("Error in forward pass: " & Exception_Information(E));
-         raise;
-   end;
-   New_Line;
-
-    -- Step 5: Final forward pass after optimization
-   Put_Line("STEP 5: MODEL EVALUATION (POST-OPTIMIZATION)");
-   Put_Line("-----------------------------------------");
-   Put_Line("Final forward pass after optimization...");
-  declare
-      Final_Input    : Tensor_T := Ones((1, 100));  -- Correctly matched input dimension
-      Layers         : constant Layer_Vectors.Vector := My_Model.Get_Layers_Vector;
-      Output1        : Tensor_T := Layers.Element(1).all.Forward(Final_Input);  -- linear_1
-      Output2        : Tensor_T := Layers.Element(2).all.Forward(Output1);      -- relu_1
-   begin
-      Put_Line("Total layers: " & Integer'Image(Integer(Layers.Length)));
-      
-      Put_Line("Layer 1 completed (Linear)");
-      Print_Tensor(Output1, "Output from layer 1");
-      
-      Put_Line("Layer 2 completed (ReLU)");
-      Print_Tensor(Output2, "Output from layer 2");
-
-      declare 
-         Temp: Tensor_T := My_Model.Run_Layers (Input);
-      begin
-         Put_Line(Temp.Image);
-      end;
-   end;
    New_Line;
 
    -- Success message with separator

@@ -24,8 +24,8 @@ package body Del.Optimizers is
                   Layer_Bias_Velocity   : Tensor_T := Layer_Vectors.Element(C).Map("bias_velocity");
 
                   -- Local parameters
-                  LR : constant Element_T := Element_T(Self.Learning_Rate);
-                  WD : constant Element_T := Element_T(Self.Weight_Decay);
+                  LR       : constant Element_T := Element_T(Self.Learning_Rate);
+                  WD       : constant Element_T := Element_T(Self.Weight_Decay);
                   Momentum : constant Element_T := Element_T(Self.Momentum);
                begin
                   -- Weight update with corrected momentum/decay
@@ -57,16 +57,13 @@ package body Del.Optimizers is
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then
             declare
-               Layer_Weight_Grad     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
-               Layer_Bias_Grad       : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
-
                Weight_Shape     : Tensor_Shape_T := Layer_Vectors.Element(C).Map("weights_grad").Shape;
                Bias_Shape       : Tensor_Shape_T := Layer_Vectors.Element(C).Map("bias_grad").Shape;
             begin
                --Zero Weight Grad
-                  Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
+               Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
                --Zero Bias Grad
-                  Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
+               Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
             end;
          end if;
          Layer_Vectors.Next(C);

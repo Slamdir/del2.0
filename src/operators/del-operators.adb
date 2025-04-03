@@ -3,7 +3,7 @@ with Ada.Numerics;
 with Ada.Numerics.Elementary_Functions;
 package body Del.Operators is
 
-   function Col_Sum(Values : Tensor_T) return Tensor_T is
+   function Row_Sum(Values : Tensor_T) return Tensor_T is
       Rows     : Integer := Shape(Values)(1);
       Cols     : Integer := Shape(Values)(2);
       Output   : Tensor_T := Zeros((Rows, 1));
@@ -25,7 +25,7 @@ package body Del.Operators is
       end loop;
       --  Put_Line(Image(Output));
       return Output;
-   end Col_Sum;
+   end Row_Sum;
 
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T is
    begin
@@ -49,7 +49,7 @@ package body Del.Operators is
             
             -- For each row in the product
             Batch_Size : constant Positive := Shape(Product)(1);
-            Features : constant Positive := Shape(Product)(2);
+            Features   : constant Positive := Shape(Product)(2);
          begin
             Put_Line("Matrix multiplication successful");
             Put_Line("Product shape: " & 
@@ -57,7 +57,7 @@ package body Del.Operators is
             
             -- For each row in the result, add the bias (first row of Bias tensor)
             for I in 1 .. Batch_Size loop
-               Result.Set(I, Add(Product(I), Bias(1)));
+               Result.Set(I, Add(Product(I), Bias));
             end loop;
 
             Put_Line("Bias addition successful");
@@ -73,6 +73,12 @@ package body Del.Operators is
       end;
    exception
       when E : others =>
+         Put_Line("Image of X:");
+         Put_Line(X.Image);
+         New_Line;
+         Put_Line("Image of Weight:");
+         Put_Line(L.Map("weights").Image);
+         New_Line;
          Put_Line("Error in Linear_T.Forward: " & 
                   Ada.Exceptions.Exception_Message(E));
          raise;
@@ -81,21 +87,23 @@ package body Del.Operators is
    overriding function Backward (L : in out Linear_T; Dy : Tensor_T) return Tensor_T is
       Input      : constant Tensor_T := L.Map("input");
       Weights    : constant Tensor_T := L.Map("weights");
-      Batch_Size : constant Positive := Shape(Input)(1);
 
       -- Get current gradients
       Weights_Grad   : Tensor_T := L.Map("weights_grad");
       Bias_Grad      : Tensor_T := L.Map("bias_grad");
 
+      --np.dot(Self.Input.T, D_y)
+      Weight_Grad_Calc : Tensor_T := Input.Transpose * Dy;
+
       -- sum(d_y, axis = 0)
-      New_Bias_Grad : Tensor_T := Col_Sum(Dy.Transpose).Transpose;
+      New_Bias_Grad : Tensor_T := Row_Sum(Dy.Transpose).Flatten;
    begin
       -- Update gradients
       -- weights_grad = input.T * dy
-      Weights_Grad := Add(Weights_Grad, Multiply(Transpose(Input), Dy));
+      Weights_Grad := Weights_Grad + Weight_Grad_Calc;
 
       -- bias_grad = bias_grad + sum(d_y, axis = 0) 
-      Bias_Grad := Add(Bias_Grad, New_Bias_Grad);
+      Bias_Grad := Bias_Grad + New_Bias_Grad;
       
       -- Store updated gradients
       L.Map.Include("weights_grad", Weights_Grad);
@@ -103,7 +111,7 @@ package body Del.Operators is
       
       -- Return gradient with respect to input
       -- grad_input = dy * weights.T
-      return Multiply(Dy, Transpose(Weights));
+      return Dy * Weights.Transpose;
    end Backward;
 
    overriding function Get_Params (L : Linear_T) return Params_T is
@@ -113,15 +121,61 @@ package body Del.Operators is
       return (0 => Weights, 1 => Bias);
    end Get_Params;
 
+   function Convert_To_Mask(X : Tensor_T) return Tensor_T is
+      Rows     : Integer := Shape(X)(1);
+      Cols     : Integer := Shape(X)(2);
+      Output   : Tensor_T := Zeros(X.Shape);
+   begin
+      for I in 1 .. Rows loop
+         declare
+            Row_I   : Tensor_T := X(I);
+            begin
+               for J in 1 .. Cols loop
+                  declare
+                     Temp : Element_T := Row_I(J);
+                  begin
+                     if Temp > 0.0 then
+                        Output.Set((I, J), 1.0);
+                     else
+                        Output.Set((I, J), 0.0);
+                     end if;
+                  end;
+               end loop;
+            end;
+      end loop;
+      --  Put_Line(Image(Output));
+      return Output;
+   end Convert_To_Mask;
+
    overriding function Forward (L : in out ReLU_T; X : Tensor_T) return Tensor_T is
       Zero : Tensor_T := Zeros(X.Shape);
       Result : Tensor_T := Max(X, Zero);
+      Result_Boolean : Tensor_T := Convert_To_Mask(Result);
    begin
       Put_Line("Forward from ReLu_T");
       -- Store output for backward pass
-      L.Map.Include("forward_output", Result);
+      L.Map.Include("forward_output", Result_Boolean);
       return Result;
    end Forward;
+
+   function Mask_Gradient(Dy, Mask : Tensor_T) return Tensor_T is
+      Rows     : Integer := Shape(Dy)(1);
+      Cols     : Integer := Shape(Dy)(2);
+      Output   : Tensor_T := Zeros(Dy.Shape);
+   begin
+   for I in 1 .. Rows loop
+      for J in 1 .. Cols loop
+         declare
+            Dy_Element     : Element_T := Dy.Get((I, J));
+            Mask_Element   : Element_T := Mask.Get((I, J));
+         begin
+            Output.Set((I, J), Dy_Element * Mask_Element);
+         end;
+      end loop;
+   end loop;
+
+   return Output;
+   end Mask_Gradient;
 
    overriding function Backward (L : in out ReLU_T; Dy : Tensor_T) return Tensor_T is
       Zero : Tensor_T := Zeros(Dy.Shape);
@@ -130,9 +184,9 @@ package body Del.Operators is
       if Map.Contains("forward_output") then
          declare
             Forward_Output : Tensor_T := Map("forward_output");
-            Mask : Tensor_T := Forward_Output > Zeros(Forward_Output.Shape);
+            Output         : Tensor_T := Mask_Gradient (Dy, Forward_Output);
          begin
-            return Dy * Mask;
+            return Output;
          end;
       else
          return Zero;
@@ -214,7 +268,7 @@ package body Del.Operators is
       end Divide_By_Row;
 
       Exp_Values     : Tensor_T := Exp( Shifted_X );
-      Exp_Values_Sum : Tensor_T := Col_Sum(Exp_Values);
+      Exp_Values_Sum : Tensor_T := Row_Sum(Exp_Values);
       Output         : Tensor_T := Divide_By_Row(Exp_Values, Exp_Values_Sum);
 
       begin
@@ -226,20 +280,20 @@ package body Del.Operators is
    overriding function Forward (L : in out SoftMax_T; X : Tensor_T) return Tensor_T is
       Output : Tensor_T := Softmax(X);
    begin
+      -- Store input for backward pass (not needed when CE is used)
+      -- L.Map.Include("input", X);
       return Output;
    end Forward;
 
    overriding function Backward (L : in out SoftMax_T; Dy : Tensor_T) return Tensor_T is
-
-      Flat     : Tensor_T := Dy.Flatten;
-      Diag     : Tensor_T := Diagonal(Flat);
-      Off_Diag : Tensor_T := Outer(Flat, Flat);
+      -- Calculates the Jacobian of the Softmax Func (Dy.Flatten needs to use Input from Forward pass)
+      --  Flat     : Tensor_T := Dy.Flatten;
+      --  Diag     : Tensor_T := Diagonal(Flat);
+      --  Off_Diag : Tensor_T := Outer(Flat, Flat);
 
    begin
-
       --  return Diag - Off_Diag;
       return Dy;
-
    end Backward;
 
    overriding function Get_Params (L : SoftMax_T) return Params_T is
@@ -247,10 +301,5 @@ package body Del.Operators is
    begin
       return (Dummy, Dummy);
    end Get_Params;
-
-   --  TZ   : Time_Offset := UTC_Time_Offset;
-   --  Zero : Ada.Calendar.Time        :=
-   --    Ada.Calendar.Formatting.Value
-   --      ("2018-05-01 15:00:00.00", TZ);
 
 end Del.Operators;

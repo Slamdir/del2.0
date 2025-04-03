@@ -80,8 +80,7 @@ package body Del.Model is
 
    function Do_Backward(S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
       use Layer_Vectors;
-      Layer : Func_Access_T := Layer_Vectors.Element(C);
-      T : Tensor_T := Layer.Backward(IT);
+      T : Tensor_T := Layer_Vectors.Element (C).Backward (IT);
    begin
       if C = S.Layers.First then
          return T;
@@ -148,7 +147,7 @@ package body Del.Model is
 
                   -- Reset optimizer internal values for new loop
                   Self.Optimizer.Zero_Gradient(Self.Layers);
-                  
+
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers(Training_Data);
 
@@ -167,10 +166,15 @@ package body Del.Model is
 
                   -- Backpropagation
                   declare
-                     Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
-                     Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
-                     New_Grad    : Tensor_T := Do_Backward (Self, Cursor, Gradient);
+                     Inital_Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
+                     Cursor             : Layer_Vectors.Cursor := Self.Layers.Last;
+                     New_Grad           : Tensor_T := Do_Backward (Self, Cursor, Inital_Gradient);
                   begin
+
+                     --  Put_Line("Final Gradient");
+                     --  New_Line;
+                     --  Put_Line(New_Grad.Image);
+
                      -- Apply gradient changes
                      Self.Optimizer.Step (Self.Layers);  
                   end;
