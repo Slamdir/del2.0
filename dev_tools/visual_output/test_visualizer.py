@@ -2,7 +2,7 @@ import json
 import pytest
 import tkinter as tk
 import numpy as np
-from Visualizer import JSONVisualizer
+from dev_tools.visual_output.labels_Visualizer import JSONVisualizer
 from unittest.mock import MagicMock, patch
 
 @pytest.fixture
