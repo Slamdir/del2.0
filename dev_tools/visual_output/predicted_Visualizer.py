@@ -46,9 +46,8 @@ class JSONVisualizer(tk.Tk):
         # Extract (x, y) coordinates
         data = np.array(data_json["data"])  # shape: (N, 2)
 
-        # Extract predictions and compute predicted classes
-        predictions = np.array(data_json["predictions"])  # shape: (N, num_classes)
-        predicted_labels = np.argmax(predictions, axis=1) + 1  # Ada uses 1-based indexing
+        # Extract predicted labels directly
+        predicted_labels = np.array(data_json["labels"])  # shape: (N,)
 
         # Clear previous plot
         self.ax.clear()
@@ -57,7 +56,7 @@ class JSONVisualizer(tk.Tk):
         self.ax.set_ylabel("Y Coordinate")
 
         # Generate decision boundary
-        self.plot_decision_boundary(data, predictions)
+        self.plot_decision_boundary(data, predicted_labels)
 
         # Scatter Plot of actual points
         scatter = self.ax.scatter(
@@ -72,32 +71,29 @@ class JSONVisualizer(tk.Tk):
         # Update plot
         self.canvas.draw()
 
-    def plot_decision_boundary(self, data, predictions):
+    def plot_decision_boundary(self, data, predicted_labels):
         # Define a fine grid
         x_min, x_max = data[:, 0].min() - 5, data[:, 0].max() + 5
         y_min, y_max = data[:, 1].min() - 5, data[:, 1].max() + 5
-        h = 0.2  # much finer step size
+        h = 0.2  # fine step size
 
         xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                              np.arange(y_min, y_max, h))
-        
+
         # Flatten grid points
         grid_points = np.c_[xx.ravel(), yy.ravel()]
 
         # Approximate prediction by nearest neighbor
         from sklearn.neighbors import KNeighborsClassifier
 
-        predicted_classes = np.argmax(predictions, axis=1) + 1
-
         knn = KNeighborsClassifier(n_neighbors=15, weights="distance")
-        knn.fit(data, predicted_classes)
+        knn.fit(data, predicted_labels)
 
         Z = knn.predict(grid_points)
         Z = Z.reshape(xx.shape)
 
         # Plot decision boundary
         self.ax.contourf(xx, yy, Z, alpha=0.3, cmap="viridis")
-
 
 # Run the GUI
 if __name__ == "__main__":

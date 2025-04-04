@@ -18,7 +18,7 @@ package body Del.Export is
 
       File : File_Type;
       JSON_Content : Unbounded_String := To_Unbounded_String("{") & To_Unbounded_String(String'(1 => ASCII.LF)) & To_Unbounded_String("    ""data"": [") & To_Unbounded_String(String'(1 => ASCII.LF));
-      Data_Export, Labels_Export, Predictions_Export : Unbounded_String;
+      Data_Export, Labels_Export : Unbounded_String;
 
       New_Line_Str : constant Unbounded_String := To_Unbounded_String(String'(1 => ASCII.LF));
 
@@ -37,8 +37,7 @@ package body Del.Export is
          Put_Line("Warning: No dataset loaded. Exporting empty JSON.");
          JSON_Content := JSON_Content
                          & To_Unbounded_String("    ],") & New_Line_Str
-                         & To_Unbounded_String("    ""labels"": [],") & New_Line_Str
-                         & To_Unbounded_String("    ""predictions"": []") & New_Line_Str
+                         & To_Unbounded_String("    ""labels"": []") & New_Line_Str
                          & To_Unbounded_String("}");
          Put(File, To_String(JSON_Content));
          Close(File);
@@ -51,13 +50,15 @@ package body Del.Export is
       begin
          Data_Export := To_Unbounded_String("");
          Labels_Export := To_Unbounded_String("    ""labels"": [") & New_Line_Str & To_Unbounded_String("        ");
-         Predictions_Export := To_Unbounded_String("    ""predictions"": [") & New_Line_Str;
 
          for I in All_Samples'Range loop
             declare
                Sample_Data  : constant Tensor_T := All_Samples(I).Data.all;
-               Sample_Label : constant Tensor_T := All_Samples(I).Target.all;
                Prediction   : constant Tensor_T := Self.Run_Layers(Sample_Data);
+               
+               -- Variables to find predicted label
+               Predicted_Index : Integer := 1;
+               Max_Value       : Float_32 := Prediction.Get((1, 1));
             begin
                -- Data Export
                Data_Export := Data_Export & To_Unbounded_String("        [");
@@ -69,38 +70,21 @@ package body Del.Export is
                end loop;
                Data_Export := Data_Export & To_Unbounded_String("]");
 
-               -- Labels Export
-               declare
-                  Label_Index : Integer := 1;
-                  Max_Value   : Float_32 := Sample_Label.Get((1, 1));
-               begin
-                  for J in 2 .. Shape(Sample_Label)(2) loop
-                     if Sample_Label.Get((1, J)) > Max_Value then
-                        Max_Value := Sample_Label.Get((1, J));
-                        Label_Index := J;
-                     end if;
-                  end loop;
-                  Labels_Export := Labels_Export & To_Unbounded_String(Integer'Image(Label_Index));
-               end;
-
-               -- Predictions Export
-               Predictions_Export := Predictions_Export & To_Unbounded_String("        [");
-               for J in 1 .. Shape(Prediction)(2) loop
-                  Append_Float(Predictions_Export, Prediction.Get((1, J)));
-                  if J < Shape(Prediction)(2) then
-                     Predictions_Export := Predictions_Export & To_Unbounded_String(", ");
+               -- Predicted label (argmax)
+               for J in 2 .. Shape(Prediction)(2) loop
+                  if Prediction.Get((1, J)) > Max_Value then
+                     Max_Value := Prediction.Get((1, J));
+                     Predicted_Index := J;
                   end if;
                end loop;
-               Predictions_Export := Predictions_Export & To_Unbounded_String("]");
+               Labels_Export := Labels_Export & To_Unbounded_String(Integer'Image(Predicted_Index));
 
                -- Add commas if not last sample
                if I < All_Samples'Last then
                   Data_Export := Data_Export & To_Unbounded_String(",") & New_Line_Str;
                   Labels_Export := Labels_Export & To_Unbounded_String(", ");
-                  Predictions_Export := Predictions_Export & To_Unbounded_String(",") & New_Line_Str;
                else
                   Data_Export := Data_Export & New_Line_Str;
-                  Predictions_Export := Predictions_Export & New_Line_Str;
                end if;
             end;
          end loop;
@@ -110,15 +94,13 @@ package body Del.Export is
       JSON_Content := JSON_Content & Data_Export
                      & To_Unbounded_String("    ],") & New_Line_Str
                      & Labels_Export & New_Line_Str
-                     & To_Unbounded_String("    ],") & New_Line_Str
-                     & Predictions_Export
                      & To_Unbounded_String("    ]") & New_Line_Str
                      & To_Unbounded_String("}");
 
       -- Write to file
       Put(File, To_String(JSON_Content));
       Close(File);
-      Put_Line("Model training data and predictions successfully exported to JSON file: " & Filename);
+      Put_Line("Model training data and predicted labels successfully exported to JSON file: " & Filename);
 
    exception
       when E : others =>
