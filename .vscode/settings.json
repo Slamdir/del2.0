@@ -1,3 +1,4 @@
 {
-    "ada.projectFile": "del.gpr"
+    "ada.projectFile": "del.gpr",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
