@@ -11,8 +11,7 @@ package body Del.Data is
    begin
       return new Training_Data'
         (Data   => new Tensor_T'(Data),
-         Labels => new Tensor_T'(Labels),
-         Dataset => null);
+         Labels => new Tensor_T'(Labels));
    end Create;
    
    function Get_Data(Self : Training_Data) return Tensor_T is
@@ -56,8 +55,7 @@ begin
    -- Return the combined dataset
    return new Training_Data'
      (Data   => new Tensor_T'(Combined_Data),
-      Labels => new Tensor_T'(Combined_Labels),
-      Dataset => new Dataset_Array'(Dataset));
+      Labels => new Tensor_T'(Combined_Labels));
 end Combine_Dataset_Samples;
    
    function Load_From_JSON
@@ -109,12 +107,6 @@ end Combine_Dataset_Samples;
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_From_YAML;
-
-   function Get_All_Samples
-      (Self : Training_Data) return Dataset_Array is
-   begin
-      return Self.Dataset.all;
-   end Get_All_Samples;
    
    function Load_From_File
      (Filename      : String;

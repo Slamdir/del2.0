@@ -33,19 +33,15 @@ package Del.Data is
       Data_Shape    : Tensor_Shape_T;
       Target_Shape  : Tensor_Shape_T) return Training_Data_Access;
 
-   function Get_All_Samples
-      (Self : Training_Data) return Dataset_Array;
 
    -- Future expansion could include other data formats:
    -- function Load_From_CSV
    -- etc.
 
 private
-   type Dataset_Array_Access is access all Dataset_Array;
    type Training_Data is tagged record
       Data   : Tensor_Access_T;
       Labels : Tensor_Access_T;
-      Dataset : Dataset_Array_Access;
    end record;
 
 end Del.Data;
