@@ -79,7 +79,12 @@ class JSONVisualizer(tk.Tk):
 
     def plot_decision_boundary(self, data, predicted_labels):
         # Fine grid step
-        h = 0.01
+        range_x = self.x_max - self.x_min
+        range_y = self.y_max - self.y_min
+
+    # Make h proportional to data size
+        h = max(range_x, range_y) / 200
+        
         xx, yy = np.meshgrid(
             np.arange(self.x_min, self.x_max, h),
             np.arange(self.y_min, self.y_max, h)
