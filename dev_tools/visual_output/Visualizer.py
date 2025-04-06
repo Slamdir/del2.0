@@ -83,7 +83,7 @@ class JSONVisualizer(tk.Tk):
         range_y = self.y_max - self.y_min
 
     # Make h proportional to data size
-        h = max(range_x, range_y) / 200
+        h = max(range_x, range_y) / 300
         
         xx, yy = np.meshgrid(
             np.arange(self.x_min, self.x_max, h),
@@ -92,7 +92,7 @@ class JSONVisualizer(tk.Tk):
 
         grid_points = np.c_[xx.ravel(), yy.ravel()]
 
-        # K-Nearest Neighbors with fewer neighbors for more detail
+        # K-Nearest Neighborsl
         from sklearn.neighbors import KNeighborsClassifier
         knn = KNeighborsClassifier(n_neighbors=12, weights="distance") #
         knn.fit(data, predicted_labels)
