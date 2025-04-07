@@ -151,16 +151,6 @@ package body Del.Model is
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers(Training_Data);
 
-                  Put_Line("Before Compute Loss");
-                  Put_Line("Target Labels");
-                  New_Line;
-                  Put_Line(Training_Labels.Image);
-
-                  New_Line;
-                  Put_Line("Actual Labels");
-                  New_Line;
-                  Put_Line(Actual_Labels.Image);
-
                   -- Compute loss
                   Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
 
@@ -178,15 +168,11 @@ package body Del.Model is
                      -- Apply gradient changes
                      Self.Optimizer.Step (Self.Layers);  
                   end;
-                  Put_Line("Processed epoch" & epoch'Image & ", batch" & batch'Image);
-                  New_Line;
-                  Put_Line("Loss Value " & Loss_Value'Image);
-                  New_Line;
                end;
             end loop;
             --Outputs after every 10 epochs and when the final epoch is completed
             if epoch mod 10 = 0 or epoch = Num_Epochs then
-               Put_Line(Loss_Value'Image);
+               Put_Line("Loss at Epoch " & epoch'Image & " Loss value: " & Loss_Value'Image);
                New_Line;
             end if;
          end;

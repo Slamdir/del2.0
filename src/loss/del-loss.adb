@@ -38,13 +38,6 @@ package body Del.Loss is
 
       Gradient := Actual - Expected;
       Gradient := Gradient / Element_T(Rows);
-
-      New_Line;
-      Put_Line("GRADIENT IMAGE:");
-      New_Line;
-      Put_Line(Gradient.Image);
-      New_Line;
-
       return Gradient;
    end Backward;
 
