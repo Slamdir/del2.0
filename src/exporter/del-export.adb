@@ -10,7 +10,7 @@ with Del.Data; use Del.Data;
 
 package body Del.Export is
 
-   procedure Export_To_JSON(Self : in Del.Model.Model; Filename : String; Include_Raw_Predictions : Boolean := True) is
+   procedure Export_To_JSON(Self : in Del.Model.Model; Filename : String; Include_Raw_Predictions : Boolean := False) is
       use Ada.Text_IO;
       use Ada.Strings.Unbounded;
       use Ada.Strings.Unbounded.Text_IO;

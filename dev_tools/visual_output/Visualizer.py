@@ -1,4 +1,4 @@
-import json
+import json 
 import numpy as np
 import matplotlib.pyplot as plt
 import tkinter as tk
@@ -43,7 +43,12 @@ class JSONVisualizer(tk.Tk):
             data_json = json.load(f)
 
         data = np.array(data_json["data"])  # shape: (N, 2)
-        predicted_labels = np.array(data_json["labels"])
+
+        # Check if "labels" key exists
+        if "labels" in data_json:
+            predicted_labels = np.array(data_json["labels"])
+        else:
+            predicted_labels = np.zeros(data.shape[0], dtype=int)
 
         # Calculate dynamic padding
         x_padding = (data[:, 0].max() - data[:, 0].min()) * 0.1
@@ -70,7 +75,8 @@ class JSONVisualizer(tk.Tk):
             edgecolor="k",
             s=80  # bigger points
         )
-        self.fig.colorbar(scatter, ax=self.ax, ticks=np.unique(predicted_labels))
+        if np.unique(predicted_labels).size > 1:
+            self.fig.colorbar(scatter, ax=self.ax, ticks=np.unique(predicted_labels))
 
         self.ax.set_xlim(self.x_min, self.x_max)
         self.ax.set_ylim(self.y_min, self.y_max)
@@ -82,7 +88,7 @@ class JSONVisualizer(tk.Tk):
         range_x = self.x_max - self.x_min
         range_y = self.y_max - self.y_min
 
-    # Make h proportional to data size
+        # Make h proportional to data size
         h = max(range_x, range_y) / 300
         
         xx, yy = np.meshgrid(
@@ -92,9 +98,9 @@ class JSONVisualizer(tk.Tk):
 
         grid_points = np.c_[xx.ravel(), yy.ravel()]
 
-        # K-Nearest Neighborsl
+        # K-Nearest Neighbors
         from sklearn.neighbors import KNeighborsClassifier
-        knn = KNeighborsClassifier(n_neighbors=12, weights="distance") #
+        knn = KNeighborsClassifier(n_neighbors=12, weights="distance")
         knn.fit(data, predicted_labels)
 
         Z = knn.predict(grid_points)
