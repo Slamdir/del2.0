@@ -9,6 +9,7 @@ with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Del.Data;
+with Del.Export; use Del.Export;
 with Del.YAML; use Del.YAML;
 
 package body Del.Model is
@@ -195,7 +196,7 @@ package body Del.Model is
       C : Layer_Vectors.Cursor := Self.Layers.First;
    begin
       Put_Line ("Run_Layers called with input shape: " & 
-                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
+                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image); 
                
       if Self.Layers.Length = 0 then
          Put_Line ("No layers in network");
@@ -240,6 +241,14 @@ package body Del.Model is
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_Data_From_YAML;
+
+   procedure Export_To_JSON
+      (Self : in Model; 
+      Filename : String) 
+   is
+   begin
+      Del.Export.Export_To_JSON(Self, Filename);
+   end Export_To_JSON;
    
    procedure Load_Data_From_File
      (Self          : in out Model;
