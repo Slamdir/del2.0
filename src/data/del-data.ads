@@ -33,6 +33,7 @@ package Del.Data is
       Data_Shape    : Tensor_Shape_T;
       Target_Shape  : Tensor_Shape_T) return Training_Data_Access;
 
+
    -- Future expansion could include other data formats:
    -- function Load_From_CSV
    -- etc.

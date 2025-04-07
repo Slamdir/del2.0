@@ -2,14 +2,14 @@ with "config/del_config.gpr";
 -- with "aunit.gpr";
 project Del is
 
-   for Source_Dirs use ("src/**", "demos", "config/");
+   for Source_Dirs use ("src/**", "demos", "config/", "testing");
    for Object_Dir use "obj/" & Del_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "bin";
 
 
    for Main use ("relu_test", "softmax_test", "linear_test", "presentation_two_demo", 
-   "json_test", "optim_test", "onnx_test", "onnx_export_test", "presentation_three_demo", "yaml_test", "backprop_test");
+   "json_test", "optim_test", "onnx_test", "onnx_export_test", "presentation_three_demo", "yaml_test", "backprop_test", "export_model", "relu_testcases", "softmax_testcases", "linear_testcases", "loss_testcases", "yaml_testcases", "json_testcases", "export_model_testcases");
 
    package Compiler is
       for Default_Switches ("Ada") use Del_Config.Ada_Compiler_Switches & ("-gnat2022");

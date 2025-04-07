@@ -113,6 +113,10 @@ procedure backprop_test is
    Put_Line("Training completed successfully.");
    New_Line;
 
+   Put_Line("Exporting model output to JSON...");
+   My_Model.Export_To_JSON(Output_File);
+   Put_Line("Export complete. Output written to: " & Output_File);
+
    -- Success message with separator
    Put_Line("=============================================================");
    Put_Line("             Demo completed successfully!                    ");
