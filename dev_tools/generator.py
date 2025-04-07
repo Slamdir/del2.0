@@ -62,34 +62,40 @@ def GenerateSpiralData():
     data = []
     labels = []
 
+    # Calculate spiral parameters based on input bounds
+    max_radius = (upper - lower) * 0.5 # helps keep radius consistent with upper and lower limits, best if upper = -lower
+    max_angle = max_radius / 100 * np.pi  # 3 full rotations
+
     # Generate points for each spiral arm
     for i in range(types):
         print(f'Generating arm {i}...')
-        # Generate radius values that increase along the spiral
-        r = np.linspace(lower, upper, quantity//types)
         
-        # Generate angle values with increasing radius
-        # Add 2π/n_classes offset for each class to space arms evenly
-        t = np.linspace(0, 3, quantity//types) + i * 2*np.pi/types
+        # Number of points per spiral
+        n_points = quantity // types
         
-        # Add some noise
-        t = t + noise * np.random.uniform(lower * 0.01, upper * 0.01, size=t.shape)
-    
-        # Convert polar coordinates to cartesian
-        x = r * np.cos(t)
-        y = r * np.sin(t)
+        # Generate angles with full rotations
+        theta = np.linspace(0, max_angle, n_points)
         
-        x = x.tolist()
-        y = y.tolist()
+        # Archimedean spiral formula (r = a + b*θ)
+        r = 0.5 + (max_radius / theta[-1]) * theta  # Start near center
         
-        # store data and labels
-        for p in range(len(x)):     # p = point
+        # Add proportional noise to radius
+        r += noise * np.random.randn(n_points) * (r * 0.1)
+        
+        # Convert to cartesian with class offset
+        x = r * np.cos(theta + i * 2*np.pi/types)
+        y = r * np.sin(theta + i * 2*np.pi/types)
+        
+        # Store data and labels
+        for p in range(n_points):
             data.append([x[p], y[p]])
             labels.append(i + 1)
+
         print(f'Done generating arm {i}.')
-        
-    # write data to file
+    
+    # Write data to file
     WriteData(data, labels)
+
 
 
 # ===== MAIN =====
@@ -102,23 +108,23 @@ for i in range(argsLength):
 
 
 # integer indicating the size of the random dataset to be generated, defaults to 100
-quantity: int = NullCoalesce(int(args[0]), 100)
+quantity: int = int(NullCoalesce(args[0], 100))
 # integer indicating labels that can be given to the data, defaults to 4
-types: int = NullCoalesce(int(args[1]), 4)
+types: int = int(NullCoalesce(args[1], 4))
 # integer indicating the dimension of the points in the random dataset, defaults to 2
-dimension: int = NullCoalesce(int(args[2]), 2)
+dimension: int = int(NullCoalesce(args[2], 2))
 # integer indicating lower range for the generated values, defaults to -100
-lower: int = NullCoalesce(int(args[3]), -100)
+lower: int = int(NullCoalesce(args[3], -100))
 # integer indicating upper range for the generated values, defaults to 100
-upper: int = NullCoalesce(int(args[4]), 100)
+upper: int = int(NullCoalesce(args[4], 100))
 # integer indicating shape of data to generate:
 #   1: grid
 #   2: spiral
-shape: int = NullCoalesce(int(args[5]), 1)
+shape: int = int(NullCoalesce(args[5], 1))
 # integer indicating if labels should be generated, 1 to generate and any other value to not
-createLabels: bool = (NullCoalesce(int(args[6]), 1) == 1)
+createLabels: bool = (NullCoalesce(args[6], 1) == 1)
 # decimal indicating noise multiplier if spiral generation is chosen
-noise: float = NullCoalesce(float(args[7]), 0.1)
+noise: float = float(NullCoalesce(args[7], 0.5))
 
 print(f"-=~=- Values -=~=-\nQuantity: {quantity}\nTypes: {types}\nDimension: {dimension}\nLower: {lower}\nUpper: {upper}\nShape: {shape}\nCreate Labels: {createLabels}\n\n")
 
