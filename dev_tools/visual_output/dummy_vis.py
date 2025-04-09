@@ -1,10 +1,11 @@
-import json 
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import filedialog
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg  # No NavigationToolbar2Tk
-import os
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from scipy.interpolate import griddata
+import os  # <-- For handling file names
 
 class JSONVisualizer(tk.Tk):
     def __init__(self):
@@ -31,7 +32,8 @@ class JSONVisualizer(tk.Tk):
         self.x_min, self.x_max = None, None
         self.y_min, self.y_max = None, None
 
-        self.colorbar = None   # <<==== Track the colorbar object!
+        self.colorbar = None
+        self.current_file = None  # <-- Store currently loaded file name
 
     def load_json(self):
         file_path = filedialog.askopenfilename(
@@ -39,7 +41,7 @@ class JSONVisualizer(tk.Tk):
             filetypes=[("JSON Files", "*.json"), ("All Files", "*.*")]
         )
         if file_path:
-            self.current_file = file_path
+            self.current_file = file_path  # Save for UI and save feature
             self.plot_data(file_path)
 
     def plot_data(self, file_path):
@@ -53,15 +55,12 @@ class JSONVisualizer(tk.Tk):
         else:
             predicted_labels = np.zeros(data.shape[0], dtype=int)
 
-        # Clear previous plot
         self.ax.clear()
 
-        # Remove old colorbar if it exists
         if self.colorbar is not None:
             self.colorbar.remove()
-            self.colorbar = None  # << Important to reset pointer
+            self.colorbar = None
 
-        # Calculate dynamic padding again
         x_padding = (data[:, 0].max() - data[:, 0].min()) * 0.1
         y_padding = (data[:, 1].max() - data[:, 1].min()) * 0.1
 
@@ -70,11 +69,14 @@ class JSONVisualizer(tk.Tk):
         self.y_min = data[:, 1].min() - y_padding
         self.y_max = data[:, 1].max() + y_padding
 
+        # Update window title with file name
+        file_name = os.path.basename(file_path)
+        self.title(f"Ada Model Visualization - {file_name}")
+
         self.ax.set_title("Ada Model Predicted Labels with Decision Boundaries")
         self.ax.set_xlabel("X Coordinate")
         self.ax.set_ylabel("Y Coordinate")
 
-        # Plot decision boundary
         self.plot_decision_boundary(data, predicted_labels)
 
         scatter = self.ax.scatter(
@@ -86,35 +88,31 @@ class JSONVisualizer(tk.Tk):
         )
 
         if np.unique(predicted_labels).size > 1:
-            self.colorbar = self.fig.colorbar(scatter, ax=self.ax, ticks=np.unique(predicted_labels))
+            unique_labels = np.unique(predicted_labels)
+            self.colorbar = self.fig.colorbar(scatter, ax=self.ax, ticks=unique_labels)
+
+            class_names = [f"Class {label}" for label in unique_labels]
+            self.colorbar.ax.set_yticklabels(class_names)
 
         self.ax.set_xlim(self.x_min, self.x_max)
         self.ax.set_ylim(self.y_min, self.y_max)
 
-        # Use draw_idle instead of draw
         self.canvas.draw_idle()
 
     def plot_decision_boundary(self, data, predicted_labels):
-        range_x = self.x_max - self.x_min
-        range_y = self.y_max - self.y_min
-
-        h = max(range_x, range_y) / 300
-        
         xx, yy = np.meshgrid(
-            np.arange(self.x_min, self.x_max, h),
-            np.arange(self.y_min, self.y_max, h)
+            np.linspace(self.x_min, self.x_max, 300),
+            np.linspace(self.y_min, self.y_max, 300)
         )
 
-        grid_points = np.c_[xx.ravel(), yy.ravel()]
+        zz = griddata(
+            points=data,
+            values=predicted_labels,
+            xi=(xx, yy),
+            method='nearest'
+        )
 
-        from sklearn.neighbors import KNeighborsClassifier
-        knn = KNeighborsClassifier(n_neighbors=12, weights="distance")
-        knn.fit(data, predicted_labels)
-
-        Z = knn.predict(grid_points)
-        Z = Z.reshape(xx.shape)
-
-        self.ax.contourf(xx, yy, Z, alpha=0.3, cmap="viridis")
+        contour = self.ax.contourf(xx, yy, zz, levels=np.unique(predicted_labels), cmap="viridis", alpha=0.3)
 
     def save_plot(self):
         if self.current_file is None:
@@ -131,7 +129,6 @@ class JSONVisualizer(tk.Tk):
             self.fig.savefig(save_path, bbox_inches='tight')
             tk.messagebox.showinfo("Save Successful", f"Plot saved successfully:\n{save_path}")
 
-# Run the GUI
 if __name__ == "__main__":
     app = JSONVisualizer()
     app.mainloop()
