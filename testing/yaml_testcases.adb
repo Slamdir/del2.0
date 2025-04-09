@@ -7,8 +7,8 @@ with Del.Model;
 with Del.Data; use Del.Data;
 with Del.YAML; use Del.YAML;
 with Del.Operators; use Del.Operators;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 with Orka; use Orka;
 
 procedure YAML_Testcases is

@@ -5,7 +5,7 @@ with Del.Model;
 with Del.Data; use Del.Data;
 with Del.JSON; use Del.JSON;
 with Del.Operators; use Del.Operators;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
 with Ada.Directories; use Ada.Directories;
 
 procedure Json_Test is

@@ -4,7 +4,7 @@ with Del.Model;
 with Del.Data;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
-with Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors.CPU;
 
 procedure ONNX_Export_Test is
    -- Create two models - one for saving, one for loading
@@ -13,9 +13,9 @@ procedure ONNX_Export_Test is
    
    -- Test data
    Test_Data : constant Del.Tensor_T := 
-     Orka.Numerics.Singles.Tensors.CPU.Random_Uniform([10, 100]);
+     Orka.Numerics.Doubles.Tensors.CPU.Random_Uniform([10, 100]);
    Test_Labels : constant Del.Tensor_T := 
-     Orka.Numerics.Singles.Tensors.CPU.Random_Uniform([10, 50]);
+     Orka.Numerics.Doubles.Tensors.CPU.Random_Uniform([10, 50]);
    
    -- Model paths
    Export_Path : constant String := "bin/exported_model.onnx";

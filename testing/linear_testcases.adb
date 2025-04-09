@@ -2,8 +2,8 @@ with Del;
 with Del.Operators;
 with Del.Model;
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
 with Orka; use Orka;
 
 procedure Linear_Testcases is
@@ -18,7 +18,7 @@ procedure Linear_Testcases is
 
    -- Linear layer test tensors
    Positive_Input : D.Tensor_T := Ones([Batch_Size, Input_Size]);          -- Positive 2x2 input
-   Negative_Input : D.Tensor_T := Ones([Batch_Size, Input_Size]) * Float_32(-1.0); -- Negative 2x2 input
+   Negative_Input : D.Tensor_T := Ones([Batch_Size, Input_Size]) * D.Element_T(-1.0); -- Negative 2x2 input
    Gradient_Data  : D.Tensor_T := Ones([Batch_Size, Output_Size]);         -- 2x3 gradient
 
    -- Create layer and network

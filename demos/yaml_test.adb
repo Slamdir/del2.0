@@ -5,7 +5,7 @@ with Del.Model;
 with Del.Data; use Del.Data;
 with Del.YAML; use Del.YAML;  -- Use Del.YAML instead of Del.JSON
 with Del.Operators; use Del.Operators;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
 with Ada.Directories; use Ada.Directories;
 
 procedure YAML_Test is

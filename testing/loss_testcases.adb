@@ -4,8 +4,8 @@ with Del; use Del;
 with Del.Loss;
 with Del.Operators;
 with Del.Model;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 with Orka; use Orka;
 
 procedure Loss_Testcases is

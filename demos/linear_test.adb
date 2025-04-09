@@ -3,8 +3,8 @@ with Del.Operators;
 with Del.Model;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Exceptions;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
 with Orka; use Orka;
 
 procedure linear_test is

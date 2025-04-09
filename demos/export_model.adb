@@ -7,8 +7,8 @@ with Del.Operators; use Del.Operators;
 with Del.Optimizers; use Del.Optimizers;
 with Del.Loss; use Del.Loss;
 with Del.JSON; use Del.JSON;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 
 procedure Export_Model is
    -- Model and data declarations

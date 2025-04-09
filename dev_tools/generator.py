@@ -74,7 +74,7 @@ def GenerateSpiralData():
         n_points = quantity // types
         
         # Generate angles with full rotations
-        theta = np.linspace(0, max_angle, n_points)
+        theta = np.linspace(0.0, max_angle, n_points)
         
         # Archimedean spiral formula (r = a + b*θ)
         r = 0.5 + (max_radius / theta[-1]) * theta  # Start near center
@@ -88,7 +88,7 @@ def GenerateSpiralData():
         
         # Store data and labels
         for p in range(n_points):
-            data.append([x[p], y[p]])
+            data.append([x[p] / 100.0, y[p] / 100.0])
             labels.append(i + 1)
 
         print(f'Done generating arm {i}.')
@@ -110,7 +110,7 @@ for i in range(argsLength):
 # integer indicating the size of the random dataset to be generated, defaults to 100
 quantity: int = int(NullCoalesce(args[0], 100))
 # integer indicating labels that can be given to the data, defaults to 4
-types: int = int(NullCoalesce(args[1], 4))
+types: int = int(NullCoalesce(args[1], 3))
 # integer indicating the dimension of the points in the random dataset, defaults to 2
 dimension: int = int(NullCoalesce(args[2], 2))
 # integer indicating lower range for the generated values, defaults to -100
@@ -120,7 +120,7 @@ upper: int = int(NullCoalesce(args[4], 100))
 # integer indicating shape of data to generate:
 #   1: grid
 #   2: spiral
-shape: int = int(NullCoalesce(args[5], 1))
+shape: int = int(NullCoalesce(args[5], 2))
 # integer indicating if labels should be generated, 1 to generate and any other value to not
 createLabels: bool = (NullCoalesce(args[6], 1) == 1)
 # decimal indicating noise multiplier if spiral generation is chosen

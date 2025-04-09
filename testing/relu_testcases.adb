@@ -2,7 +2,7 @@ with Del;
 with Del.Operators;
 with Del.Model;
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 with Orka; use Orka;
 
 procedure ReLU_Testcases is
@@ -34,7 +34,7 @@ procedure ReLU_Testcases is
 
    -- Helper procedure for assertions
    procedure Assert_Test(Expected, Actual : D.Tensor_T; Test_Name : String) is
-      Tolerance : constant Float_32 := 0.0001;
+      Tolerance : constant D.Element_T := 0.0001;
       Diff      : D.Tensor_T := Abs(Expected - Actual);
    begin
       if Max(Diff) > Tolerance then

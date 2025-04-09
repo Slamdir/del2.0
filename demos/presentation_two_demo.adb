@@ -3,7 +3,7 @@ with Del.Operators;
 with Del.Model;
 
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 
 procedure presentation_two_demo is
 

@@ -3,7 +3,6 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 with Ada.Containers; use Ada.Containers;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del; use Del;
 
 package body Del.YAML is

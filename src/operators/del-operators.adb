@@ -28,16 +28,11 @@ package body Del.Operators is
    end Row_Sum;
 
    overriding function Forward (L : in out Linear_T; X : Tensor_T) return Tensor_T is
-   begin
-      Put_Line("Linear_T.Forward - Input shape: " & 
-               Shape(X)(1)'Image & "," & Shape(X)(2)'Image);
-      
+   begin      
       declare
          Weights : constant Tensor_T := L.Map("weights");
          Bias    : constant Tensor_T := L.Map("bias");
       begin
-         Put_Line("Input shape: " & Shape(X)(1)'Image & "," & Shape(X)(2)'Image);
-         Put_Line("Weights shape: " & Shape(Weights)(1)'Image & "," & Shape(Weights)(2)'Image);
          -- Rest of the code
                   
          -- Perform matrix multiplication
@@ -50,19 +45,11 @@ package body Del.Operators is
             -- For each row in the product
             Batch_Size : constant Positive := Shape(Product)(1);
             Features   : constant Positive := Shape(Product)(2);
-         begin
-            Put_Line("Matrix multiplication successful");
-            Put_Line("Product shape: " & 
-                     Shape(Product)(1)'Image & "," & Shape(Product)(2)'Image);
-            
+         begin            
             -- For each row in the result, add the bias (first row of Bias tensor)
             for I in 1 .. Batch_Size loop
                Result.Set(I, Add(Product(I), Bias));
             end loop;
-
-            Put_Line("Bias addition successful");
-            Put_Line("Result shape: " & 
-                     Shape(Result)(1)'Image & "," & Shape(Result)(2)'Image);
             
             -- Store input for backward pass
             L.Map.Include("input", X);
@@ -152,7 +139,6 @@ package body Del.Operators is
       Result : Tensor_T := Max(X, Zero);
       Result_Boolean : Tensor_T := Convert_To_Mask(Result);
    begin
-      Put_Line("Forward from ReLu_T");
       -- Store output for backward pass
       L.Map.Include("forward_output", Result_Boolean);
       return Result;

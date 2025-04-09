@@ -23,8 +23,8 @@ package body Del.Export is
       New_Line_Str : constant Unbounded_String := To_Unbounded_String(String'(1 => ASCII.LF));
 
       -- Helper to append float formatted nicely
-      procedure Append_Float(S : in out Unbounded_String; Value : Float_32) is
-         Raw : constant String := Float_32'Image(Value);
+      procedure Append_Float(S : in out Unbounded_String; Value : Element_T) is
+         Raw : constant String := Element_T'Image(Value);
       begin
          -- Trim leading spaces
          S := S & To_Unbounded_String(Trim(Raw, Ada.Strings.Left));
@@ -69,13 +69,13 @@ package body Del.Export is
                Input_Batch : Tensor_T := Zeros((1, Num_Features));
                Prediction : Tensor_T := Zeros((1, Num_Classes));
                Predicted_Index : Integer := 1;
-               Max_Value : Float_32;
+               Max_Value : Element_T;
             begin
                -- Fill the batch tensor
                for J in 1 .. Num_Features loop
                   declare
                      Temp_Index : constant Tensor_Index := Tensor_Index'(1, J);
-                     Temp_Value : constant Float_32 := Data_Tensor.Get((I, J));
+                     Temp_Value : constant Element_T := Data_Tensor.Get((I, J));
                   begin
                      Input_Batch.Set(Temp_Index, Temp_Value);
                   end;

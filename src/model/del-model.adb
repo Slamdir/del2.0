@@ -1,7 +1,6 @@
 with Ada.Containers; use Ada.Containers;
 with Ada.Exceptions;
 with Del.Loss;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
 with Ada.Numerics.Float_Random;
@@ -109,75 +108,70 @@ package body Del.Model is
          Data   : constant Tensor_T := Self.Dataset.Get_Data;
          Labels : constant Tensor_T := Self.Dataset.Get_Labels;
       begin
-         Put_Line("Starting training with:" & 
-                 " Data shape: (" & Shape(Data)(1)'Image & "," & Shape(Data)(2)'Image & ")" &
-                 " Labels shape: (" & Shape(Labels)(1)'Image & "," & Shape(Labels)(2)'Image & ")");
-         Put_Line ("Num Epochs " & Num_Epochs'Image);
-      for epoch in 1 .. Num_Epochs loop
-         declare
-            -- Shuffle indices
-            Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
-            Batch_Loops : Integer := (Shape(Data)(1) / Batch_Size);
-         begin
-            -- Loop across number of batches in data (last one may be incomplete)
-            for batch in 1 .. Batch_Loops loop
-               declare
-                  Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
-                  Training_Labels : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
-                  Actual_Labels   : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
-                  max_Index       : Positive;
-                  data_Index      : Positive := 1;
-               begin
-                  if Shape(Data)(1) < (batch * Batch_Size) then
-                     max_Index := Shape(Data)(1);
-                  else
-                     max_Index := (batch * Batch_Size);
-                  end if;
-
-                  -- Grab batch of training data and labels
-                  for batch_Index in (((batch - 1) * Batch_Size) + 1) .. max_Index loop
-                     declare
-                        Row_Data  : Tensor_T := Data(Indices(batch_Index));
-                        Row_Label : Tensor_T := Labels(Indices(batch_Index));
-                     begin
-                        Training_Data.Set(Index => data_Index, Value => Row_Data);
-                        Training_Labels.Set(Index => data_Index, Value => Row_Label);
-                        data_Index := data_Index + 1;
-                     end;
-                  end loop;
-
-                  -- Reset optimizer internal values for new loop
-                  Self.Optimizer.Zero_Gradient(Self.Layers);
-
-                  -- Feedforward next batch of data
-                  Actual_Labels := Self.Run_Layers(Training_Data);
-
-                  -- Compute loss
-                  Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
-
-                  -- Backpropagation
+         for epoch in 1 .. Num_Epochs loop
+            declare
+               -- Shuffle indices
+               Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
+               Batch_Loops : Integer := (Shape(Data)(1) / Batch_Size);
+            begin
+               -- Loop across number of batches in data (last one may be incomplete)
+               for batch in 1 .. Batch_Loops loop
                   declare
-                     Inital_Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
-                     Cursor             : Layer_Vectors.Cursor := Self.Layers.Last;
-                     New_Grad           : Tensor_T := Do_Backward (Self, Cursor, Inital_Gradient);
+                     Training_Data   : Tensor_T := Zeros((Batch_Size, Shape(Data)(2)));
+                     Training_Labels : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
+                     Actual_Labels   : Tensor_T := Zeros((Batch_Size, Shape(Labels)(2)));
+                     max_Index       : Positive;
+                     data_Index      : Positive := 1;
                   begin
+                     if Shape(Data)(1) < (batch * Batch_Size) then
+                        max_Index := Shape(Data)(1);
+                     else
+                        max_Index := (batch * Batch_Size);
+                     end if;
 
-                     --  Put_Line("Final Gradient");
-                     --  New_Line;
-                     --  Put_Line(New_Grad.Image);
+                     -- Grab batch of training data and labels
+                     for batch_Index in (((batch - 1) * Batch_Size) + 1) .. max_Index loop
+                        declare
+                           Row_Data  : Tensor_T := Data(Indices(batch_Index));
+                           Row_Label : Tensor_T := Labels(Indices(batch_Index));
+                        begin
+                           Training_Data.Set(Index => data_Index, Value => Row_Data);
+                           Training_Labels.Set(Index => data_Index, Value => Row_Label);
+                           data_Index := data_Index + 1;
+                        end;
+                     end loop;
 
-                     -- Apply gradient changes
-                     Self.Optimizer.Step (Self.Layers);  
+                     -- Reset optimizer internal values for new loop
+                     Self.Optimizer.Zero_Gradient(Self.Layers);
+
+                     -- Feedforward next batch of data
+                     Actual_Labels := Self.Run_Layers(Training_Data);
+
+                     -- Compute loss
+                     Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
+
+                     -- Backpropagation
+                     declare
+                        Inital_Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
+                        Cursor             : Layer_Vectors.Cursor := Self.Layers.Last;
+                        New_Grad           : Tensor_T := Do_Backward (Self, Cursor, Inital_Gradient);
+                     begin
+
+                        --  Put_Line("Final Gradient");
+                        --  New_Line;
+                        --  Put_Line(New_Grad.Image);
+
+                        -- Apply gradient changes
+                        Self.Optimizer.Step (Self.Layers);  
+                     end;
                   end;
-               end;
-            end loop;
+               end loop;
+            end;   
             --Outputs after every 10 epochs and when the final epoch is completed
             if epoch mod 10 = 0 or epoch = Num_Epochs then
                Put_Line("Loss at Epoch " & epoch'Image & " Loss value: " & Loss_Value'Image);
-               New_Line;
             end if;
-         end;
-      end loop;
+         end loop;
       end;
    end Train_Model;
 
@@ -194,17 +188,11 @@ package body Del.Model is
 
    function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
       C : Layer_Vectors.Cursor := Self.Layers.First;
-   begin
-      Put_Line ("Run_Layers called with input shape: " & 
-                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image); 
-               
+   begin               
       if Self.Layers.Length = 0 then
          Put_Line ("No layers in network");
          return Input;
       end if;
-
-   Put_Line("Network has" & Self.Layers.Length'Image & " layers");
-
       return Do_Forward (Self, C, Input);
    exception
       when E : others =>

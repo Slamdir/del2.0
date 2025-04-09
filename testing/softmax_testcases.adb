@@ -3,7 +3,7 @@ with Del.Operators; use Del.Operators;
 with Del.Model; use Del.Model;
 with Del.Loss; use Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 with Orka; use Orka;
 with Ada.Strings;
 with Ada.Float_Text_IO; use Ada.Float_Text_IO;

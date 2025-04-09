@@ -3,8 +3,8 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Del.Model;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
-with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors; use Orka.Numerics.Doubles.Tensors;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 
 procedure ONNX_test is
    Model : Del.Model.Model;

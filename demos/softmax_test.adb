@@ -3,7 +3,7 @@ with Del.Operators;
 with Del.Model;
 with Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
-with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
+with Orka.Numerics.Doubles.Tensors.CPU; use Orka.Numerics.Doubles.Tensors.CPU;
 
 procedure Softmax_Test is
 
@@ -55,12 +55,27 @@ procedure Softmax_Test is
       Put_Line(Loss.Forward(Expected, Actual)'Image);
    end TestForward3;
 
+   procedure TestLinear (Linear : DOp.Linear_Access_T) is
+      X   : D.Tensor_T := To_Tensor ((0.1, 0.4), [1, 2]);
+   begin
+      Put_Line("Testing with: ");
+      Put_Line("X:    " & X.Image);
+      New_Line;
+      Put_Line(Linear.Forward(X)'Image);
+   end TestLinear;
+
    Loss     : DLoss.Cross_Entropy_T;
+   Linear   : DOp.Linear_Access_T;
 
 begin
+
+   Linear := new DOp.Linear_T;
+   Linear.Initialize(2, 1);
 
    --  TestForward1(Loss);
    TestForward2(Loss);
    TestForward3(Loss);
+
+   TestLinear(Linear);
 
 end Softmax_Test;
