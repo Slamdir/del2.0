@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from scipy.interpolate import griddata
-import os  # <-- For handling file names
+import os
 
 class JSONVisualizer(tk.Tk):
     def __init__(self):
@@ -31,9 +30,12 @@ class JSONVisualizer(tk.Tk):
 
         self.x_min, self.x_max = None, None
         self.y_min, self.y_max = None, None
-
         self.colorbar = None
-        self.current_file = None  # <-- Store currently loaded file name
+
+        self.data = None
+        self.labels = None
+        self.grid = None
+        self.current_file = None
 
     def load_json(self):
         file_path = filedialog.askopenfilename(
@@ -41,78 +43,82 @@ class JSONVisualizer(tk.Tk):
             filetypes=[("JSON Files", "*.json"), ("All Files", "*.*")]
         )
         if file_path:
-            self.current_file = file_path  # Save for UI and save feature
+            self.current_file = file_path
             self.plot_data(file_path)
 
     def plot_data(self, file_path):
         with open(file_path, "r") as f:
             data_json = json.load(f)
 
-        data = np.array(data_json["data"])
+        self.data = np.array(data_json["data"])
 
         if "labels" in data_json:
-            predicted_labels = np.array(data_json["labels"])
+            self.labels = np.array(data_json["labels"])
         else:
-            predicted_labels = np.zeros(data.shape[0], dtype=int)
+            self.labels = np.zeros(self.data.shape[0], dtype=int)
 
+        if "grid" in data_json:
+            self.grid = np.array(data_json["grid"])
+        else:
+            self.grid = None
+
+        # Clear previous plot
         self.ax.clear()
 
         if self.colorbar is not None:
             self.colorbar.remove()
             self.colorbar = None
 
-        x_padding = (data[:, 0].max() - data[:, 0].min()) * 0.1
-        y_padding = (data[:, 1].max() - data[:, 1].min()) * 0.1
+        # Calculate dynamic padding again
+        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.1
+        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.1
 
-        self.x_min = data[:, 0].min() - x_padding
-        self.x_max = data[:, 0].max() + x_padding
-        self.y_min = data[:, 1].min() - y_padding
-        self.y_max = data[:, 1].max() + y_padding
-
-        # Update window title with file name
-        file_name = os.path.basename(file_path)
-        self.title(f"Ada Model Visualization - {file_name}")
+        self.x_min = self.data[:, 0].min() - x_padding
+        self.x_max = self.data[:, 0].max() + x_padding
+        self.y_min = self.data[:, 1].min() - y_padding
+        self.y_max = self.data[:, 1].max() + y_padding
 
         self.ax.set_title("Ada Model Predicted Labels with Decision Boundaries")
         self.ax.set_xlabel("X Coordinate")
         self.ax.set_ylabel("Y Coordinate")
 
-        self.plot_decision_boundary(data, predicted_labels)
+        # Plot decision boundary (from grid)
+        if self.grid is not None:
+            self.plot_decision_boundary_from_grid()
 
+        # Scatter training data
         scatter = self.ax.scatter(
-            data[:, 0], data[:, 1],
-            c=predicted_labels,
+            self.data[:, 0], self.data[:, 1],
+            c=self.labels,
             cmap="viridis",
             edgecolor="k",
             s=80
         )
 
-        if np.unique(predicted_labels).size > 1:
-            unique_labels = np.unique(predicted_labels)
-            self.colorbar = self.fig.colorbar(scatter, ax=self.ax, ticks=unique_labels)
-
-            class_names = [f"Class {label}" for label in unique_labels]
-            self.colorbar.ax.set_yticklabels(class_names)
+        if np.unique(self.labels).size > 1:
+            self.colorbar = self.fig.colorbar(scatter, ax=self.ax, ticks=np.unique(self.labels))
 
         self.ax.set_xlim(self.x_min, self.x_max)
         self.ax.set_ylim(self.y_min, self.y_max)
 
         self.canvas.draw_idle()
 
-    def plot_decision_boundary(self, data, predicted_labels):
-        xx, yy = np.meshgrid(
-            np.linspace(self.x_min, self.x_max, 300),
-            np.linspace(self.y_min, self.y_max, 300)
-        )
+    def plot_decision_boundary_from_grid(self):
+        if self.grid is None:
+            return
 
-        zz = griddata(
-            points=data,
-            values=predicted_labels,
-            xi=(xx, yy),
-            method='nearest'
-        )
+        grid_points = self.grid[:, :2]
+        grid_labels = self.grid[:, 2]
 
-        contour = self.ax.contourf(xx, yy, zz, levels=np.unique(predicted_labels), cmap="viridis", alpha=0.3)
+        x_unique = np.sort(np.unique(grid_points[:, 0]))
+        y_unique = np.sort(np.unique(grid_points[:, 1]))
+
+        xx, yy = np.meshgrid(x_unique, y_unique)
+
+        label_map = grid_labels.reshape(yy.shape)  # Important to match Y
+
+        self.ax.contourf(xx, yy, label_map, alpha=0.3, cmap="viridis", levels=np.arange(1, np.max(grid_labels) + 2))
+
 
     def save_plot(self):
         if self.current_file is None:
@@ -129,6 +135,7 @@ class JSONVisualizer(tk.Tk):
             self.fig.savefig(save_path, bbox_inches='tight')
             tk.messagebox.showinfo("Save Successful", f"Plot saved successfully:\n{save_path}")
 
+# Run the GUI
 if __name__ == "__main__":
     app = JSONVisualizer()
     app.mainloop()
