@@ -29,7 +29,7 @@ procedure backprop_test is
    Num_Classes   : constant Positive := 3;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
-      Learning_Rate => 0.7, Weight_Decay => 0.00001, Momentum => 0.9));
+      Learning_Rate => 0.6, Weight_Decay => 0.00001, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
