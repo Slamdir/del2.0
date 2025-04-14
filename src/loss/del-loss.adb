@@ -61,4 +61,45 @@ package body Del.Loss is
       return Gradient;
    end Backward;
 
+   overriding function Forward (L : Mean_Square_Error_T; Expected, Actual : Tensor_T) return Float is
+      Total_Loss : Float := 0.0;
+      Rows        : constant Integer := Shape(Expected)(1);
+      Columns     : constant Integer := Shape(Expected)(2);
+   begin
+
+      for I in 1 .. Rows loop
+         for J in 1 .. Columns loop
+            declare
+               Expected_Element  : Element_T := Expected([I, J]);
+               Actual_Element    : Element_T := Actual([I, J]);
+               begin
+                  Total_Loss := Total_Loss + ( (Float(Expected_Element) - Float(Actual_Element)) ** 2);
+               end;
+         end loop;
+      end loop;
+
+      Total_Loss := Total_Loss / (Float(Rows) * Float(Columns) );
+      return Total_Loss;
+   end Forward;
+
+   overriding function Backward (L : Mean_Square_Error_T; Expected, Actual : Tensor_T) return Tensor_T is
+      Gradient    : Tensor_T := Zeros(Expected.Shape);
+      Rows        : constant Integer := Shape(Expected)(1);
+      Columns     : constant Integer := Shape(Expected)(2);
+   begin
+   
+      for I in 1 .. Rows loop
+         for J in 1 .. Columns loop
+            declare
+               Expected_Element  : Element_T := Expected([I, J]);
+               Actual_Element    : Element_T := Actual([I, J]);
+               begin
+                  Gradient.Set((I, J), Element_T((-2.0 * (Float(Expected_Element) - Float(Actual_Element))) / (Float(Rows) * Float(Columns))) );
+               end;
+         end loop;
+      end loop;
+
+      return Gradient;
+   end Backward;
+
 end Del.Loss;
