@@ -240,6 +240,47 @@ package body Del.Operators is
       return (Dummy, Dummy);
    end Get_Params;
 
+   function Pos_Sigmoid(X : Tensor_T) return Tensor_T is
+   begin
+      return 1.0 / 1.0 + Exp(-X);
+   end Pos_Sigmoid;
+
+   function Neg_Sigmoid(X : Tensor_T) return Tensor_T is
+   begin
+      return Exp(X) / 1.0 + Exp(X);
+   end Neg_Sigmoid;
+
+   overriding function Forward (L : in out Sigmoid_T; X : Tensor_T) return Tensor_T is
+      Zero : Tensor_T := Zeros(X.Shape);
+
+      --Splits X into Positive Values and Negative Values to avoid overflows from Exp values
+      Pos_Output : Tensor_T := Pos_Sigmoid (Max(X, Zero));
+      Neg_Output : Tensor_T := Neg_Sigmoid (Min(X, Zero));
+
+      -- Pos Output should be 0 when Neg Output has values and Vice-Versa
+      Output : Tensor_T := Pos_Output + Neg_Output;
+
+   begin
+      -- Store output for backward pass
+      L.Map.Include("output", Output);
+
+      return Output;
+   end Forward;
+
+   overriding function Backward (L : in out Sigmoid_T; Dy : Tensor_T) return Tensor_T is
+      Prev_Output : constant Tensor_T := L.Map("output");
+
+      D_Sig : constant Tensor_T := Prev_Output * (1.0 - Prev_Output);
+   begin
+      return Dy * D_Sig;
+   end Backward;
+
+   overriding function Get_Params (L : Sigmoid_T) return Params_T is
+      Dummy : Tensor_Access_T := null;
+   begin
+      return (Dummy, Dummy);
+   end Get_Params;
+
    --  TZ   : Time_Offset := UTC_Time_Offset;
    --  Zero : Ada.Calendar.Time        :=
    --    Ada.Calendar.Formatting.Value
