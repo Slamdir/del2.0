@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import filedialog
+from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import os
 
@@ -69,9 +70,9 @@ class JSONVisualizer(tk.Tk):
             self.colorbar.remove()
             self.colorbar = None
 
-        # Calculate dynamic padding again
-        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.02
-        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.02
+        # Calculate dynamic padding 
+        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.002
+        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.002
 
         self.x_min = self.data[:, 0].min() - x_padding
         self.x_max = self.data[:, 0].max() + x_padding
@@ -82,7 +83,7 @@ class JSONVisualizer(tk.Tk):
         self.ax.set_xlabel("X Coordinate")
         self.ax.set_ylabel("Y Coordinate")
 
-        # Plot decision boundary (from grid)
+        # Plot decision boundary
         if self.grid is not None:
             self.plot_decision_boundary_from_grid()
 
@@ -106,28 +107,45 @@ class JSONVisualizer(tk.Tk):
     def plot_decision_boundary_from_grid(self):
         if self.grid is None:
             return
-
+        
         grid_points = self.grid[:, :2]
-        grid_labels = self.grid[:, 2]
+        grid_labels = self.grid[:, 2].astype(int)
 
         x_unique = np.sort(np.unique(grid_points[:, 0]))
         y_unique = np.sort(np.unique(grid_points[:, 1]))
+        xx, yy  = np.meshgrid(x_unique, y_unique)
 
-        xx, yy = np.meshgrid(x_unique, y_unique)
-
-        # column‑major (X‑major) reshape to match Ada’s X‑outer, Y‑inner ordering:
+        # reshape in Fortran order to match Ada’s X‑outer, Y‑inner loop
         label_map = grid_labels.reshape(yy.shape, order='F')
+
+        base = plt.get_cmap("viridis")
+        colors = base(np.linspace(0, 1, 3))
+        cmap = ListedColormap(colors)
+
+        # set up bin edges so that class=1→bin [0.5,1.5), 2→[1.5,2.5), 3→[2.5,3.5)
+        levels = [0.5, 1.5, 2.5, 3.5]
+        norm   = BoundaryNorm(levels, ncolors=cmap.N, clip=True)
 
         self.ax.contourf(
             xx, yy, label_map,
+            levels=levels,
+            cmap=cmap,
+            norm=norm,
             alpha=0.3,
-            cmap="viridis",
-            levels=np.arange(1, np.max(grid_labels) + 2)
+            extend="neither"
+        )
+
+        # draw the actual boundaries as lines
+        self.ax.contour(
+            xx, yy, label_map,
+            levels=[1.5, 2.5],
+            colors='k',
+            linewidths=1
         )
 
     def save_plot(self):
         if self.current_file is None:
-            return  # No file loaded yet, nothing to save!
+            return 
 
         file_name = os.path.splitext(os.path.basename(self.current_file))[0]
         save_path = filedialog.asksaveasfilename(
@@ -140,7 +158,6 @@ class JSONVisualizer(tk.Tk):
             self.fig.savefig(save_path, bbox_inches='tight')
             tk.messagebox.showinfo("Save Successful", f"Plot saved successfully:\n{save_path}")
 
-# Run the GUI
 if __name__ == "__main__":
     app = JSONVisualizer()
     app.mainloop()

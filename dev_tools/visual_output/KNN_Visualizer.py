@@ -31,7 +31,7 @@ class JSONVisualizer(tk.Tk):
         self.x_min, self.x_max = None, None
         self.y_min, self.y_max = None, None
 
-        self.colorbar = None   # <<==== Track the colorbar object!
+        self.colorbar = None  
 
     def load_json(self):
         file_path = filedialog.askopenfilename(
@@ -53,13 +53,12 @@ class JSONVisualizer(tk.Tk):
         else:
             predicted_labels = np.zeros(data.shape[0], dtype=int)
 
-        # Clear previous plot
         self.ax.clear()
 
         # Remove old colorbar if it exists
         if self.colorbar is not None:
             self.colorbar.remove()
-            self.colorbar = None  # << Important to reset pointer
+            self.colorbar = None  
 
         # Calculate dynamic padding again
         x_padding = (data[:, 0].max() - data[:, 0].min()) * 0.1
@@ -91,7 +90,6 @@ class JSONVisualizer(tk.Tk):
         self.ax.set_xlim(self.x_min, self.x_max)
         self.ax.set_ylim(self.y_min, self.y_max)
 
-        # Use draw_idle instead of draw
         self.canvas.draw_idle()
 
     def plot_decision_boundary(self, data, predicted_labels):
@@ -118,7 +116,7 @@ class JSONVisualizer(tk.Tk):
 
     def save_plot(self):
         if self.current_file is None:
-            return  # No file loaded yet, nothing to save!
+            return  
 
         file_name = os.path.splitext(os.path.basename(self.current_file))[0]
         save_path = filedialog.asksaveasfilename(
