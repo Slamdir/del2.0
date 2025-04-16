@@ -172,7 +172,7 @@ package body Del.Model is
                end;
             end loop;
             --Outputs after every 10 epochs and when the final epoch is completed
-            if epoch mod 10 = 0 or epoch = Num_Epochs then
+            if epoch mod 3 = 0 or epoch = Num_Epochs then
                Put_Line("Loss at Epoch " & epoch'Image & " Loss value: " & Loss_Value'Image);
                New_Line;
             end if;
@@ -195,15 +195,14 @@ package body Del.Model is
    function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
       C : Layer_Vectors.Cursor := Self.Layers.First;
    begin
-      Put_Line ("Run_Layers called with input shape: " & 
-                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image); 
+      --Put_Line ("Run_Layers called with input shape: " & Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image); 
                
       if Self.Layers.Length = 0 then
          Put_Line ("No layers in network");
          return Input;
       end if;
 
-   Put_Line("Network has" & Self.Layers.Length'Image & " layers");
+   --Put_Line("Network has" & Self.Layers.Length'Image & " layers");
 
       return Do_Forward (Self, C, Input);
    exception

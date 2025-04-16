@@ -70,8 +70,8 @@ class JSONVisualizer(tk.Tk):
             self.colorbar = None
 
         # Calculate dynamic padding again
-        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.1
-        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.1
+        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.02
+        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.02
 
         self.x_min = self.data[:, 0].min() - x_padding
         self.x_max = self.data[:, 0].max() + x_padding
@@ -115,10 +115,15 @@ class JSONVisualizer(tk.Tk):
 
         xx, yy = np.meshgrid(x_unique, y_unique)
 
-        label_map = grid_labels.reshape(yy.shape)  # Important to match Y
+        # column‑major (X‑major) reshape to match Ada’s X‑outer, Y‑inner ordering:
+        label_map = grid_labels.reshape(yy.shape, order='F')
 
-        self.ax.contourf(xx, yy, label_map, alpha=0.3, cmap="viridis", levels=np.arange(1, np.max(grid_labels) + 2))
-
+        self.ax.contourf(
+            xx, yy, label_map,
+            alpha=0.3,
+            cmap="viridis",
+            levels=np.arange(1, np.max(grid_labels) + 2)
+        )
 
     def save_plot(self):
         if self.current_file is None:

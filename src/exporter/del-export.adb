@@ -3,14 +3,14 @@ with Ada.Strings.Unbounded;
 with Ada.Strings.Unbounded.Text_IO;
 with Ada.Strings.Fixed;
 with Ada.Exceptions;
-
+with Del.Export; use Del.Export;
 with Del.Model;
 with Del.JSON; use Del.JSON;
 with Del.Data; use Del.Data;
 
 package body Del.Export is
 
-   procedure Export_To_JSON(Self : in Del.Model.Model; Filename : String; Include_Raw_Predictions : Boolean := False; Include_Grid : Boolean := False) is
+   procedure Export_To_JSON(Self : in Del.Model.Model; Filename : String; Include_Raw_Predictions : Boolean := False; Include_Grid : Boolean := True) is
    use Ada.Text_IO;
    use Ada.Strings.Unbounded;
    use Ada.Strings.Unbounded.Text_IO;
@@ -29,57 +29,118 @@ package body Del.Export is
       S := S & To_Unbounded_String(Trim(Raw, Ada.Strings.Left));
    end Append_Float;
 
-   -- Export Grid Predictions
-   procedure Generate_Grid(Out_S : in out Unbounded_String) is
-      X_Min : Float_32 := -1.5;
-      X_Max : Float_32 := 1.5;
-      Y_Min : Float_32 := -1.5;
-      Y_Max : Float_32 := 1.5;
-      Step  : Float_32 := 0.02;
-      X, Y  : Float_32;
-      First_Point : Boolean := True;
+      function Get_Min(T : Tensor_T; F : Positive) return Float_32 is
+      R : Float_32 := T.Get((1, F));
    begin
-      Out_S := Out_S & To_Unbounded_String("    ""grid"": [") & ASCII.LF;
-      X := X_Min;
-      while X <= X_Max loop
-         Y := Y_Min;
-         while Y <= Y_Max loop
-            declare
-               Input_Batch : Tensor_T := Zeros([1, 2]);
-               Max_Value   : Float_32;
-               Predicted_Index : Integer := 1;
-            begin
-               Input_Batch.Set(Tensor_Index'(1,1), X);
-               Input_Batch.Set(Tensor_Index'(1,2), Y);
+      for I in 2 .. Shape(T)(1) loop
+         if T.Get((I, F)) < R then
+            R := T.Get((I, F));
+         end if;
+      end loop;
+      return R;
+   end Get_Min;
 
-               declare
-                  Prediction : constant Tensor_T := Self.Run_Layers(Input_Batch);
+   function Get_Max(T : Tensor_T; F : Positive) return Float_32 is
+      R : Float_32 := T.Get((1, F));
+   begin
+      for I in 2 .. Shape(T)(1) loop
+         if T.Get((I, F)) > R then
+            R := T.Get((I, F));
+         end if;
+      end loop;
+      return R;
+   end Get_Max;
 
-            begin
-               Max_Value := Prediction.Get((1, 1));
-               for J in 2 .. Shape(Prediction)(2) loop
-                  if Prediction.Get((1, J)) > Max_Value then
-                     Max_Value := Prediction.Get((1, J));
-                     Predicted_Index := J;
-                  end if;
+
+   -- Export Grid Predictions
+   procedure Generate_Grid(Self : in Del.Model.Model; Out_S : in out Unbounded_String) is
+      Dataset     : constant Training_Data_Access := Del.Model.Get_Dataset(Self);
+      Data_Tensor : constant Tensor_T := Dataset.Get_Data;
+
+      -- 1) Compute bounds and counts once
+      X_Min    : Float_32 := Get_Min(Data_Tensor, 1);
+      X_Max    : Float_32 := Get_Max(Data_Tensor, 1);
+      Y_Min    : Float_32 := Get_Min(Data_Tensor, 2);
+      Y_Max    : Float_32 := Get_Max(Data_Tensor, 2);
+      Step     : constant Float_32 := 0.01;
+
+      Num_Y    : constant Positive := Natural((Y_Max - Y_Min) / Step) + 1;
+      Num_Classes : constant Positive := Shape(Self.Run_Layers(Zeros([1, 2])))(2);
+
+      -- 2) Precompute the Y‑column
+      type Y_Array is array (1 .. Num_Y) of Float_32;
+      Y_Values : Y_Array;
+      Input_Batch : Tensor_T := Zeros((Num_Y, 2));
+      Pred_Counter : array (1 .. Num_Classes) of Natural := (others => 0);
+
+      -- Fill the second column once
+      begin
+         for J in 1 .. Num_Y loop
+            Y_Values(J) := Y_Min + Float_32(J - 1) * Step;
+            Input_Batch.Set((J, 2), Y_Values(J));
+         end loop;
+
+         Out_S := Out_S & To_Unbounded_String("    ""grid"": [") & ASCII.LF;
+
+         -- 3) Now loop over X, one batch eval per X
+         declare
+            X : Float_32 := X_Min;
+            First_Point : Boolean := True;
+         begin
+            while X <= X_Max loop
+               -- fill column 1 with this X
+               for J in 1 .. Num_Y loop
+                  Input_Batch.Set((J, 1), X);
                end loop;
 
-               if not First_Point then
-                  Out_S := Out_S & To_Unbounded_String(",");
-               end if;
-               Out_S := Out_S & ASCII.LF
-                           & To_Unbounded_String("        [")
-                           & To_Unbounded_String(Trim(Float_32'Image(X), Left)) & To_Unbounded_String(", ")
-                           & To_Unbounded_String(Trim(Float_32'Image(Y), Left)) & To_Unbounded_String(", ")
-                           & To_Unbounded_String(Integer'Image(Predicted_Index)) & To_Unbounded_String("]");
-               First_Point := False;
-            end;
-            end;
-            Y := Y + Step;
-         end loop;
-         X := X + Step;
-      end loop;
-      Out_S := Out_S & ASCII.LF & To_Unbounded_String("    ]");
+               -- one big batch prediction
+               declare
+                  Batch_Preds : constant Tensor_T := Self.Run_Layers(Input_Batch);  -- shape (Num_Y, Num_Classes)
+               begin
+                  -- unpack each row
+                  -- unpack each row
+                  for J in 1 .. Num_Y loop
+                     declare
+                        Pred_Index : Integer   := 1;
+                        Max_Val    : Float_32 := Batch_Preds.Get((J, 1));
+                        Y_Value    : Float_32 := Y_Values(J);
+                     begin
+                        -- find argmax in row J
+                        for C in 2 .. Num_Classes loop
+                           if Batch_Preds.Get((J, C)) > Max_Val then
+                              Max_Val    := Batch_Preds.Get((J, C));
+                              Pred_Index := C;
+                           end if;
+                        end loop;
+
+                        -- track usage
+                        Pred_Counter(Pred_Index) := Pred_Counter(Pred_Index) + 1;
+
+                        -- emit JSON entry with that Pred_Index
+                        if not First_Point then
+                           Out_S := Out_S & To_Unbounded_String(",");
+                        end if;
+                        Out_S := Out_S
+                              & ASCII.LF
+                              & To_Unbounded_String("        [")
+                              & To_Unbounded_String(Trim(Float_32'Image(X), Left))
+                              & To_Unbounded_String(", ")
+                              & To_Unbounded_String(Trim(Float_32'Image(Y_Value), Left))
+                              & To_Unbounded_String(", ")
+                              & To_Unbounded_String(Integer'Image(Pred_Index))
+                              & To_Unbounded_String("]");
+                        First_Point := False;
+                     end;
+                  end loop;
+               end;
+
+               X := X + Step;
+            end loop;
+         end;
+
+         Out_S := Out_S & ASCII.LF & To_Unbounded_String("    ]");
+
+         -- 4) Debug: ensure all classes appeared
    end Generate_Grid;
 
 
@@ -182,7 +243,7 @@ begin
 
       if Include_Grid then
          JSON_Content := JSON_Content & "," & New_Line_Str;
-         Generate_Grid(Grid_Export);
+         Generate_Grid(Self, Grid_Export); 
          JSON_Content := JSON_Content & Grid_Export;
       end if;
 

@@ -20,7 +20,7 @@ procedure backprop_test is
    Softmax_Layer : Softmax_Access_T;
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "demos/demo-data/spiral_3_5.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3_6.json";
    Output_File : constant String := "demos\output\model_output.json";
    Batch_Size    : constant Positive := 20;  -- Process 10 samples per batch
    Num_Epochs    : constant Positive := 200;
