@@ -20,16 +20,16 @@ procedure backprop_test is
    Softmax_Layer : Softmax_Access_T;
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- Per sample: 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- Per sample: 1 sample, 3 classes
-   Json_Filename : constant String := "demos/demo-data/spiral_3_3.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3_5.json";
    Output_File : constant String := "demos\output\model_output.json";
-   Batch_Size    : constant Positive := 15;  -- Process 10 samples per batch
-   Num_Epochs    : constant Positive := 20;
+   Batch_Size    : constant Positive := 20;  -- Process 10 samples per batch
+   Num_Epochs    : constant Positive := 200;
 
-   Hidden_Units  : constant Positive := 50;
+   Hidden_Units  : constant Positive := 100;
    Num_Classes   : constant Positive := 3;
 
    Optimizer     : Optim_Access_T := new SGD_T'(Create_SGD_T(
-      Learning_Rate => 1.0, Weight_Decay => 0.00001, Momentum => 0.9));
+      Learning_Rate => 0.6, Weight_Decay => 0.00001, Momentum => 0.9));
 
    -- Utility procedure to print tensor shape and values
    procedure Print_Tensor(T : Tensor_T; Name : String) is
