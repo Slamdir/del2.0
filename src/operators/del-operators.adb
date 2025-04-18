@@ -245,4 +245,30 @@ package body Del.Operators is
    --    Ada.Calendar.Formatting.Value
    --      ("2018-05-01 15:00:00.00", TZ);
 
+   -- ********************************************************************
+   -- ***                         HyperTanh                            ***
+   -- ********************************************************************
+   overriding function Forward (L : in out HyperTanh_T; X : Tensor_T) return Tensor_T is
+      Exp_X    : constant Tensor_T := Exp(X);
+      Exp_NegX : constant Tensor_T := Exp(-X);
+      Result   : constant Tensor_T := (Exp_X - Exp_NegX) / (Exp_X + Exp_NegX);
+   begin
+      L.Map.Include("output", Result);
+      return Result;
+   end Forward;
+
+   overriding function Backward (L : in out HyperTanh_T; Dy : Tensor_T) return Tensor_T is
+      Output : constant Tensor_T := L.Map("output");
+      -- squared via multiplication to avoid issues caused by binary operators
+      SquaredOutput : constant Tensor_T := Multiply(Output, Output);
+   begin
+      return Multiply((1.0 - SquaredOutput), Dy);
+   end Backward;
+
+   overriding function Get_Params (L : HyperTanh_T) return Params_T is
+   Dummy : Tensor_Access_T := null;
+   begin
+      return (Dummy, Dummy);
+   end Get_Params;
+
 end Del.Operators;
