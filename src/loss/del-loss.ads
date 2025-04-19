@@ -12,4 +12,11 @@ package Del.Loss is
    overriding function Forward (L : Mean_Square_Error_T; Expected, Actual : Tensor_T) return Float;
    overriding function Backward (L : Mean_Square_Error_T; Expected, Actual : Tensor_T) return Tensor_T;
 
+   -- Mean Absolute Error (MAE) loss function
+   type Mean_Absolute_Error_T is new Loss_T with null record;
+   type Mean_Absolute_Error_Access_T is access all Mean_Absolute_Error_T'Class;
+
+   overriding function Forward (L : Mean_Absolute_Error_T; Expected, Actual : Tensor_T) return Float;
+   overriding function Backward (L : Mean_Absolute_Error_T; Expected, Actual : Tensor_T) return Tensor_T;
+
 end Del.Loss;
