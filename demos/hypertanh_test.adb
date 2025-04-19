@@ -11,10 +11,10 @@ procedure hypertanh_test is
    package DMod renames Del.Model;
    
    -- HyperTanh test tensors
-   Input_Data : D.Tensor_T := Ones((2, 2));
-   Negative_Data : D.Tensor_T := Ones((2, 2)) * (-1.0);
-   Gradient_Data : D.Tensor_T := Ones((2, 2));
-   Test_Result : D.Tensor_T := Zeros((2, 2));
+   Input_Data : D.Tensor_T := Ones((1, 4));
+   Negative_Data : D.Tensor_T := Ones((1, 4)) * (-1.0);
+   Gradient_Data : D.Tensor_T := Ones((1, 1));
+   Test_Result : D.Tensor_T := Zeros((1, 4));
    
    -- Create layers and network
    H : DOp.HyperTanh_T;
@@ -26,8 +26,7 @@ begin
    Put_Line(Image(Input_Data));
    Test_Result := H.Forward(Input_Data);
    Put_Line("Expected Output (manually computed):");
-   Put_Line("[[0.76159416, 0.76159416],");
-   Put_Line(" [0.76159416, 0.76159416]]");
+   Put_Line("[[0.76159416, 0.76159416, 0.76159416, 0.76159416]");
    Put_Line("After HyperTanh:");
    Put_Line(Image(Test_Result));
    Put_Line("");
@@ -39,8 +38,7 @@ begin
    Put_Line(Image(Gradient_Data));
    Test_Result := H.Backward(Gradient_Data);
    Put_Line("Expected Output (manually computed):");
-   Put_Line("[[0.41997434, 0.41997434],");
-   Put_Line(" [0.41997434, 0.41997434]]");
+   Put_Line("[[0.41997434, 0.41997434, 0.41997434, 0.41997434]");
    Put_Line("After Backward:");
    Put_Line(Image(Test_Result));
    Put_Line("");
@@ -52,8 +50,7 @@ begin
    Put_Line(Image(Negative_Data));
    Test_Result := H.Forward(Negative_Data);
    Put_Line("Expected Output (manually computed):");
-   Put_Line("[[-0.76159416, -0.76159416],");
-   Put_Line(" [-0.76159416, -0.76159416]]");
+   Put_Line("[[-0.76159416, -0.76159416, -0.76159416, -0.76159416]");
    Put_Line("After HyperTanh:");
    Put_Line(Image(Test_Result));
    Put_Line("");
@@ -65,8 +62,7 @@ begin
    Put_Line(Image(Gradient_Data));
    Test_Result := H.Backward(Gradient_Data);
    Put_Line("Expected Output (manually computed):");
-   Put_Line("[[0.41997434, 0.41997434],");
-   Put_Line(" [0.41997434, 0.41997434]]");
+   Put_Line("[[0.41997434, 0.41997434, 0.41997434, 0.41997434]");
    Put_Line("After Backward:");
    Put_Line(Image(Test_Result));
 

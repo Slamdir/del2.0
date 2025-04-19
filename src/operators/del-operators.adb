@@ -260,9 +260,9 @@ package body Del.Operators is
    overriding function Backward (L : in out HyperTanh_T; Dy : Tensor_T) return Tensor_T is
       Output : constant Tensor_T := L.Map("output");
       -- squared via multiplication to avoid issues caused by binary operators
-      SquaredOutput : constant Tensor_T := Multiply(Output, Output);
+      D_Hypertanh : Tensor_T := 1.0 - Output.Power(2);
    begin
-      return Multiply((1.0 - SquaredOutput), Dy);
+      return Dy * D_Hypertanh;
    end Backward;
 
    overriding function Get_Params (L : HyperTanh_T) return Params_T is
