@@ -71,8 +71,8 @@ class JSONVisualizer(tk.Tk):
             self.colorbar = None
 
         # Calculate dynamic padding 
-        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.002
-        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.002
+        x_padding = (self.data[:, 0].max() - self.data[:, 0].min()) * 0.005
+        y_padding = (self.data[:, 1].max() - self.data[:, 1].min()) * 0.005
 
         self.x_min = self.data[:, 0].min() - x_padding
         self.x_max = self.data[:, 0].max() + x_padding
