@@ -9,7 +9,7 @@ licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
 website = ""
 tags = []
 
-executables = ["backprop_test"]
+executables = ["presentation_four_demo"]
 
 [[depends-on]]
 orka_tensors_cpu = "*"
