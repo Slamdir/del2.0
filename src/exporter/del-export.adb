@@ -63,7 +63,7 @@ package body Del.Export is
       Y_Min : Float_32 := Get_Min(Data_Tensor, 2);
       Y_Max : Float_32 := Get_Max(Data_Tensor, 2);
 
-      Step : constant Float_32 := 0.009;
+      Step : constant Float_32 := 0.005;
 
       -- compute integer counts
       Num_X : constant Positive := Positive (Float_32'Floor((X_Max - X_Min) / Step)) + 1;
