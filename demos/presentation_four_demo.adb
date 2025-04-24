@@ -27,7 +27,7 @@ procedure presentation_four_demo is
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);
 
-   Json_Filename : constant String := "demos/demo-data/spiral_3_6.json";
+   Json_Filename : constant String := "demos/demo-data/demo.json";
    Output_File   : constant String := "demos/output/model_output.json";
 
    Batch_Size    : constant Positive := 20;
