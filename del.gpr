@@ -11,7 +11,7 @@ project Del is
    for Main use (
       "relu_test", "softmax_test", "linear_test", "presentation_two_demo","json_test", "optim_test", 
       "onnx_test", "onnx_export_test", "presentation_three_demo", "yaml_test", "backprop_test",
-      "MSE_test", "mae_test"
+      "MSE_test", "mae_test", "hypertanh_test"
    );
 
    package Compiler is
