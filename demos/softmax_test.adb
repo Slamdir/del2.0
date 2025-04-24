@@ -5,6 +5,7 @@ with Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 
+--This is testing the Cross Entropy Loss function and not Softmax
 procedure Softmax_Test is
 
    package D renames Del;
