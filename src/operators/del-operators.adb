@@ -398,5 +398,4 @@ package body Del.Operators is
       return (Dummy, Dummy);
    end Get_Params;
 
->>>>>>>>> Temporary merge branch 2
 end Del.Operators;
