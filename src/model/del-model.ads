@@ -16,6 +16,9 @@ package Del.Model is
    function Get_Layer(Self : Model; Index : Positive) return Func_Access_T;
    function Get_Layers_Vector(Self : Model) return Layer_Vectors.Vector;
 
+   -- Accuracy Access
+   function Get_Accuracy(Self: Model) return Float;
+
    -- Data management
    procedure Set_Dataset(Self : in out Model; Dataset : Training_Data_Access);
    function Get_Dataset(Self : Model) return Training_Data_Access;
@@ -64,6 +67,7 @@ private
       Loss_Func : Loss_Access_T;
       Optimizer : Optim_Access_T;
       Dataset   : Training_Data_Access;
+      Accuracy  : Float;
    end record;
    
    -- Implementation of layer access functions

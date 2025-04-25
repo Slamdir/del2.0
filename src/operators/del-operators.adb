@@ -397,5 +397,5 @@ package body Del.Operators is
    begin
       return (Dummy, Dummy);
    end Get_Params;
-   
+
 end Del.Operators;
