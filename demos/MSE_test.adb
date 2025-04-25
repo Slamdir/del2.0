@@ -1,6 +1,4 @@
 with Del;
-with Del.Operators;
-with Del.Model;
 with Del.Loss;
 with Ada.Text_IO; use Ada.Text_IO;
 with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
@@ -8,8 +6,6 @@ with Orka.Numerics.Singles.Tensors.CPU; use Orka.Numerics.Singles.Tensors.CPU;
 procedure MSE_test is
 
    package D renames Del;
-   package DOp renames Del.Operators;
-   package DMod renames Del.Model;
    package DLoss renames Del.Loss;
 
    procedure TestForward1 (Loss : DLoss.Mean_Square_Error_T; Desired_Value : Float) is

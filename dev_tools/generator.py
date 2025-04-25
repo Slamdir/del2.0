@@ -14,8 +14,10 @@ def WriteData(data: list, labels: list):
         "labels": labels
     }
     timestamp = time.time()
-    os.makedirs("generated-data", exist_ok=True)
-    with open(f"generated-data/{timestamp}.json", 'w', encoding='utf-8') as file:
+    output_dir = os.path.join("demos", "demo-data")
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, f"{timestamp}.json")
+    with open(file_path, 'w', encoding='utf-8') as file:
         json.dump(generatedData, file, ensure_ascii=False, indent=4)
     print("Done writting generated data!")
     print("Ending program...")
