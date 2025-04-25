@@ -45,4 +45,50 @@ package body Del.Utilities is
       Put_Line("]");
    end Print_Array;
 
+
+   function Compute_Num_Accurate (
+      Actual_Labels    : Tensor_T;
+      Predicted_Labels : Tensor_T
+   ) return Natural is
+      Actual_Array : Integer_Array := Labels_To_Int_Array (Actual_Labels);
+      Predicted_Array : Integer_Array := Labels_To_Int_Array (Predicted_Labels);
+      Labels : Natural := Actual_Array'Length;
+      Correct_Predictions : Natural := 0;
+   begin
+      for I in 1..Labels loop
+         if Actual_Array(I) = Predicted_Array(I) then
+            Correct_Predictions := Correct_Predictions + 1;
+         end if;
+      end loop;
+      return Correct_Predictions;      
+   end Compute_Num_Accurate;
+
+   function Labels_To_Int_Array (
+      Labels : Tensor_T
+   ) return Integer_Array is
+      Rows        : constant Integer := Shape(Labels)(1);
+      Columns     : constant Integer := Shape(Labels)(2);
+      Results     : Integer_Array(1..Rows);
+   begin
+      for I in 1..Rows loop
+         declare
+            max_Column : Natural := 1;
+            max_Value : Element_T := 0.0;
+         begin
+            for J in 1..Columns loop
+               declare
+                  Label  : Element_T := Labels([I, J]);
+               begin
+                  if Label > max_Value then
+                     max_Value := Label;
+                     max_Column := J;
+                  end if;
+               end;
+            end loop;
+            Results(I) := max_Column;
+         end;
+      end loop;
+      return Results;      
+   end Labels_To_Int_Array;
+
 end Del.Utilities;
