@@ -1,14 +1,8 @@
+import argparse
 import os
-import sys
 import json
 import time
-
 import numpy as np
-
-
-# helper function mimicking typescript's null-coalesce (??) operator
-def NullCoalesce(left, right):
-    return left if left is not None else right
 
 
 # helper function to write generated data to a json file
@@ -20,8 +14,10 @@ def WriteData(data: list, labels: list):
         "labels": labels
     }
     timestamp = time.time()
-    os.makedirs("generated-data", exist_ok=True)
-    with open(f"generated-data/{timestamp}.json", 'w', encoding='utf-8') as file:
+    output_dir = os.path.join("demos", "demo-data")
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, f"{timestamp}.json")
+    with open(file_path, 'w', encoding='utf-8') as file:
         json.dump(generatedData, file, ensure_ascii=False, indent=4)
     print("Done writting generated data!")
     print("Ending program...")
@@ -62,78 +58,91 @@ def GenerateSpiralData():
     data = []
     labels = []
 
+    # Calculate spiral parameters based on input bounds
+    max_radius = (upper - lower) * 0.5 # helps keep radius consistent with upper and lower limits, best if upper = -lower
+    max_angle = rotations * 2 * np.pi
+
     # Generate points for each spiral arm
     for i in range(types):
         print(f'Generating arm {i}...')
-        # Generate radius values that increase along the spiral
-        r = np.linspace(lower, upper, quantity//types)
         
-        # Generate angle values with increasing radius
-        # Add 2π/n_classes offset for each class to space arms evenly
-        t = np.linspace(0, 3, quantity//types) + i * 2*np.pi/types
+        # Number of points per spiral
+        n_points = quantity // types
         
-        # Add some noise
-        t = t + noise * np.random.uniform(lower * 0.01, upper * 0.01, size=t.shape)
-    
-        # Convert polar coordinates to cartesian
-        x = r * np.cos(t)
-        y = r * np.sin(t)
+        # Generate angles with full rotations
+        theta = np.linspace(0, max_angle, n_points)
         
-        x = x.tolist()
-        y = y.tolist()
+        # Archimedean spiral formula (r = a + b*θ)
+        r = (max_radius / theta[-1]) * theta
         
-        # store data and labels
-        for p in range(len(x)):     # p = point
+        # Add proportional noise to radius
+        r += noise * np.random.randn(n_points) * (r * 0.1)
+        
+        # Convert to cartesian with class offset
+        x = r * np.cos(theta + i * 2*np.pi/types)
+        y = r * np.sin(theta + i * 2*np.pi/types)
+        
+        # Store data and labels
+        for p in range(n_points):
             data.append([x[p], y[p]])
-            labels.append(i + 1)
+            if (createLabels): labels.append(i + 1)
+
         print(f'Done generating arm {i}.')
-        
-    # write data to file
+    
+    # Write data to file
     WriteData(data, labels)
+
 
 
 # ===== MAIN =====
 
-# gets data from terminal, if available with a max of 5
-args = [None] * 8
-argsLength = len(sys.argv) - 1 if len(sys.argv) < 9 else 8
-for i in range(argsLength):
-    args[i] = sys.argv[i+1]
+parser = argparse.ArgumentParser(
+    description='Data Pattern Generator',
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter
+)
+    
+# Core parameters
+parser.add_argument('-q', '--quantity', type=int, default=300,
+                    help='Number of data points to generate')
+parser.add_argument('-t', '--types', type=int, default=3,
+                    help='Number of distinct classes/labels (to the power of types in case of grid generation)')
+parser.add_argument('-d', '--dimension', type=int, default=2,
+                    help='Dimensionality of data points (must be 2 for spiral generation)')
+parser.add_argument('-l', '--lower', type=int, default=-1,
+                    help='Lower bound for generated values')
+parser.add_argument('-u', '--upper', type=int, default=1,
+                    help='Upper bound for generated values')
 
+# Generation options
+parser.add_argument('-s', '--shape', type=int, default=2, choices=[1,2],
+                    help='Data patterns:\n1=Grid\n2=Spiral')
+parser.add_argument('-n', '--noise', type=float, default=0.5,
+                    help='Noise level for spiral generation')
+parser.add_argument('-r', '--rotations', type=float, default=0.5,
+                    help='Number of spiral rotations')
 
-# integer indicating the size of the random dataset to be generated, defaults to 100
-quantity: int = NullCoalesce(int(args[0]), 100)
-# integer indicating labels that can be given to the data, defaults to 4
-types: int = NullCoalesce(int(args[1]), 4)
-# integer indicating the dimension of the points in the random dataset, defaults to 2
-dimension: int = NullCoalesce(int(args[2]), 2)
-# integer indicating lower range for the generated values, defaults to -100
-lower: int = NullCoalesce(int(args[3]), -100)
-# integer indicating upper range for the generated values, defaults to 100
-upper: int = NullCoalesce(int(args[4]), 100)
-# integer indicating shape of data to generate:
-#   1: grid
-#   2: spiral
-shape: int = NullCoalesce(int(args[5]), 1)
-# integer indicating if labels should be generated, 1 to generate and any other value to not
-createLabels: bool = (NullCoalesce(int(args[6]), 1) == 1)
-# decimal indicating noise multiplier if spiral generation is chosen
-noise: float = NullCoalesce(float(args[7]), 0.1)
+# Flags
+parser.add_argument('--no-labels', action='store_false', dest='create_labels',
+                    help='Disable label generation')
 
-print(f"-=~=- Values -=~=-\nQuantity: {quantity}\nTypes: {types}\nDimension: {dimension}\nLower: {lower}\nUpper: {upper}\nShape: {shape}\nCreate Labels: {createLabels}\n\n")
+args = parser.parse_args()
 
+# Assign parsed arguments
+quantity = args.quantity
+types = args.types
+dimension = args.dimension
+lower = args.lower
+upper = args.upper
+shape = args.shape
+createLabels = args.create_labels
+noise = args.noise
+rotations = args.rotations
 
-# basic check to make sure passed parameters won't be an issue
-quantity = int(quantity)
-types = int(types)
-dimension = int(dimension)
-lower = int(lower)
-upper = int(upper)
-shape = int(shape)
+# Validation checks remain unchanged
 if lower > upper:
-    raise ValueError('Lower bound (4th passed value) cannot be greater than upper bound (5th passed value)!')
+    raise ValueError('Lower bound cannot exceed upper bound')
 if types < 1:
-    raise ValueError('There must be at least 1 type for the data to be assigned to!')
+    raise ValueError('At least 1 type required')
 
 
 # attempt to generate data in requested shape

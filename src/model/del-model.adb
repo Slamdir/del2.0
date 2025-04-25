@@ -9,6 +9,7 @@ with Del.Utilities;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Del.Data;
+with Del.Export; use Del.Export;
 with Del.YAML; use Del.YAML;
 
 package body Del.Model is
@@ -80,7 +81,7 @@ package body Del.Model is
 
    function Do_Backward(S : Model; C : Layer_Vectors.Cursor; IT : Tensor_T) return Tensor_T is
       use Layer_Vectors;
-      T : Tensor_T := Layer_Vectors.Element(C).Backward (IT);
+      T : Tensor_T := Layer_Vectors.Element (C).Backward (IT);
    begin
       if C = S.Layers.First then
          return T;
@@ -111,15 +112,13 @@ package body Del.Model is
          Put_Line("Starting training with:" & 
                  " Data shape: (" & Shape(Data)(1)'Image & "," & Shape(Data)(2)'Image & ")" &
                  " Labels shape: (" & Shape(Labels)(1)'Image & "," & Shape(Labels)(2)'Image & ")");
-      Put_Line ("Num Epochs " & Num_Epochs'Image);
-      Put_Line(Shape(Data)(1)'Image);
+         Put_Line ("Num Epochs " & Num_Epochs'Image);
       for epoch in 1 .. Num_Epochs loop
          declare
             -- Shuffle indices
             Indices : Util.Integer_Array := Util.Generate_Random_List(Shape(Data)(1));
             Batch_Loops : Integer := (Shape(Data)(1) / Batch_Size);
          begin
-            Put_Line("Batch Loops " & Batch_Loops'Image);
             -- Loop across number of batches in data (last one may be incomplete)
             for batch in 1 .. Batch_Loops loop
                declare
@@ -147,44 +146,36 @@ package body Del.Model is
                      end;
                   end loop;
 
-                  Put_Line("Before Zero Grad");
                   -- Reset optimizer internal values for new loop
                   Self.Optimizer.Zero_Gradient(Self.Layers);
-                  Put_Line("After Zero Grad");
-                  New_Line;
-                  
-                  Put_Line("Before Run Layers");
+
                   -- Feedforward next batch of data
                   Actual_Labels := Self.Run_Layers(Training_Data);
-                  Put_Line("After Run Layers");
-                  New_Line;
-
-                  Put_Line("Before Compute Loss");
-                  Put_Line("Target Labels " & Training_Labels.Image);
-                  New_Line;
-
-                  Put_Line("Actual Labels " & Actual_Labels.Image);
-                  New_Line;
 
                   -- Compute loss
                   Loss_Value := Self.Loss_Func.Forward(Training_Labels, Actual_Labels);
-                  Put_Line("After Compute Loss " & Loss_Value'Image);
-                  New_Line;
 
                   -- Backpropagation
                   declare
-                     Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
-                     Cursor      : Layer_Vectors.Cursor := Self.Layers.Last;
-                     New_Grad    : Tensor_T := Do_Backward (Self, Cursor, Gradient);
+                     Inital_Gradient    : Tensor_T := Self.Loss_Func.Backward (Training_Labels, Actual_Labels); 
+                     Cursor             : Layer_Vectors.Cursor := Self.Layers.Last;
+                     New_Grad           : Tensor_T := Do_Backward (Self, Cursor, Inital_Gradient);
                   begin
-                     -- Apply gradient changes
-                     Self.Optimizer.Step (Self.Layers);
-                  end;
 
-                  -- Output progress for user feedback
-                  Put_Line("Processed epoch" & epoch'Image & ", batch" & batch'Image);
+                     --  Put_Line("Final Gradient");
+                     --  New_Line;
+                     --  Put_Line(New_Grad.Image);
+
+                     -- Apply gradient changes
+                     Self.Optimizer.Step (Self.Layers);  
+                  end;
                end;
             end loop;
+            --Outputs after every 10 epochs and when the final epoch is completed
+            if epoch mod 3 = 0 or epoch = Num_Epochs then
+               Put_Line("Loss at Epoch " & epoch'Image & " Loss value: " & Loss_Value'Image);
+               New_Line;
+            end if;
          end;
       end loop;
       end;
@@ -204,15 +195,14 @@ package body Del.Model is
    function Run_Layers (Self : in Model; Input : Tensor_T) return Tensor_T is
       C : Layer_Vectors.Cursor := Self.Layers.First;
    begin
-      Put_Line ("Run_Layers called with input shape: " & 
-                Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image);
+      --Put_Line ("Run_Layers called with input shape: " & Shape (Input) (1)'Image & "," & Shape (Input) (2)'Image); 
                
       if Self.Layers.Length = 0 then
          Put_Line ("No layers in network");
          return Input;
       end if;
 
-   Put_Line("Network has" & Self.Layers.Length'Image & " layers");
+   --Put_Line("Network has" & Self.Layers.Length'Image & " layers");
 
       return Do_Forward (Self, C, Input);
    exception
@@ -250,6 +240,14 @@ package body Del.Model is
          Put_Line("Unexpected error: " & Ada.Exceptions.Exception_Message(E));
          raise;
    end Load_Data_From_YAML;
+
+   procedure Export_To_JSON
+      (Self : in Model; 
+      Filename : String) 
+   is
+   begin
+      Del.Export.Export_To_JSON(Self, Filename);
+   end Export_To_JSON;
    
    procedure Load_Data_From_File
      (Self          : in out Model;

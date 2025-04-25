@@ -11,10 +11,6 @@ package body Del.Optimizers is
 
    overriding procedure Step(Self : SGD_T; Layers : Layer_Vectors.Vector) is
       C : Layer_Vectors.Cursor := Layers.First;
-      Grad_Clip_Max : constant Element_T := 1.0;
-      Grad_Clip_Min : constant Element_T := -1.0;
-      Weight_Clip_Max : constant Element_T := 1.0E16;
-      Weight_Clip_Min : constant Element_T := -1.0E16;
    begin
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then
@@ -28,8 +24,8 @@ package body Del.Optimizers is
                   Layer_Bias_Velocity   : Tensor_T := Layer_Vectors.Element(C).Map("bias_velocity");
 
                   -- Local parameters
-                  LR : constant Element_T := Element_T(Self.Learning_Rate);
-                  WD : constant Element_T := Element_T(Self.Weight_Decay);
+                  LR       : constant Element_T := Element_T(Self.Learning_Rate);
+                  WD       : constant Element_T := Element_T(Self.Weight_Decay);
                   Momentum : constant Element_T := Element_T(Self.Momentum);
                begin
                   -- Weight update with corrected momentum/decay
@@ -43,10 +39,10 @@ package body Del.Optimizers is
                   Layer_Bias_Data := Layer_Bias_Data - LR * Layer_Bias_Velocity;
 
                   -- Store updated parameters
-                  Layer_Vectors.Element(C).Map.Insert("weights_velocity", Layer_Weight_Velocity);
-                  Layer_Vectors.Element(C).Map.Insert("weights", Layer_Weight_Data);
-                  Layer_Vectors.Element(C).Map.Insert("bias_velocity", Layer_Bias_Velocity);
-                  Layer_Vectors.Element(C).Map.Insert("bias", Layer_Bias_Data);
+                  Layer_Vectors.Element(C).Map.Include("weights_velocity", Layer_Weight_Velocity);
+                  Layer_Vectors.Element(C).Map.Include("weights", Layer_Weight_Data);
+                  Layer_Vectors.Element(C).Map.Include("bias_velocity", Layer_Bias_Velocity);
+                  Layer_Vectors.Element(C).Map.Include("bias", Layer_Bias_Data);
                end;
          end if;
          Layer_Vectors.Next(C);
@@ -61,38 +57,13 @@ package body Del.Optimizers is
       while Layer_Vectors.Has_Element(C) loop
          if Layer_Vectors.Element(C).Map.Contains("weights") then
             declare
-               Layer_Weight_Grad     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
-               Layer_Bias_Grad       : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
-
                Weight_Shape     : Tensor_Shape_T := Layer_Vectors.Element(C).Map("weights_grad").Shape;
                Bias_Shape       : Tensor_Shape_T := Layer_Vectors.Element(C).Map("bias_grad").Shape;
             begin
-
-               Put_Line("Layer Weight Before Zero Grad");
-               Put_line(Layer_Weight_Grad.Image);
-               New_Line;
-
-               Put_Line("Layer Bias Before Zero Grad");
-               Put_Line(Layer_Bias_Grad.Image);
-               New_Line;
-
                --Zero Weight Grad
-                  Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
+               Layer_Vectors.Element(C).Map("weights_grad") := Zeros(Weight_Shape);
                --Zero Bias Grad
-                  Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
-
-                  declare 
-                     Layer_Weight_Grad2     : Tensor_T := Layer_Vectors.Element(C).Map("weights_grad");
-                     Layer_Bias_Grad2      : Tensor_T := Layer_Vectors.Element(C).Map("bias_grad");
-                  begin
-                     Put_Line("Layer Weight After Zero Grad");
-                     Put_line(Layer_Weight_Grad2.Image);
-                     New_Line;
-
-                     Put_Line("Layer Bias After Zero Grad");
-                     Put_Line(Layer_Bias_Grad2.Image);
-                     New_Line;
-                  end;
+               Layer_Vectors.Element(C).Map("bias_grad") := Zeros(Bias_Shape);
             end;
          end if;
          Layer_Vectors.Next(C);
