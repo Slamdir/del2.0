@@ -3,6 +3,8 @@ with Ada.Numerics;
 with Ada.Numerics.Elementary_Functions;
 package body Del.Operators is
 
+   package ANEF renames Ada.Numerics.Elementary_Functions;
+
    function Row_Sum(Values : Tensor_T) return Tensor_T is
       Rows     : Integer := Shape(Values)(1);
       Cols     : Integer := Shape(Values)(2);
@@ -299,4 +301,101 @@ package body Del.Operators is
       return (Dummy, Dummy);
    end Get_Params;
 
+   function Pos_Sigmoid(X : Element_T) return Element_T is
+   begin
+      return Element_T(1.0 / (1.0 + ANEF.Exp(Float(-X))));
+   end Pos_Sigmoid;
+
+   function Neg_Sigmoid(X : Element_T) return Element_T is
+   begin
+      return Element_T(ANEF.Exp(Float(X)) / (1.0 + ANEF.Exp(Float(X))));
+   end Neg_Sigmoid;
+
+   overriding function Forward (L : in out Sigmoid_T; X : Tensor_T) return Tensor_T is
+      Rows   : constant Integer := Shape(X)(1);
+      Col    : constant Integer := Shape(X)(2);
+
+      Output : Tensor_T := Zeros(X.Shape);
+   begin
+
+      for I in 1 .. Rows loop
+         for J in 1 .. Col loop
+            declare
+               Value : Element_T := X((I, J));
+            begin
+               if Value > 0.0 then
+                  Output.Set((I, J), Pos_Sigmoid(Value));
+               else
+                  Output.Set((I, J), Neg_Sigmoid(Value));
+               end if;
+            end;
+         end loop;
+      end loop;
+
+      -- Store output for backward pass
+      L.Map.Include("output", Output);
+      
+      return Output;
+   end Forward;
+
+   overriding function Backward (L : in out Sigmoid_T; Dy : Tensor_T) return Tensor_T is
+      Prev_Output : constant Tensor_T := L.Map("output");
+
+      Rows   : constant Integer := Shape(Prev_Output)(1);
+      Col    : constant Integer := Shape(Prev_Output)(2);
+
+      D_Sig  : Tensor_T := Zeros(Prev_Output.Shape);
+   begin
+
+      for I in 1 .. Rows loop
+         for J in 1 .. Col loop
+            declare
+               Value : Element_T := Prev_Output((I, J));
+               Tmp   : Element_T := Value * (1.0 - Value);
+            begin
+               D_Sig.Set((I, J), Tmp);
+            end;
+         end loop;
+      end loop;
+
+      return Dy * D_Sig;
+   end Backward;
+
+   overriding function Get_Params (L : Sigmoid_T) return Params_T is
+      Dummy : Tensor_Access_T := null;
+   begin
+      return (Dummy, Dummy);
+   end Get_Params;
+
+   --  TZ   : Time_Offset := UTC_Time_Offset;
+   --  Zero : Ada.Calendar.Time        :=
+   --    Ada.Calendar.Formatting.Value
+   --      ("2018-05-01 15:00:00.00", TZ);
+
+   -- ********************************************************************
+   -- ***                         HyperTanh                            ***
+   -- ********************************************************************
+   overriding function Forward (L : in out HyperTanh_T; X : Tensor_T) return Tensor_T is
+      Exp_X    : constant Tensor_T := Exp(X);
+      Exp_NegX : constant Tensor_T := Exp(-X);
+      Result   : constant Tensor_T := (Exp_X - Exp_NegX) / (Exp_X + Exp_NegX);
+   begin
+      L.Map.Include("output", Result);
+      return Result;
+   end Forward;
+
+   overriding function Backward (L : in out HyperTanh_T; Dy : Tensor_T) return Tensor_T is
+      Output : constant Tensor_T := L.Map("output");
+      -- squared via multiplication to avoid issues caused by binary operators
+      D_Hypertanh : Tensor_T := 1.0 - Output.Power(2);
+   begin
+      return Dy * D_Hypertanh;
+   end Backward;
+
+   overriding function Get_Params (L : HyperTanh_T) return Params_T is
+   Dummy : Tensor_Access_T := null;
+   begin
+      return (Dummy, Dummy);
+   end Get_Params;
+   
 end Del.Operators;
