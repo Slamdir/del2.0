@@ -17,7 +17,7 @@ procedure YAML_Testcases is
    package DMod renames Del.Model;
 
    -- Constants
-   YAML_Filename : constant String := "bin/initial_testing.yaml";
+   YAML_Filename : constant String := "demos/demo-data/initial_testing.yaml";
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- 1 sample, 2 features
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 4);  -- 1 sample, 4 classes
    Batch_Size    : constant Positive := 10;
