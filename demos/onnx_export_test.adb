@@ -1,9 +1,13 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Exceptions;
+with Ada.Exceptions; use Ada.Exceptions;
+with Del; use Del;
 with Del.Model;
-with Del.Data;
+with Del.Data; use Del.Data;
 with Del.ONNX;
 with Del.Operators; use Del.Operators;
+with Del.Loss; use Del.Loss;
+with Del.Optimizers; use Del.Optimizers;
+with Orka.Numerics.Singles.Tensors; use Orka.Numerics.Singles.Tensors;
 with Orka.Numerics.Singles.Tensors.CPU;
 
 procedure ONNX_Export_Test is
@@ -22,15 +26,22 @@ procedure ONNX_Export_Test is
    
    -- Helper procedure to create a simple network
    procedure Build_Simple_Network(Model : in out Del.Model.Model) is
-      Linear_Layer : Linear_T;
-      Relu_Layer : ReLU_T;
+      Linear_Layer : Linear_Access_T := new Linear_T;
+      Relu_Layer : ReLU_Access_T := new ReLU_T;
    begin
       -- Initialize linear layer
       Linear_Layer.Initialize(100, 50);  -- Match input/output dimensions
       
       -- Add layers to model
-      Model.Add_Layer(new Linear_T'(Linear_Layer));
-      Model.Add_Layer(new ReLU_T'(Relu_Layer));
+      Model.Add_Layer(Func_Access_T(Linear_Layer));
+      Model.Add_Layer(Func_Access_T(Relu_Layer));
+      
+      -- Add loss function
+      Model.Add_Loss(Loss_Access_T'(new Mean_Square_Error_T));
+      
+      -- Add optimizer
+      Model.Set_Optimizer(Optim_Access_T'(new SGD_T'(
+         Create_SGD_T(Learning_Rate => 0.01, Weight_Decay => 0.0, Momentum => 0.9))));
    end Build_Simple_Network;
    
 begin
@@ -48,7 +59,7 @@ begin
    Put_Line("Training original model...");
    Original_Model.Train_Model(
       Num_Epochs => 5,
-      Batch_Size => 1);
+      Batch_Size => 2);  -- Adjusted batch size to be < 10
    
    -- Step 2: Export the trained model
    Put_Line("Exporting model to: " & Export_Path);
@@ -77,14 +88,19 @@ begin
    Put_Line("Setting up dataset for loaded model...");
    Loaded_Model.Set_Dataset(Del.Data.Create(Test_Data, Test_Labels));
    
+   -- Add loss function and optimizer to loaded model before training
+   Loaded_Model.Add_Loss(Loss_Access_T'(new Mean_Square_Error_T));
+   Loaded_Model.Set_Optimizer(Optim_Access_T'(new SGD_T'(
+      Create_SGD_T(Learning_Rate => 0.01, Weight_Decay => 0.0, Momentum => 0.9))));
+   
    -- Step 5: Train the loaded model to ensure it works
    Put_Line("Training loaded model...");
    Loaded_Model.Train_Model(
       Num_Epochs => 5,
-      Batch_Size => 1);
+      Batch_Size => 2);
    
    Put_Line("Test completed successfully!");
 exception
    when E : others =>
-      Put_Line("Error: " & Ada.Exceptions.Exception_Message(E));
+      Put_Line("Error: " & Exception_Message(E));
 end ONNX_Export_Test;

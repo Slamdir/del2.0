@@ -21,7 +21,7 @@ procedure Export_Model is
    Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3); -- 3 classes
    Batch_Size    : constant Positive := 30;
    Num_Epochs    : constant Positive := 50;
-   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3_5.json";
    Output_File   : constant String := "demos/output/model_output.json";
 
 begin
