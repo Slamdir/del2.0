@@ -174,14 +174,6 @@ Model.Load_Data_From_File ("data.yaml",
                            Target_Shape => (1,1));
 ```
 Use `Model.Export_To_JSON("output.json")` after training.
-
----
-
-## 📦 Model Management
-* **Checkpoint** – `Model.Save("run.chk")`, `Model.Load(...)`.
-* **Config YAML** – define model/optimizer via `.yaml`, load with `del-yaml`.
-* **Utilities** – progress bar, seed control, metric tracker in `del-utilities.*`.
-
 ---
 
 ## 🔁 Export & Interoperate
