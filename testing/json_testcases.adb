@@ -17,9 +17,9 @@ procedure JSON_Testcases is
    package DMod renames Del.Model;
 
    -- Constants
-   Json_Filename : constant String := "demos/demo-data/spiral_3.json";
+   Json_Filename : constant String := "demos/demo-data/spiral_3_6.json";
    Data_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);  -- 1 sample, 2 features
-   Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- 1 sample, 4 classes
+   Target_Shape  : constant Tensor_Shape_T := (1 => 1, 2 => 3);  -- 1 sample, 3 classes
    Batch_Size    : constant Positive := 10;
    Num_Epochs    : constant Positive := 1;
 

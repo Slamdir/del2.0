@@ -19,7 +19,7 @@ procedure Export_Model_Testcases is
    package DOpt renames Del.Optimizers;
    package DL renames Del.Loss;
 
-   Json_Filename  : constant String := "demos/demo-data/spiral_3_3.json";
+   Json_Filename  : constant String := "demos/demo-data/spiral_3_6.json";
    Output_Filename : constant String := "demos/output/model_output.json";
 
    Input_Shape    : constant Tensor_Shape_T := (1 => 1, 2 => 2);
