@@ -28,7 +28,6 @@ Python‑based frameworks are powerful but introduce runtime GC, certification h
 ## 🔧 Prerequisites
 | Component | Purpose | Source |
 |-----------|---------|--------|
-| **GNAT Ada Compiler** | Compiles Ada code | [AdaCore](https://www.adacore.com/download) |
 | **Alire Package Manager** | Dependency & build manager | [Alire](https://alire.ada.dev/) |
 | **Python 3.9+** *(optional)* | Runs demo/visual‑tools | [python.org](https://python.org) |
 | **VS Code + Ada Extension** *(optional)* | IDE support | [VS Code](https://code.visualstudio.com/) |
