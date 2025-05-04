@@ -58,8 +58,8 @@ Python‑based frameworks are powerful but introduce runtime GC, certification h
 ## 🚀 Quick Start
 ```bash
 # Clone & build
-[git clone https://github.com/<org>/del.git](https://github.com/Slamdir/del2.0.git)
-cd del
+git clone https://github.com/Slamdir/del2.0.git
+cd del2.0
 alr build            
 ```
 
