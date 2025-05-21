@@ -109,7 +109,7 @@ alr build           # static build
 ## 🎓 Demos
 ```bash
 # Generate synthetic classification data
-python3 demos/generator.py --samples 500 --classes 3
+python3 dev_tools/generator.py
 ```
 ---
 
