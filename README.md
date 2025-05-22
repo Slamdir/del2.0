@@ -141,6 +141,45 @@ The library includes a `Combine_Dataset_Samples` function that can merge multipl
 
 ---
 
+## 🧰 Dev Tools
+
+### ⚙️ Data Generator
+
+To use this data generation tool, developers can run the Python script with command-line arguments to create 2D/ND grid patterns or 2D spiral patterns. The tool generates JSON files with coordinate data and optional labels, which are stored in a timestamped file within the project directory.
+
+**Quick Start**
+- View all parameters: `python generator.py --help`
+- Generate a default spiral dataset: `python generator.py -s 2 -q 1000`
+
+**Key Options**
+| Parameter | Description | Default |
+|---------|---------|---------|
+| `-s`/`--shape` | `1`=Grid, `2`=Spiral | 2 |
+| `-q`/`--quantity` | Total data points | 300 |
+| `-d`/`--dimension` | Data dimensions (2 for spirals) | 2 |
+| `-t`/`--types` | Classes (grid) or spiral arms | 3 |
+| `-l`/`--lower` | Minimum value for grid data | -1 |
+| `-u`/`--upper` | Maximum value for grid data | 1 |
+| `--no-labels` | Disables label generation | Enabled |
+
+**Spiral-Specific Parameters**
+
+- `-n`: Controls radial noise (default: 0.5)
+- `-r`: Sets number of full rotations (default: 0.5)
+
+**Output Details**
+
+Generated JSON files are saved to `demos/demo-data/[TIMESTAMP].json`. Each file contains:
+- `data`: Array of coordinate pairs (e.g., `[[0.34, -0.12], [0.88, 0.24]]`)
+- `labels`: Numeric class identifiers (omitted if `--no-labels` is used)
+
+**Grid Mode Notes**
+
+- Works in any dimensionality (adjust with `-d`)
+- Labels use `types^dimension` classification logic for grid generation
+
+### 🎥 Visualizer
+
 ## 🔁 Export & Interoperate
 | Format | Module | Notes |
 |--------|--------|-------|
